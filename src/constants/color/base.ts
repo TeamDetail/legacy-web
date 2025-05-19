@@ -1,4 +1,4 @@
-export const LegacyColorToken = Object.freeze({
+export const LegacyColorBase = Object.freeze({
   // MAR: - Common
   common0: "#000000",
   common100: "#FFFFFF",
