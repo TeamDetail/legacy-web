@@ -44,7 +44,7 @@ const BadgeContainer = styled.div<{ $isAtv: boolean, $badgeColor: string; }>`
   padding: 4px 12px;
   border-radius: 99px;
   > p {
-    ${LegacyTypography.Caption1.Bold}
+    ${LegacyTypography.Pretendard.Caption1.Bold}
     color: ${(props) => props.$isAtv ? LegacyPalette.labelNormal : LegacyPalette.labelAssistive};
   }
   background-color: ${({ $isAtv, $badgeColor }) => $isAtv ? $badgeColor : LegacyPalette.lineNeutral};
