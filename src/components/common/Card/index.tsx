@@ -1,31 +1,31 @@
 import * as S from "./style";
 
 interface CardType {
-  cardId: number;
-  nationAttributeId: number;
-  regionAttributeId: number;
-  lineAttributeId: number;
-  cardName: string;
-  cardImageUrl: string;
-  cardType: "START" | "NORMAL" | "SHINE";
+  cardType: "START" | "NORMAL" | "SHINE" | "BLANK";
+  cardId?: number;
+  nationAttributeId?: number;
+  regionAttributeId?: number;
+  lineAttributeId?: number;
+  cardName?: string;
+  cardImageUrl?: string;
   size?: "L" | "M" | "S";
 }
 
 const Card = ({
+  cardType,
   cardId,
   nationAttributeId,
   regionAttributeId,
   lineAttributeId,
   cardName,
   cardImageUrl,
-  cardType,
   size = "S"
 }: CardType) => {
 
   return (
-    <div>
-      Card
-    </div>
+    <S.CardContainer $size={size} $type={cardType}>
+
+    </S.CardContainer>
   );
 };
 
