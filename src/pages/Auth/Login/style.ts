@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Img from "../../assets/image 2.svg";
 import KakaoImg from "../../assets/kakao-svgrepo-com 1.svg";
-import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 
 export const Container = styled.div`
