@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Img from "../../assets/image 2.svg";
-import KakaoImg from "../../assets/kakao-svgrepo-com 1.svg";
-import { LegacyPalette } from "@src/constants/color/color";
+import Img from "@src/assets/image 2.svg";
+import KakaoImg from "@src/assets/kakao-svgrepo-com 1.svg";
 import { LegacyTypography } from "@src/constants/font/fontToken";
+import { LegacyPalette } from "@src/constants/color/color";
 
 export const Container = styled.div`
   width: 100vw;
@@ -69,6 +69,7 @@ export const LoginButtonText = styled.p`
   flex: 1;
   font-size: 10px;
   font-weight: normal;
+  color: ${LegacyPalette.staticBlack};
 `;
 
 export const Column12 = styled.div`
@@ -76,22 +77,22 @@ export const Column12 = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  & p {
+    color: ${LegacyPalette.labelNormal};
+  }
 `;
 
 export const Normal14 = styled.p`
   ${LegacyTypography.BitBit.Label}
-  color: white;
 `;
 
 export const Normal48 = styled.p`
   font-family: "DNFBitBitv2";
   font-size: 48px;
-  color: white;
 `;
 
 export const Body2Bold = styled.p`
   ${LegacyTypography.Pretendard.Body2.Bold}
-  color: white;
 `;
 
 export const Column = styled.div`
