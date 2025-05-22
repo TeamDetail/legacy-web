@@ -1,54 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as S from "./style";
-import axios from "axios";
-import { REDIRECT_URI, REST_API_KEY } from "@src/constants/kakao/kakao";
-import { Router, useNavigate, useRoutes } from "react-router-dom";
-import useEffectOnce from "@src/hooks/useEffectOnce";
-
-interface KakaoToken {
-  token_type: string;
-  access_token: string;
-  expires_in: number;
-  refresh_token: string;
-  refresh_token_expires_in: number;
-}
+import useLogin from "@src/hooks/Auth/useLogin";
+import { useNavigate } from "react-router-dom";
 
 const Verify = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const code = new URL(document.location.toString()).searchParams.get("code");
-
-    const useGetToken = async () => {
-      try {
-        const payload = new URLSearchParams();
-        payload.append("grant_type", "authorization_code");
-        payload.append("client_id", REST_API_KEY);
-        payload.append("redirect_uri", REDIRECT_URI);
-        payload.append("code", code || "");
-
-        const data = await axios.post<KakaoToken>(
-          "https://kauth.kakao.com/oauth/token",
-          payload,
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
-        if (data) {
-          localStorage.setItem("ACCESS_TOKEN", data.data.access_token);
-          localStorage.setItem("REFRESH_TOKEN", data.data.refresh_token);
-          navigate("/");
-        }
-      } catch (err: any) {
-        console.log(err);
-      }
-    };
-
-    useEffectOnce(() => {
-      useGetToken();
-    });
+    useLogin(code, navigate);
   }, []);
 
   return (
