@@ -1,31 +1,67 @@
+import { CardType } from "@src/types/card/card.type";
+import CardTag from "../CardTag";
 import * as S from "./style";
+import ShineBadge from "@src/assets/CardBadge/ShineBadge.svg?react";
+import StartBadge from "@src/assets/CardBadge/StartBadge.svg?react";
 
-interface CardType {
-  cardType: "START" | "NORMAL" | "SHINE" | "BLANK";
+interface CardTypeProps {
+  cardType: CardType;
   cardId?: number;
-  nationAttributeId?: number;
-  regionAttributeId?: number;
-  lineAttributeId?: number;
+  nationAttributeName?: string;
+  regionAttributeName?: string;
+  lineAttributeName?: string;
   cardName?: string;
   cardImageUrl?: string;
   size?: "L" | "M" | "S";
+  isAtv: boolean;
+  handleCardChange: (cardId:number) => void;
 }
 
 const Card = ({
   cardType,
   cardId,
-  nationAttributeId,
-  regionAttributeId,
-  lineAttributeId,
+  // nationAttributeName,
+  // regionAttributeName,
+  // lineAttributeName,
   cardName,
   cardImageUrl,
-  size = "S"
-}: CardType) => {
+  size = "S",
+  isAtv,
+  handleCardChange
+}: CardTypeProps) => {
+  const BadgeSize = size === "L" ? 40 : size === "M" ? 32 : 20;
 
   return (
-    <S.CardContainer $size={size} $type={cardType}>
-
-    </S.CardContainer>
+    <S.CardWrap $isFocus={isAtv}>
+      <S.CardContainer
+        $size={size}
+        $type={cardType}
+        $imageUrl={cardImageUrl!}
+        $isFocus={isAtv}
+        key={cardId}
+        onClick={() => handleCardChange(cardId!)}
+      >
+        <S.CardInfoContainer>
+          <S.CardTagContainer>
+            <CardTag text="시대" type="NATION" size={size} />
+            <CardTag text="분류" type="LINE" size={size} />
+            <CardTag text="지역" type="REGION" size={size} />
+          </S.CardTagContainer>
+          {cardType === "SHINING_CARD" ? (
+            <ShineBadge width={BadgeSize} height={BadgeSize} />
+          ) : (
+            cardType === "START_CARD" && (
+              <StartBadge width={BadgeSize} height={BadgeSize} />
+            )
+          )}
+        </S.CardInfoContainer>
+        <p>{cardName}</p>
+      </S.CardContainer>
+      <S.CardFocusMenu $isFocus={isAtv}>
+        <S.CardButton $size={size} $type="ACCEPT">장착</S.CardButton>
+        <S.CardButton $size={size} $type="CLOSE">취소</S.CardButton>
+      </S.CardFocusMenu>
+    </S.CardWrap>
   );
 };
 
