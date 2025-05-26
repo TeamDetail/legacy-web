@@ -1,13 +1,13 @@
 // import { REDIRECT_URI, REST_API_KEY } from "@src/constants/kakao/kakao";
 // import axios from "axios";
 
-interface KakaoToken {
-  token_type: string;
-  access_token: string;
-  expires_in: number;
-  refresh_token: string;
-  refresh_token_expires_in: number;
-}
+// interface KakaoToken {
+//   token_type: string;
+//   access_token: string;
+//   expires_in: number;
+//   refresh_token: string;
+//   refresh_token_expires_in: number;
+// }
 
 // const useGetToken = async ({ code }: { code: string }) => {
 //   try {
