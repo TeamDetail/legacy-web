@@ -1,26 +1,22 @@
-//토큰 저장을 쿠키에서 합니다
-class Token {
+import {
+  ACCESS_TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+} from "@src/constants/token.constants";
+import cookies from "../cookie/cookie";
 
+class Token {
   public getToken(key: string): string | undefined {
-    //토큰을 쿠키에 저장 합니다 쿠키말고 다른것을 사용 하여도 됩니다
-    const cookies = document.cookie.split("; ");
-    for (const cookie of cookies) {
-      const [cookieKey, cookieValue] = cookie.split("=");
-      if (cookieKey === key) {
-        return decodeURIComponent(cookieValue);
-      }
-    }
-    return undefined;
+    return cookies.getCookie(key);
   }
 
-  public setToken(key: string, value: string): string {
-    const cookie = (document.cookie = `${key} = ${value}`);
-    return cookie;
+  public setToken(key: string, token: string): void {
+    cookies.setCookie(key, token);
   }
 
   public clearToken() {
-    document.cookie = "max-age=0";
+    cookies.removeCookie(ACCESS_TOKEN_KEY);
+    cookies.removeCookie(REFRESH_TOKEN_KEY);
   }
 }
-
-export default new Token();
+const token = new Token();
+export default token;
