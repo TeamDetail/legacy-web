@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import token from "../token/token";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, REQUEST_TOKEN_KEY } from "../../constants/token.constants";
 import customAxios from "./customAxios";
-import CONFIG from "src/config/config.json";
+import CONFIG from "@src/config/config.json";
 
 let isRefreshing = false;
 let refreshSubscribers: ((accessToken: string) => void)[] = [];
