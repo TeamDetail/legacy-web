@@ -9,6 +9,7 @@ interface ButtonTypeProps {
   handleClick: () => void;
   children: React.ReactNode;
   isAtv?: boolean;
+  width?: string;
 }
 
 const Button = ({
@@ -19,9 +20,15 @@ const Button = ({
   handleClick,
   children,
   isAtv,
+  width = "173px",
 }: ButtonTypeProps) => {
   return (
-    <S.ButtonWrapper onClick={handleClick} $isAtv={isAtv} $color={color}>
+    <S.ButtonWrapper
+      onClick={handleClick}
+      $isAtv={isAtv}
+      $color={color}
+      $width={width}
+    >
       <S.ButtonContainer
         $size={size}
         $color={color}

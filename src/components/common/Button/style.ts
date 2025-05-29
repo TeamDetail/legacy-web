@@ -4,8 +4,9 @@ import styled from "styled-components";
 export const ButtonWrapper = styled.div<{
   $isAtv: boolean | undefined;
   $color: keyof typeof LegacySementic;
+  $width: string;
 }>`
-  width: 172px;
+  width: ${({ $width }) => $width};
   height: fit-content;
   padding: 4px;
   box-shadow: ${({ $isAtv, $color }) =>
