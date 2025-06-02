@@ -13,6 +13,10 @@ export const ButtonWrapper = styled.div<{
     $isAtv ? `0px 0px 8px 0px ${$color}` : "none"};
   background-color: ${LegacyPalette.fillNormal};
   border-radius: 12px;
+  cursor: pointer;
+  > :hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ButtonContainer = styled.div<{
