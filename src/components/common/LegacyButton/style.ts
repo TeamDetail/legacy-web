@@ -1,4 +1,4 @@
-import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
 
 export const ButtonWrapper = styled.div<{
