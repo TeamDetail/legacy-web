@@ -7,6 +7,8 @@ const Router = () => {
         path="/"
         element={<Sidebar/>}
       />
+      <Route path="/login" element={<Login />} />
+      <Route path="/login/verify" element={<Verify />} />
     </Routes>
   );
 };

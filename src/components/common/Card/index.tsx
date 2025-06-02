@@ -14,7 +14,8 @@ interface CardTypeProps {
   cardImageUrl?: string;
   size?: "L" | "M" | "S";
   isAtv: boolean;
-  handleCardChange: (cardId:number) => void;
+  handleCardChange: (cardId: number) => void;
+  canInteract: boolean;
 }
 
 const Card = ({
@@ -27,17 +28,19 @@ const Card = ({
   cardImageUrl,
   size = "S",
   isAtv,
-  handleCardChange
+  handleCardChange,
+  canInteract,
 }: CardTypeProps) => {
   const BadgeSize = size === "L" ? 40 : size === "M" ? 32 : 20;
+  const isCardAtv = isAtv && canInteract;
 
   return (
-    <S.CardWrap $isFocus={isAtv}>
+    <S.CardWrap $isFocus={isCardAtv}>
       <S.CardContainer
         $size={size}
         $type={cardType}
         $imageUrl={cardImageUrl!}
-        $isFocus={isAtv}
+        $isFocus={isCardAtv}
         key={cardId}
         onClick={() => handleCardChange(cardId!)}
       >
@@ -57,9 +60,13 @@ const Card = ({
         </S.CardInfoContainer>
         <p>{cardName}</p>
       </S.CardContainer>
-      <S.CardFocusMenu $isFocus={isAtv}>
-        <S.CardButton $size={size} $type="ACCEPT">장착</S.CardButton>
-        <S.CardButton $size={size} $type="CLOSE">취소</S.CardButton>
+      <S.CardFocusMenu $isFocus={isCardAtv}>
+        <S.CardButton $size={size} $type="ACCEPT">
+          장착
+        </S.CardButton>
+        <S.CardButton $size={size} $type="CLOSE">
+          취소
+        </S.CardButton>
       </S.CardFocusMenu>
     </S.CardWrap>
   );
