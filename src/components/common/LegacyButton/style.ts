@@ -1,23 +1,23 @@
-import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
 
 export const ButtonWrapper = styled.div<{
   $isAtv: boolean | undefined;
-  $color: keyof typeof LegacySementic;
+  $color: string;
   $width: string;
 }>`
   width: ${({ $width }) => $width};
   height: fit-content;
   padding: 4px;
   box-shadow: ${({ $isAtv, $color }) =>
-    $isAtv ? `0px 0px 8px 0px ${LegacySementic[$color].normal}` : "none"};
+    $isAtv ? `0px 0px 8px 0px ${$color}` : "none"};
   background-color: ${LegacyPalette.fillNormal};
   border-radius: 12px;
 `;
 
 export const ButtonContainer = styled.div<{
   $size: "small" | "big" | "default";
-  $color: keyof typeof LegacySementic;
+  $color: string;
   $isBold: boolean;
   $isFilled: boolean;
 }>`
@@ -26,18 +26,14 @@ export const ButtonContainer = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: ${({ $size }) =>
-    $size === "small" ? "4px" : $size === "big" ? "12px" : "8px"};
-  padding-bottom: ${({ $size }) =>
-    $size === "small" ? "4px" : $size === "big" ? "12px" : "8px"};
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: ${({ $size }) =>
+    $size === "small" ? "4px 12px" : $size === "big" ? "12px 12px" : "8px 12px"};
   border-radius: 8px;
   border: solid 1px;
   border-color: ${({ $isBold, $color }) =>
-    $isBold ? LegacySementic[$color].netural : LegacyPalette.lineAlternative};
+    $isBold ? $color : LegacyPalette.lineAlternative};
   background-color: ${({ $isBold, $isFilled, $color }) =>
     $isBold
-      ? $isFilled && LegacySementic[$color].netural
+      ? $isFilled && $color
       : $isFilled && LegacyPalette.lineAlternative};
 `;

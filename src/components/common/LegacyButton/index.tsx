@@ -1,18 +1,17 @@
-import { LegacySementic } from "@src/constants/color/color";
 import * as S from "./style";
 
 interface ButtonTypeProps {
   size: "default" | "small" | "big";
   isBold: boolean;
   isFilled: boolean;
-  color: keyof typeof LegacySementic;
+  color: string;
   handleClick: () => void;
   children: React.ReactNode;
   isAtv?: boolean;
   width?: string;
 }
 
-const Button = ({
+const LegacyButton = ({
   size,
   isBold,
   isFilled,
@@ -41,4 +40,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default LegacyButton;
