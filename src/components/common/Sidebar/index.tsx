@@ -1,9 +1,11 @@
-import useUser from '@src/hooks/user/useUser';
-import * as S from './style';
 import { User } from '@src/types/user/user.type';
+import * as S from './style';
+import Button from '../Button';
+import { sidebarData } from '@src/constants/sidebarData/sidebarData';
 
 const Sidebar = () => {
   // const { myUserData } = useUser(true);
+  
   const myUserData: User = {
     nickname : "박재민입니다",
     level:99,
@@ -26,6 +28,7 @@ const Sidebar = () => {
       grade: 3
     }
   }
+
   return (
     <S.SidebarContainer>
       <p>Legacy</p>
@@ -38,7 +41,8 @@ const Sidebar = () => {
           <p>{myUserData?.title.name}</p>
         </section>
       </S.SidebarUserInfoContainer>
-      
+      {/* {sidebarData.map((item) => (
+      ))} */}
     </S.SidebarContainer>
   )
 }
