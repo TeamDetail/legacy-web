@@ -46,3 +46,21 @@ export const SidebarUserName = styled.div`
   ${LegacyTypography.Pretendard.Headline.Bold}
   color: ${LegacyPalette.labelNormal};
 `
+
+export const SidebarButtonMenu = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+`
+
+export const SidebarMenuChildren = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+
+  gap: 8px;
+  color: ${LegacyPalette.labelNormal};
+  ${LegacyTypography.Pretendard.Caption1.Bold};
+`

@@ -1,9 +1,12 @@
 import { User } from '@src/types/user/user.type';
 import * as S from './style';
-import Button from '../Button';
+
 import { sidebarData } from '@src/constants/sidebarData/sidebarData';
+import LegacyButton from '../LegacyButton';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const nav = useNavigate();
   // const { myUserData } = useUser(true);
   
   const myUserData: User = {
@@ -41,10 +44,25 @@ const Sidebar = () => {
           <p>{myUserData?.title.name}</p>
         </section>
       </S.SidebarUserInfoContainer>
-      {/* {sidebarData.map((item) => (
-      ))} */}
+      <S.SidebarButtonMenu>
+        {sidebarData.map((item) => (
+          <LegacyButton
+            size="default"
+            isBold={true}
+            isFilled={false}
+            color={item.color}
+            handleClick={() => nav(item.url)}
+            children={
+              <S.SidebarMenuChildren>
+                <item.icon width={16} height={16}/>
+                {item.text}
+              </S.SidebarMenuChildren>
+            }
+          />
+        ))}
+      </S.SidebarButtonMenu>
     </S.SidebarContainer>
-  )
+  );
 }
 
 export default Sidebar
