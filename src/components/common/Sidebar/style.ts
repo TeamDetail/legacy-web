@@ -15,6 +15,7 @@ export const SidebarContainer = styled.section`
     color: ${LegacyPalette.labelNormal};
     ${LegacyTypography.BitBit.Title2}
   }
+  user-select: none;
 `
 
 export const SidebarUserInfoContainer = styled.div`
@@ -24,7 +25,6 @@ export const SidebarUserInfoContainer = styled.div`
   
   & img {
     border-radius: 999px;
-    background-color: red;
     width: 56px;
     height: 56px;
   }
@@ -61,6 +61,53 @@ export const SidebarMenuChildren = styled.div`
   width: 100%;
 
   gap: 8px;
+
   color: ${LegacyPalette.labelNormal};
-  ${LegacyTypography.Pretendard.Caption1.Bold};
+  ${LegacyTypography.Pretendard.Body2.Bold};
 `
+
+export const ViewMoreMenuContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+  
+  > button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    gap: 8px;
+    background-color: transparent;
+    border: none;
+    white-space: nowrap;
+    color: ${LegacyPalette.labelNormal};
+    ${LegacyTypography.Pretendard.Body2.Bold};
+  }
+`
+
+export const ViewMoreMenuButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  > :hover {
+    transform: scale(1.02);
+    background-color: ${LegacyPalette.fillAlternative};
+  }
+`
+
+export const ViewMoreMenuButton = styled.button<{ $isAtv : "true" | "false"}>`
+  padding: 4px 8px 4px 24px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: ${({ $isAtv }) => $isAtv === "true" ? LegacyPalette.fillAlternative : "transparent"};
+  border: none;
+  white-space: nowrap;
+  color: ${LegacyPalette.labelAlternative};
+  ${LegacyTypography.Pretendard.Caption1.Medium};
+  border-radius: 4px;
+  cursor: pointer;
+`;

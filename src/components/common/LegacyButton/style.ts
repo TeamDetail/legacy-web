@@ -1,6 +1,13 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
 
+
+export const ButtonHover = styled.div`
+  > :hover {
+    transform: scale(1.02);
+  }
+`
+
 export const ButtonWrapper = styled.div<{
   $isAtv: boolean | undefined;
   $color: string;
@@ -14,9 +21,6 @@ export const ButtonWrapper = styled.div<{
   background-color: ${LegacyPalette.fillNormal};
   border-radius: 12px;
   cursor: pointer;
-  > :hover {
-    transform: scale(1.05);
-  }
 `;
 
 export const ButtonContainer = styled.div<{
