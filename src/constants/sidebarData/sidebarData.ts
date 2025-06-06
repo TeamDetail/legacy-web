@@ -1,0 +1,39 @@
+import { LegacySementic } from "../color/color";
+import Adventure from "@src/assets/sidebarIcon/adventure.svg?react";
+import Trial from "@src/assets/sidebarIcon/trial.svg?react";
+import Shop from "@src/assets/sidebarIcon/shop.svg?react";
+import Ranking from "@src/assets/sidebarIcon/ranking.svg?react";
+import Achievement from "@src/assets/sidebarIcon/achievement.svg?react";
+
+export const sidebarData = [
+  {
+    text: "탐험",
+    url: "/adventure",
+    color: LegacySementic.blue.alternative,
+    icon: Adventure,
+  },
+  {
+    text: "시련",
+    url: "/trial",
+    color: LegacySementic.purple.alternative,
+    icon: Trial,
+  },
+  {
+    text: "상점",
+    url: "/shop",
+    color: LegacySementic.green.alternative,
+    icon: Shop,
+  },
+  {
+    text: "랭킹",
+    url: "/ranking",
+    color: LegacySementic.red.alternative,
+    icon: Ranking,
+  },
+  {
+    text: "도전과제",
+    url: "/achievement",
+    color: LegacySementic.yellow.alternative,
+    icon: Achievement,
+  },
+]
