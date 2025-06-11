@@ -7,6 +7,8 @@ const Router = () => {
       <Route path="/challenge">
         <Route path="ingame"/>
       </Route>
+      {/* <Route path="/login" element={<Login />} /> */}
+      {/* <Route path="/login/verify" element={<Verify />} /> */}
     </Routes>
   );
 };
