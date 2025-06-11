@@ -5,7 +5,7 @@ interface ButtonTypeProps {
   isBold: boolean;
   isFilled: boolean;
   color: string;
-  handleClick: () => void;
+  handleClick?: () => void;
   children: React.ReactNode;
   isAtv?: boolean;
   width?: string;
@@ -22,21 +22,23 @@ const LegacyButton = ({
   width = "173px",
 }: ButtonTypeProps) => {
   return (
-    <S.ButtonWrapper
-      onClick={handleClick}
-      $isAtv={isAtv}
-      $color={color}
-      $width={width}
-    >
-      <S.ButtonContainer
-        $size={size}
+    <S.ButtonHover>
+      <S.ButtonWrapper
+        onClick={handleClick}
+        $isAtv={isAtv}
         $color={color}
-        $isBold={isBold}
-        $isFilled={isFilled}
+        $width={width}
       >
-        {children}
-      </S.ButtonContainer>
-    </S.ButtonWrapper>
+        <S.ButtonContainer
+          $size={size}
+          $color={color}
+          $isBold={isBold}
+          $isFilled={isFilled}
+        >
+          {children}
+        </S.ButtonContainer>
+      </S.ButtonWrapper>
+    </S.ButtonHover>
   );
 };
 

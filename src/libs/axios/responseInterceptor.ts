@@ -5,7 +5,7 @@ import customAxios from "./customAxios";
 import CONFIG from "@src/config/config.json";
 
 let isRefreshing = false;
-let refreshSubscribers: ((accessToken: string) => void)[] = [];
+const refreshSubscribers: ((accessToken: string) => void)[] = [];
 
 const onTokenRefreshed = (accessToken: string) => {
   refreshSubscribers.forEach((callback) => callback(accessToken));
