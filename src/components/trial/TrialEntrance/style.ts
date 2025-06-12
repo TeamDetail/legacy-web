@@ -98,7 +98,7 @@ export const TrialCurrentFloor = styled.div`
 `
 
 export const TrialButtonText = styled.p<{ $color: string }>`
-  ${LegacyTypography.Pretendard.Body1.Medium};
+  ${LegacyTypography.Pretendard.Headline.Medium};
   color: ${({ $color }) => $color};
 `
 
