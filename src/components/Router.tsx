@@ -1,13 +1,13 @@
 import TrialPage from "@src/pages/TrialPage";
 import { Route, Routes } from "react-router-dom";
+import Login from "@src/pages/Auth/Login";
+import Verify from "@src/pages/Auth/Verify";
 
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" />
-      <Route path="/trial" element={<TrialPage/>}/>
-      {/* <Route path="/login" element={<Login />} /> */}
-      {/* <Route path="/login/verify" element={<Verify />} /> */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/login/verify" element={<Verify />} />
     </Routes>
   );
 };
