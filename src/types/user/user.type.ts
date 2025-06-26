@@ -12,15 +12,19 @@ export interface User {
   title: Title;
 }
 
+export interface BaseDataResponse<T> {
+  data: T;
+}
+
 export interface UserStats {
   snowflakeCapacity: number;
-  forcedRestock: number;
-  creditRecovery: number;
+  storeRestock: number;
+  creditCollect: number;
   dropCount: number;
 }
 
 export interface Title {
   name: string;
   content: string;
-  grade: number;
+  styleId: number;
 }
