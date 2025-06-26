@@ -47,7 +47,7 @@ export const LegacyPalette: PaletteColorType = Object.freeze({
   lineNeutral: LegacyColorBase.netural30,
   lineAlternative: LegacyColorBase.netural25,
 
-  fillNormal: LegacyColorBase.netural20,
+  fillNormal: LegacyColorBase.netural15,
   fillNeutral: LegacyColorBase.netural25,
   fillAlternative: LegacyColorBase.netural30,
   fillAssistive: LegacyColorBase.netural60,
@@ -68,7 +68,7 @@ type SementicColorInit = {
   normal: string;
   alternative: string;
   netural: string;
-}
+};
 
 type SementicColorType = {
   blue: SementicColorInit;
@@ -76,7 +76,7 @@ type SementicColorType = {
   green: SementicColorInit;
   red: SementicColorInit;
   yellow: SementicColorInit;
-}
+};
 
 export const LegacySementic: SementicColorType = Object.freeze({
   blue: {
@@ -104,4 +104,4 @@ export const LegacySementic: SementicColorType = Object.freeze({
     alternative: "#968341",
     netural: "#EDB900",
   },
-})
+});
