@@ -2,13 +2,17 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-export const TrialEntanceContainer = styled.section`
+export const TrialEntanceContainer = styled.section<{
+  $isLoading: string;
+}>`
   display: flex;
   height: 100%;
   flex-grow: 1;
   background-color: ${LegacyPalette.backgroundNormal};
   border-radius: 20px;
   overflow: hidden;
+  transition: all 0.18s ease-out;
+  transform: ${({ $isLoading }) => $isLoading === "true" ? "translateY(-900px)" : ""};
 `
 
 export const TrialFloorContainer = styled.div`

@@ -2,8 +2,8 @@ export interface User {
   nickname: string;
   level: number;
   exp: number;
-  credit?: number;
-  stats?: UserStats;
+  credit: number;
+  stats: UserStats;
   allBlocks: number;
   ruinsBlocks: number;
   maxFloor: number;
@@ -22,5 +22,4 @@ export interface UserStats {
 export interface Title {
   name: string;
   content: string;
-  grade: number;
 }

@@ -10,7 +10,10 @@ export const TrialContainer = styled.section`
   padding: 28px;
   background: linear-gradient(180deg, #111212 63.28%, #29002E 100%);
 `
-export const TiralSidebar = styled.section`
+
+export const TiralSidebar = styled.section<{
+  $isLoading: string;
+}>`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -21,4 +24,6 @@ export const TiralSidebar = styled.section`
   @media (max-width: 1155px) {
     display: none;
   }
+  transition: all 0.18s ease-out;
+  transform: ${({ $isLoading }) => $isLoading === "false" ? "" : "translateX(270px)"};
 `

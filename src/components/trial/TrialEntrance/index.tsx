@@ -1,70 +1,49 @@
-import { useState } from 'react';
 import * as S from './style';
-import { TrialState } from '@src/types/trial/trial.type';
 import { LegacyPalette, LegacySementic } from '@src/constants/color/color';
 import LegacyButton from '@components/common/LegacyButton';
+import { ChallengePageType } from '@src/pages/TrialPage';
+import { useTrial } from '@src/hooks/trial/useTrial';
+import { useState } from 'react';
+import { CardResponse } from '@src/types/card/card.type';
+import TrialDeckChooseModal from '@components/trial/TrialEntrance/TrialDeckChooseModal';
 
-const TrialEntrance = () => {
-  const [trialData, setTrialData] = useState<TrialState>({
-		"seed" : "0DP1XMDE", // 8자리 숫자 알파벳 대문자 조합
-		"deck" : [
-			{
-			  "cardId" : 1,
-			  "name" : "카드 이름1",
-	      "imageUrl" : "https://shiftpsh-blog.s3.amazonaws.com/uploads/2022/04/listing216.png",
-	      "cardType" : "SHINING_CARD",
-	      "nationAttributeName" : "국가1",
-	      "lineAttributeName" : "개열2",
-	      "regionAttributeName" : "지역3"
-		  },
-		  {
-			  "cardId" : 2,
-			  "name" : "카드 이름2",
-	      "imageUrl" : "https://shiftpsh-blog.s3.amazonaws.com/uploads/2022/04/listing216.png",
-	      "cardType" : "START_CARD",
-	      "nationAttributeName" : "국가2",
-	      "lineAttributeName" : "개열2",
-	      "regionAttributeName" : "지역2"
-		  },
-		  {
-			  "cardId" : 3,
-			  "name" : "카드 이름3",
-	      "imageUrl" : "https://shiftpsh-blog.s3.amazonaws.com/uploads/2022/04/listing216.png",
-	      "cardType" : "START_CARD",
-	      "nationAttributeName" : "국가3",
-	      "lineAttributeName" : "개열3",
-	      "regionAttributeName" : "지역3"
-		  }
-		],
-		"token" : [
-			{
-			  "tokenId": 1,
-				"tokenName": "문명토큰",
-				"tokenYear": 666,
-			}
-		],
-		score: {
-	    floor: 2, // 현재 층
-	    coin: 100000, // 문명 코인
-	    playedCard: 20, // 이번 런에서 플레이한 총 카드 수
-	    droppedCard: 10, // 이번 런에서 카드 버리기 횟수
-	    maxScore: 10330, // 이번 런 최고 점수
-	    buyCount: 0, // 이번 런에서 구매한 아이템 수
-	    restockTime: 2, // 이번 런의 상점 리롤 횟수
-	  },
-		"stats" : {
-	    "snowflakeCapacity": 3,
-	    "forcedRestock": 1,
-	    "creditRecovery" : 10,
-	    "dropCount" : 5,
+interface TrialEntranceProps {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setPage: React.Dispatch<React.SetStateAction<ChallengePageType>>;
+  isLoadingPageChange: boolean;
+}
+
+const TrialEntrance = ({
+  setLoading,
+  setPage,
+  isLoadingPageChange,
+}: TrialEntranceProps) => {
+  const {runNewTrial, defalutTrialData, trialData} = useTrial();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [choosedDeck, setChoosedDeck] = useState<CardResponse[] | null>(null);
+
+  const changePage = () => {
+    setLoading(true);
+    if (JSON.stringify(trialData) === JSON.stringify(defalutTrialData) && choosedDeck) {
+      runNewTrial(choosedDeck, () => {
+        setTimeout(() => {
+          setPage("INGAME_PAGE");
+        }, 1500);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1650);
+      })
     }
-	});
+  };
 
   return (
-    <S.TrialEntanceContainer>
+    <S.TrialEntanceContainer
+      $isLoading={isLoadingPageChange.toString()}
+    >
       <S.TrialFloorContainer>
         {Array.from({length: 12}).map((_, index) => (
           <S.TrialFloorItem
+            key={index}
             $color={
               (index+trialData.score.floor-7 === trialData.score.floor)
               ? LegacyPalette.primaryNormal
@@ -98,6 +77,7 @@ const TrialEntrance = () => {
           isFilled
           color={LegacyPalette.primaryNormal}
           width='100%'
+          handleClick={() => setIsModalOpen(true)}
         >
           <S.TrialButtonText
             $color={LegacyPalette.labelNormal}
@@ -105,6 +85,12 @@ const TrialEntrance = () => {
             도전하기!
           </S.TrialButtonText>
         </LegacyButton>
+        <TrialDeckChooseModal
+          isModalOpen={isModalOpen}
+          closeModal={() => setIsModalOpen(false)}
+          choosedDeck={choosedDeck}
+          changeChooseDeck={(deck) => setChoosedDeck(deck)}
+        />
         {trialData.score.floor > 1 && (
           <>
             <LegacyButton

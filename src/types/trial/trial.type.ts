@@ -1,5 +1,13 @@
 import { CardResponse } from "../card/card.type";
 
+export interface TrialStateRequest {
+  seed: string;
+  deck: number[];
+  token: number[];
+  score: TrialScore;
+  stats: Stats;
+}
+
 export interface TrialState {
   seed: string; // 8자리 숫자 알파벳 대문자 조합
   deck: CardResponse[];

@@ -9,7 +9,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { LegacyPalette } from '@src/constants/color/color';
 import { useState } from 'react';
 
-const Sidebar = () => {
+interface SidebarProps {
+  isLoading?: boolean;
+}
+
+const Sidebar = ({isLoading = false}: SidebarProps) => {
   const nav = useNavigate();
   const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
@@ -67,7 +71,9 @@ const Sidebar = () => {
   ]
 
   return (
-    <S.SidebarContainer>
+    <S.SidebarContainer
+      $isLoading={isLoading.toString()}
+    >
       <p>Legacy</p>
       <S.SidebarUserInfoContainer>
         <img src={myUserData?.imageUrl} alt="profileImg" />
@@ -81,6 +87,7 @@ const Sidebar = () => {
       <S.SidebarButtonMenu>
         {sidebarData.map((item) => (
           <LegacyButton
+            key={item.text}
             width='100%'
             size="default"
             isBold={true}

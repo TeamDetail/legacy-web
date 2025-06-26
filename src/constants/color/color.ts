@@ -47,7 +47,7 @@ export const LegacyPalette: PaletteColorType = Object.freeze({
   lineNeutral: LegacyColorBase.netural30,
   lineAlternative: LegacyColorBase.netural25,
 
-  fillNormal: LegacyColorBase.netural20,
+  fillNormal: LegacyColorBase.netural15,
   fillNeutral: LegacyColorBase.netural25,
   fillAlternative: LegacyColorBase.netural30,
   fillAssistive: LegacyColorBase.netural60,
