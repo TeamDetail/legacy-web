@@ -1,4 +1,4 @@
-import { RuleSet } from "styled-components";
+import { CSSObject } from "styled-components";
 import * as S from "./style";
 
 interface ButtonTypeProps {
@@ -10,7 +10,7 @@ interface ButtonTypeProps {
   children: React.ReactNode;
   isAtv?: boolean;
   width?: string;
-  customStyle?: RuleSet;
+  customStyle?: CSSObject;
 }
 
 const LegacyButton = ({
