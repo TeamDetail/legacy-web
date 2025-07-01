@@ -46,7 +46,8 @@ export const CardContainer = styled.div<{
   padding: ${({ $size }) =>
     $size === "L" ? "12px" : $size === "M" ? "10px" : "8px"};
 
-  border: 4px
+  border: ${({ $size }) =>
+      $size === "L" ? "4px" : $size === "M" ? "4px" : "2.5px"}
     ${({ $type }) =>
       $type === "SHINING_CARD"
         ? LegacySementic.yellow.netural

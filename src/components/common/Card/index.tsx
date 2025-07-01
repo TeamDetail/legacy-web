@@ -21,9 +21,9 @@ interface CardTypeProps {
 const Card = ({
   cardType,
   cardId,
-  // nationAttributeName,
-  // regionAttributeName,
-  // lineAttributeName,
+  nationAttributeName = "국가",
+  regionAttributeName = "지역",
+  lineAttributeName = "계열",
   cardName,
   cardImageUrl,
   size = "S",
@@ -46,9 +46,9 @@ const Card = ({
       >
         <S.CardInfoContainer>
           <S.CardTagContainer>
-            <CardTag text="시대" type="NATION" size={size} />
-            <CardTag text="분류" type="LINE" size={size} />
-            <CardTag text="지역" type="REGION" size={size} />
+            <CardTag text={nationAttributeName} type="NATION" size={size} />
+            <CardTag text={lineAttributeName} type="LINE" size={size} />
+            <CardTag text={regionAttributeName} type="REGION" size={size} />
           </S.CardTagContainer>
           {cardType === "SHINING_CARD" ? (
             <ShineBadge width={BadgeSize} height={BadgeSize} />
