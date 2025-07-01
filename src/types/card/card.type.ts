@@ -46,5 +46,3 @@ export type CardType =
   | "BASIC_CARD"
   | "SHINING_CARD"
   | "BLANK_CARD";
-
-export type DeckCount = "deck1" | "deck2" | "deck3";

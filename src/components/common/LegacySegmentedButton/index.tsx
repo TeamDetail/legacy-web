@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import * as S from './style'
 import { typographyType } from '@src/constants/font/fontToken';
 
@@ -12,6 +11,7 @@ export interface SegmentedBtnProps {
   width?: string;
   height?: string;
   onClick: (text?: string) => void;
+  changePage: (text: string) => void;
   customBackbgroundColor?: string;
   customBtnColor?: string;
   customBtnTextColor?: string;
@@ -23,25 +23,20 @@ const LegacySegmentedButton = ({
   width,
   height,
   onClick,
+  changePage,
   customBackbgroundColor,
   customBtnColor,
   customBtnTextColor,
   customBtnTextType = ["Pretendard", ["Body1", "Regular"]]
 }: SegmentedBtnProps
 ) => {
-  const [segmentedBtnData, setSegmentedBtnData] = useState<SegmentedBtnDataProps[]>(data);
-
-  const handleClick = (text: string) => {
-    setSegmentedBtnData(prev => prev.map(item => ({...item, isAtv: item.text === text })));
-  }
-
   return (
     <S.SegmentedButtonContainer
       $width={width ? `${width}` : "140px"}
       $height={height ? `${height}` : ""}
       $customBackbgroundColor={customBackbgroundColor}
     >
-      {segmentedBtnData.map((item, index) => (
+      {data.map((item, index) => (
         <S.SegmentedButtonItem
           key={index}
           $isAtv={item.isAtv}
@@ -49,7 +44,7 @@ const LegacySegmentedButton = ({
           $customBtnTextColor={customBtnTextColor}
           $customBtnTextType={customBtnTextType}
           onClick={() => {
-            handleClick(item.text);
+            changePage(item.text)
             onClick(item.text);
           }}
         >

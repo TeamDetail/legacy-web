@@ -7,7 +7,7 @@ export const ButtonHover = styled.div<{
 }>`
   width: ${({ $width }) => $width};
   > :hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
   }
 `
 
