@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 const useUser = (isMyData?:boolean) => {
   const [userId, setUserId] = useState<number|null>(null);
 
-  const { data: otherUserData, refetch: getUserData } = useGetUserQuery(userId!, { enabled: !!userId })
-  const { data: myUserData } = useGetMeQuery({enabled: isMyData});
+  const { data: otherUserData, refetch: getUserData} = useGetUserQuery(userId!, { enabled: !!userId })
+  const { data: myUserData, } = useGetMeQuery({enabled: isMyData, suspense: true});
 
   const getUserById = (id: number) => {
     setUserId(id);

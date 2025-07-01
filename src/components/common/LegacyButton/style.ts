@@ -1,5 +1,5 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import styled from "styled-components";
+import styled, { RuleSet } from "styled-components";
 
 
 export const ButtonHover = styled.div<{
@@ -15,6 +15,7 @@ export const ButtonWrapper = styled.div<{
   $isAtv: boolean | undefined;
   $color: string;
   $width: string;
+  $customStyle?: RuleSet;
 }>`
   width: ${({ $width }) => $width};
   height: fit-content;
@@ -24,6 +25,7 @@ export const ButtonWrapper = styled.div<{
   background-color: ${LegacyPalette.fillNormal};
   border-radius: 12px;
   cursor: pointer;
+  ${({ $customStyle }) => $customStyle};
 `;
 
 export const ButtonContainer = styled.div<{
@@ -31,6 +33,7 @@ export const ButtonContainer = styled.div<{
   $color: string;
   $isBold: boolean;
   $isFilled: boolean;
+  $customStyle?: RuleSet;
 }>`
   width: 100%;
   height: fit-content;
@@ -47,4 +50,5 @@ export const ButtonContainer = styled.div<{
     $isBold
       ? $isFilled && $color
       : $isFilled && LegacyPalette.lineAlternative};
+  ${({ $customStyle }) => $customStyle}
 `;

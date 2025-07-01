@@ -68,7 +68,7 @@ type SementicColorInit = {
   normal: string;
   alternative: string;
   netural: string;
-}
+};
 
 type SementicColorType = {
   blue: SementicColorInit;
@@ -76,7 +76,7 @@ type SementicColorType = {
   green: SementicColorInit;
   red: SementicColorInit;
   yellow: SementicColorInit;
-}
+};
 
 export const LegacySementic: SementicColorType = Object.freeze({
   blue: {
@@ -104,4 +104,4 @@ export const LegacySementic: SementicColorType = Object.freeze({
     alternative: "#968341",
     netural: "#EDB900",
   },
-})
+});

@@ -1,3 +1,4 @@
+import { RuleSet } from "styled-components";
 import * as S from "./style";
 
 interface ButtonTypeProps {
@@ -9,6 +10,7 @@ interface ButtonTypeProps {
   children: React.ReactNode;
   isAtv?: boolean;
   width?: string;
+  customStyle?: RuleSet;
 }
 
 const LegacyButton = ({
@@ -20,6 +22,7 @@ const LegacyButton = ({
   children,
   isAtv,
   width = "173px",
+  customStyle
 }: ButtonTypeProps) => {
   return (
     <S.ButtonHover
@@ -30,12 +33,14 @@ const LegacyButton = ({
         $isAtv={isAtv}
         $color={color}
         $width={width}
+        $customStyle={customStyle}
       >
         <S.ButtonContainer
           $size={size}
           $color={color}
           $isBold={isBold}
           $isFilled={isFilled}
+          $customStyle={customStyle}
         >
           {children}
         </S.ButtonContainer>

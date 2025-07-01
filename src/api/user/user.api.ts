@@ -1,4 +1,4 @@
-import { User } from "@src/types/user/user.type";
+import { BaseDataResponse, User } from "@src/types/user/user.type";
 import customAxios from "@src/libs/axios/customAxios";
 
 class UserApi {
@@ -7,9 +7,9 @@ class UserApi {
     return data;
   }
 
-  public async getMe(): Promise<User> {
+  public async getMe(): Promise<BaseDataResponse<User>> {
     const { data } = await customAxios.get("/user/me");
-    return data
+    return data;
   }
 }
 
