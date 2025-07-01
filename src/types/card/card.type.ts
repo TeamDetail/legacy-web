@@ -12,6 +12,7 @@ export interface CardResponse {
   lineAttributeName: LineAttributeType;
   regionAttributeName: RegionAttributeType;
 }
+
 export type LineAttributeType =
   | "역사"
   | "신앙"
@@ -45,3 +46,5 @@ export type CardType =
   | "BASIC_CARD"
   | "SHINING_CARD"
   | "BLANK_CARD";
+
+export type DeckCount = "deck1" | "deck2" | "deck3";
