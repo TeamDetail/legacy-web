@@ -6,7 +6,7 @@ export const TrialDeckChooseContainer = styled.div`
   flex-direction: column;
   padding: 12px;
   width: 640px;
-  height: 500px;
+  height: 560px;
   background-color: ${LegacyPalette.backgroundNeutral};
   border-radius: 24px;
   color: ${LegacyPalette.labelNormal};
@@ -20,4 +20,11 @@ export const DeckCardContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
+`
+
+export const DeckChooseButtonContainer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 `
