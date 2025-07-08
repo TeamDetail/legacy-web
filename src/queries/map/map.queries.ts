@@ -3,7 +3,6 @@ import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { QUERY_KEYS } from "../queryKey";
 import ruinApi from "@src/api/map/ruin.api";
-import { BaseResponse } from "@src/types/globalType/global.type";
 
 export const useGetRuinDetail = (
   id: number,

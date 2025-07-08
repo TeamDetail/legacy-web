@@ -7,8 +7,6 @@ import Pixel from "../Pixel";
 const MapComponent = () => {
   const map = useMap();
   const mapPixel = useMapPixel();
-
-  const [selectedLegacy, setSelectedLegacy] = useState<number | null>(null);
   const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(16);
 
   useEffect(() => {

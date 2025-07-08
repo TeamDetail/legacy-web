@@ -1,7 +1,7 @@
 import { LegacySementic } from "@src/constants/color/color";
 import useMapPixel from "@src/hooks/map/useMapPixel";
 import { useMap } from "@vis.gl/react-google-maps";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 
 interface PixelProps {
   ruinsId: number;

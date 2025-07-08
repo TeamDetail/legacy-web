@@ -1,7 +1,5 @@
-import ruinApi from "@src/api/map/ruin.api";
 import { useGetRuinDetail, useGetRuins } from "@src/queries/map/map.queries";
 import { LatLng } from "@src/types/map/latLng.type";
-import { Ruin } from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 
 interface CornerLatLngType {
@@ -10,7 +8,6 @@ interface CornerLatLngType {
 }
 
 const useMapPixel = () => {
-  const [ruinsList, setRuinsList] = useState<Ruin[]>([]);
   const [ruinId, setRuinId] = useState<number | null>(null);
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
@@ -54,6 +51,7 @@ const useMapPixel = () => {
     ruins,
     getRuin,
     ruinDetail,
+    ruinId,
   };
 };
 
