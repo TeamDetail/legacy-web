@@ -3,10 +3,6 @@ import * as S from "./style";
 import { LegacySementic } from "@src/constants/color/color";
 import useMapPixel from "@src/hooks/map/useMapPixel";
 
-interface TileInfoTypeProps {
-  type: "legacy" | "default";
-}
-
 const TileInfo = () => {
   const { ruinDetail } = useMapPixel();
 
