@@ -7,7 +7,6 @@ import {
 } from "../../constants/token.constants";
 import customAxios from "./customAxios";
 import CONFIG from "@src/config/config.json";
-import { BaseResponse } from "@src/types/globalType/global.type";
 
 interface TokenResponse {
   accessToken: string;
