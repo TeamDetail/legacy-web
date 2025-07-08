@@ -7,8 +7,7 @@ import { TokenType } from "@src/types/Auth/TokenResponse.type";
 import { BaseResponse } from "@src/types/globalType/global.type";
 import axios from "axios";
 import CONFIG from "@src/config/config.json";
-import { useRef } from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 
 const useLogin = async (code: string | null, navigate: NavigateFunction) => {
   try {
