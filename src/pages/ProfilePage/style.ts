@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 240px 1fr 2fr;
+  grid-template-columns: 220px 2fr minmax(280px, 1fr);
   grid-template-rows: 80px 1fr;
   grid-gap: 12px;
   grid-template-areas:
     "sidebar header header"
-    "sidebar userrecord datacontainer";
+    "sidebar datacontainer userrecord";
   width: 100vw;
   height: 100vh;
   padding: 28px;
@@ -40,6 +40,9 @@ export const UserRecordArea = styled.div`
 `;
 
 export const DataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   grid-area: datacontainer;
   background: ${LegacyPalette.backgroundNormal};
   border-radius: 16px;

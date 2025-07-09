@@ -7,6 +7,7 @@ interface MenuDataType {
   text: string;
   isAtv: boolean;
 }
+
 interface BadgeProps {
   badgeColor: string;
   data: MenuDataType[];

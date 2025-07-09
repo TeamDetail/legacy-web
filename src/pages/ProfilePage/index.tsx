@@ -16,9 +16,12 @@ const menuBadgeData = [
 
 const ProfilePage = () => {
   // const { username } = useParams<{ username: string }>();
+
   return (
     <S.Container>
-      <S.SidebarArea><Sidebar /></S.SidebarArea>
+      <S.SidebarArea>
+        {/* <Sidebar /> */}
+      </S.SidebarArea>
       <S.ProfileHeader>
         <Inventory width={32} height={32} />
         프로필
