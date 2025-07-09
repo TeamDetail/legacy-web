@@ -12,10 +12,6 @@ export interface User {
   title: Title;
 }
 
-export interface BaseDataResponse<T> {
-  data: T;
-}
-
 export interface UserStats {
   snowflakeCapacity: number;
   storeRestock: number;
