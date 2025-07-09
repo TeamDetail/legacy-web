@@ -1,6 +1,5 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import { useState } from "react";
 import styled from "styled-components";
 
 interface MenuDataType {
@@ -10,12 +9,11 @@ interface MenuDataType {
 
 interface BadgeProps {
   badgeColor: string;
-  data: MenuDataType[];
+  menuData: MenuDataType[];
+  setMenuData: React.Dispatch<React.SetStateAction<MenuDataType[]>>
 }
 
-export const MenuBadge = ({badgeColor, data}: BadgeProps) => {
-  const [menuData, setMenuData] = useState<MenuDataType[]>(data);
-
+export const MenuBadge = ({badgeColor, menuData, setMenuData}: BadgeProps) => {
   const handleMenu = (text: string) => {
     setMenuData((prev) =>
       prev.map((item) =>

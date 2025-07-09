@@ -7,6 +7,7 @@ import {
 } from "../../constants/token.constants";
 import customAxios from "./customAxios";
 import CONFIG from "@src/config/config.json";
+import { BaseResponse } from "@src/types/globalType/global.type";
 
 interface TokenResponse {
   accessToken: string;
@@ -43,7 +44,7 @@ const ResponseHandler = async (error: AxiosError) => {
       isRefreshing = true;
 
       try {
-        const { data } = await axios.post<TokenResponse>(
+        const { data } = await axios.post<BaseResponse<TokenResponse>>(
           `${CONFIG.server}/auth/refresh`,
           {
             refreshToken: usingRefreshToken,
@@ -51,13 +52,13 @@ const ResponseHandler = async (error: AxiosError) => {
         ); //CHANGE YOUR API URL && BODY VALUE
         customAxios.defaults.headers.common[
           REQUEST_TOKEN_KEY
-        ] = `Bearer ${data.accessToken}`;
+        ] = `Bearer ${data.data.accessToken}`;
 
-        token.setToken(ACCESS_TOKEN_KEY, data.accessToken);
-        token.setToken(REFRESH_TOKEN_KEY, data.refreshToken);
+        token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
+        token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
 
         isRefreshing = false;
-        onTokenRefreshed(data.accessToken);
+        onTokenRefreshed(data.data.accessToken);
 
         return new Promise((resolve) => {
           addRefeshSubscriber((accessToken: string) => {
