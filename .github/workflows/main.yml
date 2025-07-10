@@ -3,6 +3,9 @@ name: git push into another repo to deploy to vercel
 on:
   push:
     branches: [main]
+permissions:
+  contents: write # 리포지토리 내용 수정 권한
+  id-token: write # GitHub ID 토큰을 쓸 수 있는 권한
 
 jobs:
   build:
