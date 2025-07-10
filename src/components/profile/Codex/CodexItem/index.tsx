@@ -1,56 +1,47 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import { LegacyTypography } from "@src/constants/font/fontToken"
-import styled from "styled-components"
+import { useGetCardByRegion } from "@src/queries/card/card.queries";
+import * as S from './style';
+import LegacyButton from "@components/common/LegacyButton";
 
 interface CodexItemProps {
   title: string;
-  currentCount: number;
-  maxCount: number;
+  isSelected: boolean;
   onClick: () => void;
+  resetSelectedState: () => void;
 }
-const CodexItem = ({title, currentCount, maxCount, onClick}: CodexItemProps) => {
-  return (
-    <CodexItemHover onClick={onClick}>
-      <CodexItemContainer>
+
+const CodexItem = ({title, isSelected, onClick, resetSelectedState}: CodexItemProps) => {
+  const { data } = useGetCardByRegion(title);
+  return !isSelected ? (
+    <S.CodexItemHover onClick={onClick}>
+      <S.CodexItemContainer>
         {title}
         <div>
-          <p>{`${currentCount} / ${maxCount}`}</p>
+          <p>{`${data!.data.filter(item => item.regionAttributeName === title).length} / 50`}</p>
           •
-          <span>{`${Math.floor((currentCount / maxCount) * 100)}% 수집`}</span>
+          <span>{`${data!.data.filter(item => item.regionAttributeName === title).length * 2}% 수집`}</span>
         </div>
-      </CodexItemContainer>
-    </CodexItemHover>
+      </S.CodexItemContainer>
+    </S.CodexItemHover>
+  ) : (
+    <S.RegionFrame>
+      <header>
+        <p>{title}</p>
+        <LegacyButton
+          width="128px"
+          size="small" 
+          isFilled 
+          isBold={false} 
+          color={LegacyPalette.fillNormal} 
+          customStyle={{color: `${LegacyPalette.labelNormal}`}}
+          handleClick={resetSelectedState}
+        >
+          목록으로
+        </LegacyButton>
+      </header>
+      <S.DummyCardArea />
+    </S.RegionFrame>
   )
 }
 
-const CodexItemHover = styled.div`
-  > :hover {
-    background-color: ${LegacyPalette.backgroundNeutral};
-  }
-  cursor: pointer;
-`
-const CodexItemContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 8px 8px;
-  ${LegacyTypography.Pretendard.Heading1.Bold};
-  color: ${LegacyPalette.labelNormal};
-  border-radius: 12px;
-  > div {
-    display: flex;
-    gap: 4px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background-color: ${LegacyPalette.fillNormal};
-    align-items: center;
-    color: ${LegacyPalette.labelAlternative};
-    ${LegacyTypography.Pretendard.Headline.Regular}
-    > p {
-      color: ${LegacyPalette.labelNormal};
-      ${LegacyTypography.Pretendard.Headline.Bold};
-    }
-  }
-`
 export default CodexItem

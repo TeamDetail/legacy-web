@@ -16,8 +16,8 @@ const ProgressBar = ({ title, max = 100, value, barColor, bgColor, label }: Prog
   return (
     <BarWrapper>
       {title && <p>{title}</p>}
-      <BarContainer bgColor={bgColor}>
-        <BarFill barColor={barColor} percent={percent} />
+      <BarContainer $bgColor={bgColor}>
+        <BarFill $barColor={barColor} $percent={percent} />
         <BarLabel>{label}</BarLabel>
       </BarContainer>
     </BarWrapper>
@@ -37,24 +37,24 @@ const BarWrapper = styled.div`
     width: 52px;
   }
 `
-const BarContainer = styled.div<{ bgColor: string }>`
+const BarContainer = styled.div<{ $bgColor: string }>`
   position: relative;
   width: 100%;
   height: 28px;
-  background: ${({ bgColor }) => bgColor};
+  background: ${({ $bgColor }) => $bgColor};
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
 `;
 
-const BarFill = styled.div<{ barColor: string; percent: number }>`
+const BarFill = styled.div<{ $barColor: string; $percent: number }>`
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
-  width: ${({ percent }) => percent}%;
-  background: ${({ barColor }) => barColor};
+  width: ${({ $percent }) => $percent}%;
+  background: ${({ $barColor }) => $barColor};
   transition: width 0.3s;
 `;
 

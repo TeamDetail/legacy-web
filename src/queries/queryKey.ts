@@ -3,4 +3,7 @@ export const QUERY_KEYS = Object.freeze({
     getMe: "userGetMe",
     getUser: "userGetUser"
   },
+  card: {
+    getCardByRegion: "cardGetByRegion"
+  }
 })
