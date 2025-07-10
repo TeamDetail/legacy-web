@@ -5,7 +5,7 @@ import Verify from "@src/pages/Auth/Verify";
 const Router = () => {
   return (
     <Routes>
-      <Route path='/' element={<h1>김민규바보</h1>}/>
+      <Route path='/a' element={<h1>김민규바보</h1>}/>
       <Route path="/login" element={<Login />} />
       <Route path="/login/verify" element={<Verify />} />
     </Routes>
