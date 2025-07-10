@@ -1,5 +1,5 @@
 import { LegacySementic } from "@src/constants/color/color";
-import useMapPixel from "@src/hooks/map/useMapPixel";
+import useRuin from "@src/hooks/map/useRuin";
 import { useMap } from "@vis.gl/react-google-maps";
 import { useEffect } from "react";
 
@@ -19,7 +19,7 @@ const Pixel = ({
   pixelType,
 }: PixelProps) => {
   const map = useMap();
-  const mapPixel = useMapPixel();
+  const ruin = useRuin();
 
   const latPerPixel = 0.000724;
   const lonPerPixel = 0.000909;
@@ -125,7 +125,7 @@ const Pixel = ({
     animateOpacity(); // 실행
 
     const clickListener = polygon.addListener("click", () => {
-      mapPixel.getRuinDetailById(ruinsId);
+      ruin.getRuinDetailById(ruinsId);
     });
 
     // 정리 함수

@@ -1,12 +1,12 @@
 import { GOOGLE_MAP_API_KEY } from "@src/constants/googleMaps/googleMaps";
-import useMapPixel from "@src/hooks/map/useMapPixel";
 import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
 import Pixel from "../Pixel";
+import useRuin from "@src/hooks/map/useRuin";
 
 const MapComponent = () => {
   const map = useMap();
-  const mapPixel = useMapPixel();
+  const ruin = useRuin();
   const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(16);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const MapComponent = () => {
             bottomRightLatLng: topLeft,
             topLeftLatLng: bottomRight,
           };
-          mapPixel.getRuin(cornerLatLng);
+          ruin.getRuin(cornerLatLng);
         }
       }
     });
@@ -81,8 +81,8 @@ const MapComponent = () => {
 
   return (
     <>
-      {mapPixel.ruins &&
-        mapPixel.ruins.map((item) => {
+      {ruin.ruins &&
+        ruin.ruins.map((item) => {
           const zoomLevel = map?.getZoom();
 
           return (

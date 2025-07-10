@@ -1,10 +1,12 @@
 import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
 import { LegacySementic } from "@src/constants/color/color";
-import useMapPixel from "@src/hooks/map/useMapPixel";
+import useRuin from "@src/hooks/map/useRuin";
 
 const TileInfo = () => {
-  const { ruinDetail } = useMapPixel();
+  const { ruinDetail } = useRuin();
+
+  console.log(ruinDetail);
 
   return (
     <S.InfoContainer>
@@ -12,8 +14,8 @@ const TileInfo = () => {
       <S.Column8>
         <S.LabelMedieum>탐험 필요 크레딧</S.LabelMedieum>
         <S.Row4>
-          <S.CreditText></S.CreditText>
-          <S.CreditAddText>( 오늘 누적 블록 )</S.CreditAddText>
+          <S.CreditText>{ruinDetail?.data.name}</S.CreditText>
+          <S.CreditAddText></S.CreditAddText>
         </S.Row4>
       </S.Column8>
       <LegacyButton

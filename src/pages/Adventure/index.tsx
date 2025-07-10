@@ -2,7 +2,7 @@ import * as S from "./style";
 import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
-import useMapPixel from "@src/hooks/map/useMapPixel";
+import useMapPixel from "@src/hooks/map/useRuin";
 
 const Adventure = () => {
   const { ruinDetail } = useMapPixel();
@@ -19,7 +19,7 @@ const Adventure = () => {
 
       {ruinDetail && (
         <S.InfoPopup>
-          <TileInfo/>
+          <TileInfo />
         </S.InfoPopup>
       )}
     </S.BackStage>

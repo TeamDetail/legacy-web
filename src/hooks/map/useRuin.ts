@@ -1,13 +1,12 @@
-import { useGetRuinDetail, useGetRuins } from "@src/queries/map/map.queries";
-import { LatLng } from "@src/types/map/latLng.type";
+import {
+  useGetRuinDetail,
+  useGetRuinQuiz,
+  useGetRuins,
+} from "@src/queries/map/map.queries";
+import { CornerLatLngType } from "@src/types/map/latLng.type";
 import { useEffect, useState } from "react";
 
-interface CornerLatLngType {
-  topLeftLatLng: LatLng;
-  bottomRightLatLng: LatLng;
-}
-
-const useMapPixel = () => {
+const useRuin = () => {
   const [ruinId, setRuinId] = useState<number | null>(null);
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
@@ -16,22 +15,19 @@ const useMapPixel = () => {
   const { data: ruinDetail, refetch: getRuinDetail } = useGetRuinDetail(
     ruinId!
   );
-  const { data: ruins, refetch: getRuins } = useGetRuins(
-    cornerLatLng?.topLeftLatLng.lat ?? 0,
-    cornerLatLng?.topLeftLatLng.lng ?? 0,
-    cornerLatLng?.bottomRightLatLng.lat ?? 0,
-    cornerLatLng?.bottomRightLatLng.lng ?? 0,
-    {
-      enabled: !!cornerLatLng,
-    }
-  );
+  const { data: ruins, refetch: getRuins } = useGetRuins(cornerLatLng!, {
+    enabled: !!cornerLatLng,
+  });
+  const { data: ruinQuiz, refetch: getRuinQuiz } = useGetRuinQuiz(ruinId!);
 
   const getRuinDetailById = (id: number) => {
     setRuinId(id);
   };
-
   const getRuin = (cornerLatLng: CornerLatLngType) => {
     setConerLatLng(cornerLatLng);
+  };
+  const getRuinQuizById = (id: number) => {
+    setRuinId(id);
   };
 
   useEffect(() => {
@@ -39,7 +35,6 @@ const useMapPixel = () => {
       getRuinDetail();
     }
   }, [ruinId]);
-
   useEffect(() => {
     if (cornerLatLng) {
       getRuins();
@@ -51,8 +46,8 @@ const useMapPixel = () => {
     ruins,
     getRuin,
     ruinDetail,
-    ruinId,
+    ruinQuiz,
   };
 };
 
-export default useMapPixel;
+export default useRuin;

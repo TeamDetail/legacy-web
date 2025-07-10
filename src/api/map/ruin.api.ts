@@ -1,7 +1,6 @@
 import customAxios from "@src/libs/axios/customAxios";
 import { BaseResponse } from "@src/types/globalType/global.type";
-import { LatLng } from "@src/types/map/latLng.type";
-import { Ruin, RuinDetail } from "@src/types/map/ruin.type";
+import { Ruin, RuinDetail, RuinQuizType } from "@src/types/map/ruin.type";
 
 class RuinApi {
   public async getRuins(
@@ -21,14 +20,14 @@ class RuinApi {
     return data.data;
   }
 
-  public async getRuinDetail(id: number): Promise<RuinDetail | undefined> {
-    if (id) {
-      const { data } = await customAxios.get(`/ruins/${id}`);
-      console.log(data);
-      return data;
-    }
+  public async getRuinDetail(id: number): Promise<RuinDetail> {
+    const { data } = await customAxios.get(`/ruins/${id}`);
+    return data.data;
+  }
 
-    return undefined;
+  public async getRuinQuiz(id: number): Promise<RuinQuizType[]> {
+    const { data } = await customAxios.get(`/quiz/${id}`);
+    return data.data;
   }
 }
 
