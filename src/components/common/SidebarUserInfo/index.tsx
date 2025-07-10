@@ -1,4 +1,3 @@
-import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleton";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import useUser from "@src/hooks/user/useUser";
