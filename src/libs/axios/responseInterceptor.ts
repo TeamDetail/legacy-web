@@ -6,8 +6,8 @@ import {
   REQUEST_TOKEN_KEY,
 } from "../../constants/token.constants";
 import customAxios from "./customAxios";
-import CONFIG from "@src/config/config.json";
 import { BaseResponse } from "@src/types/globalType/global.type";
+import { SERVER_URL } from "@src/constants/server.constants";
 
 interface TokenResponse {
   accessToken: string;
@@ -45,7 +45,7 @@ const ResponseHandler = async (error: AxiosError) => {
 
       try {
         const { data } = await axios.post<BaseResponse<TokenResponse>>(
-          `${CONFIG.server}/auth/refresh`,
+          `${SERVER_URL}/auth/refresh`,
           {
             refreshToken: usingRefreshToken,
           }
