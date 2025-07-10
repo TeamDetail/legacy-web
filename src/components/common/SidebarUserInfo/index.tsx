@@ -1,4 +1,3 @@
-import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleton";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { useGetMeQuery } from "@src/queries/user/user.queries";

@@ -1,13 +1,13 @@
-import { BaseDataResponse, User } from "@src/types/user/user.type";
+import { User } from "@src/types/user/user.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { QUERY_KEYS } from "../queryKey";
 import userApi from "@src/api/user/user.api";
 
 export const useGetMeQuery = (
-  options?: UseQueryOptions<BaseDataResponse<User>, AxiosError>
-): UseQueryResult<BaseDataResponse<User>, AxiosError> =>
-  useQuery<BaseDataResponse<User>, AxiosError>(
+  options?: UseQueryOptions<BaseResponse<User>, AxiosError>
+): UseQueryResult<BaseResponse<User>, AxiosError> =>
+  useQuery<BaseResponse<User>, AxiosError>(
     QUERY_KEYS.user.getMe,
     () => userApi.getMe(),
     {
@@ -20,9 +20,9 @@ export const useGetMeQuery = (
 
 export const useGetUserQuery = (
   id: number,
-  options?: UseQueryOptions<User, AxiosError>
-): UseQueryResult<User, AxiosError> =>
-  useQuery<User, AxiosError>(
+  options?: UseQueryOptions<BaseResponse<User>, AxiosError>
+): UseQueryResult<BaseResponse<User>, AxiosError> =>
+  useQuery<BaseResponse<User>, AxiosError>(
     QUERY_KEYS.user.getUser,
     () => userApi.getUser(id),
     {
