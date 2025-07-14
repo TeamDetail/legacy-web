@@ -1,5 +1,5 @@
 import * as S from "./style";
-import ProgressBar from "@src/components/profile/ProgressBar";
+import ProgressBar from "@components/profile/UserRecord/ProgressBar";
 import RecordItem from "@src/components/profile/UserRecord/RecordItem";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import useUser from "@src/hooks/user/useUser";
