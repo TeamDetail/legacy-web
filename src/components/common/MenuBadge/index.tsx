@@ -6,6 +6,7 @@ interface MenuDataType {
   text: string;
   isAtv: boolean;
 }
+
 interface BadgeProps {
   badgeColor: string;
   menuData: MenuDataType[];
@@ -23,7 +24,7 @@ export const MenuBadge = ({badgeColor, menuData, setMenuData}: BadgeProps) => {
 
   return (
     <MenuContainer>
-      {menuData.map((item) => (
+      {menuData?.map((item) => (
         <BadgeContainer $isAtv={item.isAtv} $badgeColor={badgeColor} key={item.text} onClick={() => handleMenu(item.text)}>
           <p>{item.text}</p>
         </BadgeContainer>

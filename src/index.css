@@ -9,5 +9,6 @@
 
 @font-face {
   font-family: 'DNFBitBitv2';
-  src:url('../src/constants/font/DNFBitBitv2.otf')format('opentype')
+  src:url('../src/constants/font/DNFBitBitv2.otf')format('opentype');
+  font-display: swap;
 }

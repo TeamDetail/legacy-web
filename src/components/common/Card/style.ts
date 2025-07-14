@@ -57,7 +57,7 @@ export const CardContainer = styled.div<{
     $size === "L" ? "20px" : $size === "M" ? "16px" : "12px"};
   
   background: no-repeat url(${({ $imageUrl }) => `${$imageUrl}`});
-
+  background-position: center center;
   cursor: pointer;
   position: relative;
   isolation: isolate;
