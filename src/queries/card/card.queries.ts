@@ -1,4 +1,4 @@
-import { CardResponse } from "@src/types/card/card.type";
+import { CardResponse, RegionAttributeType } from "@src/types/card/card.type";
 import { BaseResponse } from "@src/types/globalType/global.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
@@ -6,11 +6,11 @@ import { QUERY_KEYS } from "../queryKey";
 import cardApi from "@src/api/card/card.api";
 
 export const useGetCardByRegion = (
-  region: string,
+  region: RegionAttributeType,
   options?: UseQueryOptions<BaseResponse<CardResponse[]>, AxiosError>
 ): UseQueryResult<BaseResponse<CardResponse[]>, AxiosError> =>
   useQuery<BaseResponse<CardResponse[]>, AxiosError>(
-    QUERY_KEYS.card.getCardByRegion,
+    [QUERY_KEYS.card.getCardByRegion, region],
     () => cardApi.getCardByRegion(region),
     {
       staleTime: 1000 * 60 * 5,

@@ -3,9 +3,10 @@ import { useGetCardByRegion } from "@src/queries/card/card.queries";
 import * as S from './style';
 import LegacyButton from "@components/common/LegacyButton";
 import Card from "@components/common/Card";
+import { RegionAttributeType } from "@src/types/card/card.type";
 
 interface CodexItemProps {
-  title: string;
+  title: RegionAttributeType;
   selectedRegion: string;
   onClick: () => void;
   resetSelectedState: () => void;
@@ -52,8 +53,8 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
             nationAttributeName={item.nationAttributeName}
             lineAttributeName={item.lineAttributeName}
             regionAttributeName={item.regionAttributeName}
-            cardName={item.name}
-            cardImageUrl={item.imageUrl}
+            cardName={item.cardName}
+            cardImageUrl={item.cardImageUrl}
           />
         ))}
       </S.CardArea>

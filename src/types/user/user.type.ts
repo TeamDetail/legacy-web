@@ -8,6 +8,7 @@ export interface User {
   ruinsBlocks: number;
   maxFloor: number;
   maxScore: number;
+  // record: UserRecord;
   imageUrl: string;
   title: Title;
 }
@@ -24,3 +25,12 @@ export interface Title {
   content: string;
   styleId: number;
 }
+
+// export interface UserRecord {
+//   allBlocks: number;
+//   ruinsBlocks: number;
+//   maxFloor: number;
+//   maxScore: number;
+//   cardCount: number;
+//   shiningCardCount: number;
+// }
