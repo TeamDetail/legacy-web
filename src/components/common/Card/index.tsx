@@ -1,8 +1,8 @@
 import { CardType } from "@src/types/card/card.type";
 import CardTag from "../CardTag";
 import * as S from "./style";
-import ShineBadge from "@src/assets/cardBadge/ShineBadge.svg?react";
-import StartBadge from "@src/assets/cardBadge/StartBadge.svg?react";
+import ShineBadge from "@src/assets/cardBadge/ShineBadge.svg";
+import StartBadge from "@src/assets/cardBadge/StartBadge.svg";
 
 interface CardTypeProps {
   cardType: CardType;
@@ -51,10 +51,11 @@ const Card = ({
             <CardTag text={regionAttributeName} type="REGION" size={size} />
           </S.CardTagContainer>
           {cardType === "SHINING_CARD" ? (
-            <ShineBadge width={BadgeSize} height={BadgeSize} />
+            // <ShineBadge width={BadgeSize} height={BadgeSize} />
+            <img src={ShineBadge} alt="badge" width={BadgeSize} height={BadgeSize}/>
           ) : (
             cardType === "START_CARD" && (
-              <StartBadge width={BadgeSize} height={BadgeSize} />
+              <img src={StartBadge} alt="badge" width={BadgeSize} height={BadgeSize}/>
             )
           )}
         </S.CardInfoContainer>
