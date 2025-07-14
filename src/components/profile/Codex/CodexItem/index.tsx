@@ -20,8 +20,8 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
       <S.CodexItemContainer>
         {title}
         <div>
-          <p>{`${data!.data.filter(item => item.regionAttributeName === title).length} / 30`}</p>
-          <span>• {`${data!.data.filter(item => item.regionAttributeName === title).length * 3.33}% 수집`}</span>
+          <p>{`${data!.data.cards?.filter(item => item.regionAttributeName === title).length} / ${data?.data.maxCount === 0 ? 30 : data?.data.maxCount}`}</p>
+          <span>• {`${data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100}% 수집`}</span>
         </div>
       </S.CodexItemContainer>
     </S.CodexItemHover>
@@ -41,9 +41,9 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
           목록으로
         </LegacyButton>
       </header>
-      {data!.data.length > 0 ? (
+      {data!.data.cards.length > 0 ? (
       <S.CardArea>
-        {data?.data.map(item => (
+        {data?.data.cards.map(item => (
           <Card
             key={item.cardId}
             cardType={item.cardType}

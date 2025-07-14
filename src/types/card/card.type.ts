@@ -20,6 +20,10 @@ export interface CardResponse {
   regionAttributeName: string;
 }
 
+export interface CardCollection {
+  maxCount: number,
+  cards: CardResponse[],
+}
 
 export type LineAttributeType =
   | "역사"
