@@ -1,7 +1,7 @@
 import { CardType } from "@src/types/card/card.type";
 import CardTag from "../CardTag";
 import * as S from "./style";
-import ShineBadge from "@src/assets/CardBadge/ShineBadge.svg?react"";
+import ShineBadge from "@src/assets/CardBadge/ShineBadge.svg?react";
 import StartBadge from "@src/assets/CardBadge/StartBadge.svg?react";
 
 interface CardTypeProps {
