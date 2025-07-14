@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Img from "@src/assets/image 2.svg";
+import Img from "@src/assets/loginImage.svg";
 import KakaoImg from "@src/assets/kakao-svgrepo-com 1.svg";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { LegacyPalette } from "@src/constants/color/color";

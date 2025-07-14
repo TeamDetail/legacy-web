@@ -51,7 +51,6 @@ const Card = ({
             <CardTag text={regionAttributeName} type="REGION" size={size} />
           </S.CardTagContainer>
           {cardType === "SHINING_CARD" ? (
-            // <ShineBadge width={BadgeSize} height={BadgeSize} />
             <img src={ShineBadge} alt="badge" width={BadgeSize} height={BadgeSize}/>
           ) : (
             cardType === "START_CARD" && (
