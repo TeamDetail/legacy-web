@@ -9,7 +9,11 @@ import { Suspense, useState } from "react";
 import SidebarUserInfo from "../SidebarUserInfo";
 import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleton";
 
-const Sidebar = () => {
+interface SidebarProps {
+  isLoading?: boolean;
+}
+
+const Sidebar = ({isLoading = false}: SidebarProps) => {
   const nav = useNavigate();
   const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
@@ -43,7 +47,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <S.SidebarContainer>
+    <S.SidebarContainer
+      $isLoading={isLoading.toString()}
+    >
       <p>Legacy</p>
       <Suspense fallback={<SidebarUserInfoSkeleton />}>
         <SidebarUserInfo />
@@ -52,7 +58,7 @@ const Sidebar = () => {
         {sidebarData.map((item) => (
           <LegacyButton
             key={item.text}
-            width="100%"
+            width='100%'
             size="default"
             isBold={true}
             isFilled={false}

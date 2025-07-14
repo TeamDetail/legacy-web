@@ -1,18 +1,27 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import useUser from "@src/hooks/user/useUser";
+import { useGetMeQuery } from "@src/queries/user/user.queries";
+import { User } from "@src/types/user/user.type";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const SidebarUserInfo = () => {
-  const { myUserData } = useUser(true);
+  const { data } = useGetMeQuery({ suspense: true });
+  const [myUserData, setMyUserData] = useState<User>();
 
-  const nickname = myUserData?.data.nickname || "Unknown User";
-  const level = myUserData?.data.level || 0;
-  const titleName = myUserData?.data.title?.name || "No Title";
+  useEffect(() => {
+    if (data) {
+      setMyUserData(data.data);
+    }
+  }, [myUserData])
+
+  const nickname = myUserData?.nickname || "Unknown User";
+  const level = myUserData?.level || 0;
+  const titleName = myUserData?.title?.name || "No Title";
 
   return (
     <SidebarUserInfoContainer>
-      <img src={myUserData?.data.imageUrl} alt="profileImg" />
+      <img src={myUserData?.imageUrl} alt="profileImg" />
       <section>
         <SidebarUserName>{nickname}</SidebarUserName>
         <p>{level}Lv</p>

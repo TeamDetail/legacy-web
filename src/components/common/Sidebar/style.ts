@@ -2,7 +2,9 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-export const SidebarContainer = styled.section`
+export const SidebarContainer = styled.section<{
+  $isLoading?: string;
+}>`
   display: flex;
   flex-direction: column;
   width: 220px;
@@ -16,7 +18,9 @@ export const SidebarContainer = styled.section`
     ${LegacyTypography.BitBit.Title2}
   }
   user-select: none;
-`;
+  transition: all 0.18s ease-out;
+  transform: ${({ $isLoading }) => $isLoading === "true" ? "translateX(-280px)" : ""};
+`
 
 export const SidebarUserInfoContainer = styled.div`
   display: flex;

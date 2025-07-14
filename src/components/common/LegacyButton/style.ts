@@ -2,7 +2,10 @@ import { LegacyPalette } from "@src/constants/color/color";
 import styled, { CSSObject } from "styled-components";
 
 
-export const ButtonHover = styled.div`
+export const ButtonHover = styled.div<{
+  $width: string;
+}>`
+  width: ${({ $width }) => $width};
   > :hover {
     transform: scale(1.02);
   }
