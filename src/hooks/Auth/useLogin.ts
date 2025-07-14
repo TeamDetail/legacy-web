@@ -16,9 +16,6 @@ const useLogin = async (code: string | null, navigate: NavigateFunction) => {
       {
         code: code,
       },
-      {
-        withCredentials: true
-      }
     );
     if (data) {
       token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
