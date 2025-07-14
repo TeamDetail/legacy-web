@@ -20,8 +20,8 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
       <S.CodexItemContainer>
         {title}
         <div>
-          <p>{`${data!.data.filter(item => item.regionAttributeName === title).length} / 50`}</p>
-          <span>• {`${data!.data.filter(item => item.regionAttributeName === title).length * 2}% 수집`}</span>
+          <p>{`${data!.data.filter(item => item.regionAttributeName === title).length} / 30`}</p>
+          <span>• {`${data!.data.filter(item => item.regionAttributeName === title).length * 3.33}% 수집`}</span>
         </div>
       </S.CodexItemContainer>
     </S.CodexItemHover>
