@@ -82,3 +82,13 @@ export const CardArea = styled.div`
   border-radius: 16px;
   padding: 0;
 `;
+
+export const CardNotFound = styled.div`
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${LegacyPalette.labelNormal};
+  ${LegacyTypography.Pretendard.Title3.Bold}
+`

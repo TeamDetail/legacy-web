@@ -41,6 +41,7 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
           목록으로
         </LegacyButton>
       </header>
+      {data!.data.length > 0 ? (
       <S.CardArea>
         {data?.data.map(item => (
           <Card
@@ -58,6 +59,11 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
           />
         ))}
       </S.CardArea>
+      ) : (
+        <S.CardNotFound>
+          소지한 {title} 지역의 카드가 없습니다!
+        </S.CardNotFound>
+      )}
     </S.RegionFrame>
   ) : (
     <></>
