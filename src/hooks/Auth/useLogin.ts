@@ -1,3 +1,4 @@
+import { SERVER_URL } from "@src/constants/server.constants";
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
@@ -6,17 +7,15 @@ import token from "@src/libs/token/token";
 import { TokenType } from "@src/types/Auth/TokenResponse.type";
 import { BaseResponse } from "@src/types/globalType/global.type";
 import axios from "axios";
-import CONFIG from "@src/config/config.json";
-import { useRef } from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 
 const useLogin = async (code: string | null, navigate: NavigateFunction) => {
   try {
     const { data } = await axios.post<BaseResponse<TokenType>>(
-      `${CONFIG.server}/kakao/code`,
+      `${SERVER_URL}/kakao/code`,
       {
         code: code,
-      }
+      },
     );
     if (data) {
       token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
