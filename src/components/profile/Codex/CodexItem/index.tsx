@@ -2,28 +2,29 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { useGetCardByRegion } from "@src/queries/card/card.queries";
 import * as S from './style';
 import LegacyButton from "@components/common/LegacyButton";
+import Card from "@components/common/Card";
 
 interface CodexItemProps {
   title: string;
-  isSelected: boolean;
+  selectedRegion: string;
   onClick: () => void;
   resetSelectedState: () => void;
 }
 
-const CodexItem = ({title, isSelected, onClick, resetSelectedState}: CodexItemProps) => {
+const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexItemProps) => {
   const { data } = useGetCardByRegion(title);
-  return !isSelected ? (
+
+  return selectedRegion === "" ? (
     <S.CodexItemHover onClick={onClick}>
       <S.CodexItemContainer>
         {title}
         <div>
           <p>{`${data!.data.filter(item => item.regionAttributeName === title).length} / 50`}</p>
-          •
-          <span>{`${data!.data.filter(item => item.regionAttributeName === title).length * 2}% 수집`}</span>
+          <span>• {`${data!.data.filter(item => item.regionAttributeName === title).length * 2}% 수집`}</span>
         </div>
       </S.CodexItemContainer>
     </S.CodexItemHover>
-  ) : (
+  ) : selectedRegion === title ? (
     <S.RegionFrame>
       <header>
         <p>{title}</p>
@@ -39,8 +40,26 @@ const CodexItem = ({title, isSelected, onClick, resetSelectedState}: CodexItemPr
           목록으로
         </LegacyButton>
       </header>
-      <S.DummyCardArea />
+      <S.CardArea>
+        {data?.data.map(item => (
+          <Card
+            key={item.cardId}
+            cardType={item.cardType}
+            isAtv={false}
+            canInteract={false}
+            handleCardChange={() => void(0)}
+            size="M"
+            nationAttributeName={item.nationAttributeName}
+            lineAttributeName={item.lineAttributeName}
+            regionAttributeName={item.regionAttributeName}
+            cardName={item.name}
+            cardImageUrl={item.imageUrl}
+          />
+        ))}
+      </S.CardArea>
     </S.RegionFrame>
+  ) : (
+    <></>
   )
 }
 

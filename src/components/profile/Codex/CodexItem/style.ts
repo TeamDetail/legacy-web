@@ -8,15 +8,22 @@ export const CodexItemHover = styled.div`
   }
   cursor: pointer;
 `
+
 export const CodexItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 56px;
   padding: 8px 8px;
   ${LegacyTypography.Pretendard.Heading2.Bold};
   color: ${LegacyPalette.labelNormal};
   border-radius: 12px;
+
+  @media (max-width: 640px) {
+    justify-content: center;
+  }
+
   > div {
     display: flex;
     gap: 4px;
@@ -26,9 +33,20 @@ export const CodexItemContainer = styled.div`
     align-items: center;
     color: ${LegacyPalette.labelAlternative};
     ${LegacyTypography.Pretendard.Body2.Regular}
+
+    @media (max-width: 640px) {
+      display: none;
+    }
+
     > p {
       color: ${LegacyPalette.labelNormal};
       ${LegacyTypography.Pretendard.Body2.Bold};
+    }
+
+    > span {
+      @media (max-width: 720px) {
+        display: none;
+      }
     }
   }
 `
@@ -38,27 +56,29 @@ export const RegionFrame = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   border-radius: 16px;
   padding: 8px;
-
+  padding-bottom: 24px;
   > header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     > p {
-      ${LegacyTypography.Pretendard.Heading2.Bold};
+      ${LegacyTypography.Pretendard.Title2.Bold};
       color: ${LegacyPalette.labelNormal};
     }
   }
 `;
 
-export const DummyCardArea = styled.div`
+export const CardArea = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  place-items: center;
+  grid-auto-rows: 1fr;
   gap: 20px;
-  height: 100%;
-  background: ${LegacyPalette.fillNormal};
+  height: fit-content;
   border-radius: 16px;
   padding: 0;
 `;

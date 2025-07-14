@@ -2,22 +2,34 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const ProfileContainer = styled.div`
+  display: flex;
+  gap: 12px;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #111212 61.96%, #243824 100%);
+  padding: 28px;
+`
+
+export const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 220px 2fr minmax(280px, 1fr);
+  grid-template-columns: 2fr minmax(280px, 1fr);
   grid-template-rows: 80px 1fr;
   grid-gap: 12px;
   grid-template-areas:
-    "sidebar header header"
-    "sidebar datacontainer userrecord";
-  width: 100vw;
-  height: 100vh;
-  padding: 28px;
-  background: linear-gradient(180deg, #111212 61.96%, #243824 100%);
+    "header header"
+    "datacontainer userrecord";
+  height: 100%;
+  flex-grow: 1;
+  overflow: hidden;
 `;
 
 export const SidebarArea = styled.div`
-  grid-area: sidebar;
+  min-width: 220px;
+
+  @media (max-width:940px) {
+    min-width: 108px;
+  }
 `;
 
 export const ProfileHeader = styled.div`
@@ -29,7 +41,7 @@ export const ProfileHeader = styled.div`
   ${LegacyTypography.BitBit.Title2};
   background: ${LegacyPalette.backgroundNormal};
   border-radius: 20px;
-  padding: 16px;
+  padding: 16px 24px;
 `;
 
 export const UserRecordArea = styled.div`
@@ -42,11 +54,13 @@ export const UserRecordArea = styled.div`
 export const DataContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   gap: 12px;
   grid-area: datacontainer;
   background: ${LegacyPalette.backgroundNormal};
   border-radius: 16px;
   padding: 24px;
+  overflow-y: scroll;
 `;
 
 export const MenuBadgeWrapper = styled.div`

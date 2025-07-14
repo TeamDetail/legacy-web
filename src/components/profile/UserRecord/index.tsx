@@ -5,7 +5,7 @@ import * as S from "./style";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 
 const UserRecord = () => {
-  // Mock user data fetching
+  
   const [userData] = useState({
     shiningCardCount: 200,
     cardCount: 300,
@@ -48,7 +48,7 @@ const UserRecord = () => {
         <RecordItem title="탐험한 전체 블록 수" value={userData.allBlocks} unit="블록" />
         <RecordItem title="탐험한 유적지 블록 수" value={userData.ruinsBlocks} unit="블록" />
         <RecordItem title="수집한 일반 카드 수" value={userData.cardCount} unit="장" />
-        <RecordItem title="수집한 찬란 카드 수" value={userData.shiningCardCount} unit="장" />
+        <RecordItem title="수집한 찬란한 카드 수" value={userData.shiningCardCount} unit="장" />
         {/* <RecordItem title="시련 최고 층수" value={userData.maxFloor} unit="층" />
         <RecordItem title="시련 최고 점수" value={userData.maxScore} unit="문명 점수" /> */}
       </S.Records>
