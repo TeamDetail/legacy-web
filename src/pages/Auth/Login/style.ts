@@ -14,14 +14,21 @@ export const Container = styled.div`
 `;
 
 export const LoginBox = styled.div`
-  width: 45%;
+  width: 55vw;
   height: 50%;
-  //bg-normal
-  background-color: #1c1c1e;
+  background-color: ${LegacyPalette.backgroundNormal};
   //large
   border-radius: 20px;
   display: flex;
   overflow: hidden;
+
+  @media (max-width: 1000px) {
+    width: 60vw;
+  }
+
+  @media (max-width: 800px) {
+    width: fit-content;
+  }
 `;
 
 export const LoginImage = styled.div`
@@ -33,11 +40,15 @@ export const LoginImage = styled.div`
 `;
 
 export const Center = styled.div`
-  width: 50%;
+  flex-grow: 1;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 800px) {
+    padding: 64px;
+  }
 `;
 
 export const Column20 = styled.div`
@@ -58,18 +69,16 @@ export const LoginButton = styled.button`
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 4px;
+  
+  > p {
+    ${LegacyTypography.Pretendard.Caption2.Medium}
+    flex: 1;
+  }
 `;
 
 export const KakaoIcon = styled.img.attrs({ src: `${KakaoImg}` })`
   width: 12px;
   height: 12px;
-`;
-
-export const LoginButtonText = styled.p`
-  flex: 1;
-  font-size: 10px;
-  font-weight: normal;
-  color: ${LegacyPalette.staticBlack};
 `;
 
 export const Column12 = styled.div`
@@ -112,4 +121,8 @@ export const ImgBox = styled.div`
   width: 50%;
   height: 100%;
   position: relative;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
