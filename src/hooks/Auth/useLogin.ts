@@ -12,7 +12,7 @@ import { NavigateFunction } from "react-router-dom";
 const useLogin = async (code: string | null, navigate: NavigateFunction) => {
   try {
     const { data } = await axios.post<BaseResponse<TokenType>>(
-      `${SERVER_URL}/kakao/code`,
+      `/${SERVER_URL}/kakao/code`,
       {
         code: code,
       }
