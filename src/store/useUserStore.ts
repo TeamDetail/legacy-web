@@ -14,18 +14,23 @@ const useUserStore = create<UserStore>(set => ({
     credit: 0,
     stats: {
       snowflakeCapacity: 0,
-      forcedRestock: 0,
-      creditRecovery: 0,
+      storeRestock: 0,
+      creditCollect: 0,
       dropCount: 0,
     },
-    allBlocks: 0,
-    ruinsBlocks: 0,
-    maxFloor: 0,
-    maxScore: 0,
+    record: {
+      allBlocks: 0,
+      ruinsBlocks: 0,
+      maxFloor: 0,
+      maxScore: 0,
+      cardCount: 0,
+      shiningCardCount: 0,
+    },
     imageUrl: '',
     title: {
       name: '',
       content: '',
+      styleId: 0
     },
   },
   setUserData: (newData) => set({userStoreData: newData})
