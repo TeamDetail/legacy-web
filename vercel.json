@@ -1,11 +1,5 @@
 {
   "routes": [
     { "src": "/[^.]+", "dest": "/", "status": 200 }
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"]
-    }
-  }
+  ]
 }
