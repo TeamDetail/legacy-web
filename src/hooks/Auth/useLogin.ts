@@ -15,6 +15,9 @@ const useLogin = async (code: string | null, navigate: NavigateFunction) => {
       `${SERVER_URL}/kakao/code`,
       {
         code: code,
+      },
+      {
+        withCredentials: true
       }
     );
     if (data) {
