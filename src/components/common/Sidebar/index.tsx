@@ -1,11 +1,14 @@
 import * as S from "./style";
-import Menu from "@src/assets/sidebarIcon/menu.svg?react";
-import ArrowDown from "@src/assets/arrowDown.svg?react";
-import { sidebarData } from "@src/constants/sidebarData/sidebarData";
-import LegacyButton from "../LegacyButton";
-import { useLocation, useNavigate } from "react-router-dom";
-import { LegacyPalette } from "@src/constants/color/color";
 import { Suspense, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Menu from "@src/assets/sidebarIcon/menu.svg?react";
+import Mail from "@src/assets/sidebarIcon/mail.svg?react";
+import Setting from "@src/assets/sidebarIcon/setting.svg?react";
+import Logout from "@src/assets/sidebarIcon/logout.svg?react";
+import Info from "@src/assets/sidebarIcon/info.svg?react";
+import { sidebarData } from "@src/constants/sidebarData/sidebarData";
+import { LegacyPalette } from "@src/constants/color/color";
+import LegacyButton from "../LegacyButton";
 import SidebarUserInfo from "../SidebarUserInfo";
 import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleton";
 
@@ -19,26 +22,25 @@ const Sidebar = () => {
       text: "우편함",
       onClick: () => nav("/mailbox"),
       isSelectedPage: location.pathname === "/mailbox",
+      icon: <Mail width={22.5}/>
     },
     {
       text: "설정",
       onClick: () => nav("/setting"),
       isSelectedPage: location.pathname === "/setting",
+      icon: <Setting width={22.5}/>
     },
     {
       text: "로그아웃",
       onClick: () => console.log("로그아웃 로직 추가 필요"),
       isSelectedPage: false,
+      icon: <Logout width={22.5}/>
     },
     {
-      text: "서비스 운영 정책",
+      text: "운영 정책",
       onClick: () => nav("/policy"),
       isSelectedPage: false,
-    },
-    {
-      text: "개인정보 처리 방침",
-      onClick: () => nav("/privacy"),
-      isSelectedPage: false,
+      icon: <Info width={22.5}/>
     },
   ];
 
@@ -60,8 +62,8 @@ const Sidebar = () => {
             handleClick={() => nav(item.url)}
             children={
               <S.SidebarMenuChildren>
-                <item.icon width={20} height={20} />
-                {item.text}
+                <item.icon width={22.5} height={22.5} />
+                <p>{item.text}</p>
               </S.SidebarMenuChildren>
             }
           />
@@ -75,16 +77,10 @@ const Sidebar = () => {
           children={
             <S.ViewMoreMenuContainer>
               <button onClick={() => setIsViewMoreMenuOpen((prev) => !prev)}>
-                <Menu width={20} height={20} />
-                더보기
+                <Menu width={22.5} height={22.5} />
+                <p>더보기</p>
                 <div style={{ flexGrow: 1 }} />
-                <ArrowDown
-                  width={20}
-                  height={20}
-                  style={{
-                    transform: `scaleY(${isViewMoreMenuOpen ? 1 : -1})`,
-                  }}
-                />
+                <S.ViewMoreMenuArrowDown $isViewMoreMenuOpen={isViewMoreMenuOpen.toString()}/>
               </button>
               {isViewMoreMenuOpen && (
                 <S.ViewMoreMenuButtonContainer>
@@ -93,7 +89,8 @@ const Sidebar = () => {
                       onClick={item.onClick}
                       $isAtv={`${item.isSelectedPage}`}
                     >
-                      {item.text}
+                      {item.icon}
+                      <p>{item.text}</p>
                     </S.ViewMoreMenuButton>
                   ))}
                 </S.ViewMoreMenuButtonContainer>
