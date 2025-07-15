@@ -1,16 +1,17 @@
 import TrialPage from "@src/pages/TrialPage";
 import { Route, Routes } from "react-router-dom";
 import Login from "@src/pages/Auth/Login";
-import Verify from "@src/pages/Auth/Verify";
 import Adventure from "@src/pages/Adventure";
+import ProfilePage from "@src/pages/ProfilePage";
 
 const Router = () => {
   return (
     <Routes>
-      <Route index element={<Adventure/>}/>
-      <Route path="/login" element={<Login />} />
-      <Route path="/login/verify" element={<Verify />} />
+      <Route index element={<Adventure />} />
       <Route path="/trial" element={<TrialPage />} />
+      <Route path="/login" element={<Login isVerifyingPage={false} />} />
+      <Route path="/login/verify" element={<Login isVerifyingPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );
 };

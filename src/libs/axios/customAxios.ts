@@ -8,6 +8,7 @@ const axiosRequestConfig: AxiosRequestConfig = {
   baseURL: SERVER_URL,
   headers: {
     [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
+    withCredentials: true
   },
 };
 

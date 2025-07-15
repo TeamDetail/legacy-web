@@ -7,5 +7,8 @@ export const QUERY_KEYS = Object.freeze({
     getRuins: "mapGetRuins",
     getRuinDetail: "mapGetRuinDetail",
     getRuinQuiz: "mapGetRuinQuiz"
+  },
+  card: {
+    getCardByRegion: "cardGetByRegion"
   }
 })

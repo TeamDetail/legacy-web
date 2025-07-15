@@ -15,7 +15,7 @@ const useLogin = async (code: string | null, navigate: NavigateFunction) => {
       `${SERVER_URL}/kakao/code`,
       {
         code: code,
-      }
+      },
     );
     if (data) {
       token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);

@@ -2,13 +2,9 @@ export interface User {
   nickname: string;
   level: number;
   exp: number;
-  credit: number;
-  stats: UserStats;
-  allBlocks: number;
-  ruinsBlocks: number;
-  maxFloor: number;
-  maxScore: number;
-  // record: UserRecord;
+  credit?: number;
+  stats?: UserStats;
+  record: UserRecord;
   imageUrl: string;
   title: Title;
 }
@@ -26,11 +22,11 @@ export interface Title {
   styleId: number;
 }
 
-// export interface UserRecord {
-//   allBlocks: number;
-//   ruinsBlocks: number;
-//   maxFloor: number;
-//   maxScore: number;
-//   cardCount: number;
-//   shiningCardCount: number;
-// }
+export interface UserRecord {
+  allBlocks: number;
+  ruinsBlocks: number;
+  maxFloor: number;
+  maxScore: number;
+  cardCount: number;
+  shiningCardCount: number;
+}

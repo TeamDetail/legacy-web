@@ -5,13 +5,19 @@ export interface Card extends CardResponse {
 
 export interface CardResponse {
   cardId: number;
-  name: string;
-  imageUrl: string;
+  cardName: string;
+  cardImageUrl: string;
   cardType: CardType;
   nationAttributeName: NationAttributeType;
   lineAttributeName: LineAttributeType;
   regionAttributeName: RegionAttributeType;
 }
+
+export interface CardCollection {
+  maxCount: number,
+  cards: CardResponse[],
+}
+
 export type LineAttributeType =
   | "역사"
   | "신앙"

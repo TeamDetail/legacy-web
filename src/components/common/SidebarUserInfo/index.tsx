@@ -1,42 +1,36 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import { useGetMeQuery } from "@src/queries/user/user.queries";
-import { User } from "@src/types/user/user.type";
-import { useEffect, useState } from "react";
+import useUser from "@src/hooks/user/useUser";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SidebarUserInfo = () => {
-  const { data } = useGetMeQuery({ suspense: true });
-  const [myUserData, setMyUserData] = useState<User>();
+  const { myUserData } = useUser(true);
 
-  useEffect(() => {
-    if (data) {
-      setMyUserData(data.data);
-    }
-  }, [myUserData])
-
-  const nickname = myUserData?.nickname || "Unknown User";
-  const level = myUserData?.level || 0;
-  const titleName = myUserData?.title?.name || "No Title";
+  const nickname = myUserData?.data.nickname || "Unknown User";
+  const level = myUserData?.data.level || 0;
+  const titleName =
+    myUserData!.data.title.name.length > 0
+      ? myUserData!.data.title.name
+      : "칭호 미착용";
 
   return (
-    <SidebarUserInfoContainer>
-      <img src={myUserData?.imageUrl} alt="profileImg" />
+    <SidebarUserInfoContainer to={"/profile"}>
+      <img src={myUserData?.data.imageUrl} alt="profileImg" />
       <section>
         <SidebarUserName>{nickname}</SidebarUserName>
         <p>{level}Lv</p>
-        {/* 이후에 title 삽입 */}
         <p>{titleName}</p>
       </section>
     </SidebarUserInfoContainer>
   );
 };
 
-const SidebarUserInfoContainer = styled.div`
+const SidebarUserInfoContainer = styled(Link)`
   display: flex;
   width: 100%;
   gap: 12px;
-
+  text-decoration: none;
   & img {
     border-radius: 999px;
     width: 56px;
@@ -51,6 +45,10 @@ const SidebarUserInfoContainer = styled.div`
     & p {
       ${LegacyTypography.Pretendard.Caption1.Bold}
       color: ${LegacyPalette.labelAlternative};
+    }
+
+    @media (max-width: 840px) {
+      display: none;
     }
   }
 `;
