@@ -3,4 +3,9 @@ export const QUERY_KEYS = Object.freeze({
     getMe: "userGetMe",
     getUser: "userGetUser"
   },
+  map: {
+    getRuins: "mapGetRuins",
+    getRuinDetail: "mapGetRuinDetail",
+    getRuinQuiz: "mapGetRuinQuiz"
+  }
 })

@@ -21,7 +21,6 @@ class RuinApi {
 
   public async getRuinDetail(id: number): Promise<RuinDetail> {
     const { data } = await customAxios.get(`/ruins/${id}`);
-    console.log(data.data);
     return data.data;
   }
 
