@@ -1,10 +1,11 @@
+import { skeletonAnimtaion } from "@components/skeleton/animation";
 import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
 
 const SidebarUserInfoSkeleton = () => {
   return (
     <SidebarUserInfoContainer>
-      <SidebarImageSkeleton />
+      <div />
       <section>
         <div />
         <div />
@@ -19,23 +20,26 @@ const SidebarUserInfoContainer = styled.div`
   width: 100%;
   gap: 12px;
 
-  & img {
+  > div {
     border-radius: 999px;
     width: 56px;
     height: 56px;
     background-color: ${LegacyPalette.fillNeutral};
+    ${skeletonAnimtaion}
   }
 
   & section {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    gap: 4px;
+    > div {
+      width: 100%;
+      height: 16px;
+      border-radius: 8px;
+      background-color: ${LegacyPalette.fillNeutral};
+      ${skeletonAnimtaion}
+    }
   }
 `;
-
-const SidebarImageSkeleton = styled.div`
-  border-radius: 999px;
-  width: 56px;
-  height: 56px;
-`;
-
 export default SidebarUserInfoSkeleton;
