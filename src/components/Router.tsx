@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "@src/pages/Auth/Login";
 import ProfilePage from "@src/pages/ProfilePage";
+import NotFoundPage from "@src/pages/NotFoundPage";
 
 const Router = () => {
   return (
@@ -8,6 +9,7 @@ const Router = () => {
       <Route path="/login" element={<Login isVerifyingPage={false}/>} />
       <Route path="/login/verify" element={<Login isVerifyingPage/>} />
       <Route path="/profile" element={<ProfilePage />}/>
+      <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   );
 };
