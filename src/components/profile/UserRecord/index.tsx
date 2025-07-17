@@ -13,12 +13,12 @@ const UserRecord = () => {
         <ProgressBar
           title="탐험"
           value={myUserData!.data.record!.cardCount}
-          max={450}
+          max={226}
           barColor={LegacySementic.blue.netural}
           bgColor={LegacyPalette.fillNormal}
           label={`카드 ${myUserData?.data.record?.cardCount}장 수집`}
         />
-        <ProgressBar
+        {/* <ProgressBar
           title="시련"
           value={myUserData!.data.record!.maxFloor}
           max={200}
@@ -33,7 +33,7 @@ const UserRecord = () => {
           barColor={LegacySementic.red.normal}
           bgColor={LegacyPalette.fillNormal}
           label={`Lv. ${myUserData?.data.level}`}
-        />
+        /> */}
       </S.ProgressBars>
       <S.Records>
         기록

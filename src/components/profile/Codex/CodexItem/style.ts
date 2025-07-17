@@ -1,4 +1,4 @@
-import { LegacyPalette } from "@src/constants/color/color";
+import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
@@ -9,7 +9,7 @@ export const CodexItemHover = styled.div`
   cursor: pointer;
 `
 
-export const CodexItemContainer = styled.div`
+export const CodexItemContainer = styled.div<{ $isCollectAll: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,6 +44,7 @@ export const CodexItemContainer = styled.div`
     }
 
     > span {
+      color: ${({ $isCollectAll }) => $isCollectAll === "true" && LegacySementic.yellow.normal};
       @media (max-width: 720px) {
         display: none;
       }

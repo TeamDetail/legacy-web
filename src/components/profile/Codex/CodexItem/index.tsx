@@ -17,11 +17,14 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
 
   return selectedRegion === "" ? (
     <S.CodexItemHover onClick={onClick}>
-      <S.CodexItemContainer>
+      <S.CodexItemContainer $isCollectAll={((data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100) === 100).toString()}>
         {title}
         <div>
           <p>{`${data!.data.cards?.filter(item => item.regionAttributeName === title).length} / ${data?.data.maxCount === 0 ? 30 : data?.data.maxCount}`}</p>
-          <span>• {`${data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100}% 수집`}</span>
+          • 
+          <span>
+            {`${data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100}% 수집`}
+          </span>
         </div>
       </S.CodexItemContainer>
     </S.CodexItemHover>
