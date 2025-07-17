@@ -1,18 +1,18 @@
 import * as S from "./style";
-import { Suspense, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Menu from "@src/assets/sidebarIcon/menu.svg?react";
-import Mail from "@src/assets/sidebarIcon/mail.svg?react";
-import Setting from "@src/assets/sidebarIcon/setting.svg?react";
-import Logout from "@src/assets/sidebarIcon/logout.svg?react";
-import Info from "@src/assets/sidebarIcon/info.svg?react";
+import { Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import { SIDEBAR_DATA } from "@src/constants/sidebarData/sidebarData";
-import { LegacyPalette } from "@src/constants/color/color";
 import LegacyButton from "../LegacyButton";
 import SidebarUserInfo from "../SidebarUserInfo";
 import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleton";
-import cookies from "@src/libs/cookie/cookie";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@src/constants/token.constants";
+// import Menu from "@src/assets/sidebarIcon/menu.svg?react";
+// import { LegacyPalette } from "@src/constants/color/color";
+// import Mail from "@src/assets/sidebarIcon/mail.svg?react";
+// import Setting from "@src/assets/sidebarIcon/setting.svg?react";
+// import Logout from "@src/assets/sidebarIcon/logout.svg?react";
+// import Info from "@src/assets/sidebarIcon/info.svg?react";
+// import cookies from "@src/libs/cookie/cookie";
+// import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@src/constants/token.constants";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -20,41 +20,41 @@ interface SidebarProps {
 
 const Sidebar = ({isLoading = false}: SidebarProps) => {
   const nav = useNavigate();
-  const location = useLocation();
-  const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
-  const cookie = cookies;
-
-  const viewMoreMenu = [
-    {
-      text: "우편함",
-      onClick: () => nav("/mailbox"),
-      isSelectedPage: location.pathname === "/mailbox",
-      icon: <Mail width={22.5}/>
-    },
-    {
-      text: "설정",
-      onClick: () => nav("/setting"),
-      isSelectedPage: location.pathname === "/setting",
-      icon: <Setting width={22.5}/>
-    },
-    {
-      text: "로그아웃",
-      onClick: () => () => {
-        cookie.removeCookie(ACCESS_TOKEN_KEY);
-        cookie.removeCookie(REFRESH_TOKEN_KEY);
-        nav("/");
-      },
-      isSelectedPage: false,
-      icon: <Logout width={22.5}/>
-    },
-    {
-      text: "운영 정책",
-      onClick: () => nav("/policy"),
-      isSelectedPage: false,
-      icon: <Info width={22.5}/>
-    },
-  ];
-
+  // const location = useLocation();
+  // const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
+  
+  // const viewMoreMenu = [
+  //   {
+  //     text: "우편함",
+  //     onClick: () => nav("/mailbox"),
+  //     isSelectedPage: location.pathname === "/mailbox",
+  //     icon: <Mail width={22.5}/>
+  //   },
+  //   {
+  //     text: "설정",
+  //     onClick: () => nav("/setting"),
+  //     isSelectedPage: location.pathname === "/setting",
+  //     icon: <Setting width={22.5}/>
+  //   },
+  //   {
+  //     text: "로그아웃",
+  //     onClick: () => () => {
+  //       cookie.removeCookie(ACCESS_TOKEN_KEY);
+  //       cookie.removeCookie(REFRESH_TOKEN_KEY);
+  //       nav("/");
+  //     },
+  //     isSelectedPage: false,
+  //     icon: <Logout width={22.5}/>
+  //   },
+  //   {
+  //     text: "운영 정책",
+  //     onClick: () => nav("/policy"),
+  //     isSelectedPage: false,
+  //     icon: <Info width={22.5}/>
+  //   },
+  // ];
+  // const cookie = cookies;
+  
   return (
     <S.SidebarContainer
       $isLoading={isLoading.toString()}
@@ -81,7 +81,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
             }
           />
         ))}
-        <LegacyButton
+        {/* <LegacyButton
           width="100%"
           size="default"
           isBold={true}
@@ -110,7 +110,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
               )}
             </S.ViewMoreMenuContainer>
           }
-        />
+        /> */}
       </S.SidebarButtonMenu>
     </S.SidebarContainer>
   );

@@ -17,8 +17,8 @@ export const GoogleMapWrapper = styled.div`
 
 export const Container = styled.div`
   position: absolute;
-  top: 2vw;
-  left: 2vw;
+  top: 28px;
+  left: 28px;
   z-index: 2;
 `;
 
