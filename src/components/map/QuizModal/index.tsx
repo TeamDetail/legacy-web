@@ -1,21 +1,31 @@
 import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
+import useQuiz from "@src/hooks/map/useQuiz";
 import useRuin from "@src/hooks/map/useRuin";
+import { QuizAnswerType } from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
-interface QuizAnswerType {
-  0: string;
-  1: string;
-  2: string;
-}
+import QuizCorrectPage from "../QuizCorrectPage";
+import customAxios from "@src/libs/axios/customAxios";
+import useUserStore from "@src/store/useUserStore";
 
 const QuizModal = ({ close }: { close: () => void }) => {
   const [solvingQuizNum, setSolvingQuizNum] = useState<0 | 1 | 2>(0);
-  const [answer, setAnswer] = useState<QuizAnswerType>({ 0: "", 1: "", 2: "" });
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [answer, setAnswer] = useState<QuizAnswerType[]>([
+    { quizId: null, answerOption: "" },
+    { quizId: null, answerOption: "" },
+    { quizId: null, answerOption: "" },
+  ]);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const { ruinDetail, ruinQuiz } = useRuin();
+  const { isAnswerCorrect, checkQuizAnswerByQuizId } = useQuiz();
+  const [isCorrect, setIsCorrect] = useState<boolean>(false);
+  const { userStoreData } = useUserStore();
+
+  useEffect(() => {
+    console.log(answer);
+  }, [answer]);
 
   const handleQuizChange = (newQuizNum: 0 | 1 | 2) => {
     if (newQuizNum === solvingQuizNum) return;
@@ -24,91 +34,121 @@ const QuizModal = ({ close }: { close: () => void }) => {
     setTimeout(() => {
       setSolvingQuizNum(newQuizNum);
       setIsAnimating(false);
-    }, 300); // 애니메이션의 절반 시점에서 내용 변경
+    }, 300);
   };
+
+  const resetUserQuiz = async () => {
+    await customAxios.delete(`/quiz/quiz-history/reset/${userStoreData.userId}`)
+  }
 
   useEffect(() => {
     console.log(ruinQuiz);
   }, [ruinQuiz]);
 
+  useEffect(() => {
+    if (isAnswerCorrect) {
+      setIsCorrect(isAnswerCorrect!.blockGiven);
+    }
+  }, [isAnswerCorrect]);
+
   return ruinDetail && ruinQuiz ? (
-    <Quiz>
-      <QuizTitleWrapper>
-        <QuizTitle>Quiz {solvingQuizNum + 1}</QuizTitle>
-        <span>{ruinDetail?.name}</span>
-      </QuizTitleWrapper>
+    isCorrect ? (
+      <QuizCorrectPage closeFunction={close} />
+    ) : (
+      <Quiz>
+        <QuizTitleWrapper>
+          <QuizTitle>Quiz {solvingQuizNum + 1}</QuizTitle>
+          <span>{ruinDetail?.name}</span>
+        </QuizTitleWrapper>
 
-      <QuizContentContainer>
-        <QuizContent $isAnimating={isAnimating}>
-          <QuizTitle>{ruinQuiz![solvingQuizNum].quizProblem}</QuizTitle>
-          <QuizOption>
-            {ruinQuiz![solvingQuizNum].optionValue?.map((option, index) => (
-              <LegacyButton
-                key={index}
-                size="big"
-                isBold={true}
-                isFilled={false}
-                color={
-                  answer[solvingQuizNum] === option
-                    ? LegacySementic.purple.normal
-                    : LegacyPalette.lineNeutral
-                }
-                width="100%"
-                handleClick={() => {
-                  setAnswer((prev) => ({ ...prev, [solvingQuizNum]: option }));
-                }}
-              >
-                <OptionText $isSelected={answer[solvingQuizNum] === option}>
-                  {option}
-                </OptionText>
-              </LegacyButton>
-            ))}
-          </QuizOption>
-        </QuizContent>
-      </QuizContentContainer>
+        <QuizContentContainer>
+          <QuizContent $isAnimating={isAnimating}>
+            <QuizTitle>{ruinQuiz![solvingQuizNum].quizProblem}</QuizTitle>
+            <QuizOption>
+              {ruinQuiz![solvingQuizNum].optionValue?.map((option, index) => (
+                <LegacyButton
+                  key={index}
+                  size="big"
+                  isBold={true}
+                  isFilled={false}
+                  color={
+                    answer[solvingQuizNum].answerOption === option
+                      ? LegacySementic.purple.normal
+                      : LegacyPalette.lineNeutral
+                  }
+                  width="100%"
+                  handleClick={() => {
+                    const selectedQuiz = ruinQuiz![solvingQuizNum];
+                    const selectedOption = option;
 
-      <ButtonContainer>
-        <LegacyButton
-          width="69px"
-          size="default"
-          isBold={true}
-          isFilled={false}
-          color={LegacyPalette.lineNeutral}
-          handleClick={() => {
-            if (solvingQuizNum === 0) {
-              close();
-            } else {
-              handleQuizChange((solvingQuizNum - 1) as 0 | 1 | 2);
-            }
-          }}
-        >
-          {solvingQuizNum === 0 ? "나가기" : "이전"}
-        </LegacyButton>
-        <LegacyButton
-          width="100%"
-          size="default"
-          isBold={true}
-          isFilled={false}
-          color={LegacySementic.blue.netural}
-        >
-          <span>힌트 확인하기</span>
-        </LegacyButton>
-        <LegacyButton
-          width="69px"
-          size="default"
-          isBold={true}
-          isFilled={false}
-          color={LegacyPalette.lineNeutral}
-          handleClick={() => {
-            if (solvingQuizNum < ruinQuiz!.length - 1) {
-              handleQuizChange((solvingQuizNum + 1) as 0 | 1 | 2);
-            }
-          }}
-        >
-          다음
-        </LegacyButton>
-      </ButtonContainer>
-    </Quiz>
+                    setAnswer((prev) =>
+                      prev.map((item, index) =>
+                        index === solvingQuizNum
+                          ? {
+                              quizId: selectedQuiz.quizId ?? null,
+                              answerOption: selectedOption,
+                            }
+                          : item
+                      )
+                    );
+                  }}
+                >
+                  <OptionText
+                    $isSelected={answer[solvingQuizNum].answerOption === option}
+                  >
+                    {option}
+                  </OptionText>
+                </LegacyButton>
+              ))}
+            </QuizOption>
+          </QuizContent>
+        </QuizContentContainer>
+
+        <ButtonContainer>
+          <LegacyButton
+            width="69px"
+            size="default"
+            isBold={true}
+            isFilled={false}
+            color={LegacyPalette.lineNeutral}
+            handleClick={() => {
+              if (solvingQuizNum === 0) {
+                close();
+              } else {
+                handleQuizChange((solvingQuizNum - 1) as 0 | 1 | 2);
+              }
+            }}
+          >
+            {solvingQuizNum === 0 ? "나가기" : "이전"}
+          </LegacyButton>
+          <LegacyButton
+            width="100%"
+            size="default"
+            isBold={true}
+            isFilled={false}
+            color={LegacySementic.blue.netural}
+          >
+            <span>힌트 확인하기</span>
+          </LegacyButton>
+          <LegacyButton
+            width="69px"
+            size="default"
+            isBold={true}
+            isFilled={false}
+            color={LegacyPalette.lineNeutral}
+            handleClick={() => {
+              if (solvingQuizNum < ruinQuiz!.length - 1) {
+                handleQuizChange((solvingQuizNum + 1) as 0 | 1 | 2);
+              } else {
+                checkQuizAnswerByQuizId(answer);
+              }
+            }}
+          >
+            다음
+          </LegacyButton>
+        </ButtonContainer>
+      </Quiz>
+    )
   ) : (
     <div></div>
   );

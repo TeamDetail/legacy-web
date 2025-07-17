@@ -1,14 +1,17 @@
 export const QUERY_KEYS = Object.freeze({
   user: {
     getMe: "userGetMe",
-    getUser: "userGetUser"
+    getUser: "userGetUser",
   },
-  map: {
+  ruin: {
     getRuins: "mapGetRuins",
     getRuinDetail: "mapGetRuinDetail",
-    getRuinQuiz: "mapGetRuinQuiz"
+    getRuinQuiz: "mapGetRuinQuiz",
   },
   card: {
-    getCardByRegion: "cardGetByRegion"
-  }
-})
+    getCardByRegion: "cardGetByRegion",
+  },
+  quiz: {
+    checkRuinQuizAnswer: "quizCheckRuinQuizAnswer",
+  },
+});

@@ -1,5 +1,5 @@
 import customAxios from "@src/libs/axios/customAxios";
-import { Ruin, RuinDetail, RuinQuizType } from "@src/types/map/ruin.type";
+import { Ruin, RuinDetail } from "@src/types/map/ruin.type";
 
 class RuinApi {
   public async getRuins(
@@ -22,16 +22,6 @@ class RuinApi {
   public async getRuinDetail(id: number): Promise<RuinDetail> {
     const { data } = await customAxios.get(`/ruins/${id}`);
     return data.data;
-  }
-
-  public async getRuinQuiz(
-    id: number | null
-  ): Promise<RuinQuizType[] | undefined> {
-    if (id) {
-      const { data } = await customAxios.get(`/quiz/${id}`);
-      return data.data;
-    }
-    return undefined;
   }
 }
 

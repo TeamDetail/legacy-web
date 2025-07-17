@@ -1,16 +1,23 @@
-import { Ruin, RuinDetail, RuinQuizType } from "@src/types/map/ruin.type";
+import {
+  QuizAnswerResultType,
+  QuizAnswerType,
+  Ruin,
+  RuinDetail,
+  RuinQuizType,
+} from "@src/types/map/ruin.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { QUERY_KEYS } from "../queryKey";
 import ruinApi from "@src/api/map/ruin.api";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
+import quizApi from "@src/api/map/quiz.api";
 
 export const useGetRuinDetail = (
   id: number,
   options?: UseQueryOptions<RuinDetail, AxiosError>
 ): UseQueryResult<RuinDetail, AxiosError> =>
   useQuery<RuinDetail, AxiosError>(
-    QUERY_KEYS.map.getRuinDetail,
+    QUERY_KEYS.ruin.getRuinDetail,
     () => ruinApi.getRuinDetail(id),
     {
       staleTime: 1000 * 60 * 5,
@@ -28,7 +35,7 @@ export const useGetRuins = (
   options?: UseQueryOptions<Ruin[], AxiosError>
 ): UseQueryResult<Ruin[], AxiosError> =>
   useQuery<Ruin[], AxiosError>(
-    QUERY_KEYS.map.getRuins,
+    QUERY_KEYS.ruin.getRuins,
     () =>
       ruinApi.getRuins(
         cornerLatLng.topLeftLatLng.lat,
@@ -48,8 +55,22 @@ export const useGetRuinQuiz = (
   options?: UseQueryOptions<RuinQuizType[] | undefined, AxiosError>
 ): UseQueryResult<RuinQuizType[] | undefined, AxiosError> =>
   useQuery<RuinQuizType[] | undefined, AxiosError>(
-    QUERY_KEYS.map.getRuinQuiz,
-    () => ruinApi.getRuinQuiz(id),
+    QUERY_KEYS.ruin.getRuinQuiz,
+    () => quizApi.getRuinQuiz(id),
+    {
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10,
+      ...options,
+    }
+  );
+
+export const useCheckRuinQuizAnswer = (
+  answer: QuizAnswerType[],
+  options?: UseQueryOptions<QuizAnswerResultType, AxiosError>
+): UseQueryResult<QuizAnswerResultType> =>
+  useQuery<QuizAnswerResultType, AxiosError>(
+    QUERY_KEYS.quiz.checkRuinQuizAnswer,
+    () => quizApi.checkRuinQuizAnswer(answer),
     {
       staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 10,

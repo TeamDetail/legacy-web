@@ -2,9 +2,11 @@ import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
 import { LegacySementic } from "@src/constants/color/color";
 import useRuin from "@src/hooks/map/useRuin";
+import Card from "@components/common/Card";
 
 const TileInfo = ({ handleButtonClick }: { handleButtonClick: () => void }) => {
   const { ruinDetail } = useRuin();
+  const card = ruinDetail?.cards[0];
 
   return (
     <S.InfoContainer>
@@ -16,6 +18,25 @@ const TileInfo = ({ handleButtonClick }: { handleButtonClick: () => void }) => {
           <S.CreditAddText></S.CreditAddText>
         </S.Row4>
       </S.Column8>
+      {ruinDetail?.cards[0] && (
+        <S.Column8>
+          <S.LabelMedieum>유적지 정보</S.LabelMedieum>
+          <Card
+            cardType={card!.cardType}
+            isAtv={false}
+            cardImageUrl={card!.cardImageUrl}
+            cardId={card!.cardId}
+            cardName={card!.cardName}
+            canInteract={false}
+            size="L"
+            nationAttributeName={card!.nationAttributeName}
+            lineAttributeName={card!.lineAttributeName}
+            regionAttributeName={card!.regionAttributeName}
+            handleCardChange={() => {}}
+          />
+        </S.Column8>
+      )}
+
       <LegacyButton
         size="default"
         isBold={false}
