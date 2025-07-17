@@ -11,6 +11,7 @@ import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
 const Adventure = () => {
   const { ruinDetail, getRuinQuiz, ruins, getRuin, getRuinDetailById } =
     useMapPixel();
+  
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
 
   return (
@@ -41,14 +42,9 @@ const Adventure = () => {
         </S.InfoPopup>
       )}
 
-      <LegacyModal
-        isOpen={isQuizOpen}
-        $background={true}
-      >
+      <LegacyModal isOpen={isQuizOpen} $background={true}>
         <Suspense fallback={<QuizComponentSkeleton />}>
-          <QuizModal
-            close={() => setIsQuizOpen(false)}
-          />
+          <QuizModal close={() => setIsQuizOpen(false)} />
         </Suspense>
       </LegacyModal>
     </S.BackStage>

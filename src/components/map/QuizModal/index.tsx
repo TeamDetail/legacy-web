@@ -7,8 +7,7 @@ import { QuizAnswerType } from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import QuizCorrectPage from "../QuizCorrectPage";
-import customAxios from "@src/libs/axios/customAxios";
-import useUserStore from "@src/store/useUserStore";
+import QuizWrongPage from "../QuizWrongPage";
 
 const QuizModal = ({ close }: { close: () => void }) => {
   const [solvingQuizNum, setSolvingQuizNum] = useState<0 | 1 | 2>(0);
@@ -20,8 +19,7 @@ const QuizModal = ({ close }: { close: () => void }) => {
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const { ruinDetail, ruinQuiz } = useRuin();
   const { isAnswerCorrect, checkQuizAnswerByQuizId } = useQuiz();
-  const [isCorrect, setIsCorrect] = useState<boolean>(false);
-  const { userStoreData } = useUserStore();
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(answer);
@@ -37,23 +35,23 @@ const QuizModal = ({ close }: { close: () => void }) => {
     }, 300);
   };
 
-  const resetUserQuiz = async () => {
-    await customAxios.delete(`/quiz/quiz-history/reset/${userStoreData.userId}`)
-  }
-
   useEffect(() => {
     console.log(ruinQuiz);
   }, [ruinQuiz]);
 
   useEffect(() => {
     if (isAnswerCorrect) {
-      setIsCorrect(isAnswerCorrect!.blockGiven);
+      setIsSubmit(true);
     }
   }, [isAnswerCorrect]);
 
   return ruinDetail && ruinQuiz ? (
-    isCorrect ? (
-      <QuizCorrectPage closeFunction={close} />
+    isSubmit ? (
+      isAnswerCorrect?.blockGiven ? (
+        <QuizCorrectPage closeFunction={close} />
+      ) : (
+        <QuizWrongPage closeFunction={close} />
+      )
     ) : (
       <Quiz>
         <QuizTitleWrapper>
