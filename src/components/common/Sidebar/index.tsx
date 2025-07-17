@@ -11,6 +11,8 @@ import { LegacyPalette } from "@src/constants/color/color";
 import LegacyButton from "../LegacyButton";
 import SidebarUserInfo from "../SidebarUserInfo";
 import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleton";
+import cookies from "@src/libs/cookie/cookie";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@src/constants/token.constants";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -20,6 +22,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
   const nav = useNavigate();
   const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
+  const cookie = cookies;
 
   const viewMoreMenu = [
     {
@@ -36,7 +39,11 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
     },
     {
       text: "로그아웃",
-      onClick: () => console.log("로그아웃 로직 추가 필요"),
+      onClick: () => () => {
+        cookie.removeCookie(ACCESS_TOKEN_KEY);
+        cookie.removeCookie(REFRESH_TOKEN_KEY);
+        nav("/");
+      },
       isSelectedPage: false,
       icon: <Logout width={22.5}/>
     },
