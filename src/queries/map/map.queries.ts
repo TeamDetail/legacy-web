@@ -5,7 +5,7 @@ import {
   RuinDetail,
   RuinQuizType,
 } from "@src/types/map/ruin.type";
-import { Axios, AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { QUERY_KEYS } from "../queryKey";
 import ruinApi from "@src/api/map/ruin.api";
@@ -30,10 +30,6 @@ export const useGetRuinDetail = (
 
 export const useGetRuins = (
   cornerLatLng: CornerLatLngType,
-  // minLat: number,
-  // minLng: number,
-  // maxLat: number,
-  // maxLng: number,
   options?: UseQueryOptions<Ruin[], AxiosError>
 ): UseQueryResult<Ruin[], AxiosError> =>
   useQuery<Ruin[], AxiosError>(
