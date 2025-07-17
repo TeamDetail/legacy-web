@@ -1,10 +1,11 @@
 export interface User {
+  userId: number;
   nickname: string;
   level: number;
   exp: number;
   credit?: number;
   stats?: UserStats;
-  record: UserRecord;
+  record?: UserRecord;
   imageUrl: string;
   title: Title;
 }
