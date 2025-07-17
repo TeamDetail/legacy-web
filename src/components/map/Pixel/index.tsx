@@ -1,4 +1,5 @@
 import { LegacySementic } from "@src/constants/color/color";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
 import { useMap } from "@vis.gl/react-google-maps";
 import { useEffect } from "react";
 
@@ -9,14 +10,17 @@ interface PixelProps {
   currentZoomLevel: number;
   pixelType: "ruin" | "normal" | "buyable";
   handleClick: () => void;
+  myRuinBlock: MyBlockType[];
 }
 
 const Pixel = ({
+  ruinsId,
   latitude,
   longitude,
   currentZoomLevel,
   pixelType,
   handleClick,
+  myRuinBlock,
 }: PixelProps) => {
   const map = useMap();
 
@@ -83,7 +87,9 @@ const Pixel = ({
       paths: paths,
       strokeColor:
         pixelType === "ruin"
-          ? LegacySementic.blue.netural
+          ? myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinsId)
+            ? LegacySementic.yellow.normal
+            : LegacySementic.blue.normal
           : pixelType === "buyable"
           ? LegacySementic.red.normal
           : LegacySementic.purple.normal,
@@ -91,7 +97,9 @@ const Pixel = ({
       strokeWeight: 2,
       fillColor:
         pixelType === "ruin"
-          ? LegacySementic.blue.normal
+          ? myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinsId)
+            ? LegacySementic.yellow.netural
+            : LegacySementic.blue.netural
           : pixelType === "buyable"
           ? LegacySementic.red.netural
           : LegacySementic.purple.netural,

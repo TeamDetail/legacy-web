@@ -58,11 +58,12 @@ export const HeadlineBold = styled.p`
   color: ${LegacyPalette.labelNormal};
 `;
 
-export const ExploreButtonChildren = styled.div`
+export const ExploreButtonChildren = styled.div<{ $isExplored: boolean }>`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${LegacySementic.blue.netural};
+  color: ${({ $isExplored }) =>
+    $isExplored ? LegacySementic.blue.netural : LegacyPalette.lineNeutral};
   ${LegacyTypography.Pretendard.Caption1.Bold};
-`
+`;

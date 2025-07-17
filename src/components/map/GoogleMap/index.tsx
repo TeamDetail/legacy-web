@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Pixel from "../Pixel";
 import { Ruin } from "@src/types/map/ruin.type";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
+import useBlock from "@src/hooks/map/useBlock";
 
 const MapComponent = ({
   ruins,
@@ -15,6 +16,7 @@ const MapComponent = ({
   getRuinDetailById: (id: number) => void;
 }) => {
   const map = useMap();
+  const { myRuinBlock } = useBlock();
   const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(16);
 
   useEffect(() => {
@@ -104,6 +106,7 @@ const MapComponent = ({
                 handleClick={() => {
                   getRuinDetailById(item.ruinsId);
                 }}
+                myRuinBlock={myRuinBlock}
               />
             )
           );

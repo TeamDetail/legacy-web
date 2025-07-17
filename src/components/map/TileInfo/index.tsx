@@ -1,11 +1,13 @@
 import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
-import { LegacySementic } from "@src/constants/color/color";
+import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import useRuin from "@src/hooks/map/useRuin";
 import Card from "@components/common/Card";
+import useBlock from "@src/hooks/map/useBlock";
 
 const TileInfo = ({ handleButtonClick }: { handleButtonClick: () => void }) => {
   const { ruinDetail } = useRuin();
+  const { myRuinBlock } = useBlock();
   const card = ruinDetail?.cards[0];
 
   return (
@@ -41,13 +43,37 @@ const TileInfo = ({ handleButtonClick }: { handleButtonClick: () => void }) => {
         size="default"
         isBold={false}
         isFilled={false}
-        color={LegacySementic.blue.netural}
+        color={
+          myRuinBlock.some(
+            (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
+          )
+            ? LegacyPalette.lineNeutral
+            : LegacySementic.blue.netural
+        }
         width="100%"
         children={
-          <S.ExploreButtonChildren>블록 탐험하기</S.ExploreButtonChildren>
+          <S.ExploreButtonChildren
+            $isExplored={
+              !myRuinBlock.some(
+                (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
+              )
+            }
+          >
+            {!myRuinBlock.some(
+              (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
+            )
+              ? "블록 탐험하기"
+              : "이미 탐험한 블록입니다"}
+          </S.ExploreButtonChildren>
         }
         handleClick={() => {
-          handleButtonClick();
+          if (
+            !myRuinBlock.some(
+              (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
+            )
+          ) {
+            handleButtonClick();
+          }
         }}
       />
     </S.InfoContainer>

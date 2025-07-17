@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import QuizCorrectPage from "../QuizCorrectPage";
 import QuizWrongPage from "../QuizWrongPage";
+import { useQueryClient } from "react-query";
+import { QUERY_KEYS } from "@src/queries/queryKey";
 
 const QuizModal = ({ close }: { close: () => void }) => {
   const [solvingQuizNum, setSolvingQuizNum] = useState<0 | 1 | 2>(0);
@@ -20,6 +22,7 @@ const QuizModal = ({ close }: { close: () => void }) => {
   const { ruinDetail, ruinQuiz } = useRuin();
   const { isAnswerCorrect, checkQuizAnswerByQuizId } = useQuiz();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     console.log(answer);
@@ -41,6 +44,9 @@ const QuizModal = ({ close }: { close: () => void }) => {
 
   useEffect(() => {
     if (isAnswerCorrect) {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.block.getMyBlock],
+      });
       setIsSubmit(true);
     }
   }, [isAnswerCorrect]);

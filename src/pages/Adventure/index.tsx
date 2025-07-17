@@ -11,7 +11,7 @@ import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
 const Adventure = () => {
   const { ruinDetail, getRuinQuiz, ruins, getRuin, getRuinDetailById } =
     useMapPixel();
-  
+
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
 
   return (

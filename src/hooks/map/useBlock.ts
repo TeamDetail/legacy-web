@@ -8,8 +8,10 @@ const useBlock = () => {
   const [myRuinBlock, setMyRuinBlock] = useState<MyBlockType[]>([]);
 
   useEffect(() => {
-    setMyNormalBlock(myBlock!.filter((item) => item.blockType === "NORMAL"));
-    setMyRuinBlock(myBlock!.filter((item) => item.blockType === "RUINS"));
+    if (myBlock) {
+      setMyNormalBlock(myBlock!.filter((item) => item.blockType === "NORMAL"));
+      setMyRuinBlock(myBlock!.filter((item) => item.blockType === "RUINS"));
+    }
   }, [myBlock]);
 
   return {
