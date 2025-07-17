@@ -5,7 +5,7 @@ import Shop from "@src/assets/sidebarIcon/shop.svg?react";
 import Ranking from "@src/assets/sidebarIcon/ranking.svg?react";
 import Achievement from "@src/assets/sidebarIcon/achievement.svg?react";
 
-export const sidebarData = [
+export const SIDEBAR_DATA = [
   {
     text: "탐험",
     url: "/adventure",

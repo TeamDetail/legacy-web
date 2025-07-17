@@ -57,13 +57,13 @@ export const LegacyTypography: TypographyStyles = Object.freeze({
   Pretendard: {
     Title1: {
       Bold: css`
-        font-family: "Pretendard-Bold";
+        font-family: "Pretendard-ExtraBold";
         font-size: 36px;
         line-height: 130%;
         letter-spacing: -1.08px;
       `,
       Medium: css`
-        font-family: "Pretendard-Medium";
+        font-family: "Pretendard-SemiBold";
         font-size: 36px;
         line-height: 130%;
         letter-spacing: -1.08px;

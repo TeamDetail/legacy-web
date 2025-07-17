@@ -6,7 +6,7 @@ import Mail from "@src/assets/sidebarIcon/mail.svg?react";
 import Setting from "@src/assets/sidebarIcon/setting.svg?react";
 import Logout from "@src/assets/sidebarIcon/logout.svg?react";
 import Info from "@src/assets/sidebarIcon/info.svg?react";
-import { sidebarData } from "@src/constants/sidebarData/sidebarData";
+import { SIDEBAR_DATA } from "@src/constants/sidebarData/sidebarData";
 import { LegacyPalette } from "@src/constants/color/color";
 import LegacyButton from "../LegacyButton";
 import SidebarUserInfo from "../SidebarUserInfo";
@@ -51,7 +51,7 @@ const Sidebar = () => {
         <SidebarUserInfo />
       </Suspense>
       <S.SidebarButtonMenu>
-        {sidebarData.map((item) => (
+        {SIDEBAR_DATA.map((item) => (
           <LegacyButton
             key={item.text}
             width="100%"
