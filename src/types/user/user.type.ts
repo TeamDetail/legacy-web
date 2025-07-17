@@ -5,7 +5,7 @@ export interface User {
   exp: number;
   credit?: number;
   stats?: UserStats;
-  record?: UserRecord;
+  record: UserRecord;
   imageUrl: string;
   title: Title;
 }
