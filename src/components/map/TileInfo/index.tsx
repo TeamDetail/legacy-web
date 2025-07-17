@@ -14,11 +14,8 @@ const TileInfo = ({ handleButtonClick }: { handleButtonClick: () => void }) => {
     <S.InfoContainer>
       <S.HeadlineBold>블록 탐험</S.HeadlineBold>
       <S.Column8>
-        <S.LabelMedieum>탐험 필요 크레딧</S.LabelMedieum>
-        <S.Row4>
-          <S.CreditText>{ruinDetail?.name}</S.CreditText>
-          <S.CreditAddText></S.CreditAddText>
-        </S.Row4>
+        <S.LabelMedieum>선택한 블록</S.LabelMedieum>
+        <S.LocationText>{ruinDetail?.name}</S.LocationText>
       </S.Column8>
       {ruinDetail?.cards[0] && (
         <S.Column8>
