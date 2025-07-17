@@ -11,6 +11,7 @@
     "postinstall": "mv gitignore .gitignore || true"
   },
   "dependencies": {
+    "@vis.gl/react-google-maps": "^1.5.3",
     "axios": "^1.7.7",
     "js-cookie": "^3.0.5",
     "path": "^0.12.7",

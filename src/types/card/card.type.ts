@@ -1,11 +1,4 @@
-export interface Card {
-  cardId: number;
-  name: string;
-  imageUrl: string;
-  cardType: CardType;
-  nationAttributeName: string;
-  lineAttributeName: string;
-  regionAttributeName: string;
+export interface Card extends CardResponse {
   isAtv: boolean;
   size: "S" | "L" | "M";
 }
@@ -15,9 +8,9 @@ export interface CardResponse {
   cardName: string;
   cardImageUrl: string;
   cardType: CardType;
-  nationAttributeName: string;
-  lineAttributeName: string;
-  regionAttributeName: string;
+  nationAttributeName: NationAttributeType;
+  lineAttributeName: LineAttributeType;
+  regionAttributeName: RegionAttributeType;
 }
 
 export interface CardCollection {

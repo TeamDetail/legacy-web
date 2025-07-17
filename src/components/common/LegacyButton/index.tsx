@@ -25,7 +25,9 @@ const LegacyButton = ({
   customStyle
 }: ButtonTypeProps) => {
   return (
-    <S.ButtonHover>
+    <S.ButtonHover
+      $width={width}
+    >
       <S.ButtonWrapper
         onClick={handleClick}
         $isAtv={isAtv}

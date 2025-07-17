@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "@src/pages/Auth/Login";
+import Adventure from "@src/pages/Adventure";
 import ProfilePage from "@src/pages/ProfilePage";
 import NotFoundPage from "@src/pages/NotFoundPage";
 import RankingPage from "@src/pages/RankingPage";

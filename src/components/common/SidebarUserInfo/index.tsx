@@ -9,10 +9,13 @@ const SidebarUserInfo = () => {
 
   const nickname = myUserData?.data.nickname || "Unknown User";
   const level = myUserData?.data.level || 0;
-  const titleName = myUserData!.data.title.name.length > 0 ? myUserData!.data.title.name : "칭호 미착용";
+  const titleName =
+    myUserData!.data.title.name.length > 0
+      ? myUserData!.data.title.name
+      : "칭호 미착용";
 
   return (
-    <SidebarUserInfoContainer to={'/profile'}>
+    <SidebarUserInfoContainer to={"/profile"}>
       <img src={myUserData?.data.imageUrl} alt="profileImg" />
       <section>
         <SidebarUserName>{nickname}</SidebarUserName>

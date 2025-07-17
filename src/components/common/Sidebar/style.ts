@@ -3,7 +3,9 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 import ArrowDown from "@src/assets/arrowDown.svg?react";
 
-export const SidebarContainer = styled.section`
+export const SidebarContainer = styled.section<{
+  $isLoading?: string;
+}>`
   display: flex;
   flex-direction: column;
   min-width: 220px;
