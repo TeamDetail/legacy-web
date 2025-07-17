@@ -9,6 +9,8 @@ import YetMakingPage from "@src/pages/YetMakingPage";
 const Router = () => {
   return (
     <Routes>
+      <Route index element={<Adventure/>} />
+      <Route path="/adventure" element={<Adventure/>} />
       <Route path="/login" element={<Login isVerifyingPage={false}/>} />
       <Route path="/login/verify" element={<Login isVerifyingPage/>} />
       <Route path="/profile" element={<ProfilePage />}/>

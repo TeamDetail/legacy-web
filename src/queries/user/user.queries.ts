@@ -3,6 +3,7 @@ import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { QUERY_KEYS } from "../queryKey";
 import userApi from "@src/api/user/user.api";
+import { BaseResponse } from "@src/types/globalType/global.type";
 
 export const useGetMeQuery = (
   options?: UseQueryOptions<BaseResponse<User>, AxiosError>
