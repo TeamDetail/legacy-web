@@ -5,5 +5,6 @@ export const QUERY_KEYS = Object.freeze({
   },
   card: {
     getCardByRegion: "cardGetByRegion"
-  }
+  },
+  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") => `ranking/${type}/${scope}`
 })
