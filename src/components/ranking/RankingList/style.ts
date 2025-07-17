@@ -63,7 +63,7 @@ export const RankingUserInfo = styled.div`
     border-radius: 999px;
     width: 48px;
     height: 48px;
-    background: cover;
+    object-fit: cover;
   }
 
   section {
