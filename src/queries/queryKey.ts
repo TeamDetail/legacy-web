@@ -14,4 +14,7 @@ export const QUERY_KEYS = Object.freeze({
   quiz: {
     checkRuinQuizAnswer: "quizCheckRuinQuizAnswer",
   },
+  block: {
+    getMyBlock: "blockGetMyBlock",
+  },
 });

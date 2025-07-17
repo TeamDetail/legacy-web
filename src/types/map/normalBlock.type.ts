@@ -1,5 +1,7 @@
-export interface NormalBlockType {
-  blockId: 0;
-  latitude: 0;
-  longitude: 0;
+export interface MyBlockType {
+  blockId: number;
+  ruinsId: number | null;
+  blockType: "NORMAL" | "RUINS";
+  latitude: number;
+  longitude: number;
 }

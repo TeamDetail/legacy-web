@@ -5,12 +5,14 @@ import {
   RuinDetail,
   RuinQuizType,
 } from "@src/types/map/ruin.type";
-import { AxiosError } from "axios";
+import { Axios, AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { QUERY_KEYS } from "../queryKey";
 import ruinApi from "@src/api/map/ruin.api";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
 import quizApi from "@src/api/map/quiz.api";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
+import blockApi from "@src/api/map/block.api";
 
 export const useGetRuinDetail = (
   id: number,
@@ -76,4 +78,13 @@ export const useCheckRuinQuizAnswer = (
       cacheTime: 1000 * 60 * 10,
       ...options,
     }
+  );
+
+export const useGetMyBlock = (
+  options?: UseQueryOptions<MyBlockType[], AxiosError>
+): UseQueryResult<MyBlockType[]> =>
+  useQuery<MyBlockType[], AxiosError>(
+    QUERY_KEYS.block.getMyBlock,
+    () => blockApi.getMyBlock(),
+    { staleTime: 1000 * 60 * 5, cacheTime: 1000 * 60 * 10, ...options }
   );
