@@ -22,7 +22,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
   const nav = useNavigate();
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
-  
+  const cookie = cookies;
   const viewMoreMenu = [
     // {
     //   text: "우편함",
@@ -38,10 +38,11 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
     // },
     {
       text: "로그아웃",
-      onClick: () => () => {
+      onClick: () => {
         cookie.removeCookie(ACCESS_TOKEN_KEY);
         cookie.removeCookie(REFRESH_TOKEN_KEY);
-        nav("/");
+        alert("로그아웃되었습니다.")
+        nav("/login");
       },
       isSelectedPage: false,
       icon: <Logout width={22.5}/>
@@ -53,7 +54,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
     //   icon: <Info width={22.5}/>
     // },
   ];
-  const cookie = cookies;
+
   
   return (
     <S.SidebarContainer
