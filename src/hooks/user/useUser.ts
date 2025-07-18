@@ -1,8 +1,10 @@
 import { useGetMeQuery, useGetUserQuery } from "@src/queries/user/user.queries";
+import useUserStore from "@src/store/useUserStore";
 import { useEffect, useState } from "react";
 
 const useUser = (isMyData?: boolean) => {
   const [userId, setUserId] = useState<number | null>(null);
+  const { setUserData } = useUserStore();
 
   const { data: otherUserData, refetch: getUserData } = useGetUserQuery(
     userId!,
@@ -22,6 +24,12 @@ const useUser = (isMyData?: boolean) => {
       getUserData();
     }
   }, [userId]);
+
+  useEffect(() => {
+    if (myUserData) {
+      setUserData(myUserData.data);
+    }
+  }, [myUserData]);
 
   return {
     otherUserData,
