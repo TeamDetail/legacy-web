@@ -10,6 +10,8 @@ import QuizCorrectPage from "../QuizCorrectPage";
 import QuizWrongPage from "../QuizWrongPage";
 import { useQueryClient } from "react-query";
 import { QUERY_KEYS } from "@src/queries/queryKey";
+import customAxios from "@src/libs/axios/customAxios";
+import useUserStore from "@src/store/useUserStore";
 
 const QuizModal = ({ close }: { close: () => void }) => {
   const [solvingQuizNum, setSolvingQuizNum] = useState<0 | 1 | 2>(0);
@@ -23,10 +25,7 @@ const QuizModal = ({ close }: { close: () => void }) => {
   const { isAnswerCorrect, checkQuizAnswerByQuizId } = useQuiz();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    console.log(answer);
-  }, [answer]);
+  const { userStoreData } = useUserStore();
 
   const handleQuizChange = (newQuizNum: 0 | 1 | 2) => {
     if (newQuizNum === solvingQuizNum) return;
@@ -38,25 +37,38 @@ const QuizModal = ({ close }: { close: () => void }) => {
     }, 300);
   };
 
+  const resetUserQuiz = async () => {
+    await customAxios.delete(`quiz/quiz-history/reset/${userStoreData.userId}`);
+  };
+
   useEffect(() => {
     console.log(ruinQuiz);
   }, [ruinQuiz]);
 
   useEffect(() => {
     if (isAnswerCorrect) {
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.block.getMyBlock],
-      });
+      if (isAnswerCorrect.blockGiven) {
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.block.getMyBlock],
+        });
+      } else {
+        resetUserQuiz();
+      }
       setIsSubmit(true);
     }
   }, [isAnswerCorrect]);
 
+  const handleClose = () => {
+    queryClient.removeQueries([QUERY_KEYS.quiz.checkRuinQuizAnswer]);
+    close(); // 원래의 닫기 함수
+  };
+
   return ruinDetail && ruinQuiz ? (
     isSubmit ? (
       isAnswerCorrect?.blockGiven ? (
-        <QuizCorrectPage closeFunction={close} />
+        <QuizCorrectPage closeFunction={handleClose} />
       ) : (
-        <QuizWrongPage closeFunction={close} />
+        <QuizWrongPage closeFunction={handleClose} />
       )
     ) : (
       <Quiz>
@@ -144,6 +156,15 @@ const QuizModal = ({ close }: { close: () => void }) => {
               if (solvingQuizNum < ruinQuiz!.length - 1) {
                 handleQuizChange((solvingQuizNum + 1) as 0 | 1 | 2);
               } else {
+                const isAnyInvalid = answer.some(
+                  (item) => item.quizId === null || item.answerOption === ""
+                );
+
+                if (isAnyInvalid) {
+                  alert("모든 문제에 답변을 선택해주세요!");
+                  return;
+                }
+
                 checkQuizAnswerByQuizId(answer);
               }
             }}
