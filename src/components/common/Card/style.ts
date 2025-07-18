@@ -3,7 +3,7 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import { CardType } from "@src/types/card/card.type";
 import styled from "styled-components";
 
-export const CardWrap = styled.section<{ $isFocus: boolean; }>`
+export const CardWrap = styled.section<{ $isFocus: boolean }>`
   position: relative;
   width: fit-content;
 
@@ -11,7 +11,7 @@ export const CardWrap = styled.section<{ $isFocus: boolean; }>`
     animation: shake 0.35s ease-in-out infinite;
     z-index: 99;
   }
-  
+
   @keyframes shake {
     0% {
       transform: rotate(0deg) scale(1.05);
@@ -26,7 +26,7 @@ export const CardWrap = styled.section<{ $isFocus: boolean; }>`
       transform: rotate(0deg) scale(1.05);
     }
   }
-`
+`;
 
 export const CardContainer = styled.div<{
   $size: "L" | "M" | "S";
@@ -55,13 +55,13 @@ export const CardContainer = styled.div<{
     solid;
   border-radius: ${({ $size }) =>
     $size === "L" ? "20px" : $size === "M" ? "16px" : "12px"};
-  
+
   background: no-repeat url(${({ $imageUrl }) => `${$imageUrl}`});
-  background-position: center center;
+  background-size: cover;
   cursor: pointer;
   position: relative;
   isolation: isolate;
-  z-index: ${({ $isFocus }) => $isFocus ? "30" : "20"};
+  z-index: ${({ $isFocus }) => ($isFocus ? "30" : "20")};
 
   > p {
     ${LegacyTypography.BitBit.Body1};
@@ -70,7 +70,7 @@ export const CardContainer = styled.div<{
   }
 
   ::after {
-    content: '';
+    content: "";
     position: absolute;
     background: ${LegacyPalette.fillNeutral};
     z-index: -1;
@@ -102,17 +102,14 @@ export const CardFocusMenu = styled.div<{ $isFocus: boolean }>`
   top: 36px;
   width: 48px;
   height: fit-content;
-  transform: ${({ $isFocus }) => 
-    $isFocus 
-      ? "translateX(-4px)" 
-      : "translateX(-48px)"
-  };
-  opacity: ${({ $isFocus }) => $isFocus ? 1 : 0};
-  visibility: ${({ $isFocus }) => $isFocus ? "visible" : "hidden"};
+  transform: ${({ $isFocus }) =>
+    $isFocus ? "translateX(-4px)" : "translateX(-48px)"};
+  opacity: ${({ $isFocus }) => ($isFocus ? 1 : 0)};
+  visibility: ${({ $isFocus }) => ($isFocus ? "visible" : "hidden")};
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: ${({ $isFocus }) => $isFocus ? "25" : "10"};
+  z-index: ${({ $isFocus }) => ($isFocus ? "25" : "10")};
   gap: 4px;
-`
+`;
 
 export const CardButton = styled.button<{
   $size: "L" | "M" | "S";
@@ -125,13 +122,22 @@ export const CardButton = styled.button<{
   ${LegacyTypography.Pretendard.Body1.Bold};
   background-color: ${LegacyPalette.primaryNormal};
   border: none;
-  padding: ${({ $size }) => $size === "L" ? "12px 12px 12px 8px" : $size === "M" ? "12px 12px 12px 8px" : "8px 8px 8px 4px"};
+  padding: ${({ $size }) =>
+    $size === "L"
+      ? "12px 12px 12px 8px"
+      : $size === "M"
+      ? "12px 12px 12px 8px"
+      : "8px 8px 8px 4px"};
   border-radius: ${({ $size }) =>
-      $size === "L" ? "0 16px 16px 0" : $size === "M" ? "0 12px 12px 0" : "0 8px 8px 0"};
+    $size === "L"
+      ? "0 16px 16px 0"
+      : $size === "M"
+      ? "0 12px 12px 0"
+      : "0 8px 8px 0"};
   flex-shrink: 0; // 버튼이 줄어들지 않도록
   transition: transform 0.2s ease-out; // 버튼 자체에도 약간의 애니메이션
-  
+
   &:hover {
     transform: scale(1.05);
   }
-`
+`;
