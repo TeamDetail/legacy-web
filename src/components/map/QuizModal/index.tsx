@@ -12,6 +12,7 @@ import { useQueryClient } from "react-query";
 import { QUERY_KEYS } from "@src/queries/queryKey";
 import customAxios from "@src/libs/axios/customAxios";
 import useUserStore from "@src/store/useUserStore";
+import QuizUndefined from "@components/map/QuizUndefined";
 
 const QuizModal = ({ close }: { close: () => void }) => {
   const [solvingQuizNum, setSolvingQuizNum] = useState<0 | 1 | 2>(0);
@@ -63,6 +64,9 @@ const QuizModal = ({ close }: { close: () => void }) => {
     close(); // 원래의 닫기 함수
   };
 
+  if (ruinQuiz?.length === 0) {
+    return (<QuizUndefined close={close}/>)
+  }
   return ruinDetail && ruinQuiz ? (
     isSubmit ? (
       isAnswerCorrect?.blockGiven ? (
