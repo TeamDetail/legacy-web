@@ -11,17 +11,14 @@ import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
 const Adventure = () => {
   const { ruinDetail, getRuinQuiz, ruins, getRuin, getRuinDetailById } =
     useMapPixel();
+  const { ruinDetail, getRuinQuiz } = useMapPixel();
 
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
 
   return (
     <S.BackStage>
       <S.GoogleMapWrapper>
-        <GoogleMap
-          ruins={ruins}
-          getRuin={getRuin}
-          getRuinDetailById={getRuinDetailById}
-        />
+        <GoogleMap />
       </S.GoogleMapWrapper>
 
       <S.Container>
