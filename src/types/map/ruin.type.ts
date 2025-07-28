@@ -1,4 +1,4 @@
-import { Card } from "../card/card.type";
+import { Card, CardResponse } from "../card/card.type";
 
 export interface Ruin {
   ruinsId: number;
@@ -7,7 +7,7 @@ export interface Ruin {
 }
 
 export interface RuinDetail {
-  ruinsId: 0;
+  ruinsId: number;
   ruinsImage: string;
   category: string;
   name: string;
@@ -19,9 +19,9 @@ export interface RuinDetail {
   specifiedDate: string;
   owner: string;
   manager: string;
-  latitude: 0;
-  longitude: 0;
-  cards: Card[];
+  latitude: number;
+  longitude: number;
+  cards: CardResponse[];
 }
 
 export interface RuinQuizType {

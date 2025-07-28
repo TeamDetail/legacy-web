@@ -1,13 +1,18 @@
 import useBlock from "@src/hooks/map/useBlock";
 import useRuin from "@src/hooks/map/useRuin";
 import { useMap } from "@vis.gl/react-google-maps";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Pixel from "../Pixel";
+import { Ruin } from "@src/types/map/ruin.type";
 
-const Pixels = () => {
+const Pixels = ({
+  setSelectedRuins,
+}: {
+  setSelectedRuins: Dispatch<SetStateAction<Ruin[]>>;
+}) => {
   const map = useMap();
   const { myRuinBlock } = useBlock();
-  const { getRuin, getRuinDetailById, dedupeRuins } = useRuin();
+  const { getRuin, dedupeRuins } = useRuin();
   const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(16);
 
   useEffect(() => {
@@ -20,7 +25,7 @@ const Pixels = () => {
       gestureHandling: "greedy",
     });
 
-    const dragListner = map.addListener("idle", () => {
+    const dragListner = map.addListener("dragend", () => {
       const zoomLevel = map.getZoom();
       if (zoomLevel! >= 13) {
         const mapBounds = map.getBounds();
@@ -72,7 +77,7 @@ const Pixels = () => {
                 currentZoomLevel={currentZoomLevel}
                 pixelType="ruin"
                 handleClick={() => {
-                  getRuinDetailById(item);
+                  setSelectedRuins(item);
                 }}
                 myRuinBlock={myRuinBlock}
               />

@@ -1,8 +1,14 @@
 import { GOOGLE_MAP_API_KEY } from "@src/constants/googleMaps/googleMaps";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import Pixels from "../Pixels";
+import { Ruin } from "@src/types/map/ruin.type";
+import { Dispatch, SetStateAction } from "react";
 
-const GoogleMap = () => {
+const GoogleMap = ({
+  setSelectedRuins,
+}: {
+  setSelectedRuins: Dispatch<SetStateAction<Ruin[] | null>>;
+}) => {
   return (
     <APIProvider apiKey={GOOGLE_MAP_API_KEY}>
       <Map
@@ -17,7 +23,7 @@ const GoogleMap = () => {
         fullscreenControl={false}
         maxZoom={16}
       >
-        <Pixels />
+        <Pixels setSelectedRuins={setSelectedRuins} />
       </Map>
     </APIProvider>
   );
