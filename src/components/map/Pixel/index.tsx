@@ -8,7 +8,7 @@ interface PixelProps {
   ruins: Ruin[];
   currentZoomLevel: number;
   pixelType: "ruin" | "normal" | "buyable";
-  handleClick: () => void;
+  handleClick: (ruin: Ruin[]) => void;
   myRuinBlock: MyBlockType[];
 }
 
@@ -132,7 +132,7 @@ const Pixel = ({
     animateOpacity(); // 실행
 
     const clickListener = polygon.addListener("click", () => {
-      handleClick();
+      handleClick(ruins);
       console.log(ruins);
     });
 

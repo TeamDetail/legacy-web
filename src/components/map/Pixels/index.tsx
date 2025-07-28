@@ -8,7 +8,7 @@ import { Ruin } from "@src/types/map/ruin.type";
 const Pixels = ({
   setSelectedRuins,
 }: {
-  setSelectedRuins: Dispatch<SetStateAction<Ruin[]>>;
+  setSelectedRuins: Dispatch<SetStateAction<Ruin[] | null>>;
 }) => {
   const map = useMap();
   const { myRuinBlock } = useBlock();
@@ -76,9 +76,7 @@ const Pixels = ({
                 ruins={item}
                 currentZoomLevel={currentZoomLevel}
                 pixelType="ruin"
-                handleClick={() => {
-                  setSelectedRuins(item);
-                }}
+                handleClick={(ruin: Ruin[]) => setSelectedRuins(ruin)}
                 myRuinBlock={myRuinBlock}
               />
             )

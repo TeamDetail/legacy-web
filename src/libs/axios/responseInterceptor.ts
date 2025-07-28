@@ -20,6 +20,7 @@ let isRefreshing = false;
 const refreshSubscribers: ((accessToken: string) => void)[] = [];
 
 const onTokenRefreshed = (accessToken: string) => {
+  console.log(refreshSubscribers)
   refreshSubscribers.map((callback) => callback(accessToken));
 };
 
@@ -66,8 +67,11 @@ const errorResponseHandler = async (error: AxiosError) => {
           //리프레쉬 작업을 마침
           isRefreshing = false;
 
+          console.log(refreshSubscribers.length);
           //새로 받은 accessToken을 기반으로 이때까지 밀려있던 요청을 모두 처리
           onTokenRefreshed(newTokens.data.accessToken);
+          originalRequest!.headers.Authorization = `Bearer ${newTokens.data.accessToken}`;
+          return customAxios(originalRequest!);
         } catch {
           //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
           window.alert("세션이 만료되었습니다.");
@@ -76,9 +80,11 @@ const errorResponseHandler = async (error: AxiosError) => {
         }
       }
       return new Promise((resolve) => {
+        console.log("요청 대기열 진입")
         addRefreshSubscriber((accessToken: string) => {
           originalRequest!.headers![REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
           resolve(customAxios(originalRequest!));
+          console.log(originalRequest?.url)
         });
       });
     }

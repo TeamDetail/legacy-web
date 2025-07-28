@@ -43,6 +43,7 @@ const TileInfo = ({
 
   useEffect(() => {
     if (selectedRuins) {
+      console.log(selectedRuins ? "있음" : "없음")
       getRuinDetailById(selectedRuins[page].ruinsId);
     }
   }, [page, selectedRuins]);
