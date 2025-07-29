@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectItemWrap,
 } from "./style";
-import { IoIosArrowDown } from "react-icons/io";
+import ArrowDown from "@src/assets/arrow-down.svg";
 import { CSSObject } from "styled-components";
 
 export interface SelectProps {
@@ -32,7 +32,7 @@ export const Select = ({
     >
       <p>{value}</p>
       <SelectIcon close={close ? "true" : "false"}>
-        <IoIosArrowDown />
+        <ArrowDown />
       </SelectIcon>
       {!close && (
         <SelectItemWrap style={{ zIndex }}>

@@ -1,3 +1,5 @@
+import { LegacyPalette } from "@src/constants/color/color";
+import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
 export const SelectContainer = styled.div`
@@ -10,14 +12,14 @@ export const SelectContainer = styled.div`
   position: relative;
   column-gap: 15px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.fillNormal};
-  ${DodamShape.Small}
+  background-color: ${LegacyPalette.fillNormal};
+  border-radius: 12px;
   > p {
-    ${DodamTypography.Body1.Medium}
+    ${LegacyTypography.Pretendard.Body1.Medium}
     white-space: nowrap;
-    color: ${({ theme }) => theme.labelNormal};
+    color: ${LegacyPalette.labelNormal};
   }
-`
+`;
 
 export const SelectIcon = styled.div<{ close: "true" | "false" }>`
   width: 14px;
@@ -25,14 +27,11 @@ export const SelectIcon = styled.div<{ close: "true" | "false" }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.labelNormal};
+  color: ${LegacyPalette.labelNormal};
   transition: all 0.3s ease;
 
-  ${({ close }) =>
-    close === "false" &&
-      "transform: rotate(180deg)"
-    }
-`
+  ${({ close }) => close === "false" && "transform: rotate(180deg)"}
+`;
 
 export const SelectItemWrap = styled.div`
   width: 100%;
@@ -45,10 +44,10 @@ export const SelectItemWrap = styled.div`
   left: 0px;
 
   overflow: hidden;
-  background-color: ${({ theme }) => theme.fillNormal};
-  ${DodamShape.ExtraSmall}
+  background-color: ${LegacyPalette.fillNormal};
+  border-radius: 12px;
   box-sizing: border-box;
-`
+`;
 
 export const SelectItem = styled.div`
   width: 100%;
@@ -58,10 +57,10 @@ export const SelectItem = styled.div`
   align-items: center;
   box-sizing: border-box;
   padding: 0px 10px;
-  ${DodamTypography.Caption1.Medium}
-  color: ${({ theme }) => theme.labelNormal };
+  ${LegacyTypography.Pretendard.Caption1.Medium}
+  color: ${LegacyPalette.labelNormal};
 
   :hover {
     filter: brightness(90%);
   }
-`
+`;
