@@ -2,17 +2,14 @@ import * as S from "./style";
 import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
-import useMapPixel from "@src/hooks/map/useRuin";
+import useRuin from "@src/hooks/map/useRuin";
 import { LegacyModal } from "@components/common/LegacyModal";
 import { Suspense, useState } from "react";
 import QuizModal from "@components/map/QuizModal";
 import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
 
 const Adventure = () => {
-  const { ruinDetail, getRuinQuiz, ruins, getRuin, getRuinDetailById } =
-    useMapPixel();
-  const { ruinDetail, getRuinQuiz } = useMapPixel();
-
+  const { ruinDetail, getRuinQuiz } = useRuin();
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
 
   return (
