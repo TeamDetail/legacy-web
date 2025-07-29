@@ -4,6 +4,7 @@ import Trial from "@src/assets/sidebarIcon/trial.svg?react";
 import Shop from "@src/assets/sidebarIcon/shop.svg?react";
 import Ranking from "@src/assets/sidebarIcon/ranking.svg?react";
 import Achievement from "@src/assets/sidebarIcon/achievement.svg?react";
+import Course from "@src/assets/sidebarIcon/course.svg"
 
 export const SIDEBAR_DATA = [
   {
@@ -11,6 +12,12 @@ export const SIDEBAR_DATA = [
     url: "/adventure",
     color: LegacySementic.blue.alternative,
     icon: Adventure,
+  },
+  {
+    text: "코스",
+    url: "/course",
+    color: LegacySementic.blue.alternative,
+    icon: Course,
   },
   {
     text: "시련",

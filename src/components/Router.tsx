@@ -18,6 +18,7 @@ const Router = () => {
       <Route path="/shop" element={<YetMakingPage type="상점"/>}/>
       <Route path="/ranking" element={<RankingPage />}/>
       <Route path="/achievement" element={<YetMakingPage type="도전과제"/>}/>
+      <Route path="/course" element={<YetMakingPage type="코스"/>} />
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   );
