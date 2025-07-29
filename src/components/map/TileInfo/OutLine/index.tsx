@@ -3,11 +3,12 @@ import StarRating from "@components/common/StarRating";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import useRuin from "@src/hooks/map/useRuin";
+import { RuinDetail } from "@src/types/map/ruin.type";
 import styled from "styled-components";
 
-const OutLine = () => {
+const OutLine = ({ruinDetail} : {ruinDetail: RuinDetail}) => {
   const score = 4;
-  const { ruinDetailDummy, ruinDetail } = useRuin();
+  const { ruinDetailDummy } = useRuin();
   const card = ruinDetailDummy[0].cards[0];
 
   return (

@@ -9,7 +9,6 @@ import Detail from "./Detail";
 import Review from "./Review";
 import useRuin from "@src/hooks/map/useRuin";
 import useBlock from "@src/hooks/map/useBlock";
-import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
 
 interface MenuDataType {
   text: string;
@@ -41,12 +40,32 @@ const TileInfo = ({
     (ruinBlock) => ruinBlock.ruinsId === ruinDetailDummy[page]!.ruinsId
   );
 
+  // useEffect(() => {
+  //   if (selectedRuins) {
+  //     if (selectedRuins.length > 1) {
+  //       getRuinDetailById(selectedRuins[page].ruinsId);
+  //     } else {
+  //       getRuinDetailById(selectedRuins[0].ruinsId);
+  //     }
+  //   }
+  // }, [page, selectedRuins]);
+
   useEffect(() => {
     if (selectedRuins) {
-      console.log(selectedRuins ? "있음" : "없음")
       getRuinDetailById(selectedRuins[page].ruinsId);
     }
-  }, [page, selectedRuins]);
+  }, [page]);
+
+  useEffect(() => {
+    setPage(0);
+    if (selectedRuins) {
+      getRuinDetailById(selectedRuins[0].ruinsId);
+    }
+  }, [selectedRuins]);
+
+  useEffect(() => {
+    console.log(ruinDetail);
+  }, [ruinDetail]);
 
   return (
     <S.TileInfoWrapper>
@@ -85,9 +104,9 @@ const TileInfo = ({
           setMenuData={setCategory}
         />
         {isRuinDetailLoading || !ruinDetail ? (
-          <RuinDetailSkeleton />
+          <div />
         ) : category[0].isAtv ? (
-          <OutLine />
+          <OutLine ruinDetail={ruinDetail} />
         ) : category[1].isAtv ? (
           <Detail />
         ) : (

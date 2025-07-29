@@ -4,7 +4,7 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import useRuin from "@src/hooks/map/useRuin";
 import styled from "styled-components";
 const Detail = () => {
-  const { ruinDetailDummy } = useRuin();
+  const { ruinDetailDummy} = useRuin();
   const firstRuinDetail = ruinDetailDummy[0];
   const card = firstRuinDetail.cards[0];
 

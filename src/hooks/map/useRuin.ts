@@ -30,12 +30,13 @@ const useRuin = () => {
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
   );
+  const [alreadyLoadRuin, setAlreadyLoadRuin] = useState<number[]>([]);
   const [dedupeRuins, setDedupeRuins] = useState<Ruin[][]>([]);
   const ruinDetailDummy: RuinDetailDummy[] = [
     {
       ruinsId: 1011,
       ruinsImage:
-        "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa11d028316cf6a5b45c3e7537d23044123855cea53f7a6aff19ee0a6451442d400423febc6fe0964beda98371576095a9fbdb2e33b592b67e62758f6260f6356c34619fb1e9adca547b654d7037118bef11",
+        "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
       category: "사적",
       name: "갸루 누나.jpg",
       chineseName: "갸루짱깨",
@@ -58,7 +59,7 @@ const useRuin = () => {
         {
           reviewId: 1,
           profileImg:
-            "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa1bd6253104bb44157be50e63058663be38f5c229ab034d799cc7b9d8ef24c8c470a133e28682deebd0c44f99637238bb8a8b9eb5855bcfefb9f5d2412cfbf5cfd5",
+            "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
           username: "dksgusdn",
           creationDate: "2025-07-24",
           content: "rkfrkfrkf아먑",
@@ -67,7 +68,7 @@ const useRuin = () => {
         {
           reviewId: 2,
           profileImg:
-            "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa1bd6253104bb44157be50e63058663be38f5c229ab034d799cc7b9d8ef24c8c470a133e28682deebd0c44f99637238bb8a8b9eb5855bcfefb9f5d2412cfbf5cfd5",
+            "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
           username: "dksgusdn",
           creationDate: "2025-07-24",
           content: "rkfrkfrkf아먑",
@@ -76,7 +77,7 @@ const useRuin = () => {
         {
           reviewId: 3,
           profileImg:
-            "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa1bd6253104bb44157be50e63058663be38f5c229ab034d799cc7b9d8ef24c8c470a133e28682deebd0c44f99637238bb8a8b9eb5855bcfefb9f5d2412cfbf5cfd5",
+            "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
           username: "dksgusdn",
           creationDate: "2025-07-24",
           content: "rkfrkfrkf아먑",
@@ -85,7 +86,7 @@ const useRuin = () => {
         {
           reviewId: 4,
           profileImg:
-            "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa1bd6253104bb44157be50e63058663be38f5c229ab034d799cc7b9d8ef24c8c470a133e28682deebd0c44f99637238bb8a8b9eb5855bcfefb9f5d2412cfbf5cfd5",
+            "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
           username: "dksgusdn",
           creationDate: "2025-07-24",
           content: "rkfrkfrkf아먑",
@@ -94,7 +95,7 @@ const useRuin = () => {
         {
           reviewId: 5,
           profileImg:
-            "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa1bd6253104bb44157be50e63058663be38f5c229ab034d799cc7b9d8ef24c8c470a133e28682deebd0c44f99637238bb8a8b9eb5855bcfefb9f5d2412cfbf5cfd5",
+            "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
           username: "dksgusdn",
           creationDate: "2025-07-24",
           content: "rkfrkfrkf아먑",
@@ -106,7 +107,7 @@ const useRuin = () => {
           cardId: 523,
           cardName: "갸루 누나",
           cardImageUrl:
-            "https://dcimg8.dcinside.co.kr/viewimage.php?id=3eb4de21e9d73ab360b8dab04785736f&no=24b0d769e1d32ca73de880fa11d028316cf6a5b45c3e7537d23044123855cea53f7a6aff19ee0a6451442d400423febc6fe0964beda98371576095a9fbdb2e33b592b67e62758f6260f6356c34619fb1e9adca547b654d7037118bef11",
+            "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
           cardType: "SHINING_CARD",
           nationAttributeName: "대한민국",
           lineAttributeName: "신앙",
@@ -148,8 +149,9 @@ const useRuin = () => {
   };
 
   useEffect(() => {
-    if (ruinId !== null) {
+    if (ruinId !== null && !alreadyLoadRuin.includes(ruinId)) {
       getRuinDetail();
+      setAlreadyLoadRuin((prev) => ([...prev, ruinId]))
     }
   }, [ruinId]);
   useEffect(() => {

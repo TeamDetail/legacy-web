@@ -19,7 +19,7 @@ export const useGetRuinDetail = (
   options?: UseQueryOptions<RuinDetail, AxiosError>
 ): UseQueryResult<RuinDetail, AxiosError> =>
   useQuery<RuinDetail, AxiosError>(
-    [QUERY_KEYS.ruin.getRuinDetail, id],
+    QUERY_KEYS.ruin.getRuinDetail(id),
     () => ruinApi.getRuinDetail(id),
     {
       staleTime: 1000 * 60 * 5,
