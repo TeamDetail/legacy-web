@@ -24,6 +24,13 @@ export type TextSize = {
   Regular: RuleSet;
 };
 
+export type TextExtraSize = {
+  ExtraBold: RuleSet;
+  Bold: RuleSet;
+  Medium: RuleSet;
+  Regular: RuleSet;
+}
+
 export type TypographyStyles = {
   Pretendard: {
     Title1: TextSize;
@@ -34,8 +41,8 @@ export type TypographyStyles = {
     Headline: TextSize;
     Body1: TextSize;
     Body2: TextSize;
-    Label: TextSize;
-    Caption1: TextSize;
+    Label: TextExtraSize;
+    Caption1: TextExtraSize;
     Caption2: TextSize;
   },
   BitBit: {
