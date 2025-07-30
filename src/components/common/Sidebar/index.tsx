@@ -13,6 +13,7 @@ import Logout from "@src/assets/sidebarIcon/logout.svg?react";
 // import Info from "@src/assets/sidebarIcon/info.svg?react";
 import cookies from "@src/libs/cookie/cookie";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@src/constants/token.constants";
+import { useMemo } from "react";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -56,7 +57,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
   ];
 
   
-  return (
+  return useMemo(() => (
     <S.SidebarContainer
       $isLoading={isLoading.toString()}
     >
@@ -114,7 +115,7 @@ const Sidebar = ({isLoading = false}: SidebarProps) => {
         />
       </S.SidebarButtonMenu>
     </S.SidebarContainer>
-  );
+  ), []);
 };
 
 export default Sidebar;
