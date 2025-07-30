@@ -5,6 +5,7 @@ import styled from "styled-components";
 interface MenuDataType {
   text: string;
   isAtv: boolean;
+  value: string;
 }
 
 interface BadgeProps {
