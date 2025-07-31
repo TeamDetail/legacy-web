@@ -4,7 +4,7 @@ import Trial from "@src/assets/sidebarIcon/trial.svg?react";
 import Shop from "@src/assets/sidebarIcon/shop.svg?react";
 import Ranking from "@src/assets/sidebarIcon/ranking.svg?react";
 import Achievement from "@src/assets/sidebarIcon/achievement.svg?react";
-import Course from "@src/assets/sidebarIcon/course.svg"
+import Course from "@src/assets/sidebarIcon/course.svg?react"
 
 export const SIDEBAR_DATA = [
   {

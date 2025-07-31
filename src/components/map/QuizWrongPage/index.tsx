@@ -1,7 +1,7 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import useQuiz from "@src/hooks/map/useQuiz";
 import styled from "styled-components";
-import SadEmoji from "@src/assets/loudly-crying-face-svgrepo-com 1.svg";
+import SadEmoji from "@src/assets/loudly-crying-face-svgrepo-com1.svg";
 import CloseImg from "@src/assets/close.svg";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { QuizAnswerResultType } from "@src/types/map/ruin.type";
