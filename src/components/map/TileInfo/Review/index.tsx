@@ -1,11 +1,10 @@
 import StarRating from "@components/common/StarRating";
 import { LegacyPalette } from "@src/constants/color/color";
+import { ruinDetailDummy } from "@src/constants/dummy/ruinDetail.dummy";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import useRuin from "@src/hooks/map/useRuin";
 import styled from "styled-components";
 
 const Review = () => {
-  const { ruinDetailDummy } = useRuin();
   const firstRuinDetail = ruinDetailDummy[0];
 
   return (

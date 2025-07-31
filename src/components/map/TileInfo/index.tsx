@@ -9,6 +9,8 @@ import Detail from "./Detail";
 import Review from "./Review";
 import useRuin from "@src/hooks/map/useRuin";
 import useBlock from "@src/hooks/map/useBlock";
+import ArrowLeftImg from "@src/assets/arrowLeft.svg";
+import ArrowRightImg from "@src/assets/arrowRight.svg";
 
 interface MenuDataType {
   text: string;
@@ -28,27 +30,12 @@ const TileInfo = ({
     { text: "상세", isAtv: false },
     { text: "한줄평", isAtv: false },
   ]);
-  const {
-    ruinDetailDummy,
-    getRuinDetailById,
-    isRuinDetailLoading,
-    ruinDetail,
-  } = useRuin();
+  const { getRuinDetailById, isRuinDetailLoading, ruinDetail } = useRuin();
   const { myRuinBlock } = useBlock();
 
   const isMyBlock = myRuinBlock.some(
-    (ruinBlock) => ruinBlock.ruinsId === ruinDetailDummy[page]!.ruinsId
+    (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
   );
-
-  // useEffect(() => {
-  //   if (selectedRuins) {
-  //     if (selectedRuins.length > 1) {
-  //       getRuinDetailById(selectedRuins[page].ruinsId);
-  //     } else {
-  //       getRuinDetailById(selectedRuins[0].ruinsId);
-  //     }
-  //   }
-  // }, [page, selectedRuins]);
 
   useEffect(() => {
     if (selectedRuins) {
@@ -62,10 +49,6 @@ const TileInfo = ({
       getRuinDetailById(selectedRuins[0].ruinsId);
     }
   }, [selectedRuins]);
-
-  useEffect(() => {
-    console.log(ruinDetail);
-  }, [ruinDetail]);
 
   return (
     <S.TileInfoWrapper>
@@ -81,7 +64,7 @@ const TileInfo = ({
                   }
                 }}
               >
-                <S.ArrowLeft $isFirstPage={page === 0} />
+                <S.Arrow $isLastPage={page === 0} src={ArrowLeftImg} />
               </S.ArrowContainer>
               {`${page + 1} / ${selectedRuins!.length}`}
               <S.ArrowContainer
@@ -91,8 +74,9 @@ const TileInfo = ({
                   }
                 }}
               >
-                <S.ArrowRight
+                <S.Arrow
                   $isLastPage={page === selectedRuins!.length - 1}
+                  src={ArrowRightImg}
                 />
               </S.ArrowContainer>
             </S.PageControllerContainer>

@@ -1,8 +1,6 @@
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
-import ArrowLeftImg from "@src/assets/arrowLeft.svg";
-import ArrowRightImg from "@src/assets/arrowRight.svg";
 
 export const TileInfoWrapper = styled.div`
   width: 240px;
@@ -75,25 +73,17 @@ export const CostText = styled.div`
   ${LegacyTypography.Pretendard.Body1.Bold};
   color: ${LegacySementic.yellow.netural};
   span {
-    ${LegacyTypography.Pretendard.Body2.Medium}
-    color: ${LegacyPalette.labelAlternative}
+    ${LegacyTypography.Pretendard.Body2.Medium};
+    color: ${LegacyPalette.labelAlternative};
   }
 `;
 
-export const ArrowRight = styled.img.attrs({ src: ArrowRightImg })<{
+export const Arrow = styled.img<{
   $isLastPage: boolean;
 }>`
   width: 20px;
   height: 20px;
   display: ${({ $isLastPage }) => $isLastPage && "none"};
-`;
-
-export const ArrowLeft = styled.img.attrs({ src: ArrowLeftImg })<{
-  $isFirstPage: boolean;
-}>`
-  width: 20px;
-  height: 20px;
-  display: ${({ $isFirstPage }) => $isFirstPage && "none"};
 `;
 
 export const ButtonContainer = styled.div`
@@ -103,7 +93,7 @@ export const ButtonContainer = styled.div`
 export const ButtonText = styled.div<{ $isExplored: boolean }>`
   color: ${({ $isExplored }) =>
     $isExplored ? LegacyPalette.lineNeutral : LegacySementic.blue.netural};
-  ${LegacyTypography.Pretendard.Caption1.Bold}
+  ${LegacyTypography.Pretendard.Caption1.Bold};
 `;
 
 export const ArrowContainer = styled.div`
@@ -127,7 +117,7 @@ export const RuinNameContainer = styled.div`
   }
 `;
 
-export const ScoreContainer = styled.div<{ $gap: string }>`
+export const ScoreContainer = styled.div`
   display: flex;
   gap: 2px;
   color: ${LegacyPalette.fillAlternative};
@@ -138,8 +128,4 @@ export const RuinNameScoreContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`;
-
-export const ButtonWrapper = styled.div`
-  margin-top: 12px;
 `;
