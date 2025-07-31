@@ -133,7 +133,6 @@ const Pixel = ({
 
     const clickListener = polygon.addListener("click", () => {
       handleClick(ruins);
-      console.log(ruins);
     });
 
     // 정리 함수
