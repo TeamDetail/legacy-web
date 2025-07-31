@@ -151,7 +151,7 @@ const useRuin = () => {
   useEffect(() => {
     if (ruinId !== null && !alreadyLoadRuin.includes(ruinId)) {
       getRuinDetail();
-      setAlreadyLoadRuin((prev) => ([...prev, ruinId]))
+      setAlreadyLoadRuin((prev) => [...prev, ruinId]);
     }
   }, [ruinId]);
   useEffect(() => {
