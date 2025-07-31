@@ -43,10 +43,6 @@ const QuizModal = ({ close }: { close: () => void }) => {
   };
 
   useEffect(() => {
-    console.log(ruinQuiz);
-  }, [ruinQuiz]);
-
-  useEffect(() => {
     if (isAnswerCorrect) {
       if (isAnswerCorrect.blockGiven) {
         queryClient.invalidateQueries({
@@ -65,7 +61,7 @@ const QuizModal = ({ close }: { close: () => void }) => {
   };
 
   if (ruinQuiz?.length === 0) {
-    return (<QuizUndefined close={close}/>)
+    return <QuizUndefined close={close} />;
   }
   return ruinDetail && ruinQuiz ? (
     isSubmit ? (
