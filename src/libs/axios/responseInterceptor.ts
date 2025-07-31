@@ -14,18 +14,22 @@ interface TokenResponse {
   refreshToken: string;
 }
 
+//리프레쉬 작업중인지 아닌지를 구분하는 변수
 let isRefreshing = false;
+
 const refreshSubscribers: ((accessToken: string) => void)[] = [];
 
 const onTokenRefreshed = (accessToken: string) => {
-  refreshSubscribers.forEach((callback) => callback(accessToken));
+  console.log(refreshSubscribers)
+  refreshSubscribers.map((callback) => callback(accessToken));
 };
 
-const addRefeshSubscriber = (callback: (accessToken: string) => void) => {
+const addRefreshSubscriber = (callback: (accessToken: string) => void) => {
   refreshSubscribers.push(callback);
 };
 
-const ResponseHandler = async (error: AxiosError) => {
+
+const errorResponseHandler = async (error: AxiosError) => {
   if (error.response) {
     const {
       config: originalRequest,
@@ -36,48 +40,55 @@ const ResponseHandler = async (error: AxiosError) => {
     const usingRefreshToken = token.getToken(REFRESH_TOKEN_KEY);
 
     if (
-      status === 401 &&
       usingAccessToken !== undefined &&
       usingRefreshToken !== undefined &&
-      !isRefreshing
+      status === 401
     ) {
-      isRefreshing = true;
+      //아무 요청중 하나하도 리프레쉬 작업중이 아니라면
+      if (!isRefreshing) {
+        //리프레쉬 작업을 시작함
+        isRefreshing = true;
 
-      try {
-        const { data } = await axios.post<BaseResponse<TokenResponse>>(
-          `${SERVER_URL}/auth/refresh`,
-          {
-            refreshToken: usingRefreshToken,
-          }
-        ); //CHANGE YOUR API URL && BODY VALUE
-        customAxios.defaults.headers.common[
-          REQUEST_TOKEN_KEY
-        ] = `Bearer ${data.data.accessToken}`;
+        //리프레쉬 api 요청
+        try {
+          const { data: newTokens } = await axios.post<BaseResponse<TokenResponse>>(
+            `${SERVER_URL}/auth/refresh`,
+            {
+              refreshToken: usingRefreshToken,
+            }
+          );
 
-        token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
-        token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
+          customAxios.defaults.headers.common[
+            REQUEST_TOKEN_KEY
+          ] = `Bearer ${newTokens.data.accessToken}`;
 
-        isRefreshing = false;
-        onTokenRefreshed(data.data.accessToken);
+          token.setToken(ACCESS_TOKEN_KEY, newTokens.data.accessToken);
 
-        return new Promise((resolve) => {
-          addRefeshSubscriber((accessToken: string) => {
-            originalRequest!.headers![
-              REQUEST_TOKEN_KEY
-            ] = `Bearer ${accessToken}`;
-            resolve(customAxios(originalRequest!));
-          });
-        });
-      } catch (error) {
-        console.error("Failed to refresh access token:", error);
-        token.clearToken();
-        window.alert("세션이 만료되었습니다.");
-        window.location.href = "/login";
+          //리프레쉬 작업을 마침
+          isRefreshing = false;
+
+          console.log(refreshSubscribers.length);
+          //새로 받은 accessToken을 기반으로 이때까지 밀려있던 요청을 모두 처리
+          onTokenRefreshed(newTokens.data.accessToken);
+          originalRequest!.headers.Authorization = `Bearer ${newTokens.data.accessToken}`;
+          return customAxios(originalRequest!);
+        } catch {
+          //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
+          window.alert("세션이 만료되었습니다.");
+          token.clearToken();
+          window.location.href = "/login";
+        }
       }
+      return new Promise((resolve) => {
+        console.log("요청 대기열 진입")
+        addRefreshSubscriber((accessToken: string) => {
+          originalRequest!.headers![REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
+          resolve(customAxios(originalRequest!));
+          console.log(originalRequest?.url)
+        });
+      });
     }
   }
-
-  return Promise.reject(error);
 };
 
-export default ResponseHandler;
+export default errorResponseHandler;

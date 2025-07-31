@@ -2,68 +2,130 @@ import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-export const InfoContainer = styled.div`
+export const TileInfoWrapper = styled.div`
   width: 240px;
-  height: fit-content;
-  padding: 16px 20px 16px 20px;
-  background-color: ${LegacyPalette.backgroundNormal};
+  height: 600px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  padding: 16px 20px;
+  background-color: ${LegacyPalette.backgroundNormal};
+  justify-content: space-between;
   border-radius: 20px;
 `;
-export const Column8 = styled.div`
+
+export const TileInfoContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 `;
 
-export const LabelAlternative = styled.p`
-  color: ${LegacyPalette.labelAlternative};
-`;
-
-export const Row4 = styled.div`
+export const HeaderContainer = styled.div`
   display: flex;
-  gap: 4px;
-`;
+  justify-content: space-between;
+  align-items: center;
 
-export const LabelMedieum = styled(LabelAlternative)`
-  ${LegacyTypography.Pretendard.Label.Medium};
-`;
-
-export const CreditText = styled.p`
-  ${LegacyTypography.Pretendard.Body1.Bold};
-  color: ${LegacySementic.yellow.netural};
-`;
-
-export const CreditAddText = styled(LabelAlternative)`
-  ${LegacyTypography.Pretendard.Body2.Medium};
-`;
-
-export const LocationText = styled.p`
-  ${LegacyTypography.Pretendard.Body1.Bold};
-  color: ${LegacyPalette.labelNormal};
-`;
-
-export const BlockTypeText = styled.p<{ $blockType: "legacy" | "default" }>`
-  ${LegacyTypography.Pretendard.Body2.Medium};
-  color: ${({ $blockType }) =>
-    $blockType === "legacy"
-      ? LegacySementic.blue.netural
-      : LegacySementic.purple.netural};
-`;
-
-export const HeadlineBold = styled.p`
   ${LegacyTypography.Pretendard.Headline.Bold};
   color: ${LegacyPalette.labelNormal};
 `;
 
-export const ExploreButtonChildren = styled.div<{ $isExplored: boolean }>`
-  width: 100%;
+export const PageControllerContainer = styled.div`
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  ${LegacyTypography.Pretendard.Label.Bold};
+  color: ${LegacyPalette.labelNeutral};
+`;
+
+export const DetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 1;
+
+  span {
+    ${LegacyTypography.Pretendard.Caption2.Regular};
+    color: ${LegacyPalette.labelAlternative};
+  }
+
+  ${LegacyTypography.Pretendard.Body2.Medium};
+  color: ${LegacyPalette.labelNormal};
+`;
+
+export const ExplainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+
+  span {
+    ${LegacyTypography.Pretendard.Caption2.Regular};
+    color: ${LegacyPalette.labelAlternative};
+  }
+
+  ${LegacyTypography.Pretendard.Body2.Medium};
+  color: ${LegacyPalette.labelNormal};
+`;
+
+export const CostText = styled.div`
+  display: flex;
+  gap: 4px;
+  ${LegacyTypography.Pretendard.Body1.Bold};
+  color: ${LegacySementic.yellow.netural};
+  span {
+    ${LegacyTypography.Pretendard.Body2.Medium};
+    color: ${LegacyPalette.labelAlternative};
+  }
+`;
+
+export const Arrow = styled.img<{
+  $isLastPage: boolean;
+}>`
+  width: 20px;
+  height: 20px;
+  display: ${({ $isLastPage }) => $isLastPage && "none"};
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 12px;
+`;
+
+export const ButtonText = styled.div<{ $isExplored: boolean }>`
+  color: ${({ $isExplored }) =>
+    $isExplored ? LegacyPalette.lineNeutral : LegacySementic.blue.netural};
+  ${LegacyTypography.Pretendard.Caption1.Bold};
+`;
+
+export const ArrowContainer = styled.div`
+  width: 20px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ $isExplored }) =>
-    $isExplored ? LegacySementic.blue.netural : LegacyPalette.lineNeutral};
-  ${LegacyTypography.Pretendard.Caption1.Bold};
+  cursor: pointer;
+`;
+
+export const RuinNameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  ${LegacyTypography.Pretendard.Headline.Bold};
+  color: ${LegacyPalette.labelNormal};
+  span {
+    ${LegacyTypography.Pretendard.Caption1.Medium};
+    color: ${LegacyPalette.labelAlternative};
+  }
+`;
+
+export const ScoreContainer = styled.div`
+  display: flex;
+  gap: 2px;
+  color: ${LegacyPalette.fillAlternative};
+  ${LegacyTypography.Pretendard.Caption2.Medium}
+`;
+
+export const RuinNameScoreContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
