@@ -10,7 +10,7 @@ import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
 
 const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
-    { text: "도감", isAtv: true },
+    { text: "도감", isAtv: true, value: "" },
     // { text: "덱", isAtv: false },
     // { text: "시련 스탯", isAtv: false },
     // { text: "칭호", isAtv: false },

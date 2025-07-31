@@ -78,6 +78,10 @@ const Pixel = ({
     ];
   };
 
+ const isAllIncluded =  ruins.every((ruin) =>
+  myRuinBlock.some((block) => block.ruinsId === ruin.ruinsId)
+);
+
   useEffect(() => {
     if (!map) return;
 
@@ -87,7 +91,7 @@ const Pixel = ({
       paths: paths,
       strokeColor:
         pixelType === "ruin"
-          ? myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinsId)
+          ? isAllIncluded
             ? LegacySementic.yellow.normal
             : LegacySementic.purple.normal
           : pixelType === "buyable"
@@ -97,7 +101,7 @@ const Pixel = ({
       strokeWeight: 2,
       fillColor:
         pixelType === "ruin"
-          ? myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinsId)
+          ? isAllIncluded
             ? LegacySementic.yellow.netural
             : LegacySementic.purple.netural
           : pixelType === "buyable"

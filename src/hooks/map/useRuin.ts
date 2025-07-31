@@ -4,7 +4,7 @@ import {
   useGetRuins,
 } from "@src/queries/map/map.queries";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
-import { Ruin, RuinDetail } from "@src/types/map/ruin.type";
+import { Ruin } from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 
 

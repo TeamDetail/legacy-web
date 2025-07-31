@@ -1,4 +1,4 @@
-import { Card, CardResponse } from "../card/card.type";
+import { CardResponse } from "../card/card.type";
 
 export interface Ruin {
   ruinsId: number;

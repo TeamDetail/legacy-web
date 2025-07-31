@@ -15,6 +15,7 @@ import ArrowRightImg from "@src/assets/arrowRight.svg";
 interface MenuDataType {
   text: string;
   isAtv: boolean;
+  value: string;
 }
 
 const TileInfo = ({
@@ -26,9 +27,9 @@ const TileInfo = ({
 }) => {
   const [page, setPage] = useState<number>(0);
   const [category, setCategory] = useState<MenuDataType[]>([
-    { text: "개요", isAtv: true },
-    { text: "상세", isAtv: false },
-    { text: "한줄평", isAtv: false },
+    { text: "개요", isAtv: true, value: "" },
+    { text: "상세", isAtv: false, value: "" },
+    { text: "한줄평", isAtv: false, value: "" },
   ]);
   const { getRuinDetailById, isRuinDetailLoading, ruinDetail } = useRuin();
   const { myRuinBlock } = useBlock();
