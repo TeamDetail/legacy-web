@@ -73,6 +73,7 @@ const Pixels = ({
           return (
             zoomLevel! >= 13 && (
               <Pixel
+                key={item[0].ruinsId}
                 ruins={item}
                 currentZoomLevel={currentZoomLevel}
                 pixelType="ruin"
