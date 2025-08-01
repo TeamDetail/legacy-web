@@ -1,28 +1,28 @@
 import { LegacySementic } from "@src/constants/color/color";
 import { MyBlockType } from "@src/types/map/normalBlock.type";
+import { Ruin } from "@src/types/map/ruin.type";
 import { useMap } from "@vis.gl/react-google-maps";
 import { useEffect } from "react";
 
 interface PixelProps {
-  ruinsId: number;
-  latitude: number;
-  longitude: number;
+  ruins: Ruin[];
   currentZoomLevel: number;
   pixelType: "ruin" | "normal" | "buyable";
-  handleClick: () => void;
+  handleClick: (ruin: Ruin[]) => void;
   myRuinBlock: MyBlockType[];
 }
 
 const Pixel = ({
-  ruinsId,
-  latitude,
-  longitude,
+  ruins,
   currentZoomLevel,
   pixelType,
   handleClick,
   myRuinBlock,
 }: PixelProps) => {
   const map = useMap();
+
+  const latitude = ruins[0].latitude;
+  const longitude = ruins[0].longitude;
 
   const latPerPixel = 0.000724;
   const lonPerPixel = 0.000909;
@@ -78,6 +78,10 @@ const Pixel = ({
     ];
   };
 
+ const isAllIncluded =  ruins.every((ruin) =>
+  myRuinBlock.some((block) => block.ruinsId === ruin.ruinsId)
+);
+
   useEffect(() => {
     if (!map) return;
 
@@ -87,9 +91,9 @@ const Pixel = ({
       paths: paths,
       strokeColor:
         pixelType === "ruin"
-          ? myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinsId)
+          ? isAllIncluded
             ? LegacySementic.yellow.normal
-            : LegacySementic.blue.normal
+            : LegacySementic.purple.normal
           : pixelType === "buyable"
           ? LegacySementic.red.normal
           : LegacySementic.purple.normal,
@@ -97,9 +101,9 @@ const Pixel = ({
       strokeWeight: 2,
       fillColor:
         pixelType === "ruin"
-          ? myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinsId)
+          ? isAllIncluded
             ? LegacySementic.yellow.netural
-            : LegacySementic.blue.netural
+            : LegacySementic.purple.netural
           : pixelType === "buyable"
           ? LegacySementic.red.netural
           : LegacySementic.purple.netural,
@@ -132,7 +136,7 @@ const Pixel = ({
     animateOpacity(); // 실행
 
     const clickListener = polygon.addListener("click", () => {
-      handleClick();
+      handleClick(ruins);
     });
 
     // 정리 함수

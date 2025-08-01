@@ -4,8 +4,7 @@ export const QUERY_KEYS = Object.freeze({
     getUser: "userGetUser",
   },
   ruin: {
-    getRuins: "mapGetRuins",
-    getRuinDetail: "mapGetRuinDetail",
+    getRuinDetail: (id: number) => `mapGetRuinDetail/${id}`,
     getRuinQuiz: "mapGetRuinQuiz",
   },
   card: {

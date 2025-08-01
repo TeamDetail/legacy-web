@@ -2,7 +2,7 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import ClappingHandsImg from "@src/assets/clapping-hands-svgrepo-com 1.svg";
+import ClappingHandsImg from "@src/assets/clapping-hands-svgrepo-com1.svg";
 import useRuin from "@src/hooks/map/useRuin";
 import Card from "@components/common/Card";
 
