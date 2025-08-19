@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectItemWrap,
 } from "./style";
-import ArrowDown from "@src/assets/arrow-down.svg";
+import ArrowDown from "@src/assets/arrow-down.svg?react";
 import { CSSObject } from "styled-components";
 
 export interface SelectProps {

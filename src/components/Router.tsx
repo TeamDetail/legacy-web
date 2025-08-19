@@ -5,6 +5,7 @@ import ProfilePage from "@src/pages/ProfilePage";
 import NotFoundPage from "@src/pages/NotFoundPage";
 import RankingPage from "@src/pages/RankingPage";
 import YetMakingPage from "@src/pages/YetMakingPage";
+import CoursePage from "@src/pages/CoursePage";
 
 const Router = () => {
   return (
@@ -18,7 +19,7 @@ const Router = () => {
       <Route path="/shop" element={<YetMakingPage type="상점"/>}/>
       <Route path="/ranking" element={<RankingPage />}/>
       <Route path="/achievement" element={<YetMakingPage type="도전과제"/>}/>
-      <Route path="/course" element={<YetMakingPage type="코스"/>} />
+      <Route path="/course" element={<CoursePage/>} />
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   );
