@@ -2,7 +2,6 @@ import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 import CourseProgressBar from "./CourseProgressBar";
-import HeartIcon from "@src/assets/heart.svg?react";
 import CourseToggleButton from "./CourseToggleButton";
 import { useState } from "react";
 
