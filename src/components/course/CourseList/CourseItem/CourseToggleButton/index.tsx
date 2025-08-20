@@ -1,5 +1,5 @@
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styled from "styled-components";
 import HeartIcon from "@src/assets/heart.svg?react";
 import { LegacyTypography } from "@src/constants/font/fontToken";
@@ -17,6 +17,16 @@ const CourseToggleButton = ({
   isSelected,
   setIsSelected,
 }: ToggleButtonType) => {
+  const [count, setCount] = useState<number>(value);
+
+  useEffect(() => {
+    if (isSelected) {
+      setCount((prev) => prev + 1);
+    } else {
+      setCount((prev) => prev - 1);
+    }
+  }, [isSelected]);
+
   return (
     <ButtonWrapper
       $isSelected={isSelected}
@@ -36,7 +46,7 @@ const CourseToggleButton = ({
             : LegacyPalette.labelAssistive
         }
       />
-      {value > 999 ? "999+" : value}
+      {count > 999 ? "999+" : count}
     </ButtonWrapper>
   );
 };
