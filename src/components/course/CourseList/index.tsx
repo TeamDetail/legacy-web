@@ -48,6 +48,10 @@ const CourseList = () => {
             courseName={item.name}
             eventId={null}
             tags={item.tag}
+            isHeart={item.isHeart}
+            isClear={item.isClear}
+            heartCount={item.heartCount}
+            clearCount={item.clearCount}
           />
         ))}
       </S.DataContainer>

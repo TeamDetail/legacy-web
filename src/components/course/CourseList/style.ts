@@ -3,11 +3,13 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
 export const CourseListContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 20px;
-
+  border-radius: 20px;
+  background-color: ${LegacyPalette.backgroundNormal};
   overflow: hidden;
 `;
 
@@ -19,8 +21,9 @@ export const DataContainer = styled.div`
   width: 100%;
 
   @media (max-width: 940px) {
-    min-width: 108px;
+    grid-template-columns: 1fr 1fr;
   }
+  overflow: auto;
 `;
 
 export const SearchContainer = styled.div`

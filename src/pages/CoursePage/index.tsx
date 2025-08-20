@@ -37,8 +37,6 @@ const MainContainer = styled.div`
   flex-direction: column;
   height: 100%;
   gap: 14px;
-  border-radius: 20px;
-  background-color: ${LegacyPalette.backgroundNormal};
 `;
 
 const HeaderContainer = styled.div`

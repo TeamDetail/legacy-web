@@ -1,13 +1,71 @@
-import styled from 'styled-components'
+import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+import { Dispatch, SetStateAction } from "react";
+import styled from "styled-components";
+import HeartIcon from "@src/assets/heart.svg?react";
+import { LegacyTypography } from "@src/constants/font/fontToken";
 
-const CourseToggleButton = () => {
-  return (
-
-  )
+interface ToggleButtonType {
+  buttonType: "heart" | "clear";
+  value: number;
+  isSelected: boolean;
+  setIsSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-export default CourseToggleButton
+const CourseToggleButton = ({
+  buttonType,
+  value,
+  isSelected,
+  setIsSelected,
+}: ToggleButtonType) => {
+  return (
+    <ButtonWrapper
+      $isSelected={isSelected}
+      $buttonType={buttonType}
+      onClick={() => {
+        if (buttonType === "heart") {
+          setIsSelected((prev) => !prev);
+        }
+      }}
+    >
+      <HeartIcon
+        fill={
+          isSelected
+            ? buttonType === "heart"
+              ? LegacySementic.red.netural
+              : LegacySementic.green.netural
+            : LegacyPalette.labelAssistive
+        }
+      />
+      {value > 999 ? "999+" : value}
+    </ButtonWrapper>
+  );
+};
 
-const ButtonWrapper = styled.div`
-  
-`
+export default CourseToggleButton;
+
+const ButtonWrapper = styled.div<{
+  $isSelected: boolean;
+  $buttonType: "heart" | "clear";
+}>`
+  user-select: none;
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid
+    ${({ $isSelected, $buttonType }) =>
+      $isSelected
+        ? $buttonType === "heart"
+          ? LegacySementic.red.netural
+          : LegacySementic.green.netural
+        : LegacyPalette.lineNeutral};
+  border-radius: 4px;
+  background-color: ${LegacyPalette.fillNormal};
+
+  ${LegacyTypography.Pretendard.Caption1.Medium};
+  color: ${({ $isSelected, $buttonType }) =>
+    $isSelected
+      ? $buttonType === "heart"
+        ? LegacySementic.red.netural
+        : LegacySementic.green.netural
+      : LegacyPalette.labelAssistive};
+`;

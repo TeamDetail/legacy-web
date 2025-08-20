@@ -2,6 +2,9 @@ import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 import CourseProgressBar from "./CourseProgressBar";
+import HeartIcon from "@src/assets/heart.svg?react";
+import CourseToggleButton from "./CourseToggleButton";
+import { useState } from "react";
 
 interface CourseItemProps {
   thumbnailUrl: string;
@@ -11,6 +14,10 @@ interface CourseItemProps {
   courseName: string;
   eventId: number | null;
   tags: string[];
+  isHeart: boolean;
+  isClear: boolean;
+  heartCount: number;
+  clearCount: number;
 }
 
 const CourseItem = ({
@@ -21,7 +28,14 @@ const CourseItem = ({
   courseName,
   eventId,
   tags,
+  isHeart,
+  isClear,
+  heartCount,
+  clearCount,
 }: CourseItemProps) => {
+  const [isHearted, setIsHearted] = useState<boolean>(isHeart);
+  const [isCleared, setIsCleared] = useState<boolean>(isClear);
+
   return (
     <CourseItemContainer>
       <CourseThumbnail $url={thumbnailUrl}>
@@ -39,6 +53,20 @@ const CourseItem = ({
         </div>
         <span>{courseDetail}</span>
       </HeaderContainer>
+      <ToggleButtonContainer>
+        <CourseToggleButton
+          buttonType="heart"
+          value={heartCount}
+          isSelected={isHearted}
+          setIsSelected={setIsHearted}
+        />
+        <CourseToggleButton
+          buttonType="clear"
+          value={clearCount}
+          isSelected={isCleared}
+          setIsSelected={setIsCleared}
+        />
+      </ToggleButtonContainer>
       <TagContainer>
         {tags.map((tag) => (
           <div>#{tag}</div>
@@ -106,5 +134,11 @@ export const TagContainer = styled.div`
     color: ${LegacyPalette.labelNeutral};
     padding: 4px 8px;
     background-color: ${LegacyPalette.fillNormal};
+    border-radius: 4px;
   }
+`;
+
+export const ToggleButtonContainer = styled.div`
+  display: flex;
+  gap: 8px;
 `;

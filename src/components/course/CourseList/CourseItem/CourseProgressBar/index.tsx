@@ -55,7 +55,7 @@ const BarLabel = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  ${LegacyTypography.Pretendard.Body1.Bold};
+  ${LegacyTypography.Pretendard.Label.Bold};
   color: ${LegacyPalette.labelNeutral};
   pointer-events: none;
   white-space: nowrap;
