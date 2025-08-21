@@ -51,7 +51,7 @@ const errorResponseHandler = async (error: AxiosError) => {
         //리프레쉬 api 요청
         try {
           const { data: newTokens } = await axios.post<BaseResponse<TokenResponse>>(
-            `${SERVER_URL}auth/refresh`,
+            `${SERVER_URL}/auth/refresh`,
             {
               refreshToken: usingRefreshToken,
             }
