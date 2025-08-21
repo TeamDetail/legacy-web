@@ -1,16 +1,26 @@
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./components/Router";
-import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  QueryClient as QueryClientV3,
+  QueryClientProvider as QueryClientProviderV3,
+} from "react-query";
+import {
+  QueryClient as QueryClientV5,
+  QueryClientProvider as QueryClientProviderV5,
+} from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+const queryClientV3 = new QueryClientV3();
+const queryClientV5 = new QueryClientV5();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </QueryClientProvider>
+    <QueryClientProviderV5 client={queryClientV5}>
+      <QueryClientProviderV3 client={queryClientV3}>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </QueryClientProviderV3>
+    </QueryClientProviderV5>
   );
 }
 
