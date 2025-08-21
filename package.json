@@ -11,6 +11,7 @@
     "postinstall": "mv gitignore .gitignore || true"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.85.5",
     "@vis.gl/react-google-maps": "^1.5.4",
     "axios": "^1.10.0",
     "js-cookie": "^3.0.5",
