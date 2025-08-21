@@ -4,11 +4,14 @@ import SearchIcon from "@src/assets/search.svg?react";
 import { useState } from "react";
 import { courseDummy } from "@src/constants/dummy/course.dummy";
 import CourseItem from "./CourseItem";
+import useCourse from "@src/hooks/course/useCourse";
 
 const CourseList = () => {
   const [clearSelect, setClearSelect] = useState("미완료");
   const [sortSelect, setSortSelect] = useState("최신");
   const [eventSelect, setEventSelect] = useState("전체");
+
+  const { courseData, isCourseDataLoading } = useCourse();
 
   return (
     <S.CourseListContainer>
@@ -38,18 +41,18 @@ const CourseList = () => {
         </S.SelectContainer>
       </S.SearchContainer>
       <S.DataContainer>
-        {courseDummy.map((item) => (
+        {isCourseDataLoading && courseData!.map((item) => (
           <CourseItem
             key={item.courseId}
             thumbnailUrl={item.thumbnail}
             courseLength={item.maxRuinsCount}
             clearRuinsCount={item.clearRuinsCount}
             courseDetail={item.description}
-            courseName={item.name}
+            courseName={item.courseName}
             eventId={null}
             tags={item.tag}
-            isHeart={item.isHeart}
-            isClear={item.isClear}
+            isHeart={item.heart}
+            isClear={item.clear}
             heartCount={item.heartCount}
             clearCount={item.clearCount}
           />

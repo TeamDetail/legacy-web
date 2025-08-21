@@ -1,5 +1,10 @@
-const useCourse = () => {
-  const {data: allCourseData} = 
-}
+import { useGetAllCourseQuery } from "@src/queries/course/course.query";
 
-export default useCourse
+const useCourse = () => {
+  const { data: courseData, isLoading: isCourseDataLoading } =
+    useGetAllCourseQuery();
+
+  return { courseData, isCourseDataLoading };
+};
+
+export default useCourse;
