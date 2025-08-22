@@ -1,3 +1,5 @@
+import { Card } from "@src/types/card/card.type";
+
 export const courseDummy = [
   {
     courseId: 1,
@@ -113,3 +115,16 @@ export const courseDummy = [
     maxRuinsCount: 10,
   },
 ];
+
+export const cardDummy: Card = {
+  cardId: 1,
+  cardName: "최예나",
+  cardImageUrl:
+    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ2VDmx68oASUiM4HiJmmz5WR7nn8SSz5sJ18zXot0EOU_rGtAp8wWyt4r5J2ook_HU6_oEb9Ei0nSA674XMHqA3A",
+  cardType: "SHINING_CARD",
+  regionAttributeName: "경기",
+  nationAttributeName: "대한민국",
+  lineAttributeName: "신앙",
+  isAtv: false,
+  size: "S",
+};

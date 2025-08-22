@@ -1,13 +1,37 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import courseApi from "@src/api/course/course.api";
-import { Course } from "@src/types/course/course.type";
+import { Course, CourseRuins } from "@src/types/course/course.type";
 
-export const useGetAllCourseQuery = (options?: UseQueryOptions<Course[]>) =>
+export const useGetAllCourseQuery = (
+  options?: Partial<
+    UseQueryOptions<
+      Course[],
+      Error,
+      Course[],
+      typeof QUERY_KEYS.course.getAllCourse
+    >
+  >
+) =>
   useQuery({
     queryKey: QUERY_KEYS.course.getAllCourse,
     queryFn: courseApi.getAllCourse,
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 10,
     ...options,
+  });
+
+export const useGetCourseRuinsById = (
+  id: number,
+  options?: Partial<
+    UseQueryOptions<
+      CourseRuins,
+      Error,
+      CourseRuins,
+      ReturnType<typeof QUERY_KEYS.course.getCourseRuinsById>
+    >
+  >
+) =>
+  useQuery({
+    queryKey: QUERY_KEYS.course.getCourseRuinsById(id),
+    queryFn: () => courseApi.getCourseRuinsbyId(id),
+    ...options
   });

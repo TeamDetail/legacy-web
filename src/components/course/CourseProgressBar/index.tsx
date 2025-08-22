@@ -8,6 +8,7 @@ interface ProgressBarProps {
   value: number;
   barColor: string;
   bgColor: string;
+  width: string;
 }
 
 const CourseProgressBar = ({
@@ -15,10 +16,11 @@ const CourseProgressBar = ({
   value,
   barColor,
   bgColor,
+  width,
 }: ProgressBarProps) => {
   const percent = Math.min(100, Math.max(0, (value / max) * 100));
   return (
-    <BarContainer $bgColor={bgColor}>
+    <BarContainer $bgColor={bgColor} $width={width}>
       <BarFill $barColor={barColor} $percent={percent} />
       <BarLabel>
         {value} / {max}
@@ -29,9 +31,10 @@ const CourseProgressBar = ({
 
 export default CourseProgressBar;
 
-const BarContainer = styled.div<{ $bgColor: string }>`
+const BarContainer = styled.div<{ $bgColor: string; $width: string }>`
   position: relative;
-  width: 84px;
+  width: ${({ $width }) => $width};
+  min-height: 28px;
   height: 28px;
   background: ${({ $bgColor }) => $bgColor};
   border-radius: 999px;

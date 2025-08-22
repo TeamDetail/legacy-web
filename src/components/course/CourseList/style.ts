@@ -61,3 +61,11 @@ export const Search = styled.div`
     background: none;
   }
 `;
+
+export const EmptyCourseMessage = styled.div`
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

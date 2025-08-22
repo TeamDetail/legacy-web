@@ -62,6 +62,7 @@ const errorResponseHandler = async (error: AxiosError) => {
           ] = `Bearer ${newTokens.data.accessToken}`;
 
           token.setToken(ACCESS_TOKEN_KEY, newTokens.data.accessToken);
+          token.setToken(REFRESH_TOKEN_KEY, newTokens.data.refreshToken);
 
           //리프레쉬 작업을 마침
           isRefreshing = false;

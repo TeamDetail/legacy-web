@@ -1,14 +1,18 @@
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 import HeartIcon from "@src/assets/heart.svg?react";
+import ClearIcon from "@src/assets/clear.svg?react";
 import { LegacyTypography } from "@src/constants/font/fontToken";
+import customAxios from "@src/libs/axios/customAxios";
 
 interface ToggleButtonType {
   buttonType: "heart" | "clear";
   value: number;
   isSelected: boolean;
   setIsSelected: Dispatch<SetStateAction<boolean>>;
+  courseId?: number;
+  disabled: boolean;
 }
 
 const CourseToggleButton = ({
@@ -16,36 +20,53 @@ const CourseToggleButton = ({
   value,
   isSelected,
   setIsSelected,
+  courseId,
+  disabled,
 }: ToggleButtonType) => {
   const [count, setCount] = useState<number>(value);
 
-  useEffect(() => {
-    if (isSelected) {
+  const handleToggleHeartById = (id: number) => {
+    customAxios.patch("/course", { courseId: id });
+  };
+
+  const handleButtonClick = () => {
+    setIsSelected((prev) => !prev);
+    handleToggleHeartById(courseId!);
+    if (!isSelected) {
       setCount((prev) => prev + 1);
     } else {
       setCount((prev) => prev - 1);
     }
-  }, [isSelected]);
+  };
 
   return (
     <ButtonWrapper
       $isSelected={isSelected}
       $buttonType={buttonType}
       onClick={() => {
-        if (buttonType === "heart") {
-          setIsSelected((prev) => !prev);
+        if (disabled) {
+          handleButtonClick();
         }
       }}
     >
-      <HeartIcon
-        fill={
-          isSelected
-            ? buttonType === "heart"
+      {buttonType === "heart" ? (
+        <HeartIcon
+          fill={
+            isSelected
               ? LegacySementic.red.netural
-              : LegacySementic.green.netural
-            : LegacyPalette.labelAssistive
-        }
-      />
+              : LegacyPalette.labelAssistive
+          }
+        />
+      ) : (
+        <ClearIcon
+          fill={
+            isSelected
+              ? LegacySementic.green.netural
+              : LegacyPalette.labelAssistive
+          }
+        />
+      )}
+
       {count > 999 ? "999+" : count}
     </ButtonWrapper>
   );

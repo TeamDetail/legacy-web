@@ -1,3 +1,5 @@
+import { RuinDetail } from "../map/ruin.type";
+
 export interface Course {
   courseId: number;
   courseName: string;
@@ -12,4 +14,9 @@ export interface Course {
   maxRuinsCount: number;
   clear: boolean;
   heart: boolean;
+}
+
+export interface CourseRuins {
+  ruins: RuinDetail[];
+  clearRuins: RuinDetail[];
 }

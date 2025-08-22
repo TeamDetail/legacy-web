@@ -19,6 +19,7 @@ export const QUERY_KEYS = Object.freeze({
   ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") =>
     `ranking/${type}/${scope}`,
   course: {
-    getAllCourse: ["course"]
+    getAllCourse: ["course"],
+    getCourseRuinsById: (id: number) => [`course/${id}`],
   },
 });

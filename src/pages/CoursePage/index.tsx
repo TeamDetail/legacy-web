@@ -36,7 +36,7 @@ const MainContainer = styled.div`
   flex-grow: 1;
   flex-direction: column;
   height: 100%;
-  gap: 14px;
+  gap: 12px;
 `;
 
 const HeaderContainer = styled.div`
