@@ -1,7 +1,7 @@
 import { Select } from "@components/common/Select";
 import * as S from "./style";
 import SearchIcon from "@src/assets/search.svg?react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import CourseItem from "../CourseItem";
 import useCourse from "@src/hooks/course/useCourse";
 import { Course } from "@src/types/course/course.type";
@@ -12,7 +12,7 @@ const CourseList = () => {
   const [eventSelect, setEventSelect] = useState("전체");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { courseData, isCourseDataLoading } = useCourse();
+  const { courseData, isCourseDataLoading, getCourseData } = useCourse();
 
   const filterBySearch = (course: Course) =>
     course.courseName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -45,6 +45,10 @@ const CourseList = () => {
       .filter(filterByEvent)
       .sort(sortCourses);
   }, [courseData, clearSelect, sortSelect, eventSelect, searchTerm]);
+
+  useEffect(() => {
+    getCourseData();
+  }, []);
 
   return (
     <S.CourseListContainer>

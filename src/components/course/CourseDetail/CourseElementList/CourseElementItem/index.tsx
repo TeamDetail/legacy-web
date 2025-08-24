@@ -26,7 +26,7 @@ const CourseElementItem = ({
 }: ElementItemProps) => {
   return (
     <S.ElementItemContainer>
-      <S.IndexBox $isClear={isClear}>{index}</S.IndexBox>
+      <S.IndexBox $isClear={isClear}>{index + 1}</S.IndexBox>
       <S.InfoContainer>
         <S.RuinNameScoreContainer>
           <S.RuinNameContainer>

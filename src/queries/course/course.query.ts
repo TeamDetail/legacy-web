@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import courseApi from "@src/api/course/course.api";
-import { Course, CourseRuins } from "@src/types/course/course.type";
+import { Course, CourseDetail } from "@src/types/course/course.type";
 
 export const useGetAllCourseQuery = (
   options?: Partial<
@@ -19,19 +19,19 @@ export const useGetAllCourseQuery = (
     ...options,
   });
 
-export const useGetCourseRuinsById = (
+export const useGetCourseDetailById = (
   id: number,
   options?: Partial<
     UseQueryOptions<
-      CourseRuins,
+      CourseDetail,
       Error,
-      CourseRuins,
-      ReturnType<typeof QUERY_KEYS.course.getCourseRuinsById>
+      CourseDetail,
+      ReturnType<typeof QUERY_KEYS.course.getCourseDetailById>
     >
   >
 ) =>
   useQuery({
-    queryKey: QUERY_KEYS.course.getCourseRuinsById(id),
-    queryFn: () => courseApi.getCourseRuinsbyId(id),
+    queryKey: QUERY_KEYS.course.getCourseDetailById(id),
+    queryFn: () => courseApi.getCourseDetailbyId(id),
     ...options
   });

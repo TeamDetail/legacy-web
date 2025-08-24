@@ -108,8 +108,8 @@ const CourseItem = ({
           />
         </ToggleButtonContainer>
         <TagContainer>
-          {tags.map((tag) => (
-            <div>#{tag}</div>
+          {tags.map((tag, idx) => (
+            <div key={idx}>#{tag}</div>
           ))}
         </TagContainer>
       </ContentWrapper>

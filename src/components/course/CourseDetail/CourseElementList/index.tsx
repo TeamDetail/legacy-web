@@ -1,30 +1,24 @@
 import CourseProgressBar from "@components/course/CourseProgressBar";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
-import useCourse from "@src/hooks/course/useCourse";
-import { useEffect } from "react";
 import styled from "styled-components";
 import CourseElementItem from "./CourseElementItem";
 import { cardDummy } from "@src/constants/dummy/course.dummy";
+import { RuinDetail } from "@src/types/map/ruin.type";
 
 interface CourseElementListProps {
   courseLength: number;
   clearRuinsCount: number;
   courseId: number;
+  ruins: RuinDetail[];
+  clearRuins: RuinDetail[];
 }
 
 const CourseElementList = ({
   courseLength,
   clearRuinsCount,
-  courseId,
+  ruins,
+  clearRuins,
 }: CourseElementListProps) => {
-  const { getCourseRuinsDataById, courseRuinsData } = useCourse();
-
-  const ruins = courseRuinsData?.ruins;
-
-  useEffect(() => {
-    getCourseRuinsDataById(courseId);
-  }, []);
-
   return (
     <CourseElementListContainer>
       <CourseProgressBar
@@ -37,9 +31,7 @@ const CourseElementList = ({
       <CourseElementItemContainer>
         {ruins?.map((item, idx) => {
           const isClear =
-            courseRuinsData?.clearRuins.some(
-              (clear) => clear.ruinsId === item.ruinsId
-            ) ?? false;
+            clearRuins.some((clear) => clear.ruinsId === item.ruinsId) ?? false;
 
           return (
             <CourseElementItem

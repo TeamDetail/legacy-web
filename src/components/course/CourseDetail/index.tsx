@@ -13,27 +13,22 @@ import { useEffect } from "react";
 const CourseDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { courseData, refetchCourseData, isCourseDataLoading } = useCourse();
+  const { courseDetailData, getCourseDetailDataById, isCourseDetailLoading } =
+    useCourse();
 
   const courseId = id ? parseInt(id, 10) : null;
 
-  const currentCourse = courseData?.find(
-    (course) => course.courseId === courseId
-  );
-
-  useEffect(() => {
-    if (!courseData || courseData.length === 0) {
-      refetchCourseData();
-    }
-  }, []);
-
   const handleButtonClick = async () => {
-    await refetchCourseData();
     navigate("/course");
   };
 
-  // 로딩 중이거나 courseId가 없는 경우
-  if (!courseId || isCourseDataLoading) {
+  useEffect(() => {
+    if (courseId) {
+      getCourseDetailDataById(courseId);
+    }
+  });
+
+  if (isCourseDetailLoading || !courseDetailData) {
     return (
       <CourseDetailContainer>
         <Sidebar />
@@ -43,34 +38,6 @@ const CourseDetail = () => {
             코스
           </HeaderContainer>
           <></>
-        </MainContainer>
-      </CourseDetailContainer>
-    );
-  }
-
-  // 해당 코스를 찾을 수 없는 경우
-  if (!currentCourse) {
-    return (
-      <CourseDetailContainer>
-        <Sidebar />
-        <MainContainer>
-          <HeaderContainer>
-            <Course width={32} height={32} />
-            코스
-          </HeaderContainer>
-          <ErrorContainer>
-            <div>코스를 찾을 수 없습니다.</div>
-            <LegacyButton
-              width="200px"
-              size="big"
-              isBold={false}
-              isFilled={true}
-              color={LegacyPalette.lineAlternative}
-              handleClick={() => navigate("/course")}
-            >
-              코스 목록으로 돌아가기
-            </LegacyButton>
-          </ErrorContainer>
         </MainContainer>
       </CourseDetailContainer>
     );
@@ -87,21 +54,21 @@ const CourseDetail = () => {
         <DetailWrapper>
           <CourseItemWrapper>
             <CourseItem
-              key={currentCourse.courseId}
-              courseId={currentCourse.courseId}
-              thumbnailUrl={currentCourse.thumbnail}
-              courseLength={currentCourse.maxRuinsCount}
-              clearRuinsCount={currentCourse.clearRuinsCount}
-              courseDetail={currentCourse.description}
-              courseName={currentCourse.courseName}
-              eventId={currentCourse.eventId}
-              tags={currentCourse.tag}
-              isHeart={currentCourse.heart}
-              isClear={currentCourse.clear}
-              heartCount={currentCourse.heartCount}
-              clearCount={currentCourse.clearCount}
+              key={courseDetailData!.courseId}
+              courseId={courseDetailData!.courseId}
+              thumbnailUrl={courseDetailData!.thumbnail}
+              courseLength={courseDetailData!.maxRuinsCount}
+              clearRuinsCount={courseDetailData!.clearRuinsCount}
+              courseDetail={courseDetailData!.description}
+              courseName={courseDetailData!.courseName}
+              eventId={courseDetailData!.eventId}
+              tags={courseDetailData!.tag}
+              isHeart={courseDetailData!.heart}
+              isClear={courseDetailData!.clear}
+              heartCount={courseDetailData!.heartCount}
+              clearCount={courseDetailData!.clearCount}
               size="big"
-              creator={currentCourse.creator}
+              creator={courseDetailData!.creator}
               disabled={true}
             />
           </CourseItemWrapper>
@@ -117,9 +84,11 @@ const CourseDetail = () => {
               <ButtonTextContainer>코스 목록으로 돌아가기</ButtonTextContainer>
             </LegacyButton>
             <CourseElementList
-              clearRuinsCount={currentCourse.clearRuinsCount}
-              courseLength={currentCourse.maxRuinsCount}
-              courseId={currentCourse.courseId}
+              clearRuinsCount={courseDetailData!.clearRuinsCount}
+              courseLength={courseDetailData!.maxRuinsCount}
+              courseId={courseDetailData!.courseId}
+              clearRuins={courseDetailData!.clearRuins}
+              ruins={courseDetailData!.ruins}
             />
           </DetailContainer>
         </DetailWrapper>
@@ -190,18 +159,5 @@ const ButtonTextContainer = styled.div`
   justify-content: center;
 
   ${LegacyTypography.Pretendard.Body1.Bold};
-  color: ${LegacyPalette.labelNeutral};
-`;
-
-const ErrorContainer = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  background-color: ${LegacyPalette.backgroundNormal};
-  border-radius: 20px;
-  ${LegacyTypography.Pretendard.Body1.Regular};
   color: ${LegacyPalette.labelNeutral};
 `;

@@ -16,7 +16,20 @@ export interface Course {
   heart: boolean;
 }
 
-export interface CourseRuins {
+export interface CourseDetail {
+  courseId: number;
+  courseName: string;
+  creator: string;
+  tag: string[];
+  description: string;
+  heartCount: number;
+  clearCount: number;
+  eventId: number;
+  thumbnail: string;
+  clearRuinsCount: number;
+  maxRuinsCount: number;
+  clear: true;
+  heart: true;
   ruins: RuinDetail[];
   clearRuins: RuinDetail[];
 }
