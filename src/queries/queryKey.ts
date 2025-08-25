@@ -16,5 +16,10 @@ export const QUERY_KEYS = Object.freeze({
   block: {
     getMyBlock: "blockGetMyBlock",
   },
-  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") => `ranking/${type}/${scope}`
-})
+  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") =>
+    `ranking/${type}/${scope}`,
+  course: {
+    getAllCourse: ["course"],
+    getCourseDetailById: (id: number) => [`course/${id}`],
+  },
+});
