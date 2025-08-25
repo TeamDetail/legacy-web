@@ -2,16 +2,18 @@ import Card from "@components/common/Card";
 import StarRating from "@components/common/StarRating";
 import { Card as CardType } from "@src/types/card/card.type";
 import * as S from "./style";
+import { cardDummy } from "@src/constants/dummy/course.dummy";
 
 interface ElementItemProps {
   index: number;
   isClear: boolean;
   ruinId: number;
   ruinName: string;
-  card: CardType;
+  card?: CardType;
   ruinScore: number;
   explorerCount: number;
   explorerRatio: number;
+  commentsCount?: number;
 }
 
 const CourseElementItem = ({
@@ -19,10 +21,11 @@ const CourseElementItem = ({
   isClear,
   ruinId,
   ruinName,
-  card,
+  card = cardDummy,
   ruinScore,
   explorerCount,
   explorerRatio,
+  commentsCount = 0,
 }: ElementItemProps) => {
   return (
     <S.ElementItemContainer>
@@ -34,7 +37,7 @@ const CourseElementItem = ({
             {ruinName}
           </S.RuinNameContainer>
           <S.ScoreContainer $gap="2px">
-            <StarRating score={ruinScore} />( 302 )
+            <StarRating score={ruinScore} />( {commentsCount} )
           </S.ScoreContainer>
         </S.RuinNameScoreContainer>
         <S.Line />
@@ -49,7 +52,6 @@ const CourseElementItem = ({
           </S.DetailItem>
         </S.ExplorerContainer>
       </S.InfoContainer>
-
       <Card
         cardType={card.cardType}
         cardId={card.cardId}

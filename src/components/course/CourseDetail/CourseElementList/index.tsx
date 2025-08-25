@@ -2,7 +2,6 @@ import CourseProgressBar from "@components/course/CourseProgressBar";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import styled from "styled-components";
 import CourseElementItem from "./CourseElementItem";
-import { cardDummy } from "@src/constants/dummy/course.dummy";
 import { RuinDetail } from "@src/types/map/ruin.type";
 
 interface CourseElementListProps {
@@ -42,7 +41,6 @@ const CourseElementList = ({
               ruinName={item.name}
               explorerCount={55}
               explorerRatio={12}
-              card={cardDummy}
               ruinScore={10}
             />
           );
