@@ -2,11 +2,9 @@ import Card from "@components/common/Card";
 import StarRating from "@components/common/StarRating";
 import { RuinDetail } from "@src/types/map/ruin.type";
 import * as S from "./style";
-import { ruinDetailDummy } from "@src/constants/dummy/ruinDetail.dummy";
 
 const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
   const score = 4;
-  const card = ruinDetailDummy[0].cards[0];
 
   return (
     <>
@@ -20,10 +18,10 @@ const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
         </S.ScoreContainer>
       </S.RuinNameScoreContainer>
       <Card
-        cardType={card!.cardType}
-        cardId={card!.cardId}
-        cardImageUrl={card!.cardImageUrl}
-        cardName={card!.cardName}
+        cardType={ruinDetail.card.cardType}
+        cardId={ruinDetail.card.cardId}
+        cardImageUrl={ruinDetail.card.cardImageUrl}
+        cardName={ruinDetail.card.cardName}
         size="L"
         isAtv={false}
         canInteract={false}

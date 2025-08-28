@@ -1,18 +1,15 @@
 import Card from "@components/common/Card";
 import * as S from "./style";
-import { ruinDetailDummy } from "@src/constants/dummy/ruinDetail.dummy";
+import { RuinDetail } from "@src/types/map/ruin.type";
 
-const Detail = () => {
-  const firstRuinDetail = ruinDetailDummy[0];
-  const card = firstRuinDetail.cards[0];
-
+const Detail = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
   return (
     <S.DetailLayout>
       <Card
-        cardType={card.cardType}
-        cardId={card.cardId}
-        cardImageUrl={card.cardImageUrl}
-        cardName={card.cardName}
+        cardType={ruinDetail.card.cardType}
+        cardId={ruinDetail.card.cardId}
+        cardImageUrl={ruinDetail.card.cardImageUrl}
+        cardName={ruinDetail.card.cardName}
         size="L"
         isAtv={false}
         canInteract={false}
@@ -20,18 +17,19 @@ const Detail = () => {
       />
       <S.ExplainContainer>
         <span>설명</span>
-        {firstRuinDetail.detail}
+        국군은 국가의 안전보장과 국토방위의 신성한 의무를 수행함을 사명으로
+        하며, 그 정치적 중립성은 준수된다.
       </S.ExplainContainer>
       <S.ExplorerContainer>
         <S.DetailItem>
           <span>탐험자 수</span>
-          {firstRuinDetail.explorerCount}명
+          23명
         </S.DetailItem>
         <S.DetailItem>
           <span>획득 비율</span>
           <S.RatioText>
             <span>전체 중 </span>
-            {firstRuinDetail.explorerRatio}%
+            3%
           </S.RatioText>
         </S.DetailItem>
       </S.ExplorerContainer>

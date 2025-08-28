@@ -93,7 +93,7 @@ const TileInfo = ({
         ) : category[0].isAtv ? (
           <OutLine ruinDetail={ruinDetail} />
         ) : category[1].isAtv ? (
-          <Detail />
+          <Detail ruinDetail={ruinDetail} />
         ) : (
           <Review />
         )}

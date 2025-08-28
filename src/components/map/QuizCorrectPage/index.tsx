@@ -13,8 +13,6 @@ const QuizCorrectPage = ({ closeFunction }: { closeFunction: () => void }) => {
   const [isVisible, setIsVisible] = useState(true);
   const { ruinDetail } = useRuin();
 
-  const ruinCard = ruinDetail?.cards[0];
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
@@ -49,16 +47,16 @@ const QuizCorrectPage = ({ closeFunction }: { closeFunction: () => void }) => {
         <FadeWrapper $isVisible={isVisible}>
           카드를 획득했어요!
           <Card
-            cardType={ruinCard!.cardType}
+            cardType={ruinDetail!.card.cardType}
             isAtv={false}
-            cardImageUrl={ruinCard!.cardImageUrl}
-            cardId={ruinCard!.cardId}
-            cardName={ruinCard!.cardName}
+            cardImageUrl={ruinDetail!.card.cardImageUrl}
+            cardId={ruinDetail!.card.cardId}
+            cardName={ruinDetail!.card.cardName}
             canInteract={false}
             size="L"
-            nationAttributeName={ruinCard!.nationAttributeName}
-            lineAttributeName={ruinCard!.lineAttributeName}
-            regionAttributeName={ruinCard!.regionAttributeName}
+            nationAttributeName={ruinDetail!.card.nationAttributeName}
+            lineAttributeName={ruinDetail!.card.lineAttributeName}
+            regionAttributeName={ruinDetail!.card.regionAttributeName}
             handleCardChange={() => {}}
           />
         </FadeWrapper>
