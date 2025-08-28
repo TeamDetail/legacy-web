@@ -32,10 +32,7 @@ const CreateCourse = () => {
           isBold={true}
           isFilled={false}
           color={LegacySementic.green.normal}
-          handleClick={() => {
-            const ruinsIdList = selectedRuins.map((ruin) => ruin.ruinsId);
-            handleCourseSubmit(tags, name, description, ruinsIdList);
-          }}
+          handleClick={() => handleCourseSubmit(tags, name, description, selectedRuins.map(ruin => ruin.ruinsId))}
         >
           <S.CreateCourseButtonText>제작 완료!</S.CreateCourseButtonText>
         </LegacyButton>
