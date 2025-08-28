@@ -7,6 +7,10 @@ import {
 } from "@src/types/map/ruin.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
+import {
+  useQuery as useQueryV5,
+  UseQueryOptions as UseQueryOptionsV5,
+} from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import ruinApi from "@src/api/map/ruin.api";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
@@ -84,3 +88,20 @@ export const useGetMyBlock = (
     () => blockApi.getMyBlock(),
     { staleTime: 1000 * 60 * 5, cacheTime: 1000 * 60 * 10, ...options }
   );
+
+export const useGetCourseByName = (
+  name: string,
+  options?: Partial<
+    UseQueryOptionsV5<
+      RuinDetail[],
+      Error,
+      RuinDetail[],
+      ReturnType<typeof QUERY_KEYS.ruin.getRuinsByName>
+    >
+  >
+) =>
+  useQueryV5({
+    queryKey: QUERY_KEYS.ruin.getRuinsByName(name),
+    queryFn: () => ruinApi.getRuinsByName(name),
+    ...options,
+  });

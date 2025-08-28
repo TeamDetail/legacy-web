@@ -23,6 +23,13 @@ class RuinApi {
     const { data } = await customAxios.get(`/ruins/${id}`);
     return data.data;
   }
+
+  public async getRuinsByName(name: string): Promise<RuinDetail[]> {
+    const { data } = await customAxios.get(`/ruins/search`, {
+      params: { ruinsName: name },
+    });
+    return data.data;
+  }
 }
 
 export default new RuinApi();

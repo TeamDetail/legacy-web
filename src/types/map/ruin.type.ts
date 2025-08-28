@@ -21,7 +21,7 @@ export interface RuinDetail {
   manager: string;
   latitude: number;
   longitude: number;
-  cards: CardResponse[];
+  card: CardResponse;
 }
 
 export interface RuinQuizType {
