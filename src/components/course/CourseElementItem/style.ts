@@ -6,11 +6,12 @@ export const ElementItemContainer = styled.div`
   display: flex;
   min-height: fit-content;
   gap: 16px;
+  user-select: none;
+  cursor: pointer;
 `;
 
 export const IndexBox = styled.div<{ $isClear: boolean }>`
-  width: 36px;
-  min-width: 36px;
+  width: 30px;
   display: flex;
   border-radius: 8px;
   align-items: center;
@@ -21,6 +22,19 @@ export const IndexBox = styled.div<{ $isClear: boolean }>`
   border: 1px solid ${LegacySementic.green.netural};
   background-color: ${({ $isClear }) =>
     $isClear ? LegacySementic.green.netural : "none"};
+`;
+
+export const SelectBox = styled.div<{ $isSelect: boolean | undefined }>`
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ $isSelect }) =>
+    $isSelect ? LegacySementic.green.netural : LegacyPalette.fillNormal};
+  color: ${LegacyPalette.labelNormal};
+  ${LegacyTypography.Pretendard.Body1.Bold};
 `;
 
 export const RuinNameContainer = styled.div`
@@ -83,7 +97,6 @@ export const InfoContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 12px 0;
   gap: 12px;
 `;
 
