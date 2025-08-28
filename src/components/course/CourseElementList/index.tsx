@@ -51,12 +51,8 @@ const CourseElementList = ({
                 explorerCount={55}
                 explorerRatio={12}
                 ruinScore={10}
-                handleClick={() => {
-                  if (create) {
-                    setRuins?.((prev) =>
-                      prev.filter((ruin) => ruin.ruinsId !== item.ruinsId)
-                    );
-                  }
+                handleClick={() => create && setRuins && setRuins(prev =>
+                      prev.filter(ruin => ruin.ruinsId !== item.ruinsId))
                 }}
                 card={item.card}
               />
