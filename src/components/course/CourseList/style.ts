@@ -11,6 +11,7 @@ export const CourseListContainer = styled.div`
   border-radius: 20px;
   background-color: ${LegacyPalette.backgroundNormal};
   overflow: hidden;
+  position: relative;
 `;
 
 export const DataContainer = styled.div`
@@ -68,4 +69,19 @@ export const EmptyCourseMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const CreateCourseButton = styled.div`
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background-color: ${LegacyPalette.fillNormal};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;

@@ -6,7 +6,7 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { useNavigate, useParams } from "react-router-dom";
 import CourseItem from "../CourseItem";
 import LegacyButton from "@components/common/LegacyButton";
-import CourseElementList from "./CourseElementList";
+import CourseElementList from "../CourseElementList";
 import useCourse from "@src/hooks/course/useCourse";
 import { useEffect } from "react";
 
@@ -86,9 +86,9 @@ const CourseDetail = () => {
             <CourseElementList
               clearRuinsCount={courseDetailData!.clearRuinsCount}
               courseLength={courseDetailData!.maxRuinsCount}
-              courseId={courseDetailData!.courseId}
               clearRuins={courseDetailData!.clearRuins}
               ruins={courseDetailData!.ruins}
+              create={false}
             />
           </DetailContainer>
         </DetailWrapper>
