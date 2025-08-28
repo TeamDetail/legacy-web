@@ -33,19 +33,19 @@ const useCourse = () => {
   ) => {
     try {
       if (tag.length < 1) {
-        alert("태그를 최소 1개 이상 입력해주세요!");
+        toast.error("태그를 최소 1개 이상 입력해주세요!");
         return;
       }
       if (name.trim().length < 1) {
-        alert("코스 이름을 입력해주세요!");
+        toast.error("코스 이름을 입력해주세요!");
         return;
       }
       if (description.trim().length < 1) {
-        alert("코스 설명을 입력해주세요!");
+        toast.error("코스 설명을 입력해주세요!");
         return;
       }
       if (ruinsId.length < 5 || ruinsId.length > 30) {
-        alert("유적지는 최소 5개, 최대 30개까지 선택할 수 있습니다!");
+        toast.error("유적지는 최소 5개, 최대 30개까지 선택할 수 있습니다!");
         return;
       }
 
