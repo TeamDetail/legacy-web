@@ -22,7 +22,7 @@ export const ruinDetailDummy: RuinDetailDummy[] = [
   {
     ruinsId: 1011,
     ruinsImage:
-      "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
+      "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
     category: "사적",
     name: "갸루 누나.jpg",
     chineseName: "갸루짱깨",
@@ -45,7 +45,7 @@ export const ruinDetailDummy: RuinDetailDummy[] = [
       {
         reviewId: 1,
         profileImg:
-          "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
+          "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
         username: "dksgusdn",
         creationDate: "2025-07-24",
         content: "rkfrkfrkf아먑",
@@ -54,7 +54,7 @@ export const ruinDetailDummy: RuinDetailDummy[] = [
       {
         reviewId: 2,
         profileImg:
-          "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
+          "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
         username: "dksgusdn",
         creationDate: "2025-07-24",
         content: "rkfrkfrkf아먑",
@@ -63,7 +63,7 @@ export const ruinDetailDummy: RuinDetailDummy[] = [
       {
         reviewId: 3,
         profileImg:
-          "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
+          "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
         username: "dksgusdn",
         creationDate: "2025-07-24",
         content: "rkfrkfrkf아먑",
@@ -72,7 +72,7 @@ export const ruinDetailDummy: RuinDetailDummy[] = [
       {
         reviewId: 4,
         profileImg:
-          "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
+          "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
         username: "dksgusdn",
         creationDate: "2025-07-24",
         content: "rkfrkfrkf아먑",
@@ -81,24 +81,22 @@ export const ruinDetailDummy: RuinDetailDummy[] = [
       {
         reviewId: 5,
         profileImg:
-          "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
+          "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
         username: "dksgusdn",
         creationDate: "2025-07-24",
         content: "rkfrkfrkf아먑",
         rating: 5,
       },
     ],
-    cards: [
-      {
-        cardId: 523,
-        cardName: "갸루 누나",
-        cardImageUrl:
-          "https://i.pinimg.com/1200x/95/88/56/95885653a91f089014686d27565cbd3e.jpg",
-        cardType: "SHINING_CARD",
-        nationAttributeName: "대한민국",
-        lineAttributeName: "신앙",
-        regionAttributeName: "전북",
-      },
-    ],
+    card: {
+      cardId: 523,
+      cardName: "경복궁",
+      cardImageUrl:
+        "https://thumb.tidesquare.com/tour/public/product/PRV3000549802/PRD3005753471/editor/20240513023710279_2vXxs.jpg",
+      cardType: "SHINING_CARD",
+      nationAttributeName: "대한민국",
+      lineAttributeName: "신앙",
+      regionAttributeName: "전북",
+    },
   },
 ];
