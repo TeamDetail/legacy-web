@@ -8,6 +8,7 @@ import {
   QueryClient as QueryClientV5,
   QueryClientProvider as QueryClientProviderV5,
 } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
 
 const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
@@ -18,6 +19,7 @@ function App() {
       <QueryClientProviderV3 client={queryClientV3}>
         <BrowserRouter>
           <Routes />
+          <ToastContainer theme="dark" />
         </BrowserRouter>
       </QueryClientProviderV3>
     </QueryClientProviderV5>
