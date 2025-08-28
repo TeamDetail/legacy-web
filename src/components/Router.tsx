@@ -7,6 +7,7 @@ import RankingPage from "@src/pages/RankingPage";
 import YetMakingPage from "@src/pages/YetMakingPage";
 import CoursePage from "@src/pages/CoursePage";
 import CourseDetail from "./course/CourseDetail";
+import CreateCoursePage from "@src/pages/CreateCoursePage";
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
       <Route path="/achievement" element={<YetMakingPage type="도전과제"/>}/>
       <Route path="/course" element={<CoursePage/>} />
       <Route path="/course/:id" element={<CourseDetail/>} />
+      <Route path="/course/create" element={<CreateCoursePage/>} />
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   );

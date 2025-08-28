@@ -1,4 +1,5 @@
 import {
+  useGetCourseByName,
   useGetRuinDetail,
   useGetRuinQuiz,
   useGetRuins,
@@ -7,8 +8,6 @@ import { CornerLatLngType } from "@src/types/map/latLng.type";
 import { Ruin } from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 
-
-
 const useRuin = () => {
   const [ruinId, setRuinId] = useState<number | null>(null);
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
@@ -16,6 +15,7 @@ const useRuin = () => {
   );
   const [alreadyLoadRuin, setAlreadyLoadRuin] = useState<number[]>([]);
   const [dedupeRuins, setDedupeRuins] = useState<Ruin[][]>([]);
+  const [searchName, setSearchName] = useState<string>("");
 
   const {
     data: ruinDetail,
@@ -29,6 +29,12 @@ const useRuin = () => {
     enabled: !!ruinDetail?.ruinsId,
     suspense: true,
   });
+  const { data: ruinsByName, refetch: refetchRuinsByName } = useGetCourseByName(
+    searchName,
+    {
+      enabled: !!searchName,
+    }
+  );
 
   const groupByCoordinates = (ruins: Ruin[]): Ruin[][] => {
     return Object.values(
@@ -47,7 +53,15 @@ const useRuin = () => {
   const getRuin = (cornerLatLng: CornerLatLngType) => {
     setConerLatLng(cornerLatLng);
   };
+  const getRuinsByName = (name: string) => {
+    setSearchName(name);
+  };
 
+  useEffect(() => {
+    if (searchName) {
+      refetchRuinsByName();
+    }
+  }, [searchName]);
   useEffect(() => {
     if (ruinId !== null && !alreadyLoadRuin.includes(ruinId)) {
       getRuinDetail();
@@ -75,6 +89,8 @@ const useRuin = () => {
     getRuinQuiz,
     dedupeRuins,
     isRuinDetailLoading,
+    getRuinsByName,
+    ruinsByName,
   };
 };
 

@@ -1,19 +1,21 @@
 import Card from "@components/common/Card";
 import StarRating from "@components/common/StarRating";
-import { Card as CardType } from "@src/types/card/card.type";
+import { CardResponse } from "@src/types/card/card.type";
 import * as S from "./style";
-import { cardDummy } from "@src/constants/dummy/course.dummy";
 
 interface ElementItemProps {
   index: number;
-  isClear: boolean;
+  isClear?: boolean;
   ruinId: number;
   ruinName: string;
-  card?: CardType;
+  card?: CardResponse;
   ruinScore: number;
   explorerCount: number;
   explorerRatio: number;
   commentsCount?: number;
+  canSelect?: boolean;
+  isSelect?: boolean;
+  handleClick?: () => void;
 }
 
 const CourseElementItem = ({
@@ -21,15 +23,23 @@ const CourseElementItem = ({
   isClear,
   ruinId,
   ruinName,
-  card = cardDummy,
+  card,
   ruinScore,
   explorerCount,
   explorerRatio,
   commentsCount = 0,
+  canSelect = false,
+  isSelect,
+  handleClick,
 }: ElementItemProps) => {
   return (
-    <S.ElementItemContainer>
-      <S.IndexBox $isClear={isClear}>{index + 1}</S.IndexBox>
+    <S.ElementItemContainer onClick={handleClick}>
+      {canSelect ? (
+        <S.SelectBox $isSelect={isSelect}>{isSelect && index + 1}</S.SelectBox>
+      ) : (
+        <S.IndexBox $isClear={isClear!}>{index + 1}</S.IndexBox>
+      )}
+
       <S.InfoContainer>
         <S.RuinNameScoreContainer>
           <S.RuinNameContainer>
@@ -53,10 +63,10 @@ const CourseElementItem = ({
         </S.ExplorerContainer>
       </S.InfoContainer>
       <Card
-        cardType={card.cardType}
-        cardId={card.cardId}
-        cardImageUrl={card.cardImageUrl}
-        cardName={card.cardName}
+        cardType={card!.cardType}
+        cardId={card!.cardId}
+        cardImageUrl={card!.cardImageUrl}
+        cardName={card!.cardName}
         size="S"
         isAtv={false}
         canInteract={false}

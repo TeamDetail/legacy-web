@@ -10,6 +10,20 @@ class CourseApi {
     const { data } = await customAxios.get(`/course/${id}`);
     return data.data;
   }
+  public async createCourse(
+    tag: string[],
+    name: string,
+    description: string,
+    ruinsId: number[]
+  ) {
+    const { data } = await customAxios.post("/course", {
+      name,
+      description,
+      ruinsId,
+      tag,
+    });
+    return data.data;
+  }
 }
 
 export default new CourseApi();

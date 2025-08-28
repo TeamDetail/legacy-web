@@ -5,6 +5,7 @@ import CourseProgressBar from "../CourseProgressBar";
 import CourseToggleButton from "./CourseToggleButton";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Tag from "@components/common/Tag";
 
 interface CourseItemProps {
   thumbnailUrl: string;
@@ -48,23 +49,7 @@ const CourseItem = ({
 
   const handleClickItem = () => {
     if (size === "small") {
-      navigate(`/course/${courseId}`, {
-        state: {
-          thumbnailUrl,
-          courseLength,
-          clearRuinsCount,
-          courseDetail,
-          courseName,
-          eventId,
-          tags,
-          isHeart,
-          isClear,
-          heartCount,
-          clearCount,
-          courseId,
-          creator,
-        },
-      });
+      navigate(`/course/${courseId}`);
     }
   };
 
@@ -107,11 +92,7 @@ const CourseItem = ({
             disabled={disabled}
           />
         </ToggleButtonContainer>
-        <TagContainer>
-          {tags.map((tag, idx) => (
-            <div key={idx}>#{tag}</div>
-          ))}
-        </TagContainer>
+        <Tag data={tags} disabled />
       </ContentWrapper>
     </CourseItemContainer>
   );
@@ -172,21 +153,6 @@ const HeaderContainer = styled.div<{ $size: "small" | "big" }>`
   p {
     ${LegacyTypography.Pretendard.Body2.Medium};
     color: ${LegacyPalette.labelAlternative};
-  }
-`;
-
-const TagContainer = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 8px;
-  flex-wrap: wrap;
-
-  div {
-    ${LegacyTypography.Pretendard.Label.Medium};
-    color: ${LegacyPalette.labelNeutral};
-    padding: 4px 8px;
-    background-color: ${LegacyPalette.fillNormal};
-    border-radius: 4px;
   }
 `;
 

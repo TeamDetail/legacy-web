@@ -5,14 +5,21 @@ import { useState, useMemo, useEffect } from "react";
 import CourseItem from "../CourseItem";
 import useCourse from "@src/hooks/course/useCourse";
 import { Course } from "@src/types/course/course.type";
+import PenIcon from "@src/assets/pen.svg?react";
+import { useNavigate } from "react-router-dom";
 
 const CourseList = () => {
+  const navigate = useNavigate();
   const [clearSelect, setClearSelect] = useState("미완료");
   const [sortSelect, setSortSelect] = useState("최신");
   const [eventSelect, setEventSelect] = useState("전체");
   const [searchTerm, setSearchTerm] = useState("");
 
   const { courseData, isCourseDataLoading, getCourseData } = useCourse();
+
+  const handleCreateButtonClick = () => {
+    navigate("/course/create");
+  };
 
   const filterBySearch = (course: Course) =>
     course.courseName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -108,6 +115,9 @@ const CourseList = () => {
           ))}
         </S.DataContainer>
       )}
+      <S.CreateCourseButton onClick={handleCreateButtonClick}>
+        <PenIcon />
+      </S.CreateCourseButton>
     </S.CourseListContainer>
   );
 };
