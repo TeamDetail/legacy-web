@@ -92,7 +92,7 @@ const CourseItem = ({
             disabled={disabled}
           />
         </ToggleButtonContainer>
-        <Tag data={tags} disabled={true} />
+        <Tag data={tags} disabled />
       </ContentWrapper>
     </CourseItemContainer>
   );
