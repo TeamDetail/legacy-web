@@ -53,7 +53,7 @@ const CourseElementList = ({
                 ruinScore={10}
                 handleClick={() => create && setRuins && setRuins(prev =>
                       prev.filter(ruin => ruin.ruinsId !== item.ruinsId))
-                }}
+                }
                 card={item.card}
               />
             );
