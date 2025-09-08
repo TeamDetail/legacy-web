@@ -1,20 +1,24 @@
-import { cardpackDummy } from "@src/constants/dummy/cardPack.dummy";
 import PurchaseStats from "../purchaseStats";
 import styled from "styled-components";
 import CardpackItem from "./cardPackItem";
+import useShop from "@src/hooks/shop/useShop";
 
 const CardPack = () => {
+  const { cardpacks, purchaseCardpackById } = useShop();
+
   return (
     <>
       <CardPackContainer>
-        {cardpackDummy.map((item) => (
-          <CardpackItem
-            key={item.cardpackId}
-            cardpackCost={item.price}
-            cardpackName={item.cardpackName}
-            cardpackText={item.cardpackContent}
-          />
-        ))}
+        {cardpacks &&
+          cardpacks!.cardPack.map((item) => (
+            <CardpackItem
+              key={item.cardpackId}
+              cardpackCost={item.price}
+              cardpackName={item.cardpackName}
+              cardpackText={item.cardpackContent}
+              onPurchase={() => purchaseCardpackById(item.cardpackId)}
+            />
+          ))}
       </CardPackContainer>
       <PurchaseStats />
     </>

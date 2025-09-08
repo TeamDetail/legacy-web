@@ -7,3 +7,8 @@ export interface Cardpack {
   storeType: storeType;
   cardpackId: number;
 }
+
+export interface CardpackResponse {
+  cardPack: Cardpack[];
+  buyCount: number;
+}

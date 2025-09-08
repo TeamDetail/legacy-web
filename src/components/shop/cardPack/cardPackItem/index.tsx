@@ -7,12 +7,14 @@ interface cardpackItemPropsType {
   cardpackName: string;
   cardpackText: string;
   cardpackCost: number;
+  onPurchase: () => void;
 }
 
 const cardpackItem = ({
   cardpackCost,
   cardpackName,
   cardpackText,
+  onPurchase,
 }: cardpackItemPropsType) => {
   return (
     <CardpackItemContainer>
@@ -21,7 +23,7 @@ const cardpackItem = ({
         <Img />
         <span>{cardpackText}</span>
       </CardpackItemWrapper>
-      <CostWrapper>
+      <CostWrapper onClick={onPurchase}>
         <Coin width={14} height={14} />
         {cardpackCost}
       </CostWrapper>
@@ -50,6 +52,7 @@ const CardpackItemWrapper = styled.div`
   padding: 12px;
   gap: 8px;
   width: 100%;
+  flex-grow: 1;
   ${LegacyTypography.BitBit.Caption2};
   color: ${LegacyPalette.labelNormal};
 

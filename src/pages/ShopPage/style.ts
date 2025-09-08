@@ -1,7 +1,7 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
-import ShopBackground from "@src/assets/backgroundShop.png";
+import ShopBackground from "@src/assets/backgroundShop.svg";
 
 export const ShopPageContainer = styled.div`
   display: flex;
