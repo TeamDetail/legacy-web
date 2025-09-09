@@ -6,16 +6,17 @@ import { LegacyModal } from "@components/common/LegacyModal";
 import { Suspense, useState } from "react";
 import QuizModal from "@components/map/QuizModal";
 import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
-import useRuin from "@src/hooks/map/useRuin";
 import { Ruin } from "@src/types/map/ruin.type";
+import useQuiz from "@src/hooks/map/useQuiz";
 
 const Adventure = () => {
-  const { getRuinQuiz } = useRuin();
+  const { getRuinQuizById } = useQuiz();
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
 
-  const handleQuizOpen = () => {
-    getRuinQuiz();
+  const handleQuizOpen = (id: number) => {
+    console.log("탐험 클릭");
+    getRuinQuizById(id);
 
     setTimeout(() => {
       setIsQuizOpen(true);

@@ -22,7 +22,7 @@ const TileInfo = ({
   handleButtonClick,
   selectedRuins,
 }: {
-  handleButtonClick: () => void;
+  handleButtonClick: (id: number) => void;
   selectedRuins: Ruin[] | null;
 }) => {
   const [page, setPage] = useState<number>(0);
@@ -107,7 +107,7 @@ const TileInfo = ({
         }
         width="100%"
         handleClick={() => {
-          if (!isMyBlock) handleButtonClick();
+          if (!isMyBlock) handleButtonClick(selectedRuins![page].ruinsId);
         }}
       >
         <S.ButtonText $isExplored={isMyBlock}>블록 탐험하기</S.ButtonText>

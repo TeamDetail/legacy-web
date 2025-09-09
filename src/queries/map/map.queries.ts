@@ -66,20 +66,6 @@ export const useGetRuinQuiz = (
     }
   );
 
-export const useCheckRuinQuizAnswer = (
-  answer: QuizAnswerType[],
-  options?: UseQueryOptions<QuizAnswerResultType, AxiosError>
-): UseQueryResult<QuizAnswerResultType> =>
-  useQuery<QuizAnswerResultType, AxiosError>(
-    QUERY_KEYS.quiz.checkRuinQuizAnswer,
-    () => quizApi.checkRuinQuizAnswer(answer),
-    {
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 10,
-      ...options,
-    }
-  );
-
 export const useGetMyBlock = (
   options?: UseQueryOptions<MyBlockType[], AxiosError>
 ): UseQueryResult<MyBlockType[]> =>

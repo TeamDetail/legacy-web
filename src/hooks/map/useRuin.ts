@@ -1,7 +1,6 @@
 import {
   useGetCourseByName,
   useGetRuinDetail,
-  useGetRuinQuiz,
   useGetRuins,
 } from "@src/queries/map/map.queries";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
@@ -24,10 +23,6 @@ const useRuin = () => {
   } = useGetRuinDetail(ruinId!, { enabled: !!ruinId });
   const { data: ruins, refetch: getRuins } = useGetRuins(cornerLatLng!, {
     enabled: !!cornerLatLng,
-  });
-  const { data: ruinQuiz, refetch: getRuinQuiz } = useGetRuinQuiz(ruinId!, {
-    enabled: !!ruinDetail?.ruinsId,
-    suspense: true,
   });
   const { data: ruinsByName, refetch: refetchRuinsByName } = useGetCourseByName(
     searchName,
@@ -84,9 +79,7 @@ const useRuin = () => {
     ruins,
     getRuin,
     ruinDetail,
-    ruinQuiz,
     ruinId,
-    getRuinQuiz,
     dedupeRuins,
     isRuinDetailLoading,
     getRuinsByName,
