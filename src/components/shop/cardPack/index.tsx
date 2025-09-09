@@ -10,12 +10,11 @@ const CardPack = () => {
     <>
       <CardPackContainer>
         {cardpacks &&
-          cardpacks!.cardPack.map((item) => (
+          cardpacks!.cardpack?.map((item) => (
             <CardpackItem
               key={item.cardpackId}
               cardpackCost={item.price}
               cardpackName={item.cardpackName}
-              cardpackText={item.cardpackContent}
               onPurchase={() => purchaseCardpackById(item.cardpackId)}
             />
           ))}
@@ -28,8 +27,14 @@ const CardPack = () => {
 export default CardPack;
 
 export const CardPackContainer = styled.div`
-  width: 648px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: fit-content(100%);
+  grid-gap: 16px;
+  flex-grow: 1;
+  @media (max-width: 1253px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  overflow-y: auto;
+  align-items: start;
 `;

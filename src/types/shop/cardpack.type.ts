@@ -9,6 +9,6 @@ export interface Cardpack {
 }
 
 export interface CardpackResponse {
-  cardPack: Cardpack[];
+  cardpack: Cardpack[];
   buyCount: number;
 }

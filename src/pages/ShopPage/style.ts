@@ -55,5 +55,6 @@ export const ShopPageMainContainer = styled.main`
 export const ShopPageMain = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
   gap: 12px;
 `;

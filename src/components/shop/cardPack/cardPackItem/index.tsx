@@ -1,11 +1,9 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import { LegacyTypography } from "@src/constants/font/fontToken";
 import Coin from "@src/assets/coin.svg?react";
 import styled from "styled-components";
 
 interface cardpackItemPropsType {
   cardpackName: string;
-  cardpackText: string;
   cardpackCost: number;
   onPurchase: () => void;
 }
@@ -13,7 +11,6 @@ interface cardpackItemPropsType {
 const cardpackItem = ({
   cardpackCost,
   cardpackName,
-  cardpackText,
   onPurchase,
 }: cardpackItemPropsType) => {
   return (
@@ -21,7 +18,7 @@ const cardpackItem = ({
       <CardpackItemWrapper>
         {cardpackName}
         <Img />
-        <span>{cardpackText}</span>
+        <span>예비 텍스트</span>
       </CardpackItemWrapper>
       <CostWrapper onClick={onPurchase}>
         <Coin width={14} height={14} />
@@ -36,11 +33,14 @@ export default cardpackItem;
 const CardpackItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 120px;
+  min-width: 140px;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.5px);
   border-radius: 12px;
   overflow: hidden;
+  aspect-ratio: 1 / 1.114;
+  width: 100%; /* grid cell 꽉 채우기 */
+  height: auto; /* grid가 실제 높이 계산 가능 */
 `;
 
 const CardpackItemWrapper = styled.div`
@@ -53,7 +53,10 @@ const CardpackItemWrapper = styled.div`
   gap: 8px;
   width: 100%;
   flex-grow: 1;
-  ${LegacyTypography.BitBit.Caption2};
+  font-family: "DNFBitBitv2";
+  font-size: 1rem;
+  line-height: 130%;
+  letter-spacing: 0.39px;
   color: ${LegacyPalette.labelNormal};
 
   span {
@@ -61,14 +64,14 @@ const CardpackItemWrapper = styled.div`
     font-size: 8px;
     line-height: 120%;
     letter-spacing: 0.36px;
-    color: ${LegacyPalette.labelNormal};
+    visibility: hidden;
     text-align: center;
   }
 `;
 
 const Img = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 55%;
+  aspect-ratio: 1 / 1;
   background-color: ${LegacyPalette.fillNormal};
   border-radius: 8px;
 `;

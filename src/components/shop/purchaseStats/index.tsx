@@ -25,10 +25,12 @@ export default PurchaseStats;
 export const PurchaseStatsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: fit-content;
   gap: 12px;
   padding: 16px;
-  flex-grow: 1;
+  width: 300px;
   background: rgba(35, 36, 36, 0.6);
+  border-radius: 12px;
   p {
     ${LegacyTypography.Pretendard.Heading1.Bold};
     color: ${LegacyPalette.labelNormal};
