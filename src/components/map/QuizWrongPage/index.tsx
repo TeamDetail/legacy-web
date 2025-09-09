@@ -7,7 +7,7 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import { QuizAnswerResultType } from "@src/types/map/ruin.type";
 
 const QuizWrongPage = ({ closeFunction }: { closeFunction: () => void }) => {
-  const { isAnswerCorrect } = useQuiz();
+  const { isCorrect } = useQuiz();
 
   const WrongAnswersMessage = ({
     quizResult,
@@ -34,7 +34,7 @@ const QuizWrongPage = ({ closeFunction }: { closeFunction: () => void }) => {
       <MessageContainer>
         <SadImg />
         전부 맞추지 못했어요...
-        {WrongAnswersMessage({ quizResult: isAnswerCorrect! })}
+        {WrongAnswersMessage({ quizResult: isCorrect! })}
       </MessageContainer>
 
       <div

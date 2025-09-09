@@ -22,8 +22,8 @@ const QuizModal = ({ close }: { close: () => void }) => {
     { quizId: null, answerOption: "" },
   ]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const { ruinDetail, ruinQuiz } = useRuin();
-  const { isAnswerCorrect, checkQuizAnswerByQuizId } = useQuiz();
+  const { ruinDetail } = useRuin();
+  const { ruinQuiz, isCorrect, checkQuizAnswerByQuizId } = useQuiz();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const queryClient = useQueryClient();
   const { userStoreData } = useUserStore();
@@ -43,8 +43,8 @@ const QuizModal = ({ close }: { close: () => void }) => {
   };
 
   useEffect(() => {
-    if (isAnswerCorrect) {
-      if (isAnswerCorrect.blockGiven) {
+    if (isCorrect) {
+      if (isCorrect.blockGiven) {
         queryClient.invalidateQueries({
           queryKey: [QUERY_KEYS.block.getMyBlock],
         });
@@ -53,7 +53,7 @@ const QuizModal = ({ close }: { close: () => void }) => {
       }
       setIsSubmit(true);
     }
-  }, [isAnswerCorrect]);
+  }, [isCorrect]);
 
   const handleClose = () => {
     queryClient.removeQueries([QUERY_KEYS.quiz.checkRuinQuizAnswer]);
@@ -65,7 +65,7 @@ const QuizModal = ({ close }: { close: () => void }) => {
   }
   return ruinDetail && ruinQuiz ? (
     isSubmit ? (
-      isAnswerCorrect?.blockGiven ? (
+      isCorrect?.blockGiven ? (
         <QuizCorrectPage closeFunction={handleClose} />
       ) : (
         <QuizWrongPage closeFunction={handleClose} />

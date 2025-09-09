@@ -1,10 +1,4 @@
-import {
-  QuizAnswerResultType,
-  QuizAnswerType,
-  Ruin,
-  RuinDetail,
-  RuinQuizType,
-} from "@src/types/map/ruin.type";
+import { Ruin, RuinDetail, RuinQuizType } from "@src/types/map/ruin.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import {
