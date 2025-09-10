@@ -18,11 +18,10 @@ const useRuin = () => {
   const [dedupeRuins, setDedupeRuins] = useState<Ruin[][]>([]);
   const [searchName, setSearchName] = useState<string>("");
 
-  const {
-    data: ruinDetail,
-    refetch: getRuinDetail,
-    isLoading: isRuinDetailLoading,
-  } = useGetRuinDetail(ruinId!, { enabled: !!ruinId });
+  const { data: ruinDetail, isLoading: isRuinDetailLoading } = useGetRuinDetail(
+    ruinId!,
+    { enabled: !!ruinId }
+  );
   const { data: ruins, refetch: getRuins } = useGetRuins(cornerLatLng!, {
     enabled: !!cornerLatLng,
   });
