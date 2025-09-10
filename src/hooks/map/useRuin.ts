@@ -62,12 +62,6 @@ const useRuin = () => {
   }, [searchName]);
 
   useEffect(() => {
-    if (ruinId !== null) {
-      getRuinDetail();
-    }
-  });
-
-  useEffect(() => {
     if (cornerLatLng) {
       getRuins();
     }

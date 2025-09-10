@@ -11,6 +11,7 @@ import useRuin from "@src/hooks/map/useRuin";
 import useBlock from "@src/hooks/map/useBlock";
 import ArrowLeftImg from "@src/assets/arrowLeft.svg";
 import ArrowRightImg from "@src/assets/arrowRight.svg";
+import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
 
 interface MenuDataType {
   text: string;
@@ -89,7 +90,7 @@ const TileInfo = ({
           setMenuData={setCategory}
         />
         {isRuinDetailLoading || !ruinDetail ? (
-          <div />
+          <RuinDetailSkeleton />
         ) : category[0].isAtv ? (
           <OutLine ruinDetail={ruinDetail} />
         ) : category[1].isAtv ? (
