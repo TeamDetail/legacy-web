@@ -1,3 +1,4 @@
+import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
 
 export const BackStage = styled.div`
@@ -35,4 +36,35 @@ export const QuizPopupContainer = styled.div`
   display: flex;
   z-index: 4;
   background-color: rgba(28, 28, 30, 0.5);
+`;
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  z-index: 3;
+  width: 240px;
+`;
+
+export const AdventureMenuContainer = styled.div`
+  width: 100%;
+  padding: 8px 16px;
+  display: flex;
+  gap: 12px;
+  background-color: ${LegacyPalette.backgroundNormal};
+  border-radius: 16px;
+
+  div {
+    padding: 4px 8px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${LegacyPalette.fillNormal};
+    border-radius: 8px;
+  }
 `;
