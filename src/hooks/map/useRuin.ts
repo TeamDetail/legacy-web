@@ -12,7 +12,9 @@ const useRuin = () => {
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
   );
-  const [alreadyLoadRuin, setAlreadyLoadRuin] = useState<number[]>([]);
+  const [allRuinsCache, setAllRuinsCache] = useState<Map<number, Ruin>>(
+    new Map()
+  );
   const [dedupeRuins, setDedupeRuins] = useState<Ruin[][]>([]);
   const [searchName, setSearchName] = useState<string>("");
 
@@ -57,22 +59,38 @@ const useRuin = () => {
       refetchRuinsByName();
     }
   }, [searchName]);
+
   useEffect(() => {
-    if (ruinId !== null && !alreadyLoadRuin.includes(ruinId)) {
+    if (ruinId !== null) {
       getRuinDetail();
-      setAlreadyLoadRuin((prev) => [...prev, ruinId]);
     }
-  }, [ruinId]);
+  });
+
   useEffect(() => {
     if (cornerLatLng) {
       getRuins();
     }
   }, [cornerLatLng]);
+
   useEffect(() => {
     if (ruins) {
-      setDedupeRuins(groupByCoordinates(ruins!));
+      setAllRuinsCache((prev) => {
+        const newCache = new Map(prev);
+        ruins.forEach((ruin) => {
+          newCache.set(ruin.ruinsId, ruin);
+        });
+
+        return newCache;
+      });
     }
   }, [ruins]);
+
+  useEffect(() => {
+    const allCachedRuins = Array.from(allRuinsCache.values());
+    if (allCachedRuins.length > 0) {
+      setDedupeRuins(groupByCoordinates(allCachedRuins));
+    }
+  }, [allRuinsCache]);
 
   return {
     getRuinDetailById,
