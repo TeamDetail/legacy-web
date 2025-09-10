@@ -24,12 +24,13 @@ const useRuin = () => {
   const { data: ruins, refetch: getRuins } = useGetRuins(cornerLatLng!, {
     enabled: !!cornerLatLng,
   });
-  const { data: ruinsByName, refetch: refetchRuinsByName } = useGetCourseByName(
-    searchName,
-    {
-      enabled: !!searchName,
-    }
-  );
+  const {
+    data: ruinsByName,
+    refetch: refetchRuinsByName,
+    isFetching: isRuinsByNameFetching,
+  } = useGetCourseByName(searchName, {
+    enabled: !!searchName,
+  });
 
   const groupByCoordinates = (ruins: Ruin[]): Ruin[][] => {
     return Object.values(
@@ -75,6 +76,7 @@ const useRuin = () => {
   }, [ruins]);
 
   return {
+    isRuinsByNameFetching,
     getRuinDetailById,
     ruins,
     getRuin,

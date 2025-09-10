@@ -21,7 +21,6 @@ const Adventure = () => {
   const [zoomLevel, setZoomLevel] = useState<number>(11);
 
   const handleQuizOpen = (id: number) => {
-    console.log("탐험 클릭");
     getRuinQuizById(id);
 
     setTimeout(() => {
@@ -39,13 +38,17 @@ const Adventure = () => {
   return (
     <S.BackStage>
       <S.GoogleMapWrapper>
-        <GoogleMap setSelectedRuins={setSelectedRuins} center={center} zoomLevel={zoomLevel} />
+        <GoogleMap
+          setSelectedRuins={setSelectedRuins}
+          center={center}
+          zoomLevel={zoomLevel}
+        />
       </S.GoogleMapWrapper>
       <S.Container>
         <Sidebar />
       </S.Container>
 
-      <LegacyModal isOpen={isSearchRuinsOpen} $background={true}>
+      <LegacyModal isOpen={isSearchRuinsOpen} $background>
         <SearchRuinsModal
           close={() => setIsSearchRuinsOpen(false)}
           onSelectRuin={handleSelectRuin}
@@ -66,7 +69,7 @@ const Adventure = () => {
           </S.InfoPopup>
         )}
       </S.InfoWrapper>
-      <LegacyModal isOpen={isQuizOpen} $background={true}>
+      <LegacyModal isOpen={isQuizOpen} $background>
         <Suspense fallback={<QuizComponentSkeleton />}>
           <QuizModal close={() => setIsQuizOpen(false)} />
         </Suspense>
