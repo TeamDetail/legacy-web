@@ -11,6 +11,7 @@ import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
 const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
     { text: "도감", isAtv: true, value: "" },
+    { text: "인벤토리", isAtv: false, value: "" }
     // { text: "덱", isAtv: false },
     // { text: "시련 스탯", isAtv: false },
     // { text: "칭호", isAtv: false },
@@ -29,9 +30,8 @@ const ProfilePage = () => {
         </Suspense>
         <S.DataContainer>
           <MenuBadge badgeColor={LegacyPalette.primaryNormal} menuData={menuBadgeData} setMenuData={setMenuBadgeData} />
-          {menuBadgeData.find(item => item.isAtv)?.text === "도감" && (
-            <Codex/>
-          )}
+          {menuBadgeData.find(item => item.isAtv)?.text === "도감" && <Codex/>}
+          {menuBadgeData.find(item => item.isAtv)?.text === "인벤토리" && <Inventory/>}
         </S.DataContainer>
       </S.MainContainer>
     </S.ProfileContainer>
