@@ -9,7 +9,6 @@ class QuizApi {
   public async getRuinQuiz(
     id: number | null
   ): Promise<RuinQuizType[] | undefined> {
-    console.log(`퀴즈 요청 ${id}`);
     if (id) {
       const { data } = await customAxios.get(`/quiz/${id}`);
       return data.data;
