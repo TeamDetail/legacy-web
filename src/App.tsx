@@ -17,19 +17,15 @@ const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
 
 function App() {
-  const { modalStoreData, setModalData } = useModalStore();
+  const { modalStoreData, isOpen, setCloseModal } = useModalStore();
 
   return (
     <QueryClientProviderV5 client={queryClientV5}>
       <QueryClientProviderV3 client={queryClientV3}>
         <BrowserRouter>
           <Routes />
-          <LegacyModal isOpen={modalStoreData.isMailBoxOpen} $background>
-            <MailBox
-              close={() =>
-                setModalData({ isMailBoxOpen: !modalStoreData.isMailBoxOpen })
-              }
-            />
+          <LegacyModal isOpen={modalStoreData === "MAIL" && isOpen} $background>
+            <MailBox close={() => setCloseModal()} />
           </LegacyModal>
           <ToastContainer theme="dark" />
         </BrowserRouter>

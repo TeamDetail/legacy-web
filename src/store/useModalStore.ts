@@ -1,17 +1,20 @@
 import { create } from "zustand";
 
-interface ModalDataType {
-  isMailBoxOpen: boolean;
-}
+type ModalDataType = "MAIL" | "SETTING" | null;
 
 interface ModalStore {
   modalStoreData: ModalDataType;
-  setModalData: (newData: ModalDataType) => void;
+  isOpen: boolean;
+  setOpenModal: (newData: ModalDataType) => void;
+  setCloseModal: () => void;
 }
-
 const useModalStore = create<ModalStore>((set) => ({
-  modalStoreData: { isMailBoxOpen: false },
-  setModalData: (newData) => set({ modalStoreData: newData }),
+  modalStoreData: null,
+  isOpen: false,
+  setCloseModal: () => set({ isOpen: false }),
+  setOpenModal: (newData) => {
+    set({ modalStoreData: newData, isOpen: true });
+  },
 }));
 
 export default useModalStore;

@@ -25,16 +25,15 @@ interface SidebarProps {
 
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
-  const { modalStoreData, setModalData } = useModalStore();
+  const { modalStoreData, isOpen, setOpenModal } = useModalStore();
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
   const viewMoreMenu = [
     {
       text: "우편함",
-      onClick: () =>
-        setModalData({ isMailBoxOpen: !modalStoreData.isMailBoxOpen }),
-      isSelectedPage: modalStoreData.isMailBoxOpen,
+      onClick: () => setOpenModal("MAIL"),
+      isSelectedPage: modalStoreData === "MAIL" && isOpen,
       icon: <Mail width={22.5} />,
     },
     // {
