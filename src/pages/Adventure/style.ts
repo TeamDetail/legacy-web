@@ -43,8 +43,8 @@ export const InfoWrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   position: absolute;
-  top: 2vw;
-  right: 2vw;
+  top: 28px;
+  right: 28px;
   z-index: 3;
   width: 240px;
 `;
