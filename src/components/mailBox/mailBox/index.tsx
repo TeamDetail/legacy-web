@@ -8,7 +8,6 @@ import { Mail } from "@src/types/inventory/inventory.type";
 import { useState } from "react";
 import MailsSkeleton from "@components/skeleton/MailsSkeleton";
 import Close from "@src/assets/close.svg?react";
-import { mailDummy } from "@src/constants/dummy/mail.dummy";
 
 const MailBox = ({ close }: { close: () => void }) => {
   const { mails, isMailsFetching } = useMail();
@@ -27,11 +26,11 @@ const MailBox = ({ close }: { close: () => void }) => {
       <S.MailBoxModalMain>
         <S.MailListWrapper>
           <S.MailListContainer>
-            {mailDummy?.length !== 0 ? (
+            {mails?.length !== 0 ? (
               isMailsFetching ? (
                 <MailsSkeleton />
               ) : (
-                mailDummy!.map((item) => (
+                mails!.map((item) => (
                   <MailItem
                     mailTitle={item.mailTitle}
                     sendAt={item.sendAt}
@@ -67,9 +66,9 @@ const MailBox = ({ close }: { close: () => void }) => {
               <S.MailRewardContainer>
                 구성품
                 <div>
-                  {selectMail.itemData.map((_, key) => (
+                  {selectMail.itemData.map((item, idx) => (
                     <img
-                      key={key}
+                      key={idx}
                       src="https://i.namu.wiki/i/GvVcesfJVnFMKclMa_8360-2xqRXd9vnS4xSxqNYv0YI-gKjrTycw5ufrTHGBZ00BqbFNIZy-rUaUaepu3WLmw.webp"
                       alt="itemImg"
                     />
