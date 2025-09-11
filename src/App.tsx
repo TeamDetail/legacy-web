@@ -9,16 +9,28 @@ import {
   QueryClientProvider as QueryClientProviderV5,
 } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import { LegacyModal } from "@components/common/LegacyModal";
+import useModalStore from "./store/useModalStore";
+import MailBox from "@components/mailBox/mailBox";
 
 const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
 
 function App() {
+  const { modalStoreData, setModalData } = useModalStore();
+
   return (
     <QueryClientProviderV5 client={queryClientV5}>
       <QueryClientProviderV3 client={queryClientV3}>
         <BrowserRouter>
           <Routes />
+          <LegacyModal isOpen={modalStoreData.isMailBoxOpen} $background>
+            <MailBox
+              close={() =>
+                setModalData({ isMailBoxOpen: !modalStoreData.isMailBoxOpen })
+              }
+            />
+          </LegacyModal>
           <ToastContainer theme="dark" />
         </BrowserRouter>
       </QueryClientProviderV3>
