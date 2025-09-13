@@ -1,9 +1,7 @@
-const Inventory = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+import * as S from "./style";
 
-export default Inventory
+const Inventory = () => {
+  return <S.InventoryContainer></S.InventoryContainer>;
+};
+
+export default Inventory;

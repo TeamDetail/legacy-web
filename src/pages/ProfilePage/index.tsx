@@ -1,4 +1,4 @@
-import Inventory from "@src/assets/pageIcon/inventory.svg?react";
+import InventoryImg from "@src/assets/pageIcon/inventory.svg?react";
 import * as S from "./style";
 import UserRecord from "@components/profile/UserRecord";
 import { LegacyPalette } from "@src/constants/color/color";
@@ -7,6 +7,7 @@ import Sidebar from "@src/components/common/Sidebar";
 import { Suspense, useState } from "react";
 import Codex from "@components/profile/Codex";
 import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
+import Inventory from "@components/profile/Inventory";
 
 const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
@@ -22,7 +23,7 @@ const ProfilePage = () => {
       <Sidebar />
       <S.MainContainer>
         <S.ProfileHeader>
-          <Inventory width={32} height={32} />
+          <InventoryImg width={32} height={32} />
           프로필
         </S.ProfileHeader>
         <Suspense fallback={<UserRecordSkeleton/>}>
