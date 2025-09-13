@@ -18,7 +18,6 @@ const SearchRuinsModal = ({ close, onSelectRuin }: SearchRuinsModalProps) => {
 
   const handleSearchButtonClick = () => {
     getRuinsByName(name);
-    console.log(isRuinsByNameFetching);
   };
 
   return (
