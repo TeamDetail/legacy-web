@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const RankingListContainer = styled.div`
   display: flex;
   width: 100%;
-  height: max-content;
+  /* overflow-x: scroll; */
   flex-direction: column;
 `
 
@@ -13,6 +13,7 @@ export const RankingHeader = styled.header`
   display: flex;
   width: 100%;
   height: 40px;
+  overflow-x: scroll;
 `
 
 export const RankingItemHover = styled.div`
@@ -36,7 +37,7 @@ export const RankingItemContainer = styled.div`
 
 export const RankIndicator = styled.p<{ $Rank: number }>`
   display: flex;
-  width: 64px;
+  width: 52px;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -51,7 +52,7 @@ export const RankingUserInfo = styled.div`
   display: flex;
   width: 200px;
   height: 100%;
-  padding: 0 24px;
+  padding: 0 20px;
   gap: 8px;
   align-items: center;
 
@@ -75,19 +76,35 @@ export const RankingUserInfo = styled.div`
   }
 `
 
-export const RankingScore = styled.div`
+export const RankingScoreContainer = styled.div`
   display: flex;
-  width: 160px;
+`
+export const RankingScore = styled.div<{
+  $size: "big" | "medium" | "small";
+}>`
+  display: flex;
+  width: ${({ $size }) =>
+    $size === "big" ? "160px" : $size === "medium" ? "152px" : "140px"};
   height: 100%;
   padding: 0 24px;
   gap: 4px;
   align-items: center;
+  white-space: nowrap;
 
-  span {
+  div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    p {
+      ${LegacyTypography.Pretendard.Heading2.Bold}
+    }
+    span {
+      color: ${LegacyPalette.labelNeutral};
+      ${LegacyTypography.Pretendard.Heading2.Medium}
+    }
+  }
+
+  > span {
     color: ${LegacyPalette.labelAlternative};
   }
-
-  p {
-    ${LegacyTypography.Pretendard.Headline.Bold}
-  }
-`
+`;

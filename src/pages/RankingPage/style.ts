@@ -14,23 +14,37 @@ export const RankingPageMainContainer = styled.main`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 20px 24px;
-  border-radius: 20px;
-  background-color: ${LegacyPalette.backgroundNormal};
   color: ${LegacyPalette.labelNormal};
   flex-grow: 1;
 
   > header {
     display: flex;
     gap: 12px;
-    ${LegacyTypography.BitBit.Title2};
     align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: ${LegacyPalette.backgroundNormal};
+    ${LegacyTypography.BitBit.Title2};
   }
-`
+`;
 
 export const RankingPageMain = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 32px;
   overflow-y: scroll;
+  background-color: ${LegacyPalette.backgroundNormal};
+  padding: 20px;
+  border-radius: 20px;
+`;
+
+export const RankingPageFilter = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  > div {
+    display: flex;
+    gap: 4px;
+  }
 `
