@@ -1,33 +1,44 @@
-export interface User {
-  userId: number;
-  nickname: string;
-  level: number;
-  exp: number;
-  credit?: number;
-  stats?: UserStats;
-  record: UserRecord;
-  imageUrl: string;
-  title: Title;
-}
-
-export interface UserStats {
-  snowflakeCapacity: number;
-  storeRestock: number;
-  creditCollect: number;
-  dropCount: number;
-}
-
-export interface Title {
+export type Title = {
   name: string;
   content: string;
-  styleId: number;
+  titleId: number;
+  grade: number;
 }
 
-export interface UserRecord {
+export type User = {
+  userId: number;
+  nickname: string;
+  imageUrl: string;
+  description: string;
+  title: Title;
+  level: number;
+  record: UserRecord;
+};
+
+export type UserRecord = {
+  adventure: UserAdventureRecord;
+  experience: UserExperienceRecord;
+}
+
+export type UserAdventureRecord = {
+  rank: number;
   allBlocks: number;
   ruinsBlocks: number;
-  maxFloor: number;
-  maxScore: number;
+  solvedQuizs: number;
+  wrongQuizs: number;
+  commentCount: number;
+  clearCourse: number;
+  makeCourse: number;
+};
+
+export type UserExperienceRecord = {
+  rank: number;
+  adventureAchieve: number;
+  experienceAchieve: number;
+  hiddenAchieve: number;
+  createdAt: string;
+  titleCount: number;
   cardCount: number;
-  shiningCardCount: number;
-}
+};
+
+export type UserRecordKeys = keyof UserAdventureRecord | keyof UserExperienceRecord;
