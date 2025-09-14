@@ -25,5 +25,8 @@ export const QUERY_KEYS = Object.freeze({
   },
   mail: {
     getMail: ["mail"]
+  },
+  inventory: {
+    getMyInventory: ["getMyInventory"]
   }
 });
