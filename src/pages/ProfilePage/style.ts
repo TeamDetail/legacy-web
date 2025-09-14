@@ -11,14 +11,16 @@ export const ProfileContainer = styled.div`
   padding: 28px;
 `
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.div<{
+  $isOverViewPage: string,
+}>`
   display: grid;
   grid-template-columns: 2fr minmax(280px, 1fr);
   grid-template-rows: 80px 1fr;
   grid-gap: 12px;
   grid-template-areas:
     "header header"
-    "datacontainer userrecord";
+  ${({$isOverViewPage}) => $isOverViewPage === "true" ? `"datacontainer datacontainer"` : `"datacontainer userrecord"`};
   height: 100%;
   flex-grow: 1;
   overflow: hidden;
