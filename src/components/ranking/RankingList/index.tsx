@@ -51,21 +51,23 @@ const RankingList = ({ type, scope }: RankingListType) => {
                     <span>블록</span>
                   </div>
                 </S.RankingScore>
-              ) : "level" in item && (
-                  <div>
+              ) : (
+                "exp" in item && (
+                  <S.RankingScoreContainer>
                     <S.RankingScore $size="big">
                       <div>
                         <p>{item.level}</p>
                         <span>Lv</span>
                       </div>
                     </S.RankingScore>
-                    {/* <S.RankingScore $size="big">
+                    <S.RankingScore $size="big">
                       <div>
                         <p>{item.exp}</p>
                         <span>exp</span>
                       </div>
-                    </S.RankingScore> */}
-                  </div>
+                    </S.RankingScore>
+                  </S.RankingScoreContainer>
+                )
               )}
             </S.RankingItemContainer>
           </S.RankingItemHover>
