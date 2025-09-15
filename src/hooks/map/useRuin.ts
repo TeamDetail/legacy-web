@@ -1,4 +1,5 @@
 import {
+  useGetCommentById,
   useGetCourseByName,
   useGetRuinDetail,
   useGetRuins,
@@ -32,6 +33,18 @@ const useRuin = () => {
   } = useGetCourseByName(searchName, {
     enabled: !!searchName,
   });
+  const { data: commentData, refetch: refetchCommentData } = useGetCommentById(
+    ruinId!,
+    {
+      enabled: !!ruinId,
+    }
+  );
+
+  const getCommentData = () => {
+    if (ruinId) {
+      refetchCommentData();
+    }
+  };
 
   const groupByCoordinates = (ruins: Ruin[]): Ruin[][] => {
     return Object.values(
@@ -97,6 +110,8 @@ const useRuin = () => {
     isRuinDetailLoading,
     getRuinsByName,
     ruinsByName,
+    commentData,
+    getCommentData,
   };
 };
 

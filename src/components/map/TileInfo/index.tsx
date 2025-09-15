@@ -12,6 +12,8 @@ import useBlock from "@src/hooks/map/useBlock";
 import ArrowLeftImg from "@src/assets/arrowLeft.svg";
 import ArrowRightImg from "@src/assets/arrowRight.svg";
 import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
+import { LegacyModal } from "@components/common/LegacyModal";
+import Comment from "../Comment";
 
 interface MenuDataType {
   text: string;
@@ -32,8 +34,16 @@ const TileInfo = ({
     { text: "상세", isAtv: false, value: "" },
     { text: "한줄평", isAtv: false, value: "" },
   ]);
-  const { getRuinDetailById, isRuinDetailLoading, ruinDetail } = useRuin();
+  const {
+    getRuinDetailById,
+    isRuinDetailLoading,
+    ruinDetail,
+    commentData,
+    getCommentData,
+  } = useRuin();
   const { myRuinBlock } = useBlock();
+
+  const [isCommentOpen, setIsCommentOpen] = useState<boolean>(false);
 
   const isMyBlock = myRuinBlock.some(
     (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
@@ -53,67 +63,79 @@ const TileInfo = ({
   }, [selectedRuins]);
 
   return (
-    <S.TileInfoWrapper>
-      <S.TileInfoContainer>
-        <S.HeaderContainer>
-          블록 탐험
-          {selectedRuins!.length !== 1 && (
-            <S.PageControllerContainer>
-              <S.ArrowContainer
-                onClick={() => {
-                  if (page !== 0) {
-                    setPage((prev) => prev - 1);
-                  }
-                }}
-              >
-                <S.Arrow $isLastPage={page === 0} src={ArrowLeftImg} />
-              </S.ArrowContainer>
-              {`${page + 1} / ${selectedRuins!.length}`}
-              <S.ArrowContainer
-                onClick={() => {
-                  if (page !== selectedRuins!.length - 1) {
-                    setPage((prev) => prev + 1);
-                  }
-                }}
-              >
-                <S.Arrow
-                  $isLastPage={page === selectedRuins!.length - 1}
-                  src={ArrowRightImg}
-                />
-              </S.ArrowContainer>
-            </S.PageControllerContainer>
+    <>
+      <S.TileInfoWrapper>
+        <S.TileInfoContainer>
+          <S.HeaderContainer>
+            블록 탐험
+            {selectedRuins!.length !== 1 && (
+              <S.PageControllerContainer>
+                <S.ArrowContainer
+                  onClick={() => {
+                    if (page !== 0) {
+                      setPage((prev) => prev - 1);
+                    }
+                  }}
+                >
+                  <S.Arrow $isLastPage={page === 0} src={ArrowLeftImg} />
+                </S.ArrowContainer>
+                {`${page + 1} / ${selectedRuins!.length}`}
+                <S.ArrowContainer
+                  onClick={() => {
+                    if (page !== selectedRuins!.length - 1) {
+                      setPage((prev) => prev + 1);
+                    }
+                  }}
+                >
+                  <S.Arrow
+                    $isLastPage={page === selectedRuins!.length - 1}
+                    src={ArrowRightImg}
+                  />
+                </S.ArrowContainer>
+              </S.PageControllerContainer>
+            )}
+          </S.HeaderContainer>
+          <MenuBadge
+            badgeColor={LegacyPalette.primaryNormal}
+            menuData={category}
+            setMenuData={setCategory}
+          />
+          {isRuinDetailLoading || !ruinDetail ? (
+            <RuinDetailSkeleton />
+          ) : category[0].isAtv ? (
+            <OutLine ruinDetail={ruinDetail} />
+          ) : category[1].isAtv ? (
+            <Detail ruinDetail={ruinDetail} />
+          ) : (
+            <Review
+              openCommentModal={() => setIsCommentOpen(true)}
+              commentData={commentData!}
+            />
           )}
-        </S.HeaderContainer>
-        <MenuBadge
-          badgeColor={LegacyPalette.primaryNormal}
-          menuData={category}
-          setMenuData={setCategory}
+        </S.TileInfoContainer>
+        <LegacyButton
+          size="default"
+          isBold={false}
+          isFilled={false}
+          color={
+            isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural
+          }
+          width="100%"
+          handleClick={() => {
+            if (!isMyBlock) handleButtonClick(selectedRuins![page].ruinsId);
+          }}
+        >
+          <S.ButtonText $isExplored={isMyBlock}>블록 탐험하기</S.ButtonText>
+        </LegacyButton>
+      </S.TileInfoWrapper>
+      <LegacyModal isOpen={isCommentOpen} $background>
+        <Comment
+          close={() => setIsCommentOpen(false)}
+          selectedRuinsId={ruinDetail!}
+          refetchCommentData={getCommentData}
         />
-        {isRuinDetailLoading || !ruinDetail ? (
-          <RuinDetailSkeleton />
-        ) : category[0].isAtv ? (
-          <OutLine ruinDetail={ruinDetail} />
-        ) : category[1].isAtv ? (
-          <Detail ruinDetail={ruinDetail} />
-        ) : (
-          <Review />
-        )}
-      </S.TileInfoContainer>
-      <LegacyButton
-        size="default"
-        isBold={false}
-        isFilled={false}
-        color={
-          isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural
-        }
-        width="100%"
-        handleClick={() => {
-          if (!isMyBlock) handleButtonClick(selectedRuins![page].ruinsId);
-        }}
-      >
-        <S.ButtonText $isExplored={isMyBlock}>블록 탐험하기</S.ButtonText>
-      </LegacyButton>
-    </S.TileInfoWrapper>
+      </LegacyModal>
+    </>
   );
 };
 
