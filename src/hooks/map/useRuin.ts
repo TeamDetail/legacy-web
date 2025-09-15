@@ -6,12 +6,9 @@ import {
 } from "@src/queries/map/map.queries";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
 import { Ruin } from "@src/types/map/ruin.type";
-import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const useRuin = () => {
-  const queryClient = useQueryClient();
-
   const [ruinId, setRuinId] = useState<number | null>(null);
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
