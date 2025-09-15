@@ -1,4 +1,9 @@
-import { Ruin, RuinDetail, RuinQuizType } from "@src/types/map/ruin.type";
+import {
+  CommentType,
+  Ruin,
+  RuinDetail,
+  RuinQuizType,
+} from "@src/types/map/ruin.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import {
@@ -84,5 +89,22 @@ export const useGetCourseByName = (
   useQueryV5({
     queryKey: QUERY_KEYS.ruin.getRuinsByName(name),
     queryFn: () => ruinApi.getRuinsByName(name),
+    ...options,
+  });
+
+export const useGetCommentById = (
+  id: number,
+  options?: Partial<
+    UseQueryOptionsV5<
+      CommentType[],
+      Error,
+      CommentType[],
+      ReturnType<typeof QUERY_KEYS.comment.getCommentById>
+    >
+  >
+) =>
+  useQueryV5({
+    queryKey: QUERY_KEYS.comment.getCommentById(id),
+    queryFn: () => ruinApi.getCommentById(id),
     ...options,
   });

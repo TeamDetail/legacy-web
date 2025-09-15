@@ -1,13 +1,17 @@
 import {
+  useGetCommentById,
   useGetCourseByName,
   useGetRuinDetail,
   useGetRuins,
 } from "@src/queries/map/map.queries";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
 import { Ruin } from "@src/types/map/ruin.type";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const useRuin = () => {
+  const queryClient = useQueryClient();
+
   const [ruinId, setRuinId] = useState<number | null>(null);
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
@@ -32,6 +36,24 @@ const useRuin = () => {
   } = useGetCourseByName(searchName, {
     enabled: !!searchName,
   });
+  const { data: commentData, refetch: refetchCommentData } = useGetCommentById(
+    ruinId!,
+    {
+      enabled: !!ruinId,
+    }
+  );
+
+  const getCommentData = async () => {
+    if (ruinId) {
+      // 댓글 쿼리 무효화
+      await queryClient.invalidateQueries({
+        queryKey: ["comments", ruinId], // 실제 쿼리 키에 맞게 조정 필요
+      });
+
+      // 댓글 데이터 다시 가져오기
+      refetchCommentData();
+    }
+  };
 
   const groupByCoordinates = (ruins: Ruin[]): Ruin[][] => {
     return Object.values(
@@ -97,6 +119,8 @@ const useRuin = () => {
     isRuinDetailLoading,
     getRuinsByName,
     ruinsByName,
+    commentData,
+    getCommentData,
   };
 };
 
