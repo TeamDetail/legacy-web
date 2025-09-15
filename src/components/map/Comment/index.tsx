@@ -85,11 +85,6 @@ const CommentModalHeader = styled.div`
   justify-content: space-between;
   ${LegacyTypography.Pretendard.Heading1.Bold};
   color: ${LegacyPalette.labelNormal};
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 const CommentModalMain = styled.div`
