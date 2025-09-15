@@ -55,7 +55,7 @@ const CourseItem = ({
 
   return (
     <CourseItemContainer onClick={handleClickItem} $size={size}>
-      <CourseThumbnail $url={thumbnailUrl}>
+      <CourseThumbnail $url={thumbnailUrl} $size={size}>
         {size === "small" && (
           <CourseProgressBar
             max={courseLength}
@@ -106,12 +106,12 @@ const CourseItemContainer = styled.div<{ $size: "small" | "big" }>`
   gap: ${({ $size }) => ($size === "small" ? "8px" : "20px")};
 `;
 
-const CourseThumbnail = styled.div<{ $url: string }>`
+const CourseThumbnail = styled.div<{ $url: string; $size: "small" | "big" }>`
   background-image: url(${({ $url }) => $url});
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 144px;
+  height: ${({ $size }) => ($size === "small" ? "144px" : "200px")};
   padding: 8px;
   display: flex;
   justify-content: flex-end;
