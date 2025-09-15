@@ -43,9 +43,7 @@ const Comment = ({
     <CommentModalContainer>
       <CommentModalHeader>
         한줄평 남기기
-        <div>
-          <Close width={24} height={24} onClick={close} />
-        </div>
+      <Close width={24} height={24} onClick={close} />
       </CommentModalHeader>
       <CommentModalMain>
         <CommentRuinInfo>
