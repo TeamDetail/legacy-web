@@ -34,14 +34,14 @@ export const RankingItemContainer = styled.div`
   transition: all 0.1s linear;
 `
 
-export const RankIndicator = styled.p<{ $Rank: number }>`
+export const RankIndicator = styled.p<{ $rank: number }>`
   display: flex;
   width: 52px;
   height: 100%;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  color: ${({ $Rank }) => $Rank === 1
+  color: ${({ $rank }) => $rank === 1
     ? LegacyPalette.primaryNormal
     : LegacyPalette.labelNormal};
   ${LegacyTypography.BitBit.Heading2}

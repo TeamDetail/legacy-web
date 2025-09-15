@@ -13,7 +13,7 @@ const RankingList = ({ type, scope }: RankingListType) => {
   return (
     <S.RankingListContainer>
       <S.RankingHeader>
-        <S.RankIndicator $Rank={0} />
+        <S.RankIndicator $rank={0} />
         <S.RankingUserInfo>
           <span>유저</span>
         </S.RankingUserInfo>
@@ -36,7 +36,7 @@ const RankingList = ({ type, scope }: RankingListType) => {
         (item, idx) => (
           <S.RankingItemHover key={item.nickname + idx}>
             <S.RankingItemContainer>
-              <S.RankIndicator $Rank={idx + 1}>#{idx + 1}</S.RankIndicator>
+              <S.RankIndicator $rank={idx + 1}>#{idx + 1}</S.RankIndicator>
               <S.RankingUserInfo>
                 <img src={item.imageUrl} alt="userImg" />
                 <section>
