@@ -24,10 +24,11 @@ const Tag = ({ data, setData, disabled }: TagProps) => {
       {data.map((item, idx) => {
         return (
           <TagWrapper
-            $isActive={true}
+            $isActive={!disabled}
+            $disabled={disabled}
             key={idx}
-            onMouseEnter={(e) => (e.currentTarget.textContent = "삭제")}
-            onMouseLeave={(e) => (e.currentTarget.textContent = `# ${item}`)}
+            onMouseEnter={!disabled ? (e) => (e.currentTarget.textContent = "삭제") : undefined}
+            onMouseLeave={!disabled ? (e) => (e.currentTarget.textContent = `# ${item}`) : undefined}
             onClick={() => {
               if (!disabled && setData) {
                 setData((prev) => prev.filter((_, i) => i !== idx));
@@ -47,8 +48,8 @@ const Tag = ({ data, setData, disabled }: TagProps) => {
           <AddIcon />
         </TagAddButton>
       )}
-      {isTagAdding && (
-        <TagWrapper $isActive={false}>
+      {isTagAdding && !disabled && (
+        <TagWrapper $isActive={false} $disabled={false}>
           #{" "}
           <TagInput
             type="text"
@@ -86,7 +87,7 @@ const TagAddButton = styled.div`
   cursor: pointer;
 `;
 
-const TagWrapper = styled.div<{ $isActive: boolean }>`
+const TagWrapper = styled.div<{ $isActive: boolean; $disabled?: boolean }>`
   align-items: center;
   height: 28px;
   padding: 4px 8px;
@@ -99,9 +100,12 @@ const TagWrapper = styled.div<{ $isActive: boolean }>`
   color: ${LegacyPalette.labelNormal};
   ${LegacyTypography.Pretendard.Body2.Medium};
 
+  cursor: ${({ $disabled, $isActive }) => 
+    $disabled ? 'default' : ($isActive ? 'pointer' : 'default')};
+
   &:hover {
-    ${({ $isActive }) =>
-      $isActive && `background-color: ${LegacySementic.red.netural};`}
+    ${({ $isActive, $disabled }) =>
+      $isActive && !$disabled && `background-color: ${LegacySementic.red.netural};`}
   }
 `;
 
