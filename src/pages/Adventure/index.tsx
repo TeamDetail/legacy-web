@@ -6,15 +6,17 @@ import { LegacyModal } from "@components/common/LegacyModal";
 import { Suspense, useState } from "react";
 import QuizModal from "@components/map/QuizModal";
 import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
-import { Ruin } from "@src/types/map/ruin.type";
+import { Ruin, RuinDetail } from "@src/types/map/ruin.type";
 import useQuiz from "@src/hooks/map/useQuiz";
 import SearchRuinsModal from "@components/map/SearchRuinsModal";
 import { LatLng } from "@src/types/map/latLng.type";
 import Search from "@src/assets/search.svg?react";
+import Comment from "@components/map/Comment";
 
 const Adventure = () => {
   const { getRuinQuizById } = useQuiz();
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
+  const [selectedRuin, setSelectedRuin] = useState<RuinDetail>();
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
   const [isSearchRuinsOpen, setIsSearchRuinsOpen] = useState<boolean>(false);
   const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
@@ -47,13 +49,6 @@ const Adventure = () => {
       <S.Container>
         <Sidebar />
       </S.Container>
-
-      <LegacyModal isOpen={isSearchRuinsOpen} $background>
-        <SearchRuinsModal
-          close={() => setIsSearchRuinsOpen(false)}
-          onSelectRuin={handleSelectRuin}
-        />
-      </LegacyModal>
       <S.InfoWrapper>
         <S.AdventureMenuContainer>
           <div onClick={() => setIsSearchRuinsOpen(true)}>
@@ -61,14 +56,19 @@ const Adventure = () => {
           </div>
         </S.AdventureMenuContainer>
         {selectedRuins && (
-          <S.InfoPopup>
-            <TileInfo
-              handleButtonClick={handleQuizOpen}
-              selectedRuins={selectedRuins}
-            />
-          </S.InfoPopup>
+          <TileInfo
+            handleButtonClick={handleQuizOpen}
+            selectedRuins={selectedRuins}
+            setSelectedRuin={setSelectedRuin}
+          />
         )}
       </S.InfoWrapper>
+      <LegacyModal isOpen={isSearchRuinsOpen} $background>
+        <SearchRuinsModal
+          close={() => setIsSearchRuinsOpen(false)}
+          onSelectRuin={handleSelectRuin}
+        />
+      </LegacyModal>
       <LegacyModal isOpen={isQuizOpen} $background>
         <Suspense fallback={<QuizComponentSkeleton />}>
           <QuizModal close={() => setIsQuizOpen(false)} />
