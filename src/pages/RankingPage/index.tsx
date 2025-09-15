@@ -4,62 +4,84 @@ import * as S from './style';
 import RankingList from '@components/ranking/RankingList';
 import { Suspense, useState } from 'react';
 import RankingListSkeleton from "@components/skeleton/RankingListSkeleton";
+import { MenuBadge } from '@components/common/MenuBadge';
+import { LegacyPalette } from '@src/constants/color/color';
 
-interface FilterValue<T, T2> {
-  text: string;
-  value: T | T2;
-  isSelected: boolean;
-}
-const Filter: Record<"type" | "scope", FilterValue<"explore" | "trial" | "level", "all" | "friend">[]> = {
-  type: [
+const RankingPage = () => {
+  const [rankTypeFilter, setRankTypeFilter] = useState([
     {
       text: "탐험",
       value: "explore",
-      isSelected: true
+      isAtv: true
     },
     {
       text: "시련",
       value: "trial",
-      isSelected: false,
+      isAtv: false,
     },
-    {
-      text: "숙련",
-      value: "level",
-      isSelected: false,
-    },
-  ],
-  scope: [
+    // {
+    //   text: "숙련",
+    //   value: "level",
+    //   isAtv: false,
+    // },
+  ]);
+  const [rankScopeFilter ] = useState([
     {
       text: "전체",
       value: "all",
-      isSelected: true
+      isAtv: true,
     },
     {
       text: "친구",
       value: "friend",
-      isSelected: false
+      isAtv: false,
     },
-  ]
-}
+  ]);
 
-const RankingPage = () => {
-  const [rankFilter] = useState(Filter);
   return (
     <S.RankingPageContainer>
-      <Sidebar/>
+      <Sidebar />
       <S.RankingPageMainContainer>
-        <header><Ranking width={32} height={32}/>랭킹</header>
+        <header>
+          <Ranking width={32} height={32} />
+          랭킹
+        </header>
         <S.RankingPageMain>
-          <Suspense fallback={<RankingListSkeleton/>}>
+          <S.RankingPageFilter>
+            <div>
+              <MenuBadge
+                badgeColor={LegacyPalette.primaryNormal}
+                menuData={rankTypeFilter}
+                setMenuData={setRankTypeFilter}
+              />
+            </div>
+            {/* <div>
+              <MenuBadge
+                badgeColor={LegacySementic.red.netural}
+                menuData={rankScopeFilter}
+                setMenuData={setRankScopeFilter}
+              />
+            </div> */}
+          </S.RankingPageFilter>
+          <Suspense fallback={<RankingListSkeleton />}>
             <RankingList
-              type={rankFilter.type.find(item => item.isSelected)!.value as ("explore" | "trial" | "level")}
-              scope={rankFilter.scope.find(item => item.isSelected)!.value as ("all" | "friend")}  
+              type={
+                rankTypeFilter.find((item) => item.isAtv)!.value as
+                  | "explore"
+                  | "trial"
+                  | "level"
+              }
+              scope={
+                rankScopeFilter.find((item) => item.isAtv)!.value as
+                  | "all"
+                  | "friend"
+              }
             />
           </Suspense>
         </S.RankingPageMain>
       </S.RankingPageMainContainer>
     </S.RankingPageContainer>
-  )
+  );
 }
 
 export default RankingPage
