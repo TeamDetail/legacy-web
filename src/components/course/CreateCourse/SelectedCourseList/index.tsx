@@ -10,10 +10,7 @@ interface CourseElementListProps {
   setRuins: Dispatch<SetStateAction<RuinDetail[]>>;
 }
 
-const CourseElementList = ({
-  ruins,
-  setRuins,
-}: CourseElementListProps) => {
+const CourseElementList = ({ ruins, setRuins }: CourseElementListProps) => {
   return (
     <CourseElementListContainer>
       {ruins.length !== 0 ? (
@@ -23,7 +20,7 @@ const CourseElementList = ({
               <CourseElementItem
                 key={item.ruinsId}
                 index={idx}
-                isClear={false}
+                isClear={true}
                 ruinId={item.ruinsId}
                 ruinName={item.name}
                 explorerCount={55}
