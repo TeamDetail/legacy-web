@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const RankingListContainer = styled.div`
   display: flex;
   width: 100%;
-  /* overflow-x: scroll; */
   flex-direction: column;
 `
 

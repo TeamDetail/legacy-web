@@ -14,16 +14,16 @@ const RankingPage = () => {
       value: "explore",
       isAtv: true
     },
-    {
-      text: "시련",
-      value: "trial",
-      isAtv: false,
-    },
     // {
-    //   text: "숙련",
-    //   value: "level",
+    //   text: "시련",
+    //   value: "trial",
     //   isAtv: false,
     // },
+    {
+      text: "숙련",
+      value: "level",
+      isAtv: false,
+    },
   ]);
   const [rankScopeFilter ] = useState([
     {

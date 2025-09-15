@@ -32,7 +32,7 @@ export const RankingPageMain = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 32px;
+  gap: 20px;
   overflow-y: scroll;
   background-color: ${LegacyPalette.backgroundNormal};
   padding: 20px;
