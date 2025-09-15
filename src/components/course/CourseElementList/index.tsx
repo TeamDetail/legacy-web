@@ -5,12 +5,12 @@ import CourseElementItem from "../CourseElementItem";
 import { RuinDetail } from "@src/types/map/ruin.type";
 import { Dispatch, SetStateAction } from "react";
 import { LegacyTypography } from "@src/constants/font/fontToken";
+import { CourseElementRuin } from "@src/types/course/course.type";
 
 interface CourseElementListProps {
   courseLength?: number;
   clearRuinsCount?: number;
-  ruins: RuinDetail[];
-  clearRuins: RuinDetail[];
+  ruins: CourseElementRuin[];
   create: boolean;
   setRuins?: Dispatch<SetStateAction<RuinDetail[]>>;
 }
@@ -19,7 +19,6 @@ const CourseElementList = ({
   courseLength,
   clearRuinsCount,
   ruins,
-  clearRuins,
   create,
   setRuins,
 }: CourseElementListProps) => {
@@ -37,24 +36,24 @@ const CourseElementList = ({
       {ruins.length !== 0 ? (
         <CourseElementItemContainer>
           {ruins?.map((item, idx) => {
-            const isClear =
-              clearRuins.some((clear) => clear.ruinsId === item.ruinsId) ??
-              false;
-
             return (
               <CourseElementItem
-                key={item.ruinsId}
+                key={item.data.ruinsId}
                 index={idx}
-                isClear={isClear}
-                ruinId={item.ruinsId}
-                ruinName={item.name}
+                isClear={item.clear}
+                ruinId={item.data.ruinsId}
+                ruinName={item.data.name}
                 explorerCount={55}
                 explorerRatio={12}
                 ruinScore={10}
-                handleClick={() => create && setRuins && setRuins(prev =>
-                      prev.filter(ruin => ruin.ruinsId !== item.ruinsId))
+                handleClick={() =>
+                  create &&
+                  setRuins &&
+                  setRuins((prev) =>
+                    prev.filter((ruin) => ruin.ruinsId !== item.data.ruinsId)
+                  )
                 }
-                card={item.card}
+                card={item.data.card}
               />
             );
           })}
@@ -77,6 +76,8 @@ const CourseElementListContainer = styled.div`
   background-color: ${LegacyPalette.backgroundNormal};
   flex-grow: 1;
   overflow: hidden;
+  border-radius: 20px;
+  padding: 12px;
 `;
 
 const CourseElementItemContainer = styled.div`

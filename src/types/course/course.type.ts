@@ -30,6 +30,10 @@ export interface CourseDetail {
   maxRuinsCount: number;
   clear: true;
   heart: true;
-  ruins: RuinDetail[];
-  clearRuins: RuinDetail[];
+  ruins: CourseElementRuin[];
+}
+
+export interface CourseElementRuin {
+  clear: boolean;
+  data: RuinDetail
 }
