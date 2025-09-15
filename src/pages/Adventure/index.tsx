@@ -13,7 +13,7 @@ import { LatLng } from "@src/types/map/latLng.type";
 import Search from "@src/assets/search.svg?react";
 
 const Adventure = () => {
-  const { getRuinQuizById } = useQuiz();
+  const { ruinQuiz, getRuinQuizById } = useQuiz();
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
   const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
   const [isSearchRuinsOpen, setIsSearchRuinsOpen] = useState<boolean>(false);
@@ -68,7 +68,7 @@ const Adventure = () => {
       </LegacyModal>
       <LegacyModal isOpen={isQuizOpen} $background>
         <Suspense fallback={<QuizComponentSkeleton />}>
-          <QuizModal close={() => setIsQuizOpen(false)} />
+          <QuizModal close={() => setIsQuizOpen(false)} ruinQuiz={ruinQuiz!} />
         </Suspense>
       </LegacyModal>
     </S.BackStage>

@@ -57,7 +57,7 @@ export const useGetRuinQuiz = (
   options?: UseQueryOptions<RuinQuizType[] | undefined, AxiosError>
 ): UseQueryResult<RuinQuizType[] | undefined, AxiosError> =>
   useQuery<RuinQuizType[] | undefined, AxiosError>(
-    QUERY_KEYS.ruin.getRuinQuiz,
+    QUERY_KEYS.ruin.getRuinQuiz(id),
     () => quizApi.getRuinQuiz(id),
     {
       staleTime: 1000 * 60 * 5,

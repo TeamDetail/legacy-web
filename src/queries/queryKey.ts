@@ -5,7 +5,7 @@ export const QUERY_KEYS = Object.freeze({
   },
   ruin: {
     getRuinDetail: (id: number) => `mapGetRuinDetail/${id}`,
-    getRuinQuiz: "mapGetRuinQuiz",
+    getRuinQuiz: (id: number) => `mapGetRuinQuiz/${id}`,
     getRuinsByName: (name: string) => [`ruinGetRuinsByName/${name}`],
   },
   card: {
@@ -17,8 +17,9 @@ export const QUERY_KEYS = Object.freeze({
   block: {
     getMyBlock: "blockGetMyBlock",
   },
-  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") =>
-    [`ranking/${type}/${scope}`],
+  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") => [
+    `ranking/${type}/${scope}`,
+  ],
   course: {
     getAllCourse: ["course"],
     getCourseDetailById: (id: number) => [`course/${id}`],
