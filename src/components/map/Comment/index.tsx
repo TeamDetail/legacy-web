@@ -12,16 +12,22 @@ import ruinApi from "@src/api/map/ruin.api";
 const Comment = ({
   close,
   selectedRuinsId,
+  refetchCommentData,
 }: {
   close: () => void;
   selectedRuinsId: RuinDetail;
+  refetchCommentData: () => Promise<void>;
 }) => {
   const [score, setScore] = useState(0);
   const [comment, setComment] = useState("");
 
   const handleSubmitComment = async () => {
-    if (score === 0 && comment === "") {
+    if (comment === "") {
       toast.error("한줄평을 작성해주세요!");
+      return;
+    }
+    if (score === 0) {
+      toast.error("점수를 매겨주세요!");
       return;
     }
     try {
@@ -32,6 +38,7 @@ const Comment = ({
       );
       if (data) {
         toast.success("한줄평 작성 완료!");
+        refetchCommentData();
         close();
       }
     } catch {
@@ -43,7 +50,7 @@ const Comment = ({
     <CommentModalContainer>
       <CommentModalHeader>
         한줄평 남기기
-      <Close width={24} height={24} onClick={close} />
+        <Close width={24} height={24} onClick={close} />
       </CommentModalHeader>
       <CommentModalMain>
         <CommentRuinInfo>

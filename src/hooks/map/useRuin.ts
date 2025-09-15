@@ -43,14 +43,8 @@ const useRuin = () => {
     }
   );
 
-  const getCommentData = async () => {
+  const getCommentData = () => {
     if (ruinId) {
-      // 댓글 쿼리 무효화
-      await queryClient.invalidateQueries({
-        queryKey: ["comments", ruinId], // 실제 쿼리 키에 맞게 조정 필요
-      });
-
-      // 댓글 데이터 다시 가져오기
       refetchCommentData();
     }
   };

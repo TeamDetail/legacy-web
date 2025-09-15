@@ -3,17 +3,14 @@ import StarRating from "@components/common/StarRating";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { CommentType } from "@src/types/map/ruin.type";
-import { useEffect } from "react";
 import styled from "styled-components";
 
 const Review = ({
   openCommentModal,
   commentData,
-  getCommentData,
 }: {
   openCommentModal: () => void;
   commentData: CommentType[];
-  getCommentData: () => Promise<void>;
 }) => {
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -23,10 +20,6 @@ const Review = ({
 
     return `${year}. ${month}. ${day}`;
   };
-
-  useEffect(() => {
-    getCommentData();
-  }, []);
 
   return (
     <ReviewWrapper>

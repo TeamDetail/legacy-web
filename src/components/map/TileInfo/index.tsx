@@ -110,7 +110,6 @@ const TileInfo = ({
             <Review
               openCommentModal={() => setIsCommentOpen(true)}
               commentData={commentData!}
-              getCommentData={getCommentData}
             />
           )}
         </S.TileInfoContainer>
@@ -133,6 +132,7 @@ const TileInfo = ({
         <Comment
           close={() => setIsCommentOpen(false)}
           selectedRuinsId={ruinDetail!}
+          refetchCommentData={getCommentData}
         />
       </LegacyModal>
     </>
