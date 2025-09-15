@@ -1,5 +1,5 @@
 import customAxios from "@src/libs/axios/customAxios";
-import { Ruin, RuinDetail } from "@src/types/map/ruin.type";
+import { CommentType, Ruin, RuinDetail } from "@src/types/map/ruin.type";
 
 class RuinApi {
   public async getRuins(
@@ -27,6 +27,25 @@ class RuinApi {
   public async getRuinsByName(name: string): Promise<RuinDetail[]> {
     const { data } = await customAxios.get(`/ruins/search`, {
       params: { ruinsName: name },
+    });
+    return data.data;
+  }
+
+  public async getCommentById(id: number): Promise<CommentType[]> {
+    const { data } = await customAxios.get(`/ruins/comment/${id}`);
+    console.log(data.data);
+    return data.data;
+  }
+
+  public async writeComment(
+    ruinsId: number,
+    rating: number,
+    comment: string
+  ): Promise<CommentType> {
+    const { data } = await customAxios.post("/ruins/comment", {
+      ruinsId,
+      rating,
+      comment,
     });
     return data.data;
   }

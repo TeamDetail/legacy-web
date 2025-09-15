@@ -44,3 +44,11 @@ export interface QuizAnswerResultType {
     }
   ];
 }
+
+export interface CommentType {
+  userName: string;
+  userImgUrl: string;
+  rating: number;
+  comment: string;
+  createAt: string;
+}

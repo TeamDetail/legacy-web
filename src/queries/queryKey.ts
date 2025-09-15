@@ -24,6 +24,9 @@ export const QUERY_KEYS = Object.freeze({
     getCourseDetailById: (id: number) => [`course/${id}`],
   },
   mail: {
-    getMail: ["mail"]
-  }
+    getMail: ["mail"],
+  },
+  comment: {
+    getCommentById: (id: number) => ["getCommentById", `${id}`],
+  },
 });

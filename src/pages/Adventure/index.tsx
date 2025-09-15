@@ -47,13 +47,6 @@ const Adventure = () => {
       <S.Container>
         <Sidebar />
       </S.Container>
-
-      <LegacyModal isOpen={isSearchRuinsOpen} $background>
-        <SearchRuinsModal
-          close={() => setIsSearchRuinsOpen(false)}
-          onSelectRuin={handleSelectRuin}
-        />
-      </LegacyModal>
       <S.InfoWrapper>
         <S.AdventureMenuContainer>
           <div onClick={() => setIsSearchRuinsOpen(true)}>
@@ -61,14 +54,18 @@ const Adventure = () => {
           </div>
         </S.AdventureMenuContainer>
         {selectedRuins && (
-          <S.InfoPopup>
-            <TileInfo
-              handleButtonClick={handleQuizOpen}
-              selectedRuins={selectedRuins}
-            />
-          </S.InfoPopup>
+          <TileInfo
+            handleButtonClick={handleQuizOpen}
+            selectedRuins={selectedRuins}
+          />
         )}
       </S.InfoWrapper>
+      <LegacyModal isOpen={isSearchRuinsOpen} $background>
+        <SearchRuinsModal
+          close={() => setIsSearchRuinsOpen(false)}
+          onSelectRuin={handleSelectRuin}
+        />
+      </LegacyModal>
       <LegacyModal isOpen={isQuizOpen} $background>
         <Suspense fallback={<QuizComponentSkeleton />}>
           <QuizModal close={() => setIsQuizOpen(false)} />
