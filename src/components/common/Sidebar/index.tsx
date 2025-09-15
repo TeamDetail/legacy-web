@@ -8,7 +8,7 @@ import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleto
 import Menu from "@src/assets/sidebarIcon/menu.svg?react";
 import { LegacyPalette } from "@src/constants/color/color";
 import Mail from "@src/assets/sidebarIcon/mail.svg?react";
-// import Setting from "@src/assets/sidebarIcon/setting.svg?react";
+import Setting from "@src/assets/sidebarIcon/setting.svg?react";
 import Logout from "@src/assets/sidebarIcon/logout.svg?react";
 // import Info from "@src/assets/sidebarIcon/info.svg?react";
 import cookies from "@src/libs/cookie/cookie";
@@ -26,7 +26,6 @@ interface SidebarProps {
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
   const { modalStoreData, isOpen, setOpenModal } = useModalStore();
-  // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
   const viewMoreMenu = [
@@ -36,12 +35,12 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
       isSelectedPage: modalStoreData === "MAIL" && isOpen,
       icon: <Mail width={22.5} />,
     },
-    // {
-    //   text: "설정",
-    //   onClick: () => nav("/setting"),
-    //   isSelectedPage: location.pathname === "/setting",
-    //   icon: <Setting width={22.5}/>
-    // },
+    {
+      text: "설정",
+      onClick: () => setOpenModal("SETTING"),
+      isSelectedPage: modalStoreData === "SETTING" && isOpen,
+      icon: <Setting width={22.5}/>
+    },
     {
       text: "로그아웃",
       onClick: () => {

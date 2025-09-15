@@ -1,6 +1,6 @@
 import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
-import MailIcon from "@src/assets/mail.svg?react";
+import MailIcon from "@src/assets/sidebarIcon/mail.svg?react";
 import { LegacySementic } from "@src/constants/color/color";
 import useMail from "@src/hooks/mail/useMail";
 import MailItem from "./mailItem";

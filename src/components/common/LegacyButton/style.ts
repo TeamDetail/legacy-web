@@ -17,7 +17,6 @@ export const ButtonWrapper = styled.div<{
   $width: string;
   $customStyle?: CSSObject;
 }>`
-  width: ${({ $width }) => $width};
   height: fit-content;
   padding: 4px;
   box-shadow: ${({ $isAtv, $color }) =>

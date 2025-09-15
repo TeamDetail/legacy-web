@@ -7,7 +7,7 @@ const RankingListSkeleton = () => {
   return (
     <RankingListSkeletonContainer>
       <RankingHeader>
-        <RankIndicator $Rank={0}/>
+        <RankIndicator $rank={0}/>
         <RankingUserInfo><span>유저</span></RankingUserInfo>
         <RankingScore><span>불러오는 중..</span></RankingScore>
       </RankingHeader>
