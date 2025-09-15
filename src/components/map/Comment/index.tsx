@@ -16,7 +16,7 @@ const Comment = ({
 }: {
   close: () => void;
   selectedRuinsId: RuinDetail;
-  refetchCommentData: () => Promise<void>;
+  refetchCommentData: () => void;
 }) => {
   const [score, setScore] = useState(0);
   const [comment, setComment] = useState("");
