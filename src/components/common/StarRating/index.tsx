@@ -4,8 +4,8 @@ import HalfStarImg from "@src/assets/halfStar.svg";
 import EmptyStarImg from "@src/assets/emptyStar.svg";
 
 const StarRating = ({ score }: { score: number }) => {
-  const fullStarCount = Math.floor(score / 2);
-  const halfStarCount = score % 2;
+  const fullStarCount = Math.floor(Math.round(score) / 2);
+  const halfStarCount = Math.round(score) % 2;
   const emptyStarCount = 5 - (fullStarCount + halfStarCount);
 
   return (

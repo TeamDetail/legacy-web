@@ -49,7 +49,8 @@ const SearchRuins = ({ selectedRuins, setSelectedRuins }: SearchRuinsProps) => {
                 index={isSelected ? indexInSelected : undefined!}
                 ruinId={item.ruinsId}
                 ruinName={item.name}
-                ruinScore={8}
+                ruinScore={item.averageRating}
+                commentsCount={item.countComments}
                 explorerCount={55}
                 explorerRatio={12}
                 handleClick={() => {

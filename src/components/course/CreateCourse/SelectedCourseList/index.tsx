@@ -25,7 +25,8 @@ const CourseElementList = ({ ruins, setRuins }: CourseElementListProps) => {
                 ruinName={item.name}
                 explorerCount={55}
                 explorerRatio={12}
-                ruinScore={10}
+                ruinScore={item.averageRating}
+                commentsCount={item.countComments}
                 handleClick={() =>
                   setRuins((prev) =>
                     prev.filter((ruin) => ruin.ruinsId !== item.ruinsId)

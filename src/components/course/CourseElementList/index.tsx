@@ -35,28 +35,27 @@ const CourseElementList = ({
       )}
       {ruins.length !== 0 ? (
         <CourseElementItemContainer>
-          {ruins?.map((item, idx) => {
-            return (
-              <CourseElementItem
-                key={item.data.ruinsId}
-                index={idx}
-                isClear={item.clear}
-                ruinId={item.data.ruinsId}
-                ruinName={item.data.name}
-                explorerCount={55}
-                explorerRatio={12}
-                ruinScore={10}
-                handleClick={() =>
-                  create &&
-                  setRuins &&
-                  setRuins((prev) =>
-                    prev.filter((ruin) => ruin.ruinsId !== item.data.ruinsId)
-                  )
-                }
-                card={item.data.card}
-              />
-            );
-          })}
+          {ruins?.map((item, idx) => (
+            <CourseElementItem
+              key={item.data.ruinsId}
+              index={idx}
+              isClear={item.clear}
+              ruinId={item.data.ruinsId}
+              ruinName={item.data.name}
+              explorerCount={55}
+              explorerRatio={12}
+              ruinScore={item.data.averageRating}
+              commentsCount={item.data.countComments}
+              handleClick={() =>
+                create &&
+                setRuins &&
+                setRuins((prev) =>
+                  prev.filter((ruin) => ruin.ruinsId !== item.data.ruinsId)
+                )
+              }
+              card={item.data.card}
+            />
+          ))}
         </CourseElementItemContainer>
       ) : (
         <EmptySelectedRuinsContainer>

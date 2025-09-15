@@ -21,6 +21,9 @@ export interface RuinDetail {
   manager: string;
   latitude: number;
   longitude: number;
+  description: string;
+  averageRating: number;
+  countComments: number;
   card: CardResponse;
 }
 
