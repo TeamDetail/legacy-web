@@ -23,6 +23,7 @@ export const ShopPageMainContainer = styled.main`
   color: ${LegacyPalette.labelNormal};
   flex-grow: 1;
   overflow: hidden;
+  min-height: 0;
 
   > header {
     display: flex;
@@ -55,6 +56,7 @@ export const ShopPageMainContainer = styled.main`
 export const ShopPageMain = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  flex: 1;
   gap: 12px;
+  overflow: hidden;
 `;
