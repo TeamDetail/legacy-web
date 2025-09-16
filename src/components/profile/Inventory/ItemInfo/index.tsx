@@ -3,9 +3,16 @@ import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { ItemType } from "@src/types/inventory/inventory.type";
+import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 
-const ItemInfo = ({ item }: { item: ItemType }) => {
+const ItemInfo = ({
+  item,
+  setIsQuantitySelectModalOpen,
+}: {
+  item: ItemType;
+  setIsQuantitySelectModalOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
     <ItemInfoContainer>
       <Item size="extra" onClick={() => {}} isSelected={false} />
@@ -14,7 +21,7 @@ const ItemInfo = ({ item }: { item: ItemType }) => {
           {item.itemName}
           <span>{item.itemCount}개 보유</span>
         </div>
-        {item.itemDescription};
+        {item.itemDescription}
       </ItemInfoWrapper>
       <LegacyButton
         isFilled={false}
@@ -22,6 +29,7 @@ const ItemInfo = ({ item }: { item: ItemType }) => {
         size="big"
         color={LegacyPalette.lineAlternative}
         children={<ButtonText>사용하기</ButtonText>}
+        handleClick={() => setIsQuantitySelectModalOpen(true)}
       />
     </ItemInfoContainer>
   );
