@@ -1,4 +1,4 @@
-import { AchievementType } from "@src/types/achievement/achievement.type";
+import { AchievementType, AchievementValueType } from "@src/types/achievement/achievement.type";
 import { UserRecordKeys } from "@src/types/user/user.type";
 
 export const achieveGoalMapper = (
@@ -39,6 +39,11 @@ export const achieveGoalMapper = (
   }
 }
 
+export const achievementValueTypeMapper: Record<AchievementValueType, string> = {
+  "EXPLORE": "탐험",
+  "LEVEL": "숙련",
+  "HIDDEN": "히든",
+}
 export const userRecordMapper: Record<UserRecordKeys, string> = {
   "allBlocks": "탐험 완료한 블록",
   "ruinsBlocks": "탐험 완료한 유적지",
