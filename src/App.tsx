@@ -18,7 +18,6 @@ const queryClientV5 = new QueryClientV5();
 
 function App() {
   const { modalStoreData, isOpen, setCloseModal } = useModalStore();
-
   return (
     <QueryClientProviderV5 client={queryClientV5}>
       <QueryClientProviderV3 client={queryClientV3}>

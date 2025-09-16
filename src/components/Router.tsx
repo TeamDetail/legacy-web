@@ -13,19 +13,19 @@ import AchievementPage from "@src/pages/AchievementPage";
 const Router = () => {
   return (
     <Routes>
-      <Route index element={<Adventure/>} />
-      <Route path="/adventure" element={<Adventure/>} />
-      <Route path="/login" element={<Login isVerifyingPage={false}/>} />
-      <Route path="/login/verify" element={<Login isVerifyingPage/>} />
-      <Route path="/profile" element={<ProfilePage />}/>
-      <Route path="/trial" element={<YetMakingPage type="시련"/>}/>
-      <Route path="/shop" element={<YetMakingPage type="상점"/>}/>
-      <Route path="/ranking" element={<RankingPage />}/>
-      <Route path="/achievement" element={<AchievementPage/>}/>
-      <Route path="/course" element={<CoursePage/>} />
-      <Route path="/course/:id" element={<CourseDetail/>} />
-      <Route path="/course/create" element={<CreateCoursePage/>} />
-      <Route path="*" element={<NotFoundPage/>}/>
+      <Route index element={<Adventure />} />
+      <Route path="/adventure" element={<Adventure />} />
+      <Route path="/login" element={<Login isVerifyingPage={false} />} />
+      <Route path="/login/verify" element={<Login isVerifyingPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/trial" element={<YetMakingPage type="시련" />} />
+      <Route path="/shop" element={<YetMakingPage type="상점" />} />
+      <Route path="/ranking" element={<RankingPage />} />
+      <Route path="/achievement" element={<AchievementPage />} />
+      <Route path="/course" element={<CoursePage />} />
+      <Route path="/course/:id" element={<CourseDetail />} />
+      <Route path="/course/create" element={<CreateCoursePage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
