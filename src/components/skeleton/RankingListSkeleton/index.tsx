@@ -9,7 +9,7 @@ const RankingListSkeleton = () => {
       <RankingHeader>
         <RankIndicator $Rank={0}/>
         <RankingUserInfo><span>유저</span></RankingUserInfo>
-        <RankingScore><span>불러오는 중..</span></RankingScore>
+        <RankingScore $size="big"><span>불러오는 중..</span></RankingScore>
       </RankingHeader>
       {Array.from({length: 15}).map((_, idx) => (
         <div key={idx}/>

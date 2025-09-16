@@ -1,7 +1,7 @@
 import {
+  useGetCommentById,
   useGetCourseByName,
   useGetRuinDetail,
-  useGetRuinQuiz,
   useGetRuins,
 } from "@src/queries/map/map.queries";
 import { CornerLatLngType } from "@src/types/map/latLng.type";
@@ -13,28 +13,38 @@ const useRuin = () => {
   const [cornerLatLng, setConerLatLng] = useState<CornerLatLngType | null>(
     null
   );
-  const [alreadyLoadRuin, setAlreadyLoadRuin] = useState<number[]>([]);
+  const [allRuinsCache, setAllRuinsCache] = useState<Map<number, Ruin>>(
+    new Map()
+  );
   const [dedupeRuins, setDedupeRuins] = useState<Ruin[][]>([]);
   const [searchName, setSearchName] = useState<string>("");
 
-  const {
-    data: ruinDetail,
-    refetch: getRuinDetail,
-    isLoading: isRuinDetailLoading,
-  } = useGetRuinDetail(ruinId!, { enabled: !!ruinId });
+  const { data: ruinDetail, isLoading: isRuinDetailLoading } = useGetRuinDetail(
+    ruinId!,
+    { enabled: !!ruinId }
+  );
   const { data: ruins, refetch: getRuins } = useGetRuins(cornerLatLng!, {
     enabled: !!cornerLatLng,
   });
-  const { data: ruinQuiz, refetch: getRuinQuiz } = useGetRuinQuiz(ruinId!, {
-    enabled: !!ruinDetail?.ruinsId,
-    suspense: true,
+  const {
+    data: ruinsByName,
+    refetch: refetchRuinsByName,
+    isFetching: isRuinsByNameFetching,
+  } = useGetCourseByName(searchName, {
+    enabled: !!searchName,
   });
-  const { data: ruinsByName, refetch: refetchRuinsByName } = useGetCourseByName(
-    searchName,
+  const { data: commentData, refetch: refetchCommentData } = useGetCommentById(
+    ruinId!,
     {
-      enabled: !!searchName,
+      enabled: !!ruinId,
     }
   );
+
+  const getCommentData = () => {
+    if (ruinId) {
+      refetchCommentData();
+    }
+  };
 
   const groupByCoordinates = (ruins: Ruin[]): Ruin[][] => {
     return Object.values(
@@ -62,35 +72,46 @@ const useRuin = () => {
       refetchRuinsByName();
     }
   }, [searchName]);
-  useEffect(() => {
-    if (ruinId !== null && !alreadyLoadRuin.includes(ruinId)) {
-      getRuinDetail();
-      setAlreadyLoadRuin((prev) => [...prev, ruinId]);
-    }
-  }, [ruinId]);
+
   useEffect(() => {
     if (cornerLatLng) {
       getRuins();
     }
   }, [cornerLatLng]);
+
   useEffect(() => {
     if (ruins) {
-      setDedupeRuins(groupByCoordinates(ruins!));
+      setAllRuinsCache((prev) => {
+        const newCache = new Map(prev);
+        ruins.forEach((ruin) => {
+          newCache.set(ruin.ruinsId, ruin);
+        });
+
+        return newCache;
+      });
     }
   }, [ruins]);
 
+  useEffect(() => {
+    const allCachedRuins = Array.from(allRuinsCache.values());
+    if (allCachedRuins.length > 0) {
+      setDedupeRuins(groupByCoordinates(allCachedRuins));
+    }
+  }, [allRuinsCache]);
+
   return {
+    isRuinsByNameFetching,
     getRuinDetailById,
     ruins,
     getRuin,
     ruinDetail,
-    ruinQuiz,
     ruinId,
-    getRuinQuiz,
     dedupeRuins,
     isRuinDetailLoading,
     getRuinsByName,
     ruinsByName,
+    commentData,
+    getCommentData,
   };
 };
 

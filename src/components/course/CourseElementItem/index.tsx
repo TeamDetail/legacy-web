@@ -12,7 +12,7 @@ interface ElementItemProps {
   ruinScore: number;
   explorerCount: number;
   explorerRatio: number;
-  commentsCount?: number;
+  commentsCount: number;
   canSelect?: boolean;
   isSelect?: boolean;
   handleClick?: () => void;
@@ -27,7 +27,7 @@ const CourseElementItem = ({
   ruinScore,
   explorerCount,
   explorerRatio,
-  commentsCount = 0,
+  commentsCount,
   canSelect = false,
   isSelect,
   handleClick,
@@ -46,9 +46,11 @@ const CourseElementItem = ({
             <span># {ruinId}</span>
             {ruinName}
           </S.RuinNameContainer>
-          <S.ScoreContainer $gap="2px">
-            <StarRating score={ruinScore} />( {commentsCount} )
-          </S.ScoreContainer>
+          {ruinScore !== 0 && (
+            <S.ScoreContainer $gap="2px">
+              <StarRating score={ruinScore} />( {commentsCount} )
+            </S.ScoreContainer>
+          )}
         </S.RuinNameScoreContainer>
         <S.Line />
         <S.ExplorerContainer>

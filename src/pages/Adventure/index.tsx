@@ -3,45 +3,60 @@ import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
 import { LegacyModal } from "@components/common/LegacyModal";
-import { Suspense, useState } from "react";
-import QuizModal from "@components/map/QuizModal";
-import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
-import useRuin from "@src/hooks/map/useRuin";
+import { useState } from "react";
 import { Ruin } from "@src/types/map/ruin.type";
+import SearchRuinsModal from "@components/map/SearchRuinsModal";
+import { LatLng } from "@src/types/map/latLng.type";
+import Search from "@src/assets/search.svg?react";
+import useBlock from "@src/hooks/map/useBlock";
 
 const Adventure = () => {
-  const { getRuinQuiz } = useRuin();
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
-  const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
+  const [isSearchRuinsOpen, setIsSearchRuinsOpen] = useState<boolean>(false);
+  const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
+  const [zoomLevel, setZoomLevel] = useState<number>(11);
 
-  const handleQuizOpen = () => {
-    getRuinQuiz();
+  const { myRuinBlock, getMyBlock } = useBlock();
 
-    setTimeout(() => {
-      setIsQuizOpen(true);
-    }, 300);
+  const handleSelectRuin = (ruin: Ruin) => {
+    setSelectedRuins([ruin]);
+    setCenter({ lat: ruin.latitude, lng: ruin.longitude });
+    setZoomLevel(15);
+    setIsSearchRuinsOpen(false);
   };
 
   return (
     <S.BackStage>
       <S.GoogleMapWrapper>
-        <GoogleMap setSelectedRuins={setSelectedRuins} />
+        <GoogleMap
+          setSelectedRuins={setSelectedRuins}
+          center={center}
+          zoomLevel={zoomLevel}
+          myRuinBlock={myRuinBlock}
+        />
       </S.GoogleMapWrapper>
       <S.Container>
         <Sidebar />
       </S.Container>
-      {selectedRuins && (
-        <S.InfoPopup>
+      <S.InfoWrapper>
+        <S.AdventureMenuContainer>
+          <div onClick={() => setIsSearchRuinsOpen(true)}>
+            <Search width={22} height={22} />
+          </div>
+        </S.AdventureMenuContainer>
+        {selectedRuins && (
           <TileInfo
-            handleButtonClick={handleQuizOpen}
             selectedRuins={selectedRuins}
+            myRuinBlock={myRuinBlock}
+            getMyBlock={getMyBlock}
           />
-        </S.InfoPopup>
-      )}
-      <LegacyModal isOpen={isQuizOpen} $background={true}>
-        <Suspense fallback={<QuizComponentSkeleton />}>
-          <QuizModal close={() => setIsQuizOpen(false)} />
-        </Suspense>
+        )}
+      </S.InfoWrapper>
+      <LegacyModal isOpen={isSearchRuinsOpen} $background>
+        <SearchRuinsModal
+          close={() => setIsSearchRuinsOpen(false)}
+          onSelectRuin={handleSelectRuin}
+        />
       </LegacyModal>
     </S.BackStage>
   );
