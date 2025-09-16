@@ -66,6 +66,7 @@ export const AchievementDetailHeader = styled.div<{
     margin-bottom: 4px;
   }
   > p {
+    white-space: normal;
     text-align: center;
     ${LegacyTypography.Pretendard.Body2.Regular}
     color: ${LegacyPalette.labelAlternative};
