@@ -2,8 +2,11 @@ import * as S from "./style";
 import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import useQuiz from "@src/hooks/map/useQuiz";
-import useRuin from "@src/hooks/map/useRuin";
-import { QuizAnswerType, RuinQuizType } from "@src/types/map/ruin.type";
+import {
+  QuizAnswerType,
+  RuinDetail,
+  RuinQuizType,
+} from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 import QuizCorrectPage from "../QuizCorrectPage";
 import QuizWrongPage from "../QuizWrongPage";
@@ -14,9 +17,13 @@ import QuizUndefined from "@components/map/QuizUndefined";
 const QuizModal = ({
   close,
   ruinQuiz,
+  ruinDetail,
+  getMyBlock
 }: {
   close: () => void;
   ruinQuiz: RuinQuizType[];
+  ruinDetail: RuinDetail;
+  getMyBlock: () => Promise<void>
 }) => {
   const [solvingQuizNum, setSolvingQuizNum] = useState<0 | 1 | 2>(0);
   const [answer, setAnswer] = useState<QuizAnswerType[]>([
@@ -25,7 +32,6 @@ const QuizModal = ({
     { quizId: null, answerOption: "" },
   ]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const { ruinDetail } = useRuin();
   const { isCorrect, checkQuizAnswerByQuizId } = useQuiz();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const queryClient = useQueryClient();
@@ -60,9 +66,13 @@ const QuizModal = ({
     <>
       {isSubmit ? (
         isCorrect?.blockGiven ? (
-          <QuizCorrectPage closeFunction={handleClose} />
+          <QuizCorrectPage
+            closeFunction={handleClose}
+            ruinDetail={ruinDetail!}
+            getMyBlock={getMyBlock}
+          />
         ) : (
-          <QuizWrongPage closeFunction={handleClose} />
+          <QuizWrongPage closeFunction={handleClose} isCorrect={isCorrect!} />
         )
       ) : (
         ruinQuiz && (

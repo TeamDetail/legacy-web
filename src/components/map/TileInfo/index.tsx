@@ -8,12 +8,14 @@ import OutLine from "./OutLine";
 import Detail from "./Detail";
 import Review from "./Review";
 import useRuin from "@src/hooks/map/useRuin";
-import useBlock from "@src/hooks/map/useBlock";
 import ArrowLeftImg from "@src/assets/arrowLeft.svg";
 import ArrowRightImg from "@src/assets/arrowRight.svg";
 import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
 import { LegacyModal } from "@components/common/LegacyModal";
 import Comment from "../Comment";
+import QuizModal from "../QuizModal";
+import useQuiz from "@src/hooks/map/useQuiz";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
 
 interface MenuDataType {
   text: string;
@@ -22,12 +24,15 @@ interface MenuDataType {
 }
 
 const TileInfo = ({
-  handleButtonClick,
   selectedRuins,
+  myRuinBlock,
+  getMyBlock,
 }: {
-  handleButtonClick: (id: number) => void;
   selectedRuins: Ruin[] | null;
+  myRuinBlock: MyBlockType[];
+  getMyBlock: () => Promise<void>;
 }) => {
+  const { ruinQuiz, getRuinQuizById } = useQuiz();
   const [page, setPage] = useState<number>(0);
   const [category, setCategory] = useState<MenuDataType[]>([
     { text: "개요", isAtv: true, value: "" },
@@ -41,13 +46,12 @@ const TileInfo = ({
     commentData,
     getCommentData,
   } = useRuin();
-  const { myRuinBlock } = useBlock();
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
 
-  const [isCommentOpen, setIsCommentOpen] = useState<boolean>(false);
-
-  const isMyBlock = myRuinBlock.some(
-    (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
-  );
+  const isMyBlock =
+    ruinDetail &&
+    myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinDetail.ruinsId);
 
   useEffect(() => {
     if (selectedRuins) {
@@ -121,11 +125,12 @@ const TileInfo = ({
             isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural
           }
           width="100%"
-          handleClick={() => {
-            if (!isMyBlock) handleButtonClick(selectedRuins![page].ruinsId);
+          handleClick={async () => {
+            await getRuinQuizById(selectedRuins![page].ruinsId);
+            setIsQuizOpen(true);
           }}
         >
-          <S.ButtonText $isExplored={isMyBlock}>블록 탐험하기</S.ButtonText>
+          <S.ButtonText $isExplored={!!isMyBlock}>블록 탐험하기</S.ButtonText>
         </LegacyButton>
       </S.TileInfoWrapper>
       <LegacyModal isOpen={isCommentOpen} $background>
@@ -133,6 +138,14 @@ const TileInfo = ({
           close={() => setIsCommentOpen(false)}
           selectedRuinsId={ruinDetail!}
           refetchCommentData={getCommentData}
+        />
+      </LegacyModal>
+      <LegacyModal isOpen={isQuizOpen} $background>
+        <QuizModal
+          close={() => setIsQuizOpen(false)}
+          ruinQuiz={ruinQuiz!}
+          ruinDetail={ruinDetail!}
+          getMyBlock={getMyBlock}
         />
       </LegacyModal>
     </>

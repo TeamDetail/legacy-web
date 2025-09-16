@@ -18,7 +18,7 @@ const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => (
       )}
     </S.RuinNameScoreContainer>
     <Card
-      cardType={ruinDetail.card.cardType}
+      cardType="BASIC_CARD"
       cardId={ruinDetail.card.cardId}
       cardImageUrl={ruinDetail.card.cardImageUrl}
       cardName={ruinDetail.card.cardName}
