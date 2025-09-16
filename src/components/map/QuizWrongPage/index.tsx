@@ -1,14 +1,17 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import useQuiz from "@src/hooks/map/useQuiz";
 import styled from "styled-components";
 import SadEmoji from "@src/assets/loudly-crying-face-svgrepo-com1.svg";
 import CloseImg from "@src/assets/close.svg";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { QuizAnswerResultType } from "@src/types/map/ruin.type";
 
-const QuizWrongPage = ({ closeFunction }: { closeFunction: () => void }) => {
-  const { isCorrect } = useQuiz();
-
+const QuizWrongPage = ({
+  closeFunction,
+  isCorrect,
+}: {
+  closeFunction: () => void;
+  isCorrect: QuizAnswerResultType;
+}) => {
   const WrongAnswersMessage = ({
     quizResult,
   }: {
