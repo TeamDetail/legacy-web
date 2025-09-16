@@ -1,4 +1,6 @@
-export const QUERY_KEYS = Object.freeze({
+import { AchievementValueType } from "@src/types/achievement/achievement.type";
+
+export const QUERY_KEYS = {
   user: {
     getMe: "userGetMe",
     getUser: "userGetUser",
@@ -31,6 +33,9 @@ export const QUERY_KEYS = Object.freeze({
     getCommentById: (id: number) => ["getCommentById", `${id}`],
   },
   inventory: {
-    getMyInventory: ["getMyInventory"]
-  }
-});
+    getMyInventory: ["getMyInventory"],
+  },
+  achievement: {
+    getAchievement: (type: AchievementValueType) => ["getAchievement", type],
+  },
+};

@@ -8,11 +8,13 @@ import { Suspense, useState } from "react";
 import Codex from "@components/profile/Codex";
 import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
 import Inventory from "@components/profile/Inventory";
+import { HeaderContainer } from "@src/styles/globalStyles";
+import OverView from "@components/profile/OverView";
 
 const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
-    { text: "도감", isAtv: true, value: "" },
-    { text: "인벤토리", isAtv: false, value: "" }
+    { text: "개요", isAtv: true, value: "OVERVIEW" },
+    { text: "도감", isAtv: false, value: "CODEX" },
     // { text: "덱", isAtv: false },
     // { text: "시련 스탯", isAtv: false },
     // { text: "칭호", isAtv: false },
@@ -21,22 +23,39 @@ const ProfilePage = () => {
   return (
     <S.ProfileContainer>
       <Sidebar />
-      <S.MainContainer>
-        <S.ProfileHeader>
+      <S.MainContainer
+        $isOverViewPage={(
+          menuBadgeData.find((item) => item.isAtv)?.value === "OVERVIEW"
+        ).toString()}
+      >
+        <HeaderContainer>
           <InventoryImg width={32} height={32} />
           프로필
-        </S.ProfileHeader>
-        <Suspense fallback={<UserRecordSkeleton/>}>
-          <UserRecord />
-        </Suspense>
+        </HeaderContainer>
+        {menuBadgeData.find((item) => item.isAtv)?.value === "OVERVIEW" || (
+          <Suspense fallback={<UserRecordSkeleton />}>
+            <UserRecord />
+          </Suspense>
+        )}
         <S.DataContainer>
-          <MenuBadge badgeColor={LegacyPalette.primaryNormal} menuData={menuBadgeData} setMenuData={setMenuBadgeData} />
-          {menuBadgeData.find(item => item.isAtv)?.text === "도감" && <Codex/>}
-          {menuBadgeData.find(item => item.isAtv)?.text === "인벤토리" && <Inventory/>}
+          <MenuBadge
+            badgeColor={LegacyPalette.primaryNormal}
+            menuData={menuBadgeData}
+            setMenuData={setMenuBadgeData}
+          />
+          {menuBadgeData.find((item) => item.isAtv)?.value === "CODEX" && (
+            <Codex />
+          )}
+          {menuBadgeData.find((item) => item.isAtv)?.value === "OVERVIEW" && (
+            <OverView />
+          )}
+          {menuBadgeData.find((item) => item.isAtv)?.text === "인벤토리" && (
+            <Inventory />
+          )}
         </S.DataContainer>
       </S.MainContainer>
     </S.ProfileContainer>
   );
 };
 
-export default ProfilePage; 
+export default ProfilePage;

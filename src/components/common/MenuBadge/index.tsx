@@ -2,7 +2,7 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-interface MenuDataType {
+export interface MenuDataType {
   text: string;
   isAtv: boolean;
   value: string;
