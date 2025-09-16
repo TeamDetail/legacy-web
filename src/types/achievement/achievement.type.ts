@@ -1,4 +1,4 @@
-import { Item } from "@src/types/inventory/inventory.type";
+import { ItemType } from "@src/types/inventory/inventory.type";
 
 export type CardAchievement =
   | "CARD"
@@ -18,7 +18,7 @@ export type Achievement = {
   achievementId: number;
   achievementName: string;
   achievementContent: string;
-  achievementAward: Item[];
+  achievementAward: ItemType[];
   achieveUserPercent: number;
   achievementType: AchievementType;
   isReceive: boolean;
