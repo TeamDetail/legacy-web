@@ -8,7 +8,6 @@ import OutLine from "./OutLine";
 import Detail from "./Detail";
 import Review from "./Review";
 import useRuin from "@src/hooks/map/useRuin";
-import useBlock from "@src/hooks/map/useBlock";
 import ArrowLeftImg from "@src/assets/arrowLeft.svg";
 import ArrowRightImg from "@src/assets/arrowRight.svg";
 import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
@@ -16,6 +15,7 @@ import { LegacyModal } from "@components/common/LegacyModal";
 import Comment from "../Comment";
 import QuizModal from "../QuizModal";
 import useQuiz from "@src/hooks/map/useQuiz";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
 
 interface MenuDataType {
   text: string;
@@ -23,7 +23,15 @@ interface MenuDataType {
   value: string;
 }
 
-const TileInfo = ({ selectedRuins }: { selectedRuins: Ruin[] | null }) => {
+const TileInfo = ({
+  selectedRuins,
+  myRuinBlock,
+  getMyBlock,
+}: {
+  selectedRuins: Ruin[] | null;
+  myRuinBlock: MyBlockType[];
+  getMyBlock: () => Promise<void>;
+}) => {
   const { ruinQuiz, getRuinQuizById } = useQuiz();
   const [page, setPage] = useState<number>(0);
   const [category, setCategory] = useState<MenuDataType[]>([
@@ -38,8 +46,6 @@ const TileInfo = ({ selectedRuins }: { selectedRuins: Ruin[] | null }) => {
     commentData,
     getCommentData,
   } = useRuin();
-  const { myRuinBlock, getMyBlock } = useBlock();
-
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
 

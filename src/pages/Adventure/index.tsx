@@ -8,12 +8,15 @@ import { Ruin } from "@src/types/map/ruin.type";
 import SearchRuinsModal from "@components/map/SearchRuinsModal";
 import { LatLng } from "@src/types/map/latLng.type";
 import Search from "@src/assets/search.svg?react";
+import useBlock from "@src/hooks/map/useBlock";
 
 const Adventure = () => {
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
   const [isSearchRuinsOpen, setIsSearchRuinsOpen] = useState<boolean>(false);
   const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
   const [zoomLevel, setZoomLevel] = useState<number>(11);
+
+  const { myRuinBlock, getMyBlock } = useBlock();
 
   const handleSelectRuin = (ruin: Ruin) => {
     setSelectedRuins([ruin]);
@@ -29,6 +32,7 @@ const Adventure = () => {
           setSelectedRuins={setSelectedRuins}
           center={center}
           zoomLevel={zoomLevel}
+          myRuinBlock={myRuinBlock}
         />
       </S.GoogleMapWrapper>
       <S.Container>
@@ -40,7 +44,13 @@ const Adventure = () => {
             <Search width={22} height={22} />
           </div>
         </S.AdventureMenuContainer>
-        {selectedRuins && <TileInfo selectedRuins={selectedRuins} />}
+        {selectedRuins && (
+          <TileInfo
+            selectedRuins={selectedRuins}
+            myRuinBlock={myRuinBlock}
+            getMyBlock={getMyBlock}
+          />
+        )}
       </S.InfoWrapper>
       <LegacyModal isOpen={isSearchRuinsOpen} $background>
         <SearchRuinsModal
