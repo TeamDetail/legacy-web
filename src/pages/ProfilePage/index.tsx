@@ -7,6 +7,7 @@ import Sidebar from "@src/components/common/Sidebar";
 import { Suspense, useState } from "react";
 import Codex from "@components/profile/Codex";
 import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
+import { HeaderContainer } from "@src/styles/globalStyles";
 
 const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
@@ -20,10 +21,10 @@ const ProfilePage = () => {
     <S.ProfileContainer>
       <Sidebar />
       <S.MainContainer>
-        <S.ProfileHeader>
+        <HeaderContainer>
           <Inventory width={32} height={32} />
           프로필
-        </S.ProfileHeader>
+        </HeaderContainer>
         <Suspense fallback={<UserRecordSkeleton/>}>
           <UserRecord />
         </Suspense>
