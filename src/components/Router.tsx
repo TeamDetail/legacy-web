@@ -20,13 +20,12 @@ const Router = () => {
       <Route path="/login/verify" element={<Login isVerifyingPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/trial" element={<YetMakingPage type="시련" />} />
-      <Route path="/shop" element={<YetMakingPage type="상점" />} />
+      <Route path="/shop" element={<ShopPage />} />
       <Route path="/ranking" element={<RankingPage />} />
       <Route path="/achievement" element={<AchievementPage />} />
       <Route path="/course" element={<CoursePage />} />
       <Route path="/course/:id" element={<CourseDetail />} />
       <Route path="/course/create" element={<CreateCoursePage />} />
-      <Route path="/shop" element={<ShopPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
