@@ -32,7 +32,10 @@ export const QUERY_KEYS = {
   comment: {
     getCommentById: (id: number) => ["getCommentById", `${id}`],
   },
+  inventory: {
+    getMyInventory: ["getMyInventory"],
+  },
   achievement: {
-    getAchievement: (type: AchievementValueType) => ["getAchievement", type]
-  }
+    getAchievement: (type: AchievementValueType) => ["getAchievement", type],
+  },
 };

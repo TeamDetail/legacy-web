@@ -4,7 +4,7 @@ import MailIcon from "@src/assets/mail.svg?react";
 import { LegacySementic } from "@src/constants/color/color";
 import useMail from "@src/hooks/mail/useMail";
 import MailItem from "./mailItem";
-import { Item, Mail } from "@src/types/inventory/inventory.type";
+import { ItemType, Mail } from "@src/types/inventory/inventory.type";
 import { useState } from "react";
 import MailsSkeleton from "@components/skeleton/MailsSkeleton";
 import Close from "@src/assets/close.svg?react";
@@ -16,7 +16,7 @@ const MailBox = ({ close }: { close: () => void }) => {
   const { mails, isMailsFetching } = useMail();
 
   const [selectMail, setSelectMail] = useState<Mail>();
-  const [receiveItems, setReceiveItems] = useState<Item[]>([]);
+  const [receiveItems, setReceiveItems] = useState<ItemType[]>([]);
 
   const handleReceiveReward = async () => {
     if (mails!.length !== 0) {
