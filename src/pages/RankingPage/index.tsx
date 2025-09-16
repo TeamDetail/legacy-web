@@ -6,6 +6,7 @@ import { Suspense, useState } from 'react';
 import RankingListSkeleton from "@components/skeleton/RankingListSkeleton";
 import { MenuBadge } from '@components/common/MenuBadge';
 import { LegacyPalette } from '@src/constants/color/color';
+import { HeaderContainer } from '@src/styles/globalStyles';
 
 const RankingPage = () => {
   const [rankTypeFilter, setRankTypeFilter] = useState([
@@ -42,10 +43,10 @@ const RankingPage = () => {
     <S.RankingPageContainer>
       <Sidebar />
       <S.RankingPageMainContainer>
-        <header>
+        <HeaderContainer>
           <Ranking width={32} height={32} />
           랭킹
-        </header>
+        </HeaderContainer>
         <S.RankingPageMain>
           <S.RankingPageFilter>
             <div>

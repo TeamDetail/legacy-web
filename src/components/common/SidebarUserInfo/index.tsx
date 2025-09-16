@@ -32,7 +32,7 @@ const SidebarUserInfoContainer = styled(Link)`
   gap: 12px;
   text-decoration: none;
   & img {
-    border-radius: 999px;
+    border-radius: 8px;
     width: 56px;
     height: 56px;
     object-fit: cover;
