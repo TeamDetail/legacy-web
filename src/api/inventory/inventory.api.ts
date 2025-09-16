@@ -11,9 +11,9 @@ class InventoryApi {
   public async openCardpack(
     id: number,
     count: number
-  ): Promise<CardResponse[][]> {
+  ): Promise<CardResponse[]> {
     const { data } = await customAxios.post("/inventory/cardpack", {
-      id,
+      cardpackId: id,
       count,
     });
     return data.data;
