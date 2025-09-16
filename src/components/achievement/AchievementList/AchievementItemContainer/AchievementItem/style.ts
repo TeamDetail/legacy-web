@@ -24,6 +24,23 @@ export const AchievementItemContainer = styled.div`
   background-color: transparent;
   color: ${LegacyPalette.labelNormal};
   transition: all 0.08s linear;
+  white-space: nowrap;
+
+  @media (max-width: 1080px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+  }
+
+  @media (max-width: 960px) {
+    flex-direction: row;
+  }
+
+  @media (max-width: 740px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+  }
 `;
 
 export const AchievementImg = styled.img`
@@ -31,8 +48,6 @@ export const AchievementImg = styled.img`
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   background-color: ${LegacyPalette.fillNeutral};
-  outline: none;
-  border: none;
 `
 
 export const AchievementContents = styled.section`
@@ -42,7 +57,9 @@ export const AchievementContents = styled.section`
   gap: 8px;
 `
 
-export const AchievementHeader = styled.div`
+export const AchievementHeader = styled.div<{
+  $valueType: AchievementValueType;
+}>`
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -50,19 +67,39 @@ export const AchievementHeader = styled.div`
     display: flex;
     gap: 4px;
     align-items: center;
+    flex-wrap: wrap;
     > p {
+      white-space: normal;
       ${LegacyTypography.Pretendard.Headline.Bold}
     }
     > span {
       ${LegacyTypography.Pretendard.Body2.Medium}
-      color: ${LegacySementic.red.normal};
+      color: ${({ $valueType }) => 
+        $valueType === "EXPLORE"
+        ? LegacySementic.blue.netural
+        : $valueType === "LEVEL"
+        ? LegacySementic.red.normal
+        : $valueType === "HIDDEN"
+        ? LegacyPalette.primaryNormal
+        : LegacyPalette.primaryNormal};
     }
   }
   > p {
     ${LegacyTypography.Pretendard.Caption1.Regular}
     color: ${LegacyPalette.labelAlternative};
+    white-space: break-spaces;
+  }
+`;
+
+export const AchievementMoreInfoContainer = styled.div`
+  display: flex;
+  gap: 8px;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
   }
 `
+
 export const AchievementMoreInfo = styled.div`
   display: flex;
   gap: 4px;
@@ -83,6 +120,10 @@ export const AchievementRate = styled.div<{
   gap: 4px;
   ${LegacyTypography.Pretendard.Caption1.Bold};
   color: ${({ $goal, $valueType }) => $goal === "true" ? (
-    $valueType === "EXPLORE" ? LegacySementic.blue.netural : $valueType === "LEVEL" ? LegacySementic.red.netural : LegacyPalette.primaryNormal
+    $valueType === "LEVEL"
+    ? LegacySementic.blue.netural
+    : $valueType === "EXPLORE" 
+    ? LegacySementic.red.netural 
+    : LegacyPalette.primaryNormal
   ) : LegacyPalette.labelNormal};
 `;

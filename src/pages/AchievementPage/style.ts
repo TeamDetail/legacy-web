@@ -7,6 +7,7 @@ export const AchievementPageContainer = styled(PageContainer)`
 
 export const AchievementPageMainContainer = styled.div`
   display: flex;
+  gap: 12px;
   width: 100%;
   height: 100%;
   min-height: 0;

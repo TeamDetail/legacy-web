@@ -10,22 +10,22 @@ const AchievementItem = ({
   currentRate,
   goalRate,
   isReceive,
-  grade,
-  valueType
-}: Achievement & { valueType: AchievementValueType }) => {
+  valueType,
+  onClick
+}: Achievement & { valueType: AchievementValueType, onClick?: () => void }) => {
   return (
-    <S.AchievementHover>
+    <S.AchievementHover onClick={onClick}>
       <S.AchievementItemContainer>
         <S.AchievementImg src="" alt="achieveImg" />
         <S.AchievementContents>
-          <S.AchievementHeader>
+          <S.AchievementHeader $valueType={valueType}>
             <div>
               <p>{achievementName}</p>
               <span>#{achievementValueTypeMapper[valueType]}</span>
             </div>
             <p>{achievementContent}</p>
           </S.AchievementHeader>
-          <div style={{ display: "flex", gap: "8px" }}>
+          <S.AchievementMoreInfoContainer>
             <S.AchievementMoreInfo>
               <p>목표</p>
               <span>{achieveGoalMapper(achievementType, goalRate)}</span>
@@ -33,17 +33,19 @@ const AchievementItem = ({
             <S.AchievementMoreInfo>
               <p>상태</p>
               <S.AchievementRate
-                $goal={(goalRate === currentRate).toString() as "true" | "false"}
+                $goal={
+                  (goalRate <= currentRate).toString() as "true" | "false"
+                }
                 $valueType={valueType}
               >
-                {goalRate} / {currentRate}
+                {isReceive ? "보상 수령 완료" : `${currentRate} / ${goalRate}`}
               </S.AchievementRate>
             </S.AchievementMoreInfo>
             <S.AchievementMoreInfo>
               <p>달성자 비율</p>
               <span>{achieveUserPercent}%</span>
             </S.AchievementMoreInfo>
-          </div>
+          </S.AchievementMoreInfoContainer>
         </S.AchievementContents>
       </S.AchievementItemContainer>
     </S.AchievementHover>

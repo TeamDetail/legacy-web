@@ -3,6 +3,7 @@ import { HeaderContainer, MainContainer } from "@src/styles/globalStyles"
 import Sidebar from "@components/common/Sidebar"
 import Achievement from '../../assets/sidebarIcon/achievement.svg?react'
 import AchievementList from '@components/achievement/AchievementList';
+import AchievementDetail from '@components/achievement/AchievementDetail';
 
 const AchievementPage = () => {
   return (
@@ -15,6 +16,7 @@ const AchievementPage = () => {
         </HeaderContainer>
         <S.AchievementPageMainContainer>
           <AchievementList/>
+          <AchievementDetail/>
         </S.AchievementPageMainContainer>
       </MainContainer>
     </S.AchievementPageContainer>

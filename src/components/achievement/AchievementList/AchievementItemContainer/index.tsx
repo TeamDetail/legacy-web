@@ -1,5 +1,6 @@
 import AchievementItem from "@components/achievement/AchievementList/AchievementItemContainer/AchievementItem";
 import { useGetAchievementQuery } from "@src/queries/achievement/achievement.queries";
+import useAchievementStore from "@src/store/useAchievementStore";
 import { AchievementValueType } from "@src/types/achievement/achievement.type"
 import styled from "styled-components";
 
@@ -12,6 +13,7 @@ const AchievementItemContainer = ({
   const { data: exploreAchieveData } = useGetAchievementQuery('EXPLORE');
   const { data: hiddenAchieveData } = useGetAchievementQuery('HIDDEN');
   const { data: levelAchieveData } = useGetAchievementQuery('LEVEL');
+  const { selectAchievement } = useAchievementStore();
 
   return type === "EXPLORE" ? (
     <ItemContainer>
@@ -20,13 +22,19 @@ const AchievementItemContainer = ({
           key={item.achievementId}
           {...item}
           valueType="EXPLORE"
+          onClick={() => selectAchievement({ ...item, valueType: "EXPLORE" })}
         />
       ))}
     </ItemContainer>
   ) : type === "LEVEL" ? (
     <ItemContainer>
       {levelAchieveData?.data?.map((item) => (
-        <AchievementItem key={item.achievementId} {...item} valueType="LEVEL" />
+        <AchievementItem
+          key={item.achievementId}
+          {...item}
+          valueType="LEVEL"
+          onClick={() => selectAchievement({ ...item, valueType: "LEVEL" })}
+        />
       ))}
     </ItemContainer>
   ) : (
@@ -36,6 +44,7 @@ const AchievementItemContainer = ({
           key={item.achievementId}
           {...item}
           valueType="HIDDEN"
+          onClick={() => selectAchievement({ ...item, valueType: "HIDDEN" })}
         />
       ))}
     </ItemContainer>

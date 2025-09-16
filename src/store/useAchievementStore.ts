@@ -9,9 +9,17 @@ type AchievementStore = {
     newData: Achievement[],
     type: AchievementValueType
   ) => void;
+  selectedAchievementData:
+    | (Achievement & { valueType: AchievementValueType })
+    | null;
+  selectAchievement: (
+    data: Achievement & { valueType: AchievementValueType }
+  ) => void;
 };
 
 const useAchievementStore = create<AchievementStore>((set) => ({
+  selectedAchievementData: null,
+  selectAchievement: (data) => set({selectedAchievementData: data}),
   exploreAchieveStoreData: [
     {
       achievementId: 0,
