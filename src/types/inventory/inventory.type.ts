@@ -6,9 +6,7 @@ export interface ItemType {
   itemCount: number;
 }
 
-enum ItemEnumType {
-  CARD_PACK = "CARD_PACK",
-}
+type ItemEnumType = "CARD_PACK"
 
 export interface Mail {
   mailTitle: string;
