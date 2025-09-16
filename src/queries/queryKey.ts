@@ -30,4 +30,7 @@ export const QUERY_KEYS = Object.freeze({
   comment: {
     getCommentById: (id: number) => ["getCommentById", `${id}`],
   },
+  inventory: {
+    getMyInventory: ["getMyInventory"]
+  }
 });
