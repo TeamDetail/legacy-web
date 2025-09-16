@@ -26,7 +26,7 @@ export default SearchBar
 const SearchBarContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   border-radius: 12px;
   align-items: center;
   padding: 0 12px;
