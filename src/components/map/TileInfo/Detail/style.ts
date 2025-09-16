@@ -11,7 +11,8 @@ export const DetailLayout = styled.div`
 
 export const ExplainContainer = styled.div`
   display: -webkit-box;
-  -webkit-line-clamp: 5; /* 줄 수 제한 */
+  white-space: pre-wrap;
+  -webkit-line-clamp: 6; /* 줄 수 제한 */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

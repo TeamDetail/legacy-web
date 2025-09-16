@@ -11,6 +11,7 @@ export const TileInfoWrapper = styled.div`
   background-color: ${LegacyPalette.backgroundNormal};
   justify-content: space-between;
   border-radius: 20px;
+  gap: 12px;
 `;
 
 export const TileInfoContainer = styled.div`
@@ -18,12 +19,16 @@ export const TileInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 `;
 
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 
   ${LegacyTypography.Pretendard.Headline.Bold};
   color: ${LegacyPalette.labelNormal};

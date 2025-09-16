@@ -9,6 +9,7 @@ import LegacyButton from "@components/common/LegacyButton";
 import CourseElementList from "../CourseElementList";
 import useCourse from "@src/hooks/course/useCourse";
 import { useEffect } from "react";
+import CourseDetailSkeleton from "@components/skeleton/CourseDetailSkeleton";
 
 const CourseDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -37,7 +38,7 @@ const CourseDetail = () => {
             <Course width={32} height={32} />
             코스
           </HeaderContainer>
-          <></>
+          <CourseDetailSkeleton />
         </MainContainer>
       </CourseDetailContainer>
     );
@@ -69,7 +70,7 @@ const CourseDetail = () => {
               clearCount={courseDetailData!.clearCount}
               size="big"
               creator={courseDetailData!.creator}
-              disabled={true}
+              disabled
             />
           </CourseItemWrapper>
           <DetailContainer>
@@ -86,7 +87,6 @@ const CourseDetail = () => {
             <CourseElementList
               clearRuinsCount={courseDetailData!.clearRuinsCount}
               courseLength={courseDetailData!.maxRuinsCount}
-              clearRuins={courseDetailData!.clearRuins}
               ruins={courseDetailData!.ruins}
               create={false}
             />

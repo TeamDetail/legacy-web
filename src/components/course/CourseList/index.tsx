@@ -7,6 +7,7 @@ import useCourse from "@src/hooks/course/useCourse";
 import { Course } from "@src/types/course/course.type";
 import PenIcon from "@src/assets/pen.svg?react";
 import { useNavigate } from "react-router-dom";
+import CourseListSkeleton from "@components/skeleton/CourseListSkeleton";
 
 const CourseList = () => {
   const navigate = useNavigate();
@@ -90,7 +91,7 @@ const CourseList = () => {
       </S.SearchContainer>
 
       {courseData === undefined && isCourseDataLoading ? (
-        <></>
+        <CourseListSkeleton />
       ) : (
         <S.DataContainer>
           {filteredAndSortedData.map((item) => (
