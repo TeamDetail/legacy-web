@@ -1,5 +1,7 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
+import CardpackImg from "@src/assets/cardpackImg.png";
+import { ItemEnumType } from "@src/types/inventory/inventory.type";
 
 interface SizeType {
   normal: number;
@@ -26,17 +28,16 @@ const Item = ({
   size,
   onClick,
   isSelected,
+  itemType,
 }: {
   size: keyof SizeType;
   onClick: () => void;
   isSelected: boolean;
+  itemType: ItemEnumType;
 }) => {
   return (
     <ItemContainer $size={size} $isSelected={isSelected} onClick={onClick}>
-      <img
-        src="https://i.namu.wiki/i/GvVcesfJVnFMKclMa_8360-2xqRXd9vnS4xSxqNYv0YI-gKjrTycw5ufrTHGBZ00BqbFNIZy-rUaUaepu3WLmw.webp"
-        alt="itemImg"
-      />
+      {itemType === "CARD_PACK" && <img src={CardpackImg}/>}
     </ItemContainer>
   );
 };
