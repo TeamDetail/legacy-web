@@ -5,7 +5,7 @@ import LegacyButton from "@components/common/LegacyButton";
 import { LegacySementic } from "@src/constants/color/color";
 import SearchRuins from "./SearchRuins";
 import { RuinDetail } from "@src/types/map/ruin.type";
-import CourseElementList from "../CourseElementList";
+import SelectedCourseList from "./SelectedCourseList";
 import useCourse from "@src/hooks/course/useCourse";
 
 const CreateCourse = () => {
@@ -32,7 +32,14 @@ const CreateCourse = () => {
           isBold={true}
           isFilled={false}
           color={LegacySementic.green.normal}
-          handleClick={() => handleCourseSubmit(tags, name, description, selectedRuins.map(ruin => ruin.ruinsId))}
+          handleClick={() =>
+            handleCourseSubmit(
+              tags,
+              name,
+              description,
+              selectedRuins.map((ruin) => ruin.ruinsId)
+            )
+          }
         >
           <S.CreateCourseButtonText>제작 완료!</S.CreateCourseButtonText>
         </LegacyButton>
@@ -55,10 +62,8 @@ const CreateCourse = () => {
           <S.SelectRuinsHeader>
             {selectedRuins.length}개 선택<span>(5 ~ 30개 가능)</span>
           </S.SelectRuinsHeader>
-          <CourseElementList
-            create={true}
+          <SelectedCourseList
             ruins={selectedRuins}
-            clearRuins={selectedRuins}
             setRuins={setSelectedRuins}
           />
         </S.SelectRuinsContainer>

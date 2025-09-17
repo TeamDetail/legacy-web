@@ -1,5 +1,4 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
 export const ProfileContainer = styled.div`
@@ -32,18 +31,6 @@ export const SidebarArea = styled.div`
   @media (max-width:940px) {
     min-width: 108px;
   }
-`;
-
-export const ProfileHeader = styled.div`
-  grid-area: header;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: ${LegacyPalette.labelNormal};
-  ${LegacyTypography.BitBit.Title2};
-  background: ${LegacyPalette.backgroundNormal};
-  border-radius: 20px;
-  padding: 16px 24px;
 `;
 
 export const UserRecordArea = styled.div`

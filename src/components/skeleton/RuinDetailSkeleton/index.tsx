@@ -21,25 +21,6 @@ const RuinDetailSkeleton = () => {
 
 export default RuinDetailSkeleton;
 
-export const SkeletonWrapper = styled.div`
-  width: 240px;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  padding: 16px 20px;
-  background-color: ${LegacyPalette.backgroundNormal};
-  justify-content: space-between;
-  border-radius: 20px;
-`;
-
-export const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ${LegacyTypography.Pretendard.Headline.Bold};
-  color: ${LegacyPalette.labelNormal};
-`;
-
 const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,21 +31,20 @@ const DetailContainer = styled.div`
     ${LegacyTypography.Pretendard.Caption2.Regular};
     color: ${LegacyPalette.labelAlternative};
   }
-
-  ${LegacyTypography.Pretendard.Body2.Medium};
-  color: ${LegacyPalette.labelNormal};
 `;
 
 export const RuinNameContainer = styled.div`
   width: 100%;
-  height: 80px;
+  height: 40px;
   ${skeletonAnimtaion};
+  border-radius: 8px;
 `;
 
 const ScoreContainer = styled.div`
   width: 65%;
   height: 16px;
   ${skeletonAnimtaion};
+  border-radius: 8px;
 `;
 
 const CardSkeleton = styled.div`
@@ -72,6 +52,7 @@ const CardSkeleton = styled.div`
   height: 280px;
   border-radius: 20px;
   ${skeletonAnimtaion}
+  border-radius: 8px;
 `;
 
 const RuinNameScoreContainer = styled.div`
@@ -82,6 +63,7 @@ const RuinNameScoreContainer = styled.div`
 
 export const CostText = styled.div`
   width: 100%;
-  height: 16px;
+  height: 24px;
   ${skeletonAnimtaion};
+  border-radius: 8px;
 `;

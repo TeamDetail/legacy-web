@@ -3,7 +3,7 @@ import { MyBlockType } from "@src/types/map/normalBlock.type";
 import { useEffect, useState } from "react";
 
 const useBlock = () => {
-  const { data: myBlock, refetch: getMyBlock } = useGetMyBlock();
+  const { data: myBlock, refetch: refetchMyBlock } = useGetMyBlock();
   const [myNormalBlock, setMyNormalBlock] = useState<MyBlockType[]>([]);
   const [myRuinBlock, setMyRuinBlock] = useState<MyBlockType[]>([]);
 
@@ -13,6 +13,10 @@ const useBlock = () => {
       setMyRuinBlock(myBlock!.filter((item) => item.blockType === "RUINS"));
     }
   }, [myBlock]);
+
+  const getMyBlock = async () => {
+    refetchMyBlock();
+  };
 
   return {
     myNormalBlock,

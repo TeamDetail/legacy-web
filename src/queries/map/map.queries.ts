@@ -1,6 +1,5 @@
 import {
-  QuizAnswerResultType,
-  QuizAnswerType,
+  CommentType,
   Ruin,
   RuinDetail,
   RuinQuizType,
@@ -46,8 +45,9 @@ export const useGetRuins = (
         cornerLatLng.bottomRightLatLng.lng
       ),
     {
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 10,
+      staleTime: 0,
+      cacheTime: 1000 * 60 * 30,
+      keepPreviousData: true,
       ...options,
     }
   );
@@ -57,22 +57,8 @@ export const useGetRuinQuiz = (
   options?: UseQueryOptions<RuinQuizType[] | undefined, AxiosError>
 ): UseQueryResult<RuinQuizType[] | undefined, AxiosError> =>
   useQuery<RuinQuizType[] | undefined, AxiosError>(
-    QUERY_KEYS.ruin.getRuinQuiz,
+    QUERY_KEYS.ruin.getRuinQuiz(id),
     () => quizApi.getRuinQuiz(id),
-    {
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 10,
-      ...options,
-    }
-  );
-
-export const useCheckRuinQuizAnswer = (
-  answer: QuizAnswerType[],
-  options?: UseQueryOptions<QuizAnswerResultType, AxiosError>
-): UseQueryResult<QuizAnswerResultType> =>
-  useQuery<QuizAnswerResultType, AxiosError>(
-    QUERY_KEYS.quiz.checkRuinQuizAnswer,
-    () => quizApi.checkRuinQuizAnswer(answer),
     {
       staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 10,
@@ -103,5 +89,22 @@ export const useGetCourseByName = (
   useQueryV5({
     queryKey: QUERY_KEYS.ruin.getRuinsByName(name),
     queryFn: () => ruinApi.getRuinsByName(name),
+    ...options,
+  });
+
+export const useGetCommentById = (
+  id: number,
+  options?: Partial<
+    UseQueryOptionsV5<
+      CommentType[],
+      Error,
+      CommentType[],
+      ReturnType<typeof QUERY_KEYS.comment.getCommentById>
+    >
+  >
+) =>
+  useQueryV5({
+    queryKey: QUERY_KEYS.comment.getCommentById(id),
+    queryFn: () => ruinApi.getCommentById(id),
     ...options,
   });

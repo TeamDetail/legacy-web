@@ -2,7 +2,7 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-interface MenuDataType {
+export interface MenuDataType {
   text: string;
   isAtv: boolean;
   value: string;
@@ -46,6 +46,7 @@ const BadgeContainer = styled.div<{ $isAtv: boolean, $badgeColor: string; }>`
   > p {
     ${LegacyTypography.Pretendard.Caption1.Bold}
     color: ${(props) => props.$isAtv ? LegacyPalette.labelNormal : LegacyPalette.labelAssistive};
+    white-space: nowrap;
   }
   background-color: ${({ $isAtv, $badgeColor }) => $isAtv ? $badgeColor : LegacyPalette.lineNeutral};
   cursor: pointer;
