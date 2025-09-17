@@ -1,13 +1,14 @@
-import { User } from "@src/types/user/user.type";
+import { UserMe } from "@src/types/user/user.type";
 import { create } from "zustand";
 
 interface UserStore {
-  userStoreData: User;
-  setUserData: (newData: User) => void;
+  userStoreData: UserMe;
+  setUserData: (newData: UserMe) => void;
 }
 
 const useUserStore = create<UserStore>((set) => ({
   userStoreData: {
+    credit: 0,
     userId: 0,
     nickname: "",
     description: "",
@@ -17,20 +18,22 @@ const useUserStore = create<UserStore>((set) => ({
         rank: 0,
         allBlocks: 0,
         ruinsBlocks: 0,
-        solvedQuizs: 0,
-        wrongQuizs: 0,
+        solvedQuizzes: 0,
+        wrongQuizzes: 0,
         commentCount: 0,
         clearCourse: 0,
         makeCourse: 0,
       },
       experience: {
         rank: 0,
-        adventureAchieve: 999,
-        experienceAchieve: 1000,
-        hiddenAchieve: 20,
+        adventureAchieve: 0,
+        experienceAchieve: 0,
+        hiddenAchieve: 0,
+        exp: 0,
         createdAt: "",
         titleCount: 0,
         cardCount: 0,
+        shiningCardCount: 0,
       },
     },
     imageUrl: "",
@@ -41,7 +44,18 @@ const useUserStore = create<UserStore>((set) => ({
       grade: 1,
     },
   },
-  setUserData: (newData) => set({ userStoreData: newData }),
+  setUserData: (newData: UserMe) => set({ 
+    userStoreData: {
+      ...newData,
+      record: {
+        ...newData.record,
+        experience: {
+          ...newData.record.experience,
+          createdAt: newData.record.experience.createdAt.split('T')[0]
+        }
+      }
+    }
+  }),
 }));
 
 export default useUserStore;

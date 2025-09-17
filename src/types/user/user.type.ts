@@ -15,6 +15,10 @@ export type User = {
   record: UserRecord;
 };
 
+export type UserMe = User & {
+  credit: number;
+}
+
 export type UserRecord = {
   adventure: UserAdventureRecord;
   experience: UserExperienceRecord;
@@ -24,8 +28,8 @@ export type UserAdventureRecord = {
   rank: number;
   allBlocks: number;
   ruinsBlocks: number;
-  solvedQuizs: number;
-  wrongQuizs: number;
+  solvedQuizzes: number;
+  wrongQuizzes: number;
   commentCount: number;
   clearCourse: number;
   makeCourse: number;
@@ -39,6 +43,8 @@ export type UserExperienceRecord = {
   createdAt: string;
   titleCount: number;
   cardCount: number;
+  shiningCardCount: number;
+  exp: number;
 };
 
 export type UserRecordKeys = keyof UserAdventureRecord | keyof UserExperienceRecord;
