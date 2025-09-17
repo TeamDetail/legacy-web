@@ -26,6 +26,9 @@ export const QUERY_KEYS = {
     getAllCourse: ["course"],
     getCourseDetailById: (id: number) => [`course/${id}`],
   },
+  shop: {
+    getCardpack: ["getCardpack"],
+  },
   mail: {
     getMail: ["mail"],
   },
