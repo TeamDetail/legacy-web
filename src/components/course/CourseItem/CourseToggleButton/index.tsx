@@ -10,7 +10,7 @@ interface ToggleButtonType {
   buttonType: "heart" | "clear";
   value: number;
   isSelected: boolean;
-  setIsSelected: Dispatch<SetStateAction<boolean>>;
+  setIsSelected?: Dispatch<SetStateAction<boolean>>;
   courseId?: number;
   disabled: boolean;
 }
@@ -30,12 +30,14 @@ const CourseToggleButton = ({
   };
 
   const handleButtonClick = () => {
-    setIsSelected((prev) => !prev);
-    handleToggleHeartById(courseId!);
-    if (!isSelected) {
-      setCount((prev) => prev + 1);
-    } else {
-      setCount((prev) => prev - 1);
+    if (buttonType === "heart") {
+      setIsSelected!((prev) => !prev);
+      handleToggleHeartById(courseId!);
+      if (!isSelected) {
+        setCount((prev) => prev + 1);
+      } else {
+        setCount((prev) => prev - 1);
+      }
     }
   };
 
