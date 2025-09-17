@@ -17,6 +17,7 @@ export const ButtonWrapper = styled.div<{
   $width: string;
   $customStyle?: CSSObject;
 }>`
+  transition: all 0.08s linear;
   width: ${({ $width }) => $width};
   height: fit-content;
   padding: 4px;
@@ -35,20 +36,23 @@ export const ButtonContainer = styled.div<{
   $isFilled: boolean;
   $customStyle?: CSSObject;
 }>`
+  transition: all 0.08s linear;
   width: 100%;
   height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: ${({ $size }) =>
-    $size === "small" ? "4px 12px" : $size === "big" ? "12px 12px" : "8px 12px"};
+    $size === "small"
+      ? "4px 12px"
+      : $size === "big"
+      ? "12px 12px"
+      : "8px 12px"};
   border-radius: 8px;
   border: solid 1px;
   border-color: ${({ $isBold, $color }) =>
     $isBold ? $color : LegacyPalette.lineAlternative};
   background-color: ${({ $isBold, $isFilled, $color }) =>
-    $isBold
-      ? $isFilled && $color
-      : $isFilled && LegacyPalette.lineAlternative};
+    $isBold ? $isFilled && $color : $isFilled && LegacyPalette.lineAlternative};
   ${({ $customStyle }) => $customStyle}
 `;
