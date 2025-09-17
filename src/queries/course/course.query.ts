@@ -33,5 +33,5 @@ export const useGetCourseDetailById = (
   useQuery({
     queryKey: QUERY_KEYS.course.getCourseDetailById(id),
     queryFn: () => courseApi.getCourseDetailbyId(id),
-    ...options
+    ...options,
   });

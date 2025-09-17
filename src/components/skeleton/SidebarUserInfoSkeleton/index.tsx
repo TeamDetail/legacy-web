@@ -4,16 +4,33 @@ import styled from "styled-components";
 
 const SidebarUserInfoSkeleton = () => {
   return (
-    <SidebarUserInfoContainer>
-      <div />
-      <section>
+    <SidebarUserInfoWrapper>
+      <SidebarUserInfoContainer>
         <div />
-        <div />
-        <div />
-      </section>
-    </SidebarUserInfoContainer>
+        <section>
+          <div />
+          <div />
+          <div />
+        </section>
+      </SidebarUserInfoContainer>
+      <CreditText />
+    </SidebarUserInfoWrapper>
   );
 };
+
+const SidebarUserInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+`;
+
+const CreditText = styled.div`
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  ${skeletonAnimtaion};
+`;
 
 const SidebarUserInfoContainer = styled.div`
   display: flex;

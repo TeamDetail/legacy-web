@@ -1,8 +1,9 @@
-import { LegacyPalette } from "@src/constants/color/color";
+import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import useUser from "@src/hooks/user/useUser";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import LegacyButton from "../LegacyButton";
 
 const SidebarUserInfo = () => {
   const { myUserData } = useUser(true);
@@ -15,16 +16,52 @@ const SidebarUserInfo = () => {
       : "칭호 미착용";
 
   return (
-    <SidebarUserInfoContainer to={"/profile"}>
-      <img src={myUserData?.data.imageUrl} alt="profileImg" />
-      <section>
-        <SidebarUserName>{nickname}</SidebarUserName>
-        <p>{level}Lv</p>
-        <p>{titleName}</p>
-      </section>
-    </SidebarUserInfoContainer>
+    <SidebarUserInfoWrapper>
+      <SidebarUserInfoContainer to={"/profile"}>
+        <img src={myUserData?.data.imageUrl} alt="profileImg" />
+        <section>
+          <SidebarUserName>{nickname}</SidebarUserName>
+          <p>Lv. {level}</p>
+          <p>{titleName}</p>
+        </section>
+      </SidebarUserInfoContainer>
+      <LegacyButton
+        size="default"
+        isFilled={false}
+        isBold={false}
+        color={LegacyPalette.lineNeutral}
+        children={
+          <CreditText>
+            <span>크레딧</span>
+            {myUserData?.data.credit}
+          </CreditText>
+        }
+        width="100%"
+      />
+    </SidebarUserInfoWrapper>
   );
 };
+
+const SidebarUserInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+`;
+
+const CreditText = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  ${LegacyTypography.Pretendard.Caption2.Bold};
+  color: ${LegacySementic.yellow.normal};
+
+  span {
+    ${LegacyTypography.Pretendard.Caption2.Medium};
+    color: ${LegacyPalette.labelNormal};
+  }
+`;
 
 const SidebarUserInfoContainer = styled(Link)`
   display: flex;
