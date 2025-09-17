@@ -8,8 +8,8 @@ import OutLine from "./OutLine";
 import Detail from "./Detail";
 import Review from "./Review";
 import useRuin from "@src/hooks/map/useRuin";
-import ArrowLeftImg from "@src/assets/arrowLeft.svg";
-import ArrowRightImg from "@src/assets/arrowRight.svg";
+import ArrowLeftImg from "@src/assets/arrowLeft.svg?react";
+import ArrowRightImg from "@src/assets/arrowRight.svg?react";
 import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
 import { LegacyModal } from "@components/common/LegacyModal";
 import Comment from "../Comment";
@@ -81,7 +81,13 @@ const TileInfo = ({
                     }
                   }}
                 >
-                  <S.Arrow $isLastPage={page === 0} src={ArrowLeftImg} />
+                  <ArrowLeftImg
+                    fill={
+                      page === 0
+                        ? LegacyPalette.labelDisabled
+                        : LegacyPalette.labelNormal
+                    }
+                  />
                 </S.ArrowContainer>
                 {`${page + 1} / ${selectedRuins!.length}`}
                 <S.ArrowContainer
@@ -91,9 +97,12 @@ const TileInfo = ({
                     }
                   }}
                 >
-                  <S.Arrow
-                    $isLastPage={page === selectedRuins!.length - 1}
-                    src={ArrowRightImg}
+                  <ArrowRightImg
+                    fill={
+                      page === selectedRuins!.length - 1
+                        ? LegacyPalette.labelDisabled
+                        : LegacyPalette.labelNormal
+                    }
                   />
                 </S.ArrowContainer>
               </S.PageControllerContainer>
