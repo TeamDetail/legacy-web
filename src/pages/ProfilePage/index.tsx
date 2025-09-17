@@ -15,6 +15,7 @@ const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
     { text: "개요", isAtv: true, value: "OVERVIEW" },
     { text: "도감", isAtv: false, value: "CODEX" },
+    { text: "인벤토리", isAtv: false, value: "INVENTORY" },
     // { text: "덱", isAtv: false },
     // { text: "시련 스탯", isAtv: false },
     // { text: "칭호", isAtv: false },
