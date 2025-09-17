@@ -15,7 +15,7 @@ const ItemInfo = ({
 }) => {
   return (
     <ItemInfoContainer>
-      <Item size="extra" onClick={() => {}} isSelected={false} />
+      <Item itemType={item.itemType} size="extra" onClick={() => {}} isSelected={false} />
       <ItemInfoWrapper>
         <div>
           {item.itemName}
