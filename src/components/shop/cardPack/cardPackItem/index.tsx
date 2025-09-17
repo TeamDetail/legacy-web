@@ -20,13 +20,13 @@ const CardpackItem = ({
 
   return (
     <>
-      <CardpackItemContainer>
+      <CardpackItemContainer onClick={() => setIsfinalCheckOpen(true)}>
         <CardpackItemWrapper>
           {cardpackName}
           <Img />
           <span>예비 텍스트</span>
         </CardpackItemWrapper>
-        <CostWrapper onClick={() => setIsfinalCheckOpen(true)}>
+        <CostWrapper>
           <Coin width={14} height={14} />
           {cardpackCost}
         </CostWrapper>
@@ -56,6 +56,7 @@ const CardpackItemContainer = styled.div`
   aspect-ratio: 1 / 1.114;
   width: 140px;
   height: auto; /* grid가 실제 높이 계산 가능 */
+  cursor: pointer;
 `;
 
 const CardpackItemWrapper = styled.div`
