@@ -6,11 +6,11 @@ import OverViewItem from '@components/profile/OverView/OverViewItem';
 import { userRecordMapper } from '@src/utils/textMapper/textMapper';
 import useUserStore from '@src/store/useUserStore';
 import { useState } from 'react';
-import ProfileFix from '@components/profile/OverView/ProfileFix';
+// import ProfileFix from '@components/profile/OverView/ProfileFix';
 import { toast } from 'react-toastify';
 
 const OverView = () => {
-  const [isProfileFixPage, setIsProfileFixPage] = useState(false);
+  const [isProfileFixPage] = useState(false);
   const {userStoreData: overViewData} = useUserStore();
 
   return !isProfileFixPage ? (
@@ -64,7 +64,7 @@ const OverView = () => {
       </S.OverViewMainContainer>
     </S.OverViewContainer>
   ) : (
-    
+    <></>
   )
 }
 
