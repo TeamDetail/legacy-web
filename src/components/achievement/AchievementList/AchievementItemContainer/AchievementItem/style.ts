@@ -43,7 +43,7 @@ export const AchievementItemContainer = styled.div`
   }
 `;
 
-export const AchievementImg = styled.img`
+export const AchievementImg = styled.div`
   width: 72px;
   aspect-ratio: 1 / 1;
   border-radius: 8px;
