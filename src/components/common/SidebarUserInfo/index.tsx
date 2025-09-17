@@ -74,6 +74,7 @@ const SidebarUserInfoContainer = styled(Link)`
     width: 56px;
     height: 56px;
     object-fit: cover;
+    background-color: ${LegacyPalette.fillNormal};
   }
 
   & section {
