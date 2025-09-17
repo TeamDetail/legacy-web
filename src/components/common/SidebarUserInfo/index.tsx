@@ -18,7 +18,8 @@ const SidebarUserInfo = () => {
   return (
     <SidebarUserInfoWrapper>
       <SidebarUserInfoContainer to={"/profile"}>
-        <img src={myUserData?.data.imageUrl} alt="profileImg" />
+        {/* <img src={myUserData?.data.imageUrl} alt="profileImg" /> */}
+        <div />
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
@@ -68,7 +69,7 @@ const SidebarUserInfoContainer = styled(Link)`
   width: 100%;
   gap: 12px;
   text-decoration: none;
-  & img {
+  > div {
     border-radius: 8px;
     width: 56px;
     height: 56px;

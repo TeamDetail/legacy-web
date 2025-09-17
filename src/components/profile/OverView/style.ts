@@ -39,7 +39,7 @@ export const OverViewSidebar = styled.div`
   gap: 12px;
   width: 360px;
 
-  img {
+  section {
     color: ${LegacyPalette.labelNormal};
     max-width: 100%;
     width: 100%;
