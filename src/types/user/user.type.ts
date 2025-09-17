@@ -13,6 +13,7 @@ export type User = {
   title: Title;
   level: number;
   record: UserRecord;
+  credit: number;
 };
 
 export type UserRecord = {
