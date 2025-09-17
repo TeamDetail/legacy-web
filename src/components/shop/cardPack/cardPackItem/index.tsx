@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { LegacyModal } from "@components/common/LegacyModal";
 import { useState } from "react";
 import FinalPurchaseCheckModal from "./finalPurchaseCheckModal";
+import Item from "@components/common/Item";
 
 interface cardpackItemPropsType {
   cardpackName: string;
@@ -23,7 +24,7 @@ const CardpackItem = ({
       <CardpackItemContainer onClick={() => setIsfinalCheckOpen(true)}>
         <CardpackItemWrapper>
           {cardpackName}
-          <Img />
+          <Item size="large" itemType="CARD_PACK" />
           <span>예비 텍스트</span>
         </CardpackItemWrapper>
         <CostWrapper>
@@ -52,10 +53,9 @@ const CardpackItemContainer = styled.div`
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.5px);
   border-radius: 12px;
-  overflow: hidden;
   aspect-ratio: 1 / 1.114;
   width: 140px;
-  height: auto; /* grid가 실제 높이 계산 가능 */
+  height: fit-content; /* grid가 실제 높이 계산 가능 */
   cursor: pointer;
 `;
 
@@ -68,7 +68,7 @@ const CardpackItemWrapper = styled.div`
   padding: 12px;
   gap: 8px;
   width: 100%;
-  flex-grow: 1;
+  height: fit-content;
   font-family: "DNFBitBitv2";
   font-size: 1rem;
   line-height: 130%;
@@ -85,18 +85,12 @@ const CardpackItemWrapper = styled.div`
   }
 `;
 
-const Img = styled.div`
-  width: 55%;
-  aspect-ratio: 1 / 1;
-  background-color: ${LegacyPalette.fillNormal};
-  border-radius: 8px;
-`;
-
 const CostWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 4px;
   height: 28px;
+  min-height: 28px;
   font-family: "DNFBitBitv2";
   font-size: 10px;
   line-height: 130%;
@@ -104,4 +98,6 @@ const CostWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${LegacyPalette.fillNormal};
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 `;

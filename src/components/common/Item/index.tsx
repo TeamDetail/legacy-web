@@ -31,12 +31,12 @@ const Item = ({
   itemType,
 }: {
   size: keyof SizeType;
-  onClick: () => void;
-  isSelected: boolean;
+  onClick?: () => void;
+  isSelected?: boolean;
   itemType: ItemEnumType;
 }) => {
   return (
-    <ItemContainer $size={size} $isSelected={isSelected} onClick={onClick}>
+    <ItemContainer $size={size} $isSelected={!!isSelected} onClick={onClick}>
       {itemType === "CARD_PACK" && <img src={CardpackImg}/>}
     </ItemContainer>
   );
