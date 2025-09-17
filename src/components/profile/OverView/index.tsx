@@ -1,49 +1,19 @@
-import { useState } from 'react';
 import * as S from './style';
-import { User, UserRecordKeys } from '@src/types/user/user.type';
+import { UserRecordKeys } from '@src/types/user/user.type';
 import LegacyButton from '@components/common/LegacyButton';
 import { LegacyPalette, LegacySementic } from '@src/constants/color/color';
 import OverViewItem from '@components/profile/OverView/OverViewItem';
 import { userRecordMapper } from '@src/utils/textMapper/textMapper';
+import useUserStore from '@src/store/useUserStore';
+import { useState } from 'react';
+import ProfileFix from '@components/profile/OverView/ProfileFix';
+import { toast } from 'react-toastify';
 
 const OverView = () => {
-  const [overViewData] = useState<User>({
-    userId: 1,
-    nickname: "park",
-    imageUrl:
-      "https://shiftpsh-blog.s3.amazonaws.com/uploads/2022/04/listing216.png",
-    description: "나는 박재민",
-    level: 10,
-    title: {
-      name: "자본주의",
-      content: "칭호 설명 예시",
-      grade: 1,
-      titleId: 1,
-    },
-    record: {
-      adventure: {
-        rank: 10,
-        allBlocks: 10000,
-        ruinsBlocks: 10,
-        solvedQuizs: 100,
-        wrongQuizs: 100,
-        commentCount: 20,
-        makeCourse: 102,
-        clearCourse: 100,
-      },
-      experience: {
-        rank: 1,
-        adventureAchieve: 99,
-        hiddenAchieve: 100,
-        experienceAchieve: 123,
-        createdAt: "2025-09-25",
-        titleCount: 21,
-        cardCount: 200,
-      },
-    },
-  });
+  const [isProfileFixPage, setIsProfileFixPage] = useState(false);
+  const {userStoreData: overViewData} = useUserStore();
 
-  return (
+  return !isProfileFixPage ? (
     <S.OverViewContainer>
       <S.OverViewHeader>
         {overViewData.nickname}
@@ -53,6 +23,8 @@ const OverView = () => {
           isFilled={false}
           color={LegacyPalette.labelNormal}
           width="fit-content"
+          // handleClick={() => setIsProfileFixPage(true)}
+          handleClick={() => toast.error("개발 중인 기능입니다.")}
         >
           프로필 수정
         </LegacyButton>
@@ -91,6 +63,8 @@ const OverView = () => {
         </S.OverViewMain>
       </S.OverViewMainContainer>
     </S.OverViewContainer>
+  ) : (
+    <ProfileFix setIsProfileFixPage={setIsProfileFixPage} />
   );
 }
 

@@ -39,7 +39,7 @@ const OverViewItem = ({
         <S.OverViewDetailBar/>
         <S.OverViewDetailItemContainer>
           {detailItem.map(item => (
-            <S.OverViewDetailItem>
+            <S.OverViewDetailItem key={item.text}>
               <p>{item.text}</p>
               <S.OverViewDetailBar/>
               <span>{item.value}</span>
