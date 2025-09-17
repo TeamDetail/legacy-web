@@ -1,4 +1,4 @@
-import PurchaseStats from "../purchaseStats";
+// import PurchaseStats from "../purchaseStats";
 import styled from "styled-components";
 import CardpackItem from "./cardPackItem";
 import useShop from "@src/hooks/shop/useShop";
@@ -26,8 +26,7 @@ const CardPack = () => {
       ) : (
         <ShopItemSkeleton />
       )}
-
-      <PurchaseStats />
+      {/* <PurchaseStats/> */}
     </>
   );
 };
@@ -35,13 +34,10 @@ const CardPack = () => {
 export default CardPack;
 
 export const CardPackContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   height: fit-content;
-  grid-gap: 16px;
-  @media (max-width: 1253px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
   overflow-y: auto;
   align-items: start;
 `;

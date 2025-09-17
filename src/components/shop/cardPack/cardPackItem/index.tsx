@@ -1,34 +1,49 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import Coin from "@src/assets/coin.svg?react";
 import styled from "styled-components";
+import { LegacyModal } from "@components/common/LegacyModal";
+import { useState } from "react";
+import FinalPurchaseCheckModal from "./finalPurchaseCheckModal";
 
 interface cardpackItemPropsType {
   cardpackName: string;
   cardpackCost: number;
-  onPurchase: () => void;
+  onPurchase: () => Promise<void>;
 }
 
-const cardpackItem = ({
+const CardpackItem = ({
   cardpackCost,
   cardpackName,
   onPurchase,
 }: cardpackItemPropsType) => {
+  const [isFinalCheckOpen, setIsfinalCheckOpen] = useState<boolean>(false);
+
   return (
-    <CardpackItemContainer>
-      <CardpackItemWrapper>
-        {cardpackName}
-        <Img />
-        <span>예비 텍스트</span>
-      </CardpackItemWrapper>
-      <CostWrapper onClick={onPurchase}>
-        <Coin width={14} height={14} />
-        {cardpackCost}
-      </CostWrapper>
-    </CardpackItemContainer>
+    <>
+      <CardpackItemContainer>
+        <CardpackItemWrapper>
+          {cardpackName}
+          <Img />
+          <span>예비 텍스트</span>
+        </CardpackItemWrapper>
+        <CostWrapper onClick={() => setIsfinalCheckOpen(true)}>
+          <Coin width={14} height={14} />
+          {cardpackCost}
+        </CostWrapper>
+      </CardpackItemContainer>
+      <LegacyModal isOpen={isFinalCheckOpen} $background>
+        <FinalPurchaseCheckModal
+          itemName={cardpackName}
+          price={cardpackCost}
+          close={() => setIsfinalCheckOpen(false)}
+          onPurchase={onPurchase}
+        />
+      </LegacyModal>
+    </>
   );
 };
 
-export default cardpackItem;
+export default CardpackItem;
 
 const CardpackItemContainer = styled.div`
   display: flex;
@@ -39,7 +54,7 @@ const CardpackItemContainer = styled.div`
   border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 1 / 1.114;
-  width: 100%; /* grid cell 꽉 채우기 */
+  width: 140px;
   height: auto; /* grid가 실제 높이 계산 가능 */
 `;
 
