@@ -7,6 +7,7 @@ import OverViewItem from '@components/profile/OverView/OverViewItem';
 import { userRecordMapper } from '@src/utils/textMapper/textMapper';
 
 const OverView = () => {
+<<<<<<< Updated upstream
   const [overViewData] = useState<User>({
     userId: 1,
     nickname: "park",
@@ -42,6 +43,10 @@ const OverView = () => {
       },
     },
   });
+=======
+  const [isProfileFixPage] = useState(false);
+  const {userStoreData: overViewData} = useUserStore();
+>>>>>>> Stashed changes
 
   return (
     <S.OverViewContainer>
@@ -91,6 +96,13 @@ const OverView = () => {
         </S.OverViewMain>
       </S.OverViewMainContainer>
     </S.OverViewContainer>
+<<<<<<< Updated upstream
+=======
+  ) : (
+    <ProfileFix
+      // setIsProfileFixPage={setIsProfileFixPage} 
+    />
+>>>>>>> Stashed changes
   );
 }
 
