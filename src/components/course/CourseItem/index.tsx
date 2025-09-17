@@ -43,7 +43,6 @@ const CourseItem = ({
   disabled,
 }: CourseItemProps) => {
   const [isHearted, setIsHearted] = useState<boolean>(isHeart);
-  const [isCleared, setIsCleared] = useState<boolean>(isClear);
 
   const navigate = useNavigate();
 
@@ -87,9 +86,8 @@ const CourseItem = ({
           <CourseToggleButton
             buttonType="clear"
             value={clearCount}
-            isSelected={isCleared}
-            setIsSelected={setIsCleared}
-            disabled={disabled}
+            isSelected={isClear}
+            disabled={false}
           />
         </ToggleButtonContainer>
         <Tag data={tags} disabled />
@@ -104,6 +102,7 @@ const CourseItemContainer = styled.div<{ $size: "small" | "big" }>`
   display: flex;
   flex-direction: column;
   gap: ${({ $size }) => ($size === "small" ? "8px" : "20px")};
+  cursor: ${({ $size }) => $size === "small" && "pointer"};
 `;
 
 const CourseThumbnail = styled.div<{ $url: string; $size: "small" | "big" }>`
