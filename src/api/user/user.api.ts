@@ -12,6 +12,11 @@ class UserApi {
     const { data } = await customAxios.get("/user/me");
     return data;
   }
+  
+  public async patchDescription(params: { description: string }): Promise<BaseResponse<null>> {
+    const { data } = await customAxios.patch("/user/description", params);
+    return data;
+  }
 }
 
 export default new UserApi();
