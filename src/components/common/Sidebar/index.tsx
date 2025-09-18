@@ -94,7 +94,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
             color={LegacyPalette.lineNeutral}
             children={
               <S.ViewMoreMenuContainer>
-                <button onClick={() => setIsViewMoreMenuOpen((prev) => !prev)}>
+                <button onClick={() => setIsViewMoreMenuOpen((prev) => !prev)} name="more-menu">
                   <Menu width={22.5} height={22.5} />
                   <p>더보기</p>
                   <div style={{ flexGrow: 1 }} />

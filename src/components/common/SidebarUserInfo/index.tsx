@@ -17,7 +17,7 @@ const SidebarUserInfo = () => {
 
   return (
     <SidebarUserInfoWrapper>
-      <SidebarUserInfoContainer to={"/profile"}>
+      <SidebarUserInfoContainer to={"/profile"} aria-label="프로필 이동">
         {/* <img src={myUserData?.data.imageUrl} alt="profileImg" /> */}
         <div />
         <section>
