@@ -4,7 +4,7 @@ import { skeletonAnimtaion } from "../animation";
 const ShopItemSkeleton = () => {
   return (
     <ShopItemSkeletonContainer>
-      {Array.from({ length: 12 }).map((_, idx) => (
+      {Array.from({ length: 30 }).map((_, idx) => (
         <div key={idx} />
       ))}
     </ShopItemSkeletonContainer>
@@ -14,19 +14,16 @@ const ShopItemSkeleton = () => {
 export default ShopItemSkeleton;
 
 const ShopItemSkeletonContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   height: fit-content;
   grid-gap: 16px;
-  @media (max-width: 1253px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
   overflow-y: auto;
-  align-items: start;
 
   div {
-    width: 140px;
-    height: 156px;
+    width: 136px;
+    height: 160px;
     ${skeletonAnimtaion};
     border-radius: 12px;
   }
