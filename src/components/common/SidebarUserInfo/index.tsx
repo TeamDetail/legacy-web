@@ -18,8 +18,7 @@ const SidebarUserInfo = () => {
   return (
     <SidebarUserInfoWrapper>
       <SidebarUserInfoContainer to={"/profile"} aria-label="프로필 이동">
-        {/* <img src={myUserData?.data.imageUrl} alt="profileImg" /> */}
-        <div />
+        <img src={myUserData?.data.imageUrl} alt="profileImg" />
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
@@ -69,7 +68,7 @@ const SidebarUserInfoContainer = styled(Link)`
   width: 100%;
   gap: 12px;
   text-decoration: none;
-  > div {
+  > img {
     border-radius: 8px;
     width: 56px;
     height: 56px;

@@ -31,8 +31,7 @@ const OverView = () => {
       </S.OverViewHeader>
       <S.OverViewMainContainer>
         <S.OverViewSidebar>
-          {/* <img src={overViewData.imageUrl} alt="profile" /> */}
-          <section></section>
+          <img src={overViewData.imageUrl} alt="profile" />
         </S.OverViewSidebar>
         <S.OverViewMain>
           <OverViewItem
