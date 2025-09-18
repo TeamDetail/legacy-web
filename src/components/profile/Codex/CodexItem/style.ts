@@ -26,7 +26,6 @@ export const CodexItemContainer = styled.div<{ $isCollectAll: string }>`
 
   > div {
     display: flex;
-    gap: 4px;
     padding: 8px 12px;
     border-radius: 8px;
     background-color: ${LegacyPalette.fillNormal};
@@ -44,13 +43,15 @@ export const CodexItemContainer = styled.div<{ $isCollectAll: string }>`
     }
 
     > span {
-      color: ${({ $isCollectAll }) => $isCollectAll === "true" && LegacySementic.yellow.normal};
+      color: ${({ $isCollectAll }) =>
+        $isCollectAll === "true" && LegacySementic.yellow.normal};
+      ${LegacyTypography.Pretendard.Body2.Regular};
       @media (max-width: 720px) {
         display: none;
       }
     }
   }
-`
+`;
 
 export const RegionFrame = styled.div`
   display: flex;

@@ -35,7 +35,6 @@ const Card = ({
   const isCardAtv = isAtv && canInteract;
 
   return (
-    cardId !== undefined && (
       <S.CardWrap $isFocus={isCardAtv}>
         <S.CardContainer
           $size={size}
@@ -70,8 +69,7 @@ const Card = ({
           </S.CardButton>
         </S.CardFocusMenu>
       </S.CardWrap>
-    )
-  );
+    );
 };
 
 export default Card;
