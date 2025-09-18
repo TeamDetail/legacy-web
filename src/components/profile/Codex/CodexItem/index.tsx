@@ -20,10 +20,10 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
       <S.CodexItemContainer $isCollectAll={((data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100) === 100).toString()}>
         {title}
         <div>
-          <p>{`${data!.data.cards?.filter(item => item.regionAttributeName === title).length} / ${data?.data.maxCount === 0 ? 30 : data?.data.maxCount}`}</p>
+          <p>{`${data!.data.cards?.filter(item => item.regionAttributeName === title).length} / ${data?.data.maxCount}`}</p>
           • 
           <span>
-            {`${data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100}% 수집`}
+            {`${data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount) * 100}% 수집`}
           </span>
         </div>
       </S.CodexItemContainer>
