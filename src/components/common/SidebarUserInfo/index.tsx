@@ -17,7 +17,7 @@ const SidebarUserInfo = () => {
 
   return (
     <SidebarUserInfoWrapper>
-      <SidebarUserInfoContainer to={"/profile"}>
+      <SidebarUserInfoContainer to={"/profile/overview"}>
         <img src={myUserData?.data.imageUrl} alt="profileImg" />
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>

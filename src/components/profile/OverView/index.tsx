@@ -5,15 +5,13 @@ import { LegacyPalette, LegacySementic } from '@src/constants/color/color';
 import OverViewItem from '@components/profile/OverView/OverViewItem';
 import { userRecordMapper } from '@src/utils/textMapper/textMapper';
 import useUserStore from '@src/store/useUserStore';
-import { useState } from 'react';
-import ProfileFix from '@components/profile/OverView/ProfileFix';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const OverView = () => {
-  const [isProfileFixPage, setIsProfileFixPage] = useState(false);
+  const nav = useNavigate();
   const {userStoreData: overViewData} = useUserStore();
 
-  return !isProfileFixPage ? (
+  return (
     <S.OverViewContainer>
       <S.OverViewHeader>
         {overViewData.nickname}
@@ -23,8 +21,7 @@ const OverView = () => {
           isFilled={false}
           color={LegacyPalette.labelNormal}
           width="fit-content"
-          // handleClick={() => setIsProfileFixPage(true)}
-          handleClick={() => toast.error("개발 중인 기능입니다.")}
+          handleClick={() => nav('/profile/fix')}
         >
           프로필 수정
         </LegacyButton>
@@ -63,8 +60,6 @@ const OverView = () => {
         </S.OverViewMain>
       </S.OverViewMainContainer>
     </S.OverViewContainer>
-  ) : (
-    <ProfileFix setIsProfileFixPage={setIsProfileFixPage} />
   );
 }
 

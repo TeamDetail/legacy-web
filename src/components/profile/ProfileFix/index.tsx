@@ -1,18 +1,13 @@
 import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
 import { LegacyPalette } from "@src/constants/color/color";
-import { Dispatch, SetStateAction } from "react";
 import useUserStore from "@src/store/useUserStore";
 import { useState } from "react";
 import { ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import { usePatchUserDataMutation } from "@src/queries/user/user.queries";
 
-type ProfileFixProps = {
-  setIsProfileFixPage: Dispatch<SetStateAction<boolean>>;  
-};
-
-const ProfileFix = ({ setIsProfileFixPage }: ProfileFixProps) => {
+const ProfileFix = () => {
   const { userStoreData } = useUserStore();
   const [successData, setSuccessData] = useState({
     isLoading: false,
