@@ -1,6 +1,7 @@
 import useAchievementStore from '@src/store/useAchievementStore';
 import * as S from './style';
 import { achieveGoalMapper, achievementValueTypeMapper } from '@src/utils/textMapper/textMapper';
+import Item from '@components/common/Item';
 
 const AchievementDetail = () => {
   const {selectedAchievementData} = useAchievementStore();
@@ -52,6 +53,11 @@ const AchievementDetail = () => {
       </S.AchievementDetailMain>
       <S.AchievementDetailAwardContainer>
         보상
+        <div>
+          {selectedAchievementData.achievementAward.map(item => (
+            <Item size='normal' itemType={item.itemType} key={item.itemName + item.itemId}/>
+          ))}
+        </div>
       </S.AchievementDetailAwardContainer>
     </S.AchievementDetailContainer>
   ) : (
