@@ -1,10 +1,9 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import Coin from "@src/assets/coin.svg?react";
 import styled from "styled-components";
-import { LegacyModal } from "@components/common/LegacyModal";
-import { useState } from "react";
 import FinalPurchaseCheckModal from "./finalPurchaseCheckModal";
 import Item from "@components/common/Item";
+import useModalStore from "@src/store/useModalStore";
 
 interface cardpackItemPropsType {
   cardpackName: string;
@@ -17,11 +16,22 @@ const CardpackItem = ({
   cardpackName,
   onPurchase,
 }: cardpackItemPropsType) => {
-  const [isFinalCheckOpen, setIsfinalCheckOpen] = useState<boolean>(false);
+  const { setOpenModal, setCloseModal } = useModalStore();
 
   return (
     <>
-      <CardpackItemContainer onClick={() => setIsfinalCheckOpen(true)}>
+      <CardpackItemContainer
+        onClick={() =>
+          setOpenModal(
+            <FinalPurchaseCheckModal
+              itemName={cardpackName}
+              price={cardpackCost}
+              close={setCloseModal}
+              onPurchase={onPurchase}
+            />
+          )
+        }
+      >
         <CardpackItemWrapper>
           {cardpackName}
           <Item size="large" itemType="CARD_PACK" />
@@ -32,14 +42,6 @@ const CardpackItem = ({
           {cardpackCost}
         </CostWrapper>
       </CardpackItemContainer>
-      <LegacyModal isOpen={isFinalCheckOpen} $background>
-        <FinalPurchaseCheckModal
-          itemName={cardpackName}
-          price={cardpackCost}
-          close={() => setIsfinalCheckOpen(false)}
-          onPurchase={onPurchase}
-        />
-      </LegacyModal>
     </>
   );
 };
