@@ -7,17 +7,27 @@ import Sidebar from "@src/components/common/Sidebar";
 import { Suspense, useEffect, useState } from "react";
 import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
 import { HeaderContainer } from "@src/styles/globalStyles";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+  const loc = useLocation();
   const nav = useNavigate();
   const [menuBadgeData, setMenuBadgeData] = useState([
-    { text: "개요", isAtv: true, value: "overview" },
-    { text: "도감", isAtv: false, value: "codex" },
-    { text: "인벤토리", isAtv: false, value: "inventory" },
-    // { text: "덱", isAtv: false },
-    // { text: "시련 스탯", isAtv: false },
-    // { text: "칭호", isAtv: false },
+    {
+      text: "개요",
+      isAtv: loc.pathname.split("/")[2] === "overview",
+      value: "overview",
+    },
+    {
+      text: "도감",
+      isAtv: loc.pathname.split("/")[2] === "codex",
+      value: "codex",
+    },
+    {
+      text: "인벤토리",
+      isAtv: loc.pathname.split("/")[2] === "inventory",
+      value: "inventory"
+    },
   ]);
 
   useEffect(() => {

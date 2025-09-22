@@ -1,4 +1,5 @@
 import customAxios from "@src/libs/axios/customAxios";
+import axios from "axios";
 
 type PreSignedUrlType = {
   "uploadUrl": string,
@@ -11,8 +12,16 @@ class ImageApi {
     return data.data;
   }
 
-  public async uploadToS3(url: string) {
-    await customAxios.put(url);
+  public async uploadToS3(url: string, file: string): Promise<Response> {
+    const { data } = await axios.put(url,
+      { file: file },
+      { headers: {
+        "Content-Type": "image/jpeg",
+        "x-amz-acl": "public-read",
+        "Accept": "*/*"
+      } }
+    );
+    return data;
   }
 }
 

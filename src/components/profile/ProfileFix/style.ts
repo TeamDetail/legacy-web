@@ -20,6 +20,7 @@ export const ProfileFixContainer = styled.div`
 `
 
 export const ProfileFixItem = styled.div`
+  position: relative;
   display: flex;
   gap: 16px;
   > p {
@@ -27,6 +28,10 @@ export const ProfileFixItem = styled.div`
     color: ${LegacyPalette.labelNormal};
     width: 128px;
     flex-shrink: 0;
+  }
+
+  > input {
+    display: none;
   }
 `
 
