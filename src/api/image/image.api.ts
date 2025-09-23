@@ -1,4 +1,6 @@
 import customAxios from "@src/libs/axios/customAxios";
+import { BaseResponse } from "@src/types/globalType/global.type";
+import { User } from "@src/types/user/user.type";
 import axios from "axios";
 
 type PreSignedUrlType = {
@@ -12,16 +14,20 @@ class ImageApi {
     return data.data;
   }
 
-  public async uploadToS3(url: string, file: string): Promise<Response> {
-    const { data } = await axios.put(url,
-      { file: file },
-      { headers: {
-        "Content-Type": "image/jpeg",
+  public async uploadToS3(url: string, file: File): Promise<Response> {
+    const { data } = await axios.put(url, file, {
+      headers: {
+        "Content-Type": "multipart/form-data",
         "x-amz-acl": "public-read",
-        "Accept": "*/*"
-      } }
-    );
+        Accept: "*/*",
+      },
+    });
     return data;
+  }
+
+  public async patchUserImage(userImgUrl: string): Promise<BaseResponse<User>> {
+    const { data } = await customAxios.patch("/user/image", {profileImageUrl: userImgUrl});
+    return data
   }
 }
 
