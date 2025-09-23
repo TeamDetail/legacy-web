@@ -32,7 +32,7 @@ const TileInfo = ({
   myRuinBlock: MyBlockType[];
   getMyBlock: () => Promise<void>;
 }) => {
-  const { ruinQuiz, getRuinQuizById } = useQuiz();
+  const { getRuinQuizById } = useQuiz();
   const {
     getRuinDetailById,
     isRuinDetailLoading,
@@ -146,7 +146,6 @@ const TileInfo = ({
             <QuizModal
               close={setCloseModal}
               ruinDetail={ruinDetail!}
-              ruinQuiz={ruinQuiz!}
               getMyBlock={getMyBlock}
             />
           );
