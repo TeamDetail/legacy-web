@@ -5,12 +5,11 @@ import { ItemType } from "@src/types/inventory/inventory.type";
 import ItemInfo from "./ItemInfo";
 import ItemQuantitySelectModal from "./ItemQuantitySelectModal";
 import { CardResponse } from "@src/types/card/card.type";
-import ReceivedCardModal from "./ReceivedItemModal";
 import useModalStore from "@src/store/useModalStore";
+import ReceivedItemModal from "./ReceivedItemModal";
 
 const Inventory = () => {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
-  const [receivedCard, setReceivedCard] = useState<CardResponse[]>();
 
   const { setOpenModal, setCloseModal } = useModalStore();
 
@@ -28,19 +27,16 @@ const Inventory = () => {
               setOpenModal(
                 <ItemQuantitySelectModal
                   close={setCloseModal}
-                  openReceivedCardModal={() =>
+                  selectedItem={selectedItem!}
+                  handleReceiveItem={(data: CardResponse[]) => {
                     setOpenModal(
-                      <ReceivedCardModal
+                      <ReceivedItemModal
                         close={setCloseModal}
-                        receivedCardData={receivedCard!}
+                        receivedCardData={data}
                         selectedItem={selectedItem!}
                       />
-                    )
-                  }
-                  selectedItem={selectedItem!}
-                  handleReceiveItem={(data: CardResponse[]) =>
-                    setReceivedCard(data)
-                  }
+                    );
+                  }}
                 />
               )
             }
