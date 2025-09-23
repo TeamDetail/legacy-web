@@ -1,24 +1,33 @@
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import useUser from "@src/hooks/user/useUser";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LegacyButton from "../LegacyButton";
+import useUserStore from "@src/store/useUserStore";
+import { useGetMeQuery } from "@src/queries/user/user.queries";
+import { useEffect } from "react";
 
 const SidebarUserInfo = () => {
-  const { myUserData } = useUser(true);
+  const { data: myUserData } = useGetMeQuery({ suspense: true });
+  const { setUserData, userStoreData } = useUserStore();
 
-  const nickname = myUserData?.data.nickname || "Unknown User";
-  const level = myUserData?.data.level || 0;
+  useEffect(() => {
+    if (myUserData) {
+      setUserData(myUserData.data)
+    }
+  }, [myUserData])
+
+  const nickname = userStoreData?.nickname || "Unknown User";
+  const level = userStoreData?.level || 0;
   const titleName =
-    myUserData!.data.title.name.length > 0
-      ? myUserData!.data.title.name
+    userStoreData?.title.name.length > 0
+      ? userStoreData?.title.name
       : "칭호 미착용";
 
   return (
     <SidebarUserInfoWrapper>
       <SidebarUserInfoContainer to={"/profile/overview"}>
-        <img src={myUserData?.data.imageUrl} alt="profileImg" />
+        <img src={userStoreData?.imageUrl} alt="profileImg" />
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>

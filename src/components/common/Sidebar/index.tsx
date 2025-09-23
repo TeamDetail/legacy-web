@@ -18,6 +18,7 @@ import {
 } from "@src/constants/token.constants";
 import { useMemo } from "react";
 import useModalStore from "@src/store/useModalStore";
+import useUserStore from "@src/store/useUserStore";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -26,6 +27,7 @@ interface SidebarProps {
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
   const { modalStoreData, isOpen, setOpenModal } = useModalStore();
+  const { userStoreData } = useUserStore();
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
@@ -121,7 +123,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
         </S.SidebarButtonMenu>
       </S.SidebarContainer>
     ),
-    [isViewMoreMenuOpen]
+    [isViewMoreMenuOpen, userStoreData]
   );
 };
 
