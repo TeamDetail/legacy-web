@@ -23,6 +23,7 @@ const Router = () => {
       <Route path="/login" element={<Login isVerifyingPage={false} />} />
       <Route path="/login/verify" element={<Login isVerifyingPage />} />
       <Route path="/profile" element={<ProfilePage />}>
+        <Route path="" element={<OverView />} />
         <Route path="overview" element={<OverView />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="codex" element={<Codex />} />
