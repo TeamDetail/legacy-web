@@ -2,7 +2,7 @@ import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
 import { LegacyPalette } from "@src/constants/color/color";
 import useUserStore from "@src/store/useUserStore";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import { usePatchUserDataMutation } from "@src/queries/user/user.queries";
@@ -11,7 +11,7 @@ import useChangeImage from "@src/hooks/user/useChangeImage";
 const ProfileFix = () => {
   const { userStoreData, setUserData } = useUserStore();
   const { preview, handleFileChange, handleSave } = useChangeImage();
-  
+
   const [changedUserData, setChangedUserData] = useState({
     imageUrl: userStoreData.imageUrl,
     description: userStoreData.description,
@@ -23,10 +23,17 @@ const ProfileFix = () => {
   const handleDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setChangedUserData(prev => ({...prev, description: e.target.value}))
   }
+  useEffect(() => {
+    if ( userStoreData ) {
+      setChangedUserData({
+        imageUrl: userStoreData.imageUrl,
+        description: userStoreData.description
+      })
+    }
+  }, [userStoreData])
 
   // 변경사항 확인
-  const checkIsChanged = () =>
-    (!!preview || changedUserData.description.trim() !== userStoreData.description); 
+  const checkIsChanged = () => ((preview && preview !== userStoreData.imageUrl) || changedUserData.description.trim() !== userStoreData.description.trim());
 
   const completeFix = async () => {
     if (!checkIsChanged()) {
@@ -61,7 +68,7 @@ const ProfileFix = () => {
         setUserData({
           ...userStoreData,
           description: changedUserData.description.trim(),
-          imageUrl: preview ?? changedUserData.imageUrl
+          imageUrl: preview as string ?? changedUserData.imageUrl
         });
       } catch (error) {
         toast.error(error as string);
@@ -97,7 +104,7 @@ const ProfileFix = () => {
       </header>
       <S.ProfileFixItem>
         <p>프로필 이미지</p>
-        <S.ProfileFixUserImg src={preview ?? changedUserData.imageUrl} alt="profileImg" onClick={handleClick}/>
+        <S.ProfileFixUserImg src={preview as string ?? userStoreData.imageUrl} alt="profileImg" onClick={handleClick}/>
         <input ref={fileRef} onChange={handleFileChange} type="file" accept="image/*" />
       </S.ProfileFixItem>
       <S.ProfileFixItem>

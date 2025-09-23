@@ -9,18 +9,13 @@ export const OverViewContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: scroll;
-`
 
-export const OverViewHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ${LegacyTypography.Pretendard.Title1.Bold}
-  color: ${LegacyPalette.labelNormal};
-  > div {
-    ${LegacyTypography.Pretendard.Body1.Medium}
+  > header {
+    ${LegacyTypography.Pretendard.Title1.Bold}
+    color: ${LegacyPalette.labelNormal};
   }
-`
+`;
+
 
 export const OverViewMainContainer = styled.div`
   display: flex;
