@@ -29,7 +29,7 @@ export const AchievementDetailHeader = styled.div<{
   display: flex;
   flex-direction: column;
   align-items: center;
-  > img {
+  > section {
     width: 120px;
     aspect-ratio: 1 / 1;
     background-color: ${LegacyPalette.fillNeutral};

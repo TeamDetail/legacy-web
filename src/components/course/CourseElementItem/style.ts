@@ -19,9 +19,9 @@ export const IndexBox = styled.div<{ $isClear: boolean }>`
   ${LegacyTypography.Pretendard.Headline.Bold};
   color: ${({ $isClear }) =>
     $isClear ? LegacyPalette.labelNormal : LegacyPalette.labelAssistive};
-  border: 1px solid ${LegacySementic.green.netural};
+  border: 1px solid ${LegacySementic.blue.netural};
   background-color: ${({ $isClear }) =>
-    $isClear ? LegacySementic.green.netural : "none"};
+    $isClear ? LegacySementic.blue.netural : "none"};
 `;
 
 export const SelectBox = styled.div<{ $isSelect: boolean | undefined }>`
@@ -32,7 +32,7 @@ export const SelectBox = styled.div<{ $isSelect: boolean | undefined }>`
   align-items: center;
   justify-content: center;
   background-color: ${({ $isSelect }) =>
-    $isSelect ? LegacySementic.green.netural : LegacyPalette.fillNormal};
+    $isSelect ? LegacySementic.blue.netural : LegacyPalette.fillNormal};
   color: ${LegacyPalette.labelNormal};
   ${LegacyTypography.Pretendard.Body1.Bold};
 `;

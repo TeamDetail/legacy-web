@@ -1,7 +1,7 @@
 import { User } from "@src/types/user/user.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
-import { useQuery as useQueryV5, QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import userApi from "@src/api/user/user.api";
 import { BaseResponse } from "@src/types/globalType/global.type";

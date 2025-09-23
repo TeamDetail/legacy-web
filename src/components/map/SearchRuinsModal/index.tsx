@@ -24,7 +24,9 @@ const SearchRuinsModal = ({ close, onSelectRuin }: SearchRuinsModalProps) => {
     <S.SearchRuinsModalContainer>
       <S.SearchRuinsModalHeader>
         유적지 검색
-        <Close onClick={close} />
+        <div onClick={close}>
+          <Close />
+        </div>
       </S.SearchRuinsModalHeader>
       <S.SearchRuinsModalMain>
         <S.InputContainer>

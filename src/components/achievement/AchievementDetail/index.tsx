@@ -7,7 +7,8 @@ const AchievementDetail = () => {
   return selectedAchievementData ? (
     <S.AchievementDetailContainer>
       <S.AchievementDetailHeader $valueType={selectedAchievementData.valueType}>
-        <img src={selectedAchievementData.achievementType} alt="achieveImg" />
+        {/* <img src={selectedAchievementData.achievementType} alt="achieveImg" /> */}
+        <section></section>
         <div>
           <p>{selectedAchievementData.achievementName}</p>
           <span>

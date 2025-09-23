@@ -3,17 +3,15 @@ import InventoryList from "./InventoryList";
 import * as S from "./style";
 import { ItemType } from "@src/types/inventory/inventory.type";
 import ItemInfo from "./ItemInfo";
-import { LegacyModal } from "@components/common/LegacyModal";
 import ItemQuantitySelectModal from "./ItemQuantitySelectModal";
 import { CardResponse } from "@src/types/card/card.type";
-import ReceivedCardModal from "./ReceivedItemModal";
+import useModalStore from "@src/store/useModalStore";
+import ReceivedItemModal from "./ReceivedItemModal";
 
 const Inventory = () => {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
-  const [isQuantitySelectModalOpen, setIsQuantitySelectModalOpen] =
-    useState(false);
-  const [receivedCard, setReceivedCard] = useState<CardResponse[]>();
-  const [isReceivedCardModalOpen, setIsReceivedCardModalOpen] = useState(false);
+
+  const { setOpenModal, setCloseModal } = useModalStore();
 
   return (
     <>
@@ -25,25 +23,26 @@ const Inventory = () => {
         {selectedItem && (
           <ItemInfo
             item={selectedItem}
-            setIsQuantitySelectModalOpen={setIsQuantitySelectModalOpen}
+            setIsQuantitySelectModalOpen={() =>
+              setOpenModal(
+                <ItemQuantitySelectModal
+                  close={setCloseModal}
+                  selectedItem={selectedItem!}
+                  handleReceiveItem={(data: CardResponse[]) => {
+                    setOpenModal(
+                      <ReceivedItemModal
+                        close={setCloseModal}
+                        receivedCardData={data}
+                        selectedItem={selectedItem!}
+                      />
+                    );
+                  }}
+                />
+              )
+            }
           />
         )}
       </S.InventoryContainer>
-      <LegacyModal isOpen={isQuantitySelectModalOpen} $background>
-        <ItemQuantitySelectModal
-          close={() => setIsQuantitySelectModalOpen(false)}
-          openReceivedCardModal={() => setIsReceivedCardModalOpen(true)}
-          selectedItem={selectedItem!}
-          handleReceiveItem={(data: CardResponse[]) => setReceivedCard(data)}
-        />
-      </LegacyModal>
-      <LegacyModal isOpen={isReceivedCardModalOpen} $background>
-        <ReceivedCardModal
-          close={() => setIsReceivedCardModalOpen(false)}
-          receivedCardData={receivedCard!}
-          selectedItem={selectedItem!}
-        />
-      </LegacyModal>
     </>
   );
 };

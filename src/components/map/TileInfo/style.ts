@@ -83,14 +83,6 @@ export const CostText = styled.div`
   }
 `;
 
-export const Arrow = styled.img<{
-  $isLastPage: boolean;
-}>`
-  width: 20px;
-  height: 20px;
-  display: ${({ $isLastPage }) => $isLastPage && "none"};
-`;
-
 export const ButtonContainer = styled.div`
   margin-top: 12px;
 `;

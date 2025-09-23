@@ -27,6 +27,7 @@ const InventoryList = ({
               size="large"
               isSelected={item === selectedItem}
               onClick={() => setSelectedItem(item)}
+              itemType={item.itemType}
             />
           ))}
         </InventoryListContainer>

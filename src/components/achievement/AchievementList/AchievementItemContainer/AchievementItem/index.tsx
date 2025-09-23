@@ -16,7 +16,7 @@ const AchievementItem = ({
   return (
     <S.AchievementHover onClick={onClick}>
       <S.AchievementItemContainer>
-        <S.AchievementImg src="" alt="achieveImg" />
+        <S.AchievementImg />
         <S.AchievementContents>
           <S.AchievementHeader $valueType={valueType}>
             <div>

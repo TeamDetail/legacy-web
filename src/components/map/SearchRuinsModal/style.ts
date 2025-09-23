@@ -20,6 +20,9 @@ export const SearchRuinsModalHeader = styled.div`
   justify-content: space-between;
   ${LegacyTypography.Pretendard.Heading1.Bold};
   color: ${LegacyPalette.labelNormal};
+  div {
+    cursor: pointer;
+  }
 `;
 
 export const SearchRuinsModalMain = styled.div`
@@ -35,7 +38,6 @@ export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   gap: 8px;
-  padding-right: 12px;
 `;
 
 export const Search = styled.form`

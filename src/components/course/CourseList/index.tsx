@@ -38,7 +38,7 @@ const CourseList = () => {
   };
 
   const sortCourses = (a: Course, b: Course) => {
-    if (sortSelect === "최신") return b.courseId - a.courseId;
+    if (sortSelect === "최신") return a.courseId - b.courseId;
     if (sortSelect === "인기") return b.heartCount - a.heartCount;
     if (sortSelect === "클리어 수") return b.clearCount - a.clearCount;
     return 0;
@@ -74,17 +74,20 @@ const CourseList = () => {
             items={["전체", "미완료", "완료"]}
             value={clearSelect}
             onSelectedItemChange={(type: string) => setClearSelect(type)}
+            zIndex={2}
           />
           <S.SelectWrapper>
             <Select
               items={["최신", "인기", "클리어 수"]}
               value={sortSelect}
               onSelectedItemChange={(type: string) => setSortSelect(type)}
+              zIndex={2}
             />
             <Select
               items={["전체", "일반", "이벤트"]}
               value={eventSelect}
               onSelectedItemChange={(type: string) => setEventSelect(type)}
+              zIndex={2}
             />
           </S.SelectWrapper>
         </S.SelectContainer>

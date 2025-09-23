@@ -2,19 +2,19 @@ import * as S from "./style";
 import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
-import { LegacyModal } from "@components/common/LegacyModal";
 import { useState } from "react";
 import { Ruin } from "@src/types/map/ruin.type";
 import SearchRuinsModal from "@components/map/SearchRuinsModal";
 import { LatLng } from "@src/types/map/latLng.type";
 import Search from "@src/assets/search.svg?react";
 import useBlock from "@src/hooks/map/useBlock";
+import useModalStore from "@src/store/useModalStore";
 
 const Adventure = () => {
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
-  const [isSearchRuinsOpen, setIsSearchRuinsOpen] = useState<boolean>(false);
   const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
   const [zoomLevel, setZoomLevel] = useState<number>(11);
+  const { setOpenModal, setCloseModal } = useModalStore();
 
   const { myRuinBlock, getMyBlock } = useBlock();
 
@@ -22,7 +22,6 @@ const Adventure = () => {
     setSelectedRuins([ruin]);
     setCenter({ lat: ruin.latitude, lng: ruin.longitude });
     setZoomLevel(15);
-    setIsSearchRuinsOpen(false);
   };
 
   return (
@@ -40,7 +39,16 @@ const Adventure = () => {
       </S.Container>
       <S.InfoWrapper>
         <S.AdventureMenuContainer>
-          <div onClick={() => setIsSearchRuinsOpen(true)}>
+          <div
+            onClick={() =>
+              setOpenModal(
+                <SearchRuinsModal
+                  close={setCloseModal}
+                  onSelectRuin={handleSelectRuin}
+                />
+              )
+            }
+          >
             <Search width={22} height={22} />
           </div>
         </S.AdventureMenuContainer>
@@ -52,12 +60,6 @@ const Adventure = () => {
           />
         )}
       </S.InfoWrapper>
-      <LegacyModal isOpen={isSearchRuinsOpen} $background>
-        <SearchRuinsModal
-          close={() => setIsSearchRuinsOpen(false)}
-          onSelectRuin={handleSelectRuin}
-        />
-      </LegacyModal>
     </S.BackStage>
   );
 };

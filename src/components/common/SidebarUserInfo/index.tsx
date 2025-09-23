@@ -77,11 +77,12 @@ const SidebarUserInfoContainer = styled(Link)`
   width: 100%;
   gap: 12px;
   text-decoration: none;
-  & img {
+  > div {
     border-radius: 8px;
     width: 56px;
     height: 56px;
     object-fit: cover;
+    background-color: ${LegacyPalette.fillNormal};
   }
 
   & section {

@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run generate-sitemap",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postinstall": "mv gitignore .gitignore || true"
+    "postinstall": "mv gitignore .gitignore || true",
+    "generate-sitemap": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.85.5",
