@@ -18,6 +18,8 @@ import {
 } from "@src/constants/token.constants";
 import { useMemo } from "react";
 import useModalStore from "@src/store/useModalStore";
+import useUserStore from "@src/store/useUserStore";
+import MailBox from "@components/mailBox/mailBox";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -25,15 +27,20 @@ interface SidebarProps {
 
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
-  const { modalStoreData, isOpen, setOpenModal } = useModalStore();
+  const { userStoreData } = useUserStore();
+  const { setOpenModal, setCloseModal } = useModalStore();
+  const [isMailBoxOpen, setIsMailBoxOpen] = useState(false);
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
   const viewMoreMenu = [
     {
       text: "우편함",
-      onClick: () => setOpenModal("MAIL"),
-      isSelectedPage: modalStoreData === "MAIL" && isOpen,
+      onClick: () => {
+        setOpenModal(<MailBox close={setCloseModal} />);
+        setIsMailBoxOpen(true);
+      },
+      isSelectedPage: isMailBoxOpen,
       icon: <Mail width={22.5} />,
     },
     // {
@@ -94,7 +101,10 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
             color={LegacyPalette.lineNeutral}
             children={
               <S.ViewMoreMenuContainer>
-                <button onClick={() => setIsViewMoreMenuOpen((prev) => !prev)} name="more-menu">
+                <button
+                  onClick={() => setIsViewMoreMenuOpen((prev) => !prev)}
+                  name="more-menu"
+                >
                   <Menu width={22.5} height={22.5} />
                   <p>더보기</p>
                   <div style={{ flexGrow: 1 }} />
@@ -121,7 +131,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
         </S.SidebarButtonMenu>
       </S.SidebarContainer>
     ),
-    [isViewMoreMenuOpen]
+    [isViewMoreMenuOpen, userStoreData]
   );
 };
 

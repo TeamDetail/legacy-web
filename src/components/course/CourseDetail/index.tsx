@@ -104,7 +104,7 @@ const CourseDetailContainer = styled.div`
   gap: 12px;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(180deg, #111212 61.96%, #243824 100%);
+  background: linear-gradient(180deg, #111212 61.96%, #162b3d 100%);
   padding: 28px;
 `;
 

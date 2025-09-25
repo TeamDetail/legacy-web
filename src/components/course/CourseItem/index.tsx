@@ -59,7 +59,7 @@ const CourseItem = ({
           <CourseProgressBar
             max={courseLength}
             value={clearRuinsCount}
-            barColor={LegacySementic.green.netural}
+            barColor={LegacySementic.blue.netural}
             bgColor={LegacyPalette.fillNormal}
             width="84px"
           />

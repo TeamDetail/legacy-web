@@ -20,6 +20,7 @@ export const ProfileFixContainer = styled.div`
 `
 
 export const ProfileFixItem = styled.div`
+  position: relative;
   display: flex;
   gap: 16px;
   > p {
@@ -28,16 +29,23 @@ export const ProfileFixItem = styled.div`
     width: 128px;
     flex-shrink: 0;
   }
+
+  > input {
+    display: none;
+  }
 `
 
-export const ProfileFixUserImg = styled.img`
+export const ProfileFixUserImg = styled.div<{
+  $img: string;
+}>`
+  background: ${({ $img }) => `url("${$img}")`};
+  background-size: cover;
+  background-position: center;
   width: 200px;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   cursor: pointer;
-  background-color: ${LegacyPalette.fillNormal};
-  color: ${LegacyPalette.labelNormal};
-`
+`;
 
 export const ProfileUserDescription = styled.textarea`
   resize: none;

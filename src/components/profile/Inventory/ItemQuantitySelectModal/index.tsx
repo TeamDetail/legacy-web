@@ -14,12 +14,10 @@ const ItemQuantitySelectModal = ({
   close,
   selectedItem,
   handleReceiveItem,
-  openReceivedCardModal,
 }: {
   close: () => void;
   selectedItem: ItemType;
   handleReceiveItem: (data: CardResponse[]) => void;
-  openReceivedCardModal: () => void;
 }) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -34,7 +32,6 @@ const ItemQuantitySelectModal = ({
       );
       if (data) {
         close();
-        openReceivedCardModal();
         handleReceiveItem(data);
       }
     } catch {

@@ -63,7 +63,7 @@ const CourseToggleButton = ({
         <ClearIcon
           fill={
             isSelected
-              ? LegacySementic.green.netural
+              ? LegacySementic.blue.netural
               : LegacyPalette.labelAssistive
           }
         />
@@ -89,7 +89,7 @@ const ButtonWrapper = styled.div<{
       $isSelected
         ? $buttonType === "heart"
           ? LegacySementic.red.netural
-          : LegacySementic.green.netural
+          : LegacySementic.blue.netural
         : LegacyPalette.lineNeutral};
   border-radius: 4px;
   background-color: ${LegacyPalette.fillNormal};
@@ -99,6 +99,6 @@ const ButtonWrapper = styled.div<{
     $isSelected
       ? $buttonType === "heart"
         ? LegacySementic.red.netural
-        : LegacySementic.green.netural
+        : LegacySementic.blue.netural
       : LegacyPalette.labelAssistive};
 `;
