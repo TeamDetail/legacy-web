@@ -104,8 +104,17 @@ const ProfileFix = () => {
       </header>
       <S.ProfileFixItem>
         <p>프로필 이미지</p>
-        <S.ProfileFixUserImg src={preview as string ?? userStoreData.imageUrl} alt="profileImg" onClick={handleClick}/>
-        <input ref={fileRef} onChange={handleFileChange} type="file" accept="image/*" />
+        <S.ProfileFixUserImg
+          $img={(preview as string) ?? userStoreData.imageUrl}
+          onClick={handleClick}
+        />
+        <input
+          ref={fileRef}
+          onChange={handleFileChange}
+          type="file"
+          accept="image/png, image/jpeg, image/webp"
+          // accept="image/*"
+        />
       </S.ProfileFixItem>
       <S.ProfileFixItem>
         <p>자기소개</p>

@@ -35,14 +35,17 @@ export const ProfileFixItem = styled.div`
   }
 `
 
-export const ProfileFixUserImg = styled.img`
+export const ProfileFixUserImg = styled.div<{
+  $img: string;
+}>`
+  background: ${({ $img }) => `url("${$img}")`};
+  background-size: cover;
+  background-position: center;
   width: 200px;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   cursor: pointer;
-  background-color: ${LegacyPalette.fillNormal};
-  color: ${LegacyPalette.labelNormal};
-`
+`;
 
 export const ProfileUserDescription = styled.textarea`
   resize: none;

@@ -27,7 +27,7 @@ const SidebarUserInfo = () => {
   return (
     <SidebarUserInfoWrapper>
       <SidebarUserInfoContainer to={"/profile/overview"}>
-        <img src={userStoreData?.imageUrl} alt="profileImg" />
+        <SidebarUserImg $img={userStoreData.imageUrl}/>
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
@@ -77,13 +77,6 @@ const SidebarUserInfoContainer = styled(Link)`
   width: 100%;
   gap: 12px;
   text-decoration: none;
-  > div {
-    border-radius: 8px;
-    width: 56px;
-    height: 56px;
-    object-fit: cover;
-    background-color: ${LegacyPalette.fillNormal};
-  }
 
   & section {
     display: flex;
@@ -98,6 +91,17 @@ const SidebarUserInfoContainer = styled(Link)`
       display: none;
     }
   }
+`;
+
+const SidebarUserImg = styled.div<{
+  $img: string;
+}>`
+  background: ${({ $img }) => `url("${$img}")`};
+  border-radius: 8px;
+  width: 56px;
+  height: 56px;
+  background-size: cover;
+  background-position: center;
 `;
 
 const SidebarUserName = styled.div`

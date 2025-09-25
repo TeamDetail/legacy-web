@@ -15,7 +15,7 @@ const OverView = () => {
       </header>
       <S.OverViewMainContainer>
         <S.OverViewSidebar>
-          <img src={overViewData.imageUrl} alt="profile" />
+          <S.OverViewUserImg $img={overViewData.imageUrl}/>
         </S.OverViewSidebar>
         <S.OverViewMain>
           <OverViewItem

@@ -33,15 +33,18 @@ export const OverViewSidebar = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 360px;
+`
 
-  section {
-    color: ${LegacyPalette.labelNormal};
-    max-width: 100%;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    background-color: ${LegacyPalette.fillNormal};
-  }
+export const OverViewUserImg = styled.div<{
+  $img: string;
+}>`
+  background: ${({ $img }) => `url("${$img}")`};
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
 `
 
 export const OverViewMain = styled.main`
