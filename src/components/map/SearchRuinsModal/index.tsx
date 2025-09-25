@@ -30,7 +30,12 @@ const SearchRuinsModal = ({ close, onSelectRuin }: SearchRuinsModalProps) => {
       </S.SearchRuinsModalHeader>
       <S.SearchRuinsModalMain>
         <S.InputContainer>
-          <SearchBar value={name} handleValue={(s: string) => setName(s)} placeholder="유적지 이름으로 검색.." />
+          <SearchBar
+            value={name}
+            handleValue={(s: string) => setName(s)}
+            placeholder="유적지 이름으로 검색.."
+            handleSubmit={handleSearchButtonClick}
+          />
           <S.SearchButton onClick={handleSearchButtonClick}>
             검색
           </S.SearchButton>

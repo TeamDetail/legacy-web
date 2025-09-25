@@ -27,6 +27,7 @@ const SearchRuins = ({ selectedRuins, setSelectedRuins }: SearchRuinsProps) => {
           value={name}
           handleValue={(s: string) => setName(s)}
           placeholder="유적지 이름으로 검색..."
+          handleSubmit={handleSearchButtonClick}
         />
         <SearchButton onClick={handleSearchButtonClick}>검색</SearchButton>
       </InputContainer>
