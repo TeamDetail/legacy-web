@@ -12,10 +12,16 @@ const SidebarUserInfo = () => {
   const { setUserData, userStoreData } = useUserStore();
 
   useEffect(() => {
-    if (myUserData) {
+    if (userStoreData.imageUrl.length === 0 && myUserData) {
       setUserData(myUserData.data)
     }
-  }, [myUserData])
+  }, [])
+
+  useEffect(() => {
+    if (userStoreData) {
+      console.log(userStoreData)
+    }
+  }, [userStoreData])
 
   const nickname = userStoreData?.nickname || "Unknown User";
   const level = userStoreData?.level || 0;
