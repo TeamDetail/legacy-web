@@ -10,6 +10,10 @@ import CourseDetail from "./course/CourseDetail";
 import CreateCoursePage from "@src/pages/CreateCoursePage";
 import ShopPage from "@src/pages/ShopPage/idnex";
 import AchievementPage from "@src/pages/AchievementPage";
+import OverView from "@components/profile/OverView";
+import Inventory from "@components/profile/Inventory";
+import Codex from "@components/profile/Codex";
+import ProfileFix from "@components/profile/ProfileFix";
 
 const Router = () => {
   return (
@@ -18,7 +22,13 @@ const Router = () => {
       <Route path="/adventure" element={<Adventure />} />
       <Route path="/login" element={<Login isVerifyingPage={false} />} />
       <Route path="/login/verify" element={<Login isVerifyingPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile" element={<ProfilePage />}>
+        <Route path="" element={<OverView />} />
+        <Route path="overview" element={<OverView />} />
+        <Route path="inventory" element={<Inventory />} />
+        <Route path="codex" element={<Codex />} />
+        <Route path="fix" element={<ProfileFix />} />
+      </Route>
       <Route path="/trial" element={<YetMakingPage type="시련" />} />
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/ranking" element={<RankingPage />} />

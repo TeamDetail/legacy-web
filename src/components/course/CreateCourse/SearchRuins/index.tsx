@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import SearchIcon from "@src/assets/search.svg?react";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { LegacyPalette } from "@src/constants/color/color";
 import useRuin from "@src/hooks/map/useRuin";
 import { Dispatch, SetStateAction, useState } from "react";
 import CourseElementItem from "@components/course/CourseElementItem";
 import { RuinDetail } from "@src/types/map/ruin.type";
+import SearchBar from "@components/common/SearchBar";
 
 interface SearchRuinsProps {
   selectedRuins: RuinDetail[];
@@ -23,13 +23,11 @@ const SearchRuins = ({ selectedRuins, setSelectedRuins }: SearchRuinsProps) => {
   return (
     <SearchRuinsContainer>
       <InputContainer>
-        <Search>
-          <SearchIcon width={20} height={20} />
-          <input
-            placeholder="코스 이름으로 검색..."
-            onChange={(e) => setName(e.target.value)}
-          />
-        </Search>
+        <SearchBar
+          value={name}
+          handleValue={(s: string) => setName(s)}
+          placeholder="유적지 이름으로 검색..."
+        />
         <SearchButton onClick={handleSearchButtonClick}>검색</SearchButton>
       </InputContainer>
       {ruinsByName ? (

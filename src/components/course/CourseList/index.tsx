@@ -1,6 +1,5 @@
 import { Select } from "@components/common/Select";
 import * as S from "./style";
-import SearchIcon from "@src/assets/search.svg?react";
 import { useState, useMemo, useEffect } from "react";
 import CourseItem from "../CourseItem";
 import useCourse from "@src/hooks/course/useCourse";
@@ -8,6 +7,7 @@ import { Course } from "@src/types/course/course.type";
 import PenIcon from "@src/assets/pen.svg?react";
 import { useNavigate } from "react-router-dom";
 import CourseListSkeleton from "@components/skeleton/CourseListSkeleton";
+import SearchBar from "@components/common/SearchBar";
 
 const CourseList = () => {
   const navigate = useNavigate();
@@ -61,14 +61,11 @@ const CourseList = () => {
   return (
     <S.CourseListContainer>
       <S.SearchContainer>
-        <S.Search>
-          <SearchIcon width={20} height={20} />
-          <input
-            placeholder="코스 이름으로 검색..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </S.Search>
+        <SearchBar
+          value={searchTerm}
+          handleValue={(s: string) => setSearchTerm(s)}
+          placeholder="코스 이름으로 검색..."
+        />
         <S.SelectContainer>
           <Select
             items={["전체", "미완료", "완료"]}

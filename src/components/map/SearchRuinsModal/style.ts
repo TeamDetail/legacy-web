@@ -40,34 +40,6 @@ export const InputContainer = styled.div`
   gap: 8px;
 `;
 
-export const Search = styled.form`
-  flex-grow: 1;
-  padding: 0px 12px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  height: 36px;
-  border-radius: 12px;
-  background-color: ${LegacyPalette.fillNormal};
-
-  input {
-    ${LegacyTypography.Pretendard.Label.Medium};
-    color: ${LegacyPalette.labelNormal};
-    height: 100%;
-    flex-grow: 1;
-    border: none;
-    background: none;
-
-    &::placeholder {
-      color: ${LegacyPalette.labelAlternative};
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-`;
-
 export const SearchButton = styled.div`
   height: 36px;
   padding: 0 12px;
