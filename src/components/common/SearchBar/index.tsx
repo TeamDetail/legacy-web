@@ -1,29 +1,45 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
-import Search from '@src/assets/search.svg?react';
+import Search from "@src/assets/search.svg?react";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 
 type SearchBarProps = {
   value: string;
   handleValue: (s: string) => void;
   placeholder: string;
-}
+  handleSubmit?: () => void;
+};
 const SearchBar = ({
   value,
   handleValue,
-  placeholder
+  placeholder,
+  handleSubmit,
 }: SearchBarProps) => {
   return (
-    <SearchBarContainer>
-      <Search width={24} height={24}/>
-      <input placeholder={placeholder} type="text" name="searchBar" value={value} onChange={(e) => handleValue(e.target.value)}/>
+    <SearchBarContainer
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (handleSubmit) {
+          handleSubmit();
+        }
+      }}
+    >
+      <Search width={24} height={24} />
+      <input
+        placeholder={placeholder}
+        type="text"
+        name="searchBar"
+        value={value}
+        onChange={(e) => handleValue(e.target.value)}
+        autoComplete="off"
+      />
     </SearchBarContainer>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;
 
-const SearchBarContainer = styled.div`
+const SearchBarContainer = styled.form`
   display: flex;
   width: 100%;
   min-height: 40px;
@@ -41,4 +57,4 @@ const SearchBarContainer = styled.div`
     color: ${LegacyPalette.labelNormal};
     ${LegacyTypography.Pretendard.Body2.Medium}
   }
-`
+`;
