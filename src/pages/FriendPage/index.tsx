@@ -6,8 +6,12 @@ import { MenuBadge, MenuDataType } from "@components/common/MenuBadge";
 import { LegacySementic } from "@src/constants/color/color";
 import { useState } from "react";
 
-const index = () => {
-  const [menuBadgeData, setMenuBadgeData] = useState<MenuDataType[]>([{}])
+const FriendPage = () => {
+  const [menuBadgeData, setMenuBadgeData] = useState<MenuDataType[]>([
+    { text: "목록", isAtv: true, value: "friend" },
+    { text: "대기 중", isAtv: false, value: "pending" },
+    { text: "추가", isAtv: false, value: "add" },
+  ]);
 
   return (
     <S.FriendContainer>
@@ -18,11 +22,11 @@ const index = () => {
           친구
         </HeaderContainer>
         <S.FriendDataContainer>
-          <MenuBadge badgeColor={LegacySementic.purple.normal}/>
+          <MenuBadge badgeColor={LegacySementic.purple.normal} menuData={menuBadgeData} setMenuData={setMenuBadgeData} />
         </S.FriendDataContainer>
       </MainContainer>
     </S.FriendContainer>
   );
 };
 
-export default index;
+export default FriendPage;
