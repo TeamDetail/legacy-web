@@ -1,25 +1,33 @@
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import useUser from "@src/hooks/user/useUser";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LegacyButton from "../LegacyButton";
+import useUserStore from "@src/store/useUserStore";
+import { useGetMeQuery } from "@src/queries/user/user.queries";
+import { useEffect } from "react";
 
 const SidebarUserInfo = () => {
-  const { myUserData } = useUser(true);
+  const { data: myUserData } = useGetMeQuery({ suspense: true });
+  const { setUserData, userStoreData } = useUserStore();
 
-  const nickname = myUserData?.data.nickname || "Unknown User";
-  const level = myUserData?.data.level || 0;
+  useEffect(() => {
+    if (myUserData) {
+      setUserData(myUserData.data)
+    }
+  }, [myUserData])
+
+  const nickname = userStoreData?.nickname || "Unknown User";
+  const level = userStoreData?.level || 0;
   const titleName =
-    myUserData!.data.title.name.length > 0
-      ? myUserData!.data.title.name
+    userStoreData?.title.name.length > 0
+      ? userStoreData?.title.name
       : "칭호 미착용";
 
   return (
     <SidebarUserInfoWrapper>
-      <SidebarUserInfoContainer to={"/profile"} aria-label="프로필 이동">
-        {/* <img src={myUserData?.data.imageUrl} alt="profileImg" /> */}
-        <div />
+      <SidebarUserInfoContainer to={"/profile/overview"}>
+        <SidebarUserImg $img={userStoreData.imageUrl}/>
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
@@ -69,13 +77,6 @@ const SidebarUserInfoContainer = styled(Link)`
   width: 100%;
   gap: 12px;
   text-decoration: none;
-  > div {
-    border-radius: 8px;
-    width: 56px;
-    height: 56px;
-    object-fit: cover;
-    background-color: ${LegacyPalette.fillNormal};
-  }
 
   & section {
     display: flex;
@@ -90,6 +91,17 @@ const SidebarUserInfoContainer = styled(Link)`
       display: none;
     }
   }
+`;
+
+const SidebarUserImg = styled.div<{
+  $img: string;
+}>`
+  background: ${({ $img }) => `url("${$img}")`};
+  border-radius: 8px;
+  width: 56px;
+  height: 56px;
+  background-size: cover;
+  background-position: center;
 `;
 
 const SidebarUserName = styled.div`

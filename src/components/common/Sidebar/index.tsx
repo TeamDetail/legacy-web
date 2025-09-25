@@ -18,6 +18,7 @@ import {
 } from "@src/constants/token.constants";
 import { useMemo } from "react";
 import useModalStore from "@src/store/useModalStore";
+import useUserStore from "@src/store/useUserStore";
 import MailBox from "@components/mailBox/mailBox";
 
 interface SidebarProps {
@@ -26,6 +27,7 @@ interface SidebarProps {
 
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
+  const { userStoreData } = useUserStore();
   const { setOpenModal, setCloseModal } = useModalStore();
   const [isMailBoxOpen, setIsMailBoxOpen] = useState(false);
   // const location = useLocation();
@@ -129,7 +131,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
         </S.SidebarButtonMenu>
       </S.SidebarContainer>
     ),
-    [isViewMoreMenuOpen]
+    [isViewMoreMenuOpen, userStoreData]
   );
 };
 

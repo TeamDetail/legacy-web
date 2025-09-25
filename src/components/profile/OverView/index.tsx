@@ -1,38 +1,21 @@
 import * as S from './style';
 import { UserRecordKeys } from '@src/types/user/user.type';
-import LegacyButton from '@components/common/LegacyButton';
-import { LegacyPalette, LegacySementic } from '@src/constants/color/color';
+import { LegacySementic } from '@src/constants/color/color';
 import OverViewItem from '@components/profile/OverView/OverViewItem';
 import { userRecordMapper } from '@src/utils/textMapper/textMapper';
 import useUserStore from '@src/store/useUserStore';
-import { useState } from 'react';
-// import ProfileFix from '@components/profile/OverView/ProfileFix';
-import { toast } from 'react-toastify';
 
 const OverView = () => {
-  const [isProfileFixPage] = useState(false);
   const {userStoreData: overViewData} = useUserStore();
 
-  return !isProfileFixPage ? (
+  return (
     <S.OverViewContainer>
-      <S.OverViewHeader>
+      <header>
         {overViewData.nickname}
-        <LegacyButton
-          size="default"
-          isBold={false}
-          isFilled={false}
-          color={LegacyPalette.labelNormal}
-          width="fit-content"
-          // handleClick={() => setIsProfileFixPage(true)}
-          handleClick={() => toast.error("개발 중인 기능입니다.")}
-        >
-          프로필 수정
-        </LegacyButton>
-      </S.OverViewHeader>
+      </header>
       <S.OverViewMainContainer>
         <S.OverViewSidebar>
-          {/* <img src={overViewData.imageUrl} alt="profile" /> */}
-          <section></section>
+          <S.OverViewUserImg $img={overViewData.imageUrl}/>
         </S.OverViewSidebar>
         <S.OverViewMain>
           <OverViewItem
@@ -64,9 +47,7 @@ const OverView = () => {
         </S.OverViewMain>
       </S.OverViewMainContainer>
     </S.OverViewContainer>
-  ) : (
-    <></>
-  )
+  );
 }
 
 export default OverView

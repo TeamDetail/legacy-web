@@ -5,20 +5,33 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { MenuBadge } from "@src/components/common/MenuBadge";
 import Sidebar from "@src/components/common/Sidebar";
 import { Suspense, useState } from "react";
-import Codex from "@components/profile/Codex";
 import UserRecordSkeleton from "@components/skeleton/UserRecordSkeleton";
-import Inventory from "@components/profile/Inventory";
 import { HeaderContainer } from "@src/styles/globalStyles";
-import OverView from "@components/profile/OverView";
+import { Outlet, useLocation } from "react-router-dom";
 
 const ProfilePage = () => {
+  const loc = useLocation();
   const [menuBadgeData, setMenuBadgeData] = useState([
-    { text: "개요", isAtv: true, value: "OVERVIEW" },
-    { text: "도감", isAtv: false, value: "CODEX" },
-    { text: "인벤토리", isAtv: false, value: "INVENTORY" },
-    // { text: "덱", isAtv: false },
-    // { text: "시련 스탯", isAtv: false },
-    // { text: "칭호", isAtv: false },
+    {
+      text: "개요",
+      isAtv: loc.pathname.split("/")[2] === "overview",
+      value: "overview",
+    },
+    {
+      text: "도감",
+      isAtv: loc.pathname.split("/")[2] === "codex",
+      value: "codex",
+    },
+    {
+      text: "인벤토리",
+      isAtv: loc.pathname.split("/")[2] === "inventory",
+      value: "inventory",
+    },
+    {
+      text: "프로필 수정",
+      isAtv: loc.pathname.split("/")[2] === "fix",
+      value: "fix",
+    },
   ]);
 
   return (
@@ -26,33 +39,28 @@ const ProfilePage = () => {
       <Sidebar />
       <S.MainContainer
         $isOverViewPage={(
-          menuBadgeData.find((item) => item.isAtv)?.value === "OVERVIEW"
+          menuBadgeData.find((item) => item.isAtv)?.value === "overview" ||
+          menuBadgeData.find((item) => item.isAtv)?.value === "fix"
         ).toString()}
       >
         <HeaderContainer>
           <InventoryImg width={32} height={32} />
           프로필
         </HeaderContainer>
-        {menuBadgeData.find((item) => item.isAtv)?.value === "OVERVIEW" || (
-          <Suspense fallback={<UserRecordSkeleton />}>
-            <UserRecord />
-          </Suspense>
-        )}
+        {menuBadgeData.find((item) => item.isAtv)?.value === "overview" ||
+          menuBadgeData.find((item) => item.isAtv)?.value === "fix" || (
+            <Suspense fallback={<UserRecordSkeleton />}>
+              <UserRecord />
+            </Suspense>
+          )}
         <S.DataContainer>
           <MenuBadge
             badgeColor={LegacyPalette.primaryNormal}
             menuData={menuBadgeData}
             setMenuData={setMenuBadgeData}
+            isLink
           />
-          {menuBadgeData.find((item) => item.isAtv)?.value === "CODEX" && (
-            <Codex />
-          )}
-          {menuBadgeData.find((item) => item.isAtv)?.value === "OVERVIEW" && (
-            <OverView />
-          )}
-          {menuBadgeData.find((item) => item.isAtv)?.text === "인벤토리" && (
-            <Inventory />
-          )}
+          <Outlet />
         </S.DataContainer>
       </S.MainContainer>
     </S.ProfileContainer>

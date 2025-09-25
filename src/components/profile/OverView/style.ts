@@ -9,18 +9,13 @@ export const OverViewContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: scroll;
-`
 
-export const OverViewHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ${LegacyTypography.Pretendard.Title1.Bold}
-  color: ${LegacyPalette.labelNormal};
-  > div {
-    ${LegacyTypography.Pretendard.Body1.Medium}
+  > header {
+    ${LegacyTypography.Pretendard.Title1.Bold}
+    color: ${LegacyPalette.labelNormal};
   }
-`
+`;
+
 
 export const OverViewMainContainer = styled.div`
   display: flex;
@@ -38,15 +33,18 @@ export const OverViewSidebar = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 360px;
+`
 
-  section {
-    color: ${LegacyPalette.labelNormal};
-    max-width: 100%;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    background-color: ${LegacyPalette.fillNormal};
-  }
+export const OverViewUserImg = styled.div<{
+  $img: string;
+}>`
+  background: ${({ $img }) => `url("${$img}")`};
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
 `
 
 export const OverViewMain = styled.main`
