@@ -20,6 +20,7 @@ import { useMemo } from "react";
 import useModalStore from "@src/store/useModalStore";
 import useUserStore from "@src/store/useUserStore";
 import MailBox from "@components/mailBox/mailBox";
+import Friend from "@src/assets/sidebarIcon/friend.svg?react";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -30,6 +31,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const { userStoreData } = useUserStore();
   const { setOpenModal, setCloseModal } = useModalStore();
   const [isMailBoxOpen, setIsMailBoxOpen] = useState(false);
+  const [isFriendPageOpen, setIsFriendPageOpen] = useState(false);
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
@@ -42,6 +44,15 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
       },
       isSelectedPage: isMailBoxOpen,
       icon: <Mail width={22.5} />,
+    },
+    {
+      text: "친구",
+      onClick: () => {
+        nav("/friend");
+        setIsFriendPageOpen(true);
+      },
+      isSelectedPage: isFriendPageOpen,
+      icon: <Friend width={22.5} />,
     },
     // {
     //   text: "설정",
