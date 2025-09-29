@@ -17,13 +17,34 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
 
   return selectedRegion === "" ? (
     <S.CodexItemHover onClick={onClick}>
-      <S.CodexItemContainer $isCollectAll={((data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100) === 100).toString()}>
+      <S.CodexItemContainer
+        $isCollectAll={(
+          (data!.data.cards?.filter(
+            (item) => item.regionAttributeName === title
+          ).length /
+            (data!.data.maxCount === 0 ? 30 : data!.data.maxCount)) *
+            100 ===
+          100
+        ).toString()}
+      >
         {title}
         <div>
-          <p>{`${data!.data.cards?.filter(item => item.regionAttributeName === title).length} / ${data?.data.maxCount === 0 ? 30 : data?.data.maxCount}`}</p>
-          • 
+          <p>{`${
+            data!.data.cards?.filter(
+              (item) => item.regionAttributeName === title
+            ).length
+          } / ${data?.data.maxCount}`}</p>
           <span>
-            {`${data!.data.cards?.filter(item => item.regionAttributeName === title).length / (data!.data.maxCount === 0 ? 30 : data!.data.maxCount) * 100}% 수집`}
+            •
+            {`${
+              Math.floor(
+                (data!.data.cards?.filter(
+                  (item) => item.regionAttributeName === title
+                ).length /
+                  data!.data.maxCount) *
+                  100
+              ) / 100
+            }% 수집`}
           </span>
         </div>
       </S.CodexItemContainer>
@@ -34,43 +55,41 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
         <p>{title}</p>
         <LegacyButton
           width="128px"
-          size="small" 
-          isFilled 
-          isBold={false} 
-          color={LegacyPalette.fillNormal} 
-          customStyle={{color: `${LegacyPalette.labelNormal}`}}
+          size="small"
+          isFilled
+          isBold={false}
+          color={LegacyPalette.fillNormal}
+          customStyle={{ color: `${LegacyPalette.labelNormal}` }}
           handleClick={resetSelectedState}
         >
           목록으로
         </LegacyButton>
       </header>
       {data!.data.cards.length > 0 ? (
-      <S.CardArea>
-        {data?.data.cards.map(item => (
-          <Card
-            key={item.cardId}
-            cardType={item.cardType}
-            isAtv={false}
-            canInteract={false}
-            handleCardChange={() => void(0)}
-            size="M"
-            nationAttributeName={item.nationAttributeName}
-            lineAttributeName={item.lineAttributeName}
-            regionAttributeName={item.regionAttributeName}
-            cardName={item.cardName}
-            cardImageUrl={item.cardImageUrl}
-          />
-        ))}
-      </S.CardArea>
+        <S.CardArea>
+          {data?.data.cards.map((item) => (
+            <Card
+              key={item.cardId}
+              cardType={item.cardType}
+              isAtv={false}
+              canInteract={false}
+              handleCardChange={() => void 0}
+              size="M"
+              nationAttributeName={item.nationAttributeName}
+              lineAttributeName={item.lineAttributeName}
+              regionAttributeName={item.regionAttributeName}
+              cardName={item.cardName}
+              cardImageUrl={item.cardImageUrl}
+            />
+          ))}
+        </S.CardArea>
       ) : (
-        <S.CardNotFound>
-          소지한 {title} 지역의 카드가 없습니다!
-        </S.CardNotFound>
+        <S.CardNotFound>소지한 {title} 지역의 카드가 없습니다!</S.CardNotFound>
       )}
     </S.RegionFrame>
   ) : (
     <></>
-  )
+  );
 }
 
 export default CodexItem

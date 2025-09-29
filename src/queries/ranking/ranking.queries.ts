@@ -2,13 +2,13 @@ import rankingApi from "@src/api/ranking/ranking.api";
 import { QUERY_KEYS } from "@src/queries/queryKey";
 import { ExploreRankingType, LevelRankingType } from "@src/types/ranking/ranking.type";
 import {
-  useQuery as useQueryV5,
-  UseQueryOptions as UseQueryOptionsV5,
+  useSuspenseQuery as useQueryV5,
+  UseSuspenseQueryOptions as UseSuspenseQueryOptionsV5,
 } from "@tanstack/react-query";
 export const useGetExploreRanking = (
   scope: "all" | "friend",
   options?: Partial<
-    UseQueryOptionsV5<
+    UseSuspenseQueryOptionsV5<
       ExploreRankingType[],
       Error,
       ExploreRankingType[],
@@ -25,7 +25,7 @@ export const useGetExploreRanking = (
 export const useGetLevelRanking = (
   scope: "all" | "friend",
   options?: Partial<
-    UseQueryOptionsV5<
+    UseSuspenseQueryOptionsV5<
       LevelRankingType[],
       Error,
       LevelRankingType[],

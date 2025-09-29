@@ -26,7 +26,7 @@ const ItemInfo = ({
       <LegacyButton
         isFilled={false}
         isBold={false}
-        size="big"
+        size="default"
         color={LegacyPalette.lineAlternative}
         children={<ButtonText>사용하기</ButtonText>}
         handleClick={() => setIsQuantitySelectModalOpen(true)}
@@ -46,7 +46,6 @@ const ItemInfoContainer = styled.div`
   gap: 16px;
   background-color: ${LegacyPalette.backgroundNeutral};
   border-radius: 20px;
-  border: 1px solid ${LegacyPalette.lineNeutral};
 `;
 
 const ItemInfoWrapper = styled.div`

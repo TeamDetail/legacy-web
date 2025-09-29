@@ -68,7 +68,6 @@ const ProfileFix = () => {
         setUserData({
           ...userStoreData,
           description: changedUserData.description.trim(),
-          imageUrl: preview as string ?? changedUserData.imageUrl
         });
       } catch (error) {
         toast.error(error as string);

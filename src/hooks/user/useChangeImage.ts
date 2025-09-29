@@ -18,7 +18,6 @@ const useChangeImage = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setPreview(reader.result);
-        console.log("setPreview")
       };
       formData.append("file", file)
       setFileInfo(formData);
