@@ -18,12 +18,6 @@ const SidebarUserInfo = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (userStoreData) {
-      console.log(userStoreData)
-    }
-  }, [userStoreData])
-
   const nickname = userStoreData?.nickname || "Unknown User";
   const level = userStoreData?.level || 0;
   const titleName =
