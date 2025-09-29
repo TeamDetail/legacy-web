@@ -33,7 +33,7 @@ const SidebarUserInfo = () => {
   return (
     <SidebarUserInfoWrapper>
       <SidebarUserInfoContainer to={"/profile/overview"}>
-        <SidebarUserImg $img={userStoreData.imageUrl}/>
+        <SidebarUserImg $img={userStoreData.imageUrl} />
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
@@ -48,7 +48,12 @@ const SidebarUserInfo = () => {
         children={
           <CreditText>
             <span>크레딧</span>
-            {myUserData?.data.credit}
+            <p>{userStoreData.credit}</p>
+            <img src="../src/assets/sidebarIcon/legacyCoin.png" width="100%" />
+            <div>
+              <span>크레딧</span>
+              {userStoreData.credit}
+            </div>
           </CreditText>
         }
         width="100%"
@@ -69,12 +74,46 @@ const CreditText = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
-  ${LegacyTypography.Pretendard.Caption2.Bold};
-  color: ${LegacySementic.yellow.normal};
 
   span {
     ${LegacyTypography.Pretendard.Caption2.Medium};
     color: ${LegacyPalette.labelNormal};
+    white-space: nowrap;
+  }
+
+  p {
+    ${LegacyTypography.Pretendard.Caption2.Bold};
+    color: ${LegacySementic.yellow.normal};
+  }
+
+  @media (max-width: 840px) {
+    > span,
+    > p,
+    > div {
+      display: none;
+    }
+
+    &:hover {
+      div {
+        display: flex;
+        position: absolute;
+        align-items: center;
+        gap: 4px;
+        ${LegacyTypography.Pretendard.Label.Bold};
+        background-color: ${LegacyPalette.backgroundNormal};
+        color: ${LegacySementic.yellow.netural};
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.14);
+      }
+    }
+  }
+
+  @media (min-width: 840px) {
+    img,
+    div {
+      display: none;
+    }
   }
 `;
 
