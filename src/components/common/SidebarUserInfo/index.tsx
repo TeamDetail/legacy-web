@@ -6,6 +6,7 @@ import LegacyButton from "../LegacyButton";
 import useUserStore from "@src/store/useUserStore";
 import { useGetMeQuery } from "@src/queries/user/user.queries";
 import { useEffect } from "react";
+import Coin from '@src/assets/sidebarIcon/legacyCoin.png';
 
 const SidebarUserInfo = () => {
   const { data: myUserData } = useGetMeQuery({ suspense: true });
@@ -49,7 +50,7 @@ const SidebarUserInfo = () => {
           <CreditText>
             <span>크레딧</span>
             <p>{userStoreData.credit}</p>
-            <img src="../src/assets/sidebarIcon/legacyCoin.png" width="100%" />
+            <img src={Coin} width="100%" />
             <div>
               <span>크레딧</span>
               {userStoreData.credit}
