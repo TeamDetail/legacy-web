@@ -66,5 +66,6 @@ export const AdventureMenuContainer = styled.div`
     align-items: center;
     background-color: ${LegacyPalette.fillNormal};
     border-radius: 8px;
+    cursor: pointer;
   }
 `;

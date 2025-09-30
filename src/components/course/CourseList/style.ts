@@ -1,5 +1,4 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
 export const CourseListContainer = styled.div`
@@ -42,25 +41,6 @@ export const SelectContainer = styled.div`
 export const SelectWrapper = styled.div`
   display: flex;
   gap: 8px;
-`;
-
-export const Search = styled.div`
-  padding: 0px 12px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  height: 40px;
-  border-radius: 12px;
-  background-color: ${LegacyPalette.fillNormal};
-
-  input {
-    ${LegacyTypography.Pretendard.Label.Medium};
-    color: ${LegacyPalette.labelNormal};
-    height: 100%;
-    flex-grow: 1;
-    border: none;
-    background: none;
-  }
 `;
 
 export const EmptyCourseMessage = styled.div`

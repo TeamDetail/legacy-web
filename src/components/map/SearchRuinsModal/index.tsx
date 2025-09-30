@@ -1,11 +1,11 @@
 import * as S from "./style";
 import Close from "@src/assets/close.svg?react";
-import SearchIcon from "@src/assets/search.svg?react";
 import useRuin from "@src/hooks/map/useRuin";
 import StarRating from "@components/common/StarRating";
 import { useState } from "react";
 import { RuinDetail } from "@src/types/map/ruin.type";
 import SearchRuinsSkeleton from "@components/skeleton/SearchRuinsSkeleton";
+import SearchBar from "@components/common/SearchBar";
 
 interface SearchRuinsModalProps {
   close: () => void;
@@ -24,23 +24,18 @@ const SearchRuinsModal = ({ close, onSelectRuin }: SearchRuinsModalProps) => {
     <S.SearchRuinsModalContainer>
       <S.SearchRuinsModalHeader>
         유적지 검색
-        <Close onClick={close} />
+        <div onClick={close}>
+          <Close />
+        </div>
       </S.SearchRuinsModalHeader>
       <S.SearchRuinsModalMain>
         <S.InputContainer>
-          <S.Search
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSearchButtonClick();
-            }}
-          >
-            <SearchIcon width={20} height={20} />
-            <input
-              placeholder="코스 이름으로 검색..."
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </S.Search>
+          <SearchBar
+            value={name}
+            handleValue={(s: string) => setName(s)}
+            placeholder="유적지 이름으로 검색.."
+            handleSubmit={handleSearchButtonClick}
+          />
           <S.SearchButton onClick={handleSearchButtonClick}>
             검색
           </S.SearchButton>

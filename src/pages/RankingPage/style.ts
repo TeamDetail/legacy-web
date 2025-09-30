@@ -1,5 +1,4 @@
 import { LegacyPalette } from "@src/constants/color/color";
-import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 export const RankingPageContainer = styled.div`
   display: flex;
@@ -16,16 +15,6 @@ export const RankingPageMainContainer = styled.main`
   gap: 12px;
   color: ${LegacyPalette.labelNormal};
   flex-grow: 1;
-
-  > header {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: ${LegacyPalette.backgroundNormal};
-    ${LegacyTypography.BitBit.Title2};
-  }
 `;
 
 export const RankingPageMain = styled.div`

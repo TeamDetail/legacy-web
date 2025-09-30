@@ -4,6 +4,7 @@ import Pixels from "../Pixels";
 import { Ruin } from "@src/types/map/ruin.type";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { LatLng } from "@src/types/map/latLng.type";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
 
 const MapConroller = ({ center, zoom }: { center: LatLng; zoom: number }) => {
   const map = useMap();
@@ -27,10 +28,12 @@ const GoogleMap = ({
   setSelectedRuins,
   center,
   zoomLevel,
+  myRuinBlock
 }: {
   setSelectedRuins: Dispatch<SetStateAction<Ruin[] | null>>;
   center: LatLng;
   zoomLevel: number;
+  myRuinBlock: MyBlockType[];
 }) => {
   return (
     <APIProvider apiKey={GOOGLE_MAP_API_KEY}>
@@ -47,7 +50,7 @@ const GoogleMap = ({
         defaultZoom={zoomLevel}
       >
         <MapConroller center={center} zoom={zoomLevel} />
-        <Pixels setSelectedRuins={setSelectedRuins} />
+        <Pixels setSelectedRuins={setSelectedRuins} myRuinBlock={myRuinBlock} />
       </Map>
     </APIProvider>
   );

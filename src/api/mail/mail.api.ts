@@ -1,5 +1,5 @@
 import customAxios from "@src/libs/axios/customAxios";
-import { Item, Mail } from "@src/types/inventory/inventory.type";
+import { ItemType, Mail } from "@src/types/inventory/inventory.type";
 
 class MailApi {
   public async getMailApi(): Promise<Mail[]> {
@@ -7,7 +7,7 @@ class MailApi {
     return data.data;
   }
 
-  public async getAllReward(): Promise<Item[]> {
+  public async getAllReward(): Promise<ItemType[]> {
     const { data } = await customAxios.post("/mail/allGet");
     return data.data;
   }

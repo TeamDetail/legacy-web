@@ -1,11 +1,13 @@
-export const QUERY_KEYS = Object.freeze({
+import { AchievementValueType } from "@src/types/achievement/achievement.type";
+
+export const QUERY_KEYS = {
   user: {
     getMe: "userGetMe",
     getUser: "userGetUser",
   },
   ruin: {
     getRuinDetail: (id: number) => `mapGetRuinDetail/${id}`,
-    getRuinQuiz: "mapGetRuinQuiz",
+    getRuinQuiz: (id: number) => `mapGetRuinQuiz/${id}`,
     getRuinsByName: (name: string) => [`ruinGetRuinsByName/${name}`],
   },
   card: {
@@ -17,11 +19,15 @@ export const QUERY_KEYS = Object.freeze({
   block: {
     getMyBlock: "blockGetMyBlock",
   },
-  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") =>
-    [`ranking/${type}/${scope}`],
+  ranking: (type: "trial" | "explore" | "level", scope: "all" | "friend") => [
+    `ranking/${type}/${scope}`,
+  ],
   course: {
     getAllCourse: ["course"],
     getCourseDetailById: (id: number) => [`course/${id}`],
+  },
+  shop: {
+    getCardpack: ["getCardpack"],
   },
   mail: {
     getMail: ["mail"],
@@ -29,4 +35,10 @@ export const QUERY_KEYS = Object.freeze({
   comment: {
     getCommentById: (id: number) => ["getCommentById", `${id}`],
   },
-});
+  inventory: {
+    getMyInventory: ["getMyInventory"],
+  },
+  achievement: {
+    getAchievement: (type: AchievementValueType) => ["getAchievement", type],
+  },
+};

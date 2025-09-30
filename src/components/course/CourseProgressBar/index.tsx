@@ -41,6 +41,7 @@ const BarContainer = styled.div<{ $bgColor: string; $width: string }>`
   overflow: hidden;
   display: flex;
   align-items: center;
+  z-index: 1;
 `;
 
 const BarFill = styled.div<{ $barColor: string; $percent: number }>`

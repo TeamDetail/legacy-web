@@ -1,17 +1,19 @@
-import useBlock from "@src/hooks/map/useBlock";
 import useRuin from "@src/hooks/map/useRuin";
 import { useMap } from "@vis.gl/react-google-maps";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Pixel from "../Pixel";
 import { Ruin } from "@src/types/map/ruin.type";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
 
 const Pixels = ({
   setSelectedRuins,
+  myRuinBlock,
 }: {
   setSelectedRuins: Dispatch<SetStateAction<Ruin[] | null>>;
+  myRuinBlock: MyBlockType[];
 }) => {
   const map = useMap();
-  const { myRuinBlock } = useBlock();
+
   const { getRuin, dedupeRuins } = useRuin();
   const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(16);
 

@@ -21,6 +21,9 @@ export interface RuinDetail {
   manager: string;
   latitude: number;
   longitude: number;
+  description: string;
+  averageRating: number;
+  countComments: number;
   card: CardResponse;
 }
 
@@ -28,6 +31,7 @@ export interface RuinQuizType {
   quizId: number;
   quizProblem: string;
   optionValue: string[];
+  ruinsName: string;
 }
 
 export interface QuizAnswerType {

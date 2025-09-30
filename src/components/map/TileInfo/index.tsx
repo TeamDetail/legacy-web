@@ -8,11 +8,13 @@ import OutLine from "./OutLine";
 import Detail from "./Detail";
 import Review from "./Review";
 import useRuin from "@src/hooks/map/useRuin";
-import useBlock from "@src/hooks/map/useBlock";
-import ArrowLeftImg from "@src/assets/arrowLeft.svg";
-import ArrowRightImg from "@src/assets/arrowRight.svg";
+import ArrowLeftImg from "@src/assets/arrowLeft.svg?react";
+import ArrowRightImg from "@src/assets/arrowRight.svg?react";
 import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
-import { LegacyModal } from "@components/common/LegacyModal";
+import useQuiz from "@src/hooks/map/useQuiz";
+import { MyBlockType } from "@src/types/map/normalBlock.type";
+import useModalStore from "@src/store/useModalStore";
+import QuizModal from "../QuizModal";
 import Comment from "../Comment";
 
 interface MenuDataType {
@@ -22,18 +24,15 @@ interface MenuDataType {
 }
 
 const TileInfo = ({
-  handleButtonClick,
   selectedRuins,
+  myRuinBlock,
+  getMyBlock,
 }: {
-  handleButtonClick: (id: number) => void;
   selectedRuins: Ruin[] | null;
+  myRuinBlock: MyBlockType[];
+  getMyBlock: () => Promise<void>;
 }) => {
-  const [page, setPage] = useState<number>(0);
-  const [category, setCategory] = useState<MenuDataType[]>([
-    { text: "개요", isAtv: true, value: "" },
-    { text: "상세", isAtv: false, value: "" },
-    { text: "한줄평", isAtv: false, value: "" },
-  ]);
+  const { getRuinQuizById } = useQuiz();
   const {
     getRuinDetailById,
     isRuinDetailLoading,
@@ -41,13 +40,17 @@ const TileInfo = ({
     commentData,
     getCommentData,
   } = useRuin();
-  const { myRuinBlock } = useBlock();
+  const { setOpenModal, setCloseModal } = useModalStore();
+  const [page, setPage] = useState<number>(0);
+  const [category, setCategory] = useState<MenuDataType[]>([
+    { text: "개요", isAtv: true, value: "" },
+    { text: "상세", isAtv: false, value: "" },
+    { text: "한줄평", isAtv: false, value: "" },
+  ]);
 
-  const [isCommentOpen, setIsCommentOpen] = useState<boolean>(false);
-
-  const isMyBlock = myRuinBlock.some(
-    (ruinBlock) => ruinBlock.ruinsId === ruinDetail!.ruinsId
-  );
+  const isMyBlock =
+    ruinDetail &&
+    myRuinBlock.some((ruinBlock) => ruinBlock.ruinsId === ruinDetail.ruinsId);
 
   useEffect(() => {
     if (selectedRuins) {
@@ -63,79 +66,94 @@ const TileInfo = ({
   }, [selectedRuins]);
 
   return (
-    <>
-      <S.TileInfoWrapper>
-        <S.TileInfoContainer>
-          <S.HeaderContainer>
-            블록 탐험
-            {selectedRuins!.length !== 1 && (
-              <S.PageControllerContainer>
-                <S.ArrowContainer
-                  onClick={() => {
-                    if (page !== 0) {
-                      setPage((prev) => prev - 1);
-                    }
-                  }}
-                >
-                  <S.Arrow $isLastPage={page === 0} src={ArrowLeftImg} />
-                </S.ArrowContainer>
-                {`${page + 1} / ${selectedRuins!.length}`}
-                <S.ArrowContainer
-                  onClick={() => {
-                    if (page !== selectedRuins!.length - 1) {
-                      setPage((prev) => prev + 1);
-                    }
-                  }}
-                >
-                  <S.Arrow
-                    $isLastPage={page === selectedRuins!.length - 1}
-                    src={ArrowRightImg}
-                  />
-                </S.ArrowContainer>
-              </S.PageControllerContainer>
-            )}
-          </S.HeaderContainer>
-          <MenuBadge
-            badgeColor={LegacyPalette.primaryNormal}
-            menuData={category}
-            setMenuData={setCategory}
-          />
-          {isRuinDetailLoading || !ruinDetail ? (
-            <RuinDetailSkeleton />
-          ) : category[0].isAtv ? (
-            <OutLine ruinDetail={ruinDetail} />
-          ) : category[1].isAtv ? (
-            <Detail ruinDetail={ruinDetail} />
-          ) : (
-            <Review
-              openCommentModal={() => setIsCommentOpen(true)}
-              commentData={commentData!}
-            />
+    <S.TileInfoWrapper>
+      <S.TileInfoContainer>
+        <S.HeaderContainer>
+          블록 탐험
+          {selectedRuins!.length !== 1 && (
+            <S.PageControllerContainer>
+              <S.ArrowContainer
+                onClick={() => {
+                  if (page !== 0) {
+                    setPage((prev) => prev - 1);
+                  }
+                }}
+              >
+                <ArrowLeftImg
+                  fill={
+                    page === 0
+                      ? LegacyPalette.labelDisabled
+                      : LegacyPalette.labelNormal
+                  }
+                />
+              </S.ArrowContainer>
+              {`${page + 1} / ${selectedRuins!.length}`}
+              <S.ArrowContainer
+                onClick={() => {
+                  if (page !== selectedRuins!.length - 1) {
+                    setPage((prev) => prev + 1);
+                  }
+                }}
+              >
+                <ArrowRightImg
+                  fill={
+                    page === selectedRuins!.length - 1
+                      ? LegacyPalette.labelDisabled
+                      : LegacyPalette.labelNormal
+                  }
+                />
+              </S.ArrowContainer>
+            </S.PageControllerContainer>
           )}
-        </S.TileInfoContainer>
-        <LegacyButton
-          size="default"
-          isBold={false}
-          isFilled={false}
-          color={
-            isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural
-          }
-          width="100%"
-          handleClick={() => {
-            if (!isMyBlock) handleButtonClick(selectedRuins![page].ruinsId);
-          }}
-        >
-          <S.ButtonText $isExplored={isMyBlock}>블록 탐험하기</S.ButtonText>
-        </LegacyButton>
-      </S.TileInfoWrapper>
-      <LegacyModal isOpen={isCommentOpen} $background>
-        <Comment
-          close={() => setIsCommentOpen(false)}
-          selectedRuinsId={ruinDetail!}
-          refetchCommentData={getCommentData}
+        </S.HeaderContainer>
+        <MenuBadge
+          badgeColor={LegacyPalette.primaryNormal}
+          menuData={category}
+          setMenuData={setCategory}
         />
-      </LegacyModal>
-    </>
+        {isRuinDetailLoading || !ruinDetail ? (
+          <RuinDetailSkeleton />
+        ) : category[0].isAtv ? (
+          <OutLine ruinDetail={ruinDetail} />
+        ) : category[1].isAtv ? (
+          <Detail ruinDetail={ruinDetail} />
+        ) : (
+          <Review
+            openCommentModal={() =>
+              setOpenModal(
+                <Comment
+                  close={setCloseModal}
+                  selectedRuinsId={ruinDetail}
+                  refetchCommentData={getCommentData}
+                />
+              )
+            }
+            commentData={commentData!}
+          />
+        )}
+      </S.TileInfoContainer>
+      <LegacyButton
+        size="default"
+        isBold={false}
+        isFilled={false}
+        color={
+          isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural
+        }
+        width="100%"
+        handleClick={() => {
+          getRuinQuizById(selectedRuins![page].ruinsId);
+          setOpenModal(
+            <QuizModal
+              close={setCloseModal}
+              ruinDetail={ruinDetail!}
+              getMyBlock={getMyBlock}
+            />
+          );
+        }}
+      >
+        <S.ButtonText $isExplored={!!isMyBlock}>블록 탐험하기</S.ButtonText>
+      </LegacyButton>
+    </S.TileInfoWrapper>
   );
 };
 

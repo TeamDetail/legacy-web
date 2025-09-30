@@ -1,12 +1,13 @@
 import { Select } from "@components/common/Select";
 import * as S from "./style";
-import SearchIcon from "@src/assets/search.svg?react";
 import { useState, useMemo, useEffect } from "react";
 import CourseItem from "../CourseItem";
 import useCourse from "@src/hooks/course/useCourse";
 import { Course } from "@src/types/course/course.type";
 import PenIcon from "@src/assets/pen.svg?react";
 import { useNavigate } from "react-router-dom";
+import CourseListSkeleton from "@components/skeleton/CourseListSkeleton";
+import SearchBar from "@components/common/SearchBar";
 
 const CourseList = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const CourseList = () => {
   };
 
   const sortCourses = (a: Course, b: Course) => {
-    if (sortSelect === "최신") return b.courseId - a.courseId;
+    if (sortSelect === "최신") return a.courseId - b.courseId;
     if (sortSelect === "인기") return b.heartCount - a.heartCount;
     if (sortSelect === "클리어 수") return b.clearCount - a.clearCount;
     return 0;
@@ -60,37 +61,37 @@ const CourseList = () => {
   return (
     <S.CourseListContainer>
       <S.SearchContainer>
-        <S.Search>
-          <SearchIcon width={20} height={20} />
-          <input
-            placeholder="코스 이름으로 검색..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </S.Search>
+        <SearchBar
+          value={searchTerm}
+          handleValue={(s: string) => setSearchTerm(s)}
+          placeholder="코스 이름으로 검색..."
+        />
         <S.SelectContainer>
           <Select
             items={["전체", "미완료", "완료"]}
             value={clearSelect}
             onSelectedItemChange={(type: string) => setClearSelect(type)}
+            zIndex={2}
           />
           <S.SelectWrapper>
             <Select
               items={["최신", "인기", "클리어 수"]}
               value={sortSelect}
               onSelectedItemChange={(type: string) => setSortSelect(type)}
+              zIndex={2}
             />
             <Select
               items={["전체", "일반", "이벤트"]}
               value={eventSelect}
               onSelectedItemChange={(type: string) => setEventSelect(type)}
+              zIndex={2}
             />
           </S.SelectWrapper>
         </S.SelectContainer>
       </S.SearchContainer>
 
       {courseData === undefined && isCourseDataLoading ? (
-        <></>
+        <CourseListSkeleton />
       ) : (
         <S.DataContainer>
           {filteredAndSortedData.map((item) => (

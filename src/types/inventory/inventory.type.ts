@@ -1,16 +1,16 @@
-export interface Item {
+export interface ItemType {
   itemId: number;
-  itemType: ItemType;
+  itemType: ItemEnumType;
   itemName: string;
   itemDescription: string;
   itemCount: number;
 }
 
-type ItemType = "CARD_PACK";
+export type ItemEnumType = "CARD_PACK"
 
 export interface Mail {
   mailTitle: string;
   mailContent: string;
   sendAt: string;
-  itemData: Item[];
+  itemData: ItemType[];
 }

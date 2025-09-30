@@ -43,7 +43,6 @@ const CourseItem = ({
   disabled,
 }: CourseItemProps) => {
   const [isHearted, setIsHearted] = useState<boolean>(isHeart);
-  const [isCleared, setIsCleared] = useState<boolean>(isClear);
 
   const navigate = useNavigate();
 
@@ -55,12 +54,12 @@ const CourseItem = ({
 
   return (
     <CourseItemContainer onClick={handleClickItem} $size={size}>
-      <CourseThumbnail $url={thumbnailUrl}>
+      <CourseThumbnail $url={thumbnailUrl} $size={size}>
         {size === "small" && (
           <CourseProgressBar
             max={courseLength}
             value={clearRuinsCount}
-            barColor={LegacySementic.green.netural}
+            barColor={LegacySementic.blue.netural}
             bgColor={LegacyPalette.fillNormal}
             width="84px"
           />
@@ -87,9 +86,8 @@ const CourseItem = ({
           <CourseToggleButton
             buttonType="clear"
             value={clearCount}
-            isSelected={isCleared}
-            setIsSelected={setIsCleared}
-            disabled={disabled}
+            isSelected={isClear}
+            disabled={false}
           />
         </ToggleButtonContainer>
         <Tag data={tags} disabled />
@@ -104,14 +102,15 @@ const CourseItemContainer = styled.div<{ $size: "small" | "big" }>`
   display: flex;
   flex-direction: column;
   gap: ${({ $size }) => ($size === "small" ? "8px" : "20px")};
+  cursor: ${({ $size }) => $size === "small" && "pointer"};
 `;
 
-const CourseThumbnail = styled.div<{ $url: string }>`
+const CourseThumbnail = styled.div<{ $url: string; $size: "small" | "big" }>`
   background-image: url(${({ $url }) => $url});
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 144px;
+  height: ${({ $size }) => ($size === "small" ? "144px" : "200px")};
   padding: 8px;
   display: flex;
   justify-content: flex-end;

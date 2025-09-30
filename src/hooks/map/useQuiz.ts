@@ -13,9 +13,7 @@ const useQuiz = () => {
     { quizId: null, answerOption: "" },
   ]);
 
-  const { data: ruinQuiz, refetch: getRuinQuiz } = useGetRuinQuiz(ruinId!, {
-    suspense: true,
-  });
+  const { data: ruinQuiz, refetch: getRuinQuiz } = useGetRuinQuiz(ruinId!);
 
   const getRuinQuizById = (id: number) => {
     setRuinId(id);
@@ -23,6 +21,7 @@ const useQuiz = () => {
   const checkQuizAnswerByQuizId = (quizAnswer: QuizAnswerType[]) => {
     setQuizAnswer(quizAnswer);
   };
+  
   useEffect(() => {
     const checkAnswer = async () => {
       if (

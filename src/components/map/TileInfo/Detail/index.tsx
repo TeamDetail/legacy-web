@@ -1,12 +1,16 @@
 import Card from "@components/common/Card";
 import * as S from "./style";
 import { RuinDetail } from "@src/types/map/ruin.type";
+import useModalStore from "@src/store/useModalStore";
+import DescriptionModal from "./DescriptionModal";
 
 const Detail = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
+  const { setOpenModal, setCloseModal } = useModalStore();
+
   return (
     <S.DetailLayout>
       <Card
-        cardType={ruinDetail.card.cardType}
+        cardType="BASIC_CARD"
         cardId={ruinDetail.card.cardId}
         cardImageUrl={ruinDetail.card.cardImageUrl}
         cardName={ruinDetail.card.cardName}
@@ -15,10 +19,18 @@ const Detail = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
         canInteract={false}
         handleCardChange={() => {}}
       />
-      <S.ExplainContainer>
+      <S.ExplainContainer
+        onClick={() =>
+          setOpenModal(
+            <DescriptionModal
+              close={setCloseModal}
+              description={ruinDetail.description}
+            />
+          )
+        }
+      >
         <span>설명</span>
-        국군은 국가의 안전보장과 국토방위의 신성한 의무를 수행함을 사명으로
-        하며, 그 정치적 중립성은 준수된다.
+        {ruinDetail.description}
       </S.ExplainContainer>
       <S.ExplorerContainer>
         <S.DetailItem>

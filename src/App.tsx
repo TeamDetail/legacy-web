@@ -11,29 +11,20 @@ import {
 import { ToastContainer } from "react-toastify";
 import { LegacyModal } from "@components/common/LegacyModal";
 import useModalStore from "./store/useModalStore";
-import MailBox from "@components/mailBox/mailBox";
 import MusicController from "@components/music/MusicController";
-import SettingModal from "@components/SettingModal";
 
 const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
 
 function App() {
-  const { modalStoreData, isOpen, setCloseModal } = useModalStore();
-
+  const { isOpen, element } = useModalStore();
   return (
     <QueryClientProviderV5 client={queryClientV5}>
       <QueryClientProviderV3 client={queryClientV3}>
         <BrowserRouter>
           <Routes />
-          <LegacyModal isOpen={isOpen} $background>
-            {modalStoreData === "MAIL" ? (
-              <MailBox close={() => setCloseModal()} />
-            ) : modalStoreData === "SETTING" ? (
-              <SettingModal close={() => setCloseModal()}/>
-            ) : (
-              <></>
-            )}
+          <LegacyModal isOpen={!!element && isOpen} $background>
+            {element}
           </LegacyModal>
           <MusicController/>
           <ToastContainer theme="dark" />

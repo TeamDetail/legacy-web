@@ -1,7 +1,7 @@
 import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import { Item } from "@src/types/inventory/inventory.type";
+import { ItemType } from "@src/types/inventory/inventory.type";
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 
@@ -9,8 +9,8 @@ const ReceiveItem = ({
   receiveItems,
   setReceiveItems,
 }: {
-  receiveItems: Item[];
-  setReceiveItems: Dispatch<SetStateAction<Item[]>>;
+  receiveItems: ItemType[];
+  setReceiveItems: Dispatch<SetStateAction<ItemType[]>>;
 }) => {
   return (
     <ReceiveItemContainer>

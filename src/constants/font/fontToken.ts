@@ -303,34 +303,29 @@ export const LegacyTypography: TypographyStyles = Object.freeze({
   },
   BitBit: {
     Title1: css`
-    font-family: "DNFBitBitv2";
-    font-size: 36px;
-    line-height: 130%;
-    letter-spacing: -1.08px;
+      font-family: "DNFBitBitv2";
+      font-size: 36px;
+      line-height: 130%;
     `,
     Title2: css`
       font-family: "DNFBitBitv2";
       font-size: 28px;
       line-height: 130%;
-      letter-spacing: -0.84px;
     `,
     Title3: css`
       font-family: "DNFBitBitv2";
       font-size: 24px;
       line-height: 130%;
-      letter-spacing: -0.48px;
     `,
     Heading1: css`
       font-family: "DNFBitBitv2";
       font-size: 22px;
       line-height: 130%;
-      letter-spacing: -0.44px;
     `,
     Heading2: css`
       font-family: "DNFBitBitv2";
       font-size: 20px;
       line-height: 140%;
-      letter-spacing: -0.2px;
     `,
     Headline: css`
       font-family: "DNFBitBitv2";
