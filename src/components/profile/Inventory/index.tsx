@@ -24,21 +24,27 @@ const Inventory = () => {
           <ItemInfo
             item={selectedItem}
             setIsQuantitySelectModalOpen={() =>
-              setOpenModal(
-                <ItemQuantitySelectModal
-                  close={setCloseModal}
-                  selectedItem={selectedItem!}
-                  handleReceiveItem={(data: CardResponse[]) => {
-                    setOpenModal(
-                      <ReceivedItemModal
-                        close={setCloseModal}
-                        receivedCardData={data}
-                        selectedItem={selectedItem!}
-                      />
-                    );
-                  }}
-                />
-              )
+              setOpenModal({
+                element: (
+                  <ItemQuantitySelectModal
+                    close={setCloseModal}
+                    selectedItem={selectedItem!}
+                    handleReceiveItem={(data: CardResponse[]) => {
+                      setOpenModal({
+                        element: (
+                          <ReceivedItemModal
+                            close={setCloseModal}
+                            receivedCardData={data}
+                            selectedItem={selectedItem!}
+                          />
+                        ),
+                        key: "receivedItemModal",
+                      });
+                    }}
+                  />
+                ),
+                key: "itemQuantitySelectModal",
+              })
             }
           />
         )}

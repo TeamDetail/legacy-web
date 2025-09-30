@@ -16,14 +16,14 @@ const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
 
 function App() {
-  const { isOpen, element } = useModalStore();
+  const { isOpen, modalData } = useModalStore();
   return (
     <QueryClientProviderV5 client={queryClientV5}>
       <QueryClientProviderV3 client={queryClientV3}>
         <BrowserRouter>
           <Routes />
-          <LegacyModal isOpen={!!element && isOpen} $background>
-            {element}
+          <LegacyModal isOpen={!!modalData.element && isOpen} $background>
+            {modalData.element}
           </LegacyModal>
           <ToastContainer theme="dark" />
         </BrowserRouter>
