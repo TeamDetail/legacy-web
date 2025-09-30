@@ -1,19 +1,18 @@
+import { ReactNode } from "react";
 import { create } from "zustand";
 
-type ModalDataType = "MAIL" | "SETTING" | null;
-
 interface ModalStore {
-  modalStoreData: ModalDataType;
+  element: ReactNode | null;
   isOpen: boolean;
-  setOpenModal: (newData: ModalDataType) => void;
+  setOpenModal: (newData: ReactNode) => void;
   setCloseModal: () => void;
 }
 const useModalStore = create<ModalStore>((set) => ({
-  modalStoreData: null,
+  element: null,
   isOpen: false,
   setCloseModal: () => set({ isOpen: false }),
-  setOpenModal: (newData) => {
-    set({ modalStoreData: newData, isOpen: true });
+  setOpenModal: (newElement) => {
+    set({ element: newElement, isOpen: true });
   },
 }));
 
