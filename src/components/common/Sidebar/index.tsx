@@ -107,6 +107,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
                       <S.ViewMoreMenuButton
                         onClick={item.onClick}
                         $isAtv={`${item.isSelectedPage}`}
+                        key={item.text}
                       >
                         {item.icon}
                         <p>{item.text}</p>

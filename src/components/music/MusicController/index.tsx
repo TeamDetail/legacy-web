@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
@@ -6,14 +6,10 @@ import LegacyButton from "@components/common/LegacyButton";
 import useMusic from "@src/hooks/music/useMusic";
 
 const MusicController = () => {
-  const { turnOnAudio, turnOffAudio } = useMusic();
+  const { turnOnAudio, turnOffAudio } = useMusic(true);
   const [isOpen, setIsOpen] = useState(true);
 
-  useEffect(() => {
-    console.log("load MusicAccepter")
-  }, [])
-  
-  return isOpen ? (
+  return localStorage.getItem("MUSIC") === null && isOpen ? (
     <MusicControllerContainer>
       <span>음악 재생을 허용할까요?</span>
       <p>(설정에서 언제든 끄고 켤 수 있습니다.)</p>
@@ -59,7 +55,7 @@ const MusicControllerContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   width: 280px;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   background-color: ${LegacyPalette.backgroundNeutral};
   border-radius: 20px;

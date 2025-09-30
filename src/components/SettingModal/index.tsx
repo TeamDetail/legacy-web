@@ -3,6 +3,7 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 import Setting from '@src/assets/sidebarIcon/setting.svg?react';
 import Close from "@src/assets/close.svg?react";
+import MusicSetting from "@components/music/MusicSetting";
 
 type SettingModalProps = {
   close: () => void
@@ -18,6 +19,7 @@ const SettingModal = ({close}: SettingModalProps) => {
         </div>
         <Close style={{cursor:"pointer"}} onClick={close}/>
       </header>
+      <MusicSetting/>
     </SettingModalContainer>
   );
 };
@@ -28,7 +30,7 @@ const SettingModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  width: 360px;
+  width: 400px;
   height: 400px;
   padding: 20px;
   gap: 16px;
