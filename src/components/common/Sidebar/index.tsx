@@ -8,7 +8,7 @@ import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleto
 import Menu from "@src/assets/sidebarIcon/menu.svg?react";
 import { LegacyPalette } from "@src/constants/color/color";
 import Mail from "@src/assets/sidebarIcon/mail.svg?react";
-import Setting from "@src/assets/sidebarIcon/setting.svg?react";
+// import Setting from "@src/assets/sidebarIcon/setting.svg?react";
 import Logout from "@src/assets/sidebarIcon/logout.svg?react";
 // import Info from "@src/assets/sidebarIcon/info.svg?react";
 import cookies from "@src/libs/cookie/cookie";
@@ -18,6 +18,8 @@ import {
 } from "@src/constants/token.constants";
 import { useMemo } from "react";
 import useModalStore from "@src/store/useModalStore";
+import useUserStore from "@src/store/useUserStore";
+import MailBox from "@components/mailBox/mailBox";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -25,22 +27,28 @@ interface SidebarProps {
 
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
-  const { modalStoreData, isOpen, setOpenModal } = useModalStore();
+  const { userStoreData } = useUserStore();
+  const { setOpenModal, setCloseModal } = useModalStore();
+  const [isMailBoxOpen, setIsMailBoxOpen] = useState(false);
+  // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
   const viewMoreMenu = [
     {
       text: "우편함",
-      onClick: () => setOpenModal("MAIL"),
-      isSelectedPage: modalStoreData === "MAIL" && isOpen,
+      onClick: () => {
+        setOpenModal(<MailBox close={setCloseModal} />);
+        setIsMailBoxOpen(true);
+      },
+      isSelectedPage: isMailBoxOpen,
       icon: <Mail width={22.5} />,
     },
-    {
-      text: "설정",
-      onClick: () => setOpenModal("SETTING"),
-      isSelectedPage: modalStoreData === "SETTING" && isOpen,
-      icon: <Setting width={22.5}/>
-    },
+    // {
+    //   text: "설정",
+    //   onClick: () => nav("/setting"),
+    //   isSelectedPage: location.pathname === "/setting",
+    //   icon: <Setting width={22.5}/>
+    // },
     {
       text: "로그아웃",
       onClick: () => {
@@ -93,7 +101,10 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
             color={LegacyPalette.lineNeutral}
             children={
               <S.ViewMoreMenuContainer>
-                <button onClick={() => setIsViewMoreMenuOpen((prev) => !prev)}>
+                <button
+                  onClick={() => setIsViewMoreMenuOpen((prev) => !prev)}
+                  name="more-menu"
+                >
                   <Menu width={22.5} height={22.5} />
                   <p>더보기</p>
                   <div style={{ flexGrow: 1 }} />
@@ -107,7 +118,6 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
                       <S.ViewMoreMenuButton
                         onClick={item.onClick}
                         $isAtv={`${item.isSelectedPage}`}
-                        key={item.text}
                       >
                         {item.icon}
                         <p>{item.text}</p>
@@ -121,7 +131,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
         </S.SidebarButtonMenu>
       </S.SidebarContainer>
     ),
-    [isViewMoreMenuOpen]
+    [isViewMoreMenuOpen, userStoreData]
   );
 };
 
