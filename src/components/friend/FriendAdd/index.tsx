@@ -47,7 +47,7 @@ const FriendAddContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow: hidden;
+  overflow: auto;
 
   hr {
     border: 0.5px solid ${LegacyPalette.lineAlternative};
@@ -89,8 +89,7 @@ const FriendAddLabelWrapper = styled.div`
 const FriendListContainer = styled.div`
   width: 100%;
   flex-grow: 1;
-  overflow: auto;
-  displat: grid;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 
