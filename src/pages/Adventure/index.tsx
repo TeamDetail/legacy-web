@@ -41,12 +41,15 @@ const Adventure = () => {
         <S.AdventureMenuContainer>
           <div
             onClick={() =>
-              setOpenModal(
-                <SearchRuinsModal
-                  close={setCloseModal}
-                  onSelectRuin={handleSelectRuin}
-                />
-              )
+              setOpenModal({
+                element: (
+                  <SearchRuinsModal
+                    close={setCloseModal}
+                    onSelectRuin={handleSelectRuin}
+                  />
+                ),
+                key: "searchRuinsModal",
+              })
             }
           >
             <Search width={22} height={22} />

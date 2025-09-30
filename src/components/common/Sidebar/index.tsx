@@ -8,7 +8,7 @@ import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleto
 import Menu from "@src/assets/sidebarIcon/menu.svg?react";
 import { LegacyPalette } from "@src/constants/color/color";
 import Mail from "@src/assets/sidebarIcon/mail.svg?react";
-// import Setting from "@src/assets/sidebarIcon/setting.svg?react";
+import Setting from "@src/assets/sidebarIcon/setting.svg?react";
 import Logout from "@src/assets/sidebarIcon/logout.svg?react";
 // import Info from "@src/assets/sidebarIcon/info.svg?react";
 import cookies from "@src/libs/cookie/cookie";
@@ -27,28 +27,32 @@ interface SidebarProps {
 
 const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const nav = useNavigate();
+  const { modalData, setOpenModal, setCloseModal } = useModalStore();
   const { userStoreData } = useUserStore();
-  const { setOpenModal, setCloseModal } = useModalStore();
-  const [isMailBoxOpen, setIsMailBoxOpen] = useState(false);
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
   const cookie = cookies;
   const viewMoreMenu = [
     {
       text: "우편함",
-      onClick: () => {
-        setOpenModal(<MailBox close={setCloseModal} />);
-        setIsMailBoxOpen(true);
-      },
-      isSelectedPage: isMailBoxOpen,
+      onClick: () =>
+        setOpenModal({
+          element: <MailBox close={setCloseModal} />,
+          key: "MAILBOX",
+        }),
+      isSelectedPage: modalData.key === "MAILBOX",
       icon: <Mail width={22.5} />,
     },
-    // {
-    //   text: "설정",
-    //   onClick: () => nav("/setting"),
-    //   isSelectedPage: location.pathname === "/setting",
-    //   icon: <Setting width={22.5}/>
-    // },
+    {
+      text: "설정",
+      onClick: () =>
+        setOpenModal({
+          element: <MailBox close={setCloseModal} />,
+          key: "SETTING",
+        }),
+      isSelectedPage: modalData.key === "SETTING",
+      icon: <Setting width={22.5} />,
+    },
     {
       text: "로그아웃",
       onClick: () => {
@@ -118,6 +122,7 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
                       <S.ViewMoreMenuButton
                         onClick={item.onClick}
                         $isAtv={`${item.isSelectedPage}`}
+                        key={item.text}
                       >
                         {item.icon}
                         <p>{item.text}</p>

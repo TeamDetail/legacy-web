@@ -120,13 +120,16 @@ const TileInfo = ({
         ) : (
           <Review
             openCommentModal={() =>
-              setOpenModal(
-                <Comment
-                  close={setCloseModal}
-                  selectedRuinsId={ruinDetail}
-                  refetchCommentData={getCommentData}
-                />
-              )
+              setOpenModal({
+                element: (
+                  <Comment
+                    close={setCloseModal}
+                    selectedRuinsId={ruinDetail}
+                    refetchCommentData={getCommentData}
+                  />
+                ),
+                key: "commentModal",
+              })
             }
             commentData={commentData!}
           />
@@ -142,13 +145,16 @@ const TileInfo = ({
         width="100%"
         handleClick={() => {
           getRuinQuizById(selectedRuins![page].ruinsId);
-          setOpenModal(
-            <QuizModal
-              close={setCloseModal}
-              ruinDetail={ruinDetail!}
-              getMyBlock={getMyBlock}
-            />
-          );
+          setOpenModal({
+            element: (
+              <QuizModal
+                close={setCloseModal}
+                ruinDetail={ruinDetail!}
+                getMyBlock={getMyBlock}
+              />
+            ),
+            key: "quizModal",
+          });
         }}
       >
         <S.ButtonText $isExplored={!!isMyBlock}>블록 탐험하기</S.ButtonText>
