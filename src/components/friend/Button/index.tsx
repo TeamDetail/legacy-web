@@ -31,13 +31,16 @@ export default FriendActionButton;
 export const IconButton = styled.button<{
   $buttonType: "CHECK" | "CLOSE" | "SEND";
 }>`
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
+  background: ${LegacyPalette.fillNormal};
+  border-radius: 999px;
   border: none;
   cursor: pointer;
-
+  padding: 8px;
   svg {
     fill: ${LegacyPalette.labelNeutral}; // 기본 색
   }
