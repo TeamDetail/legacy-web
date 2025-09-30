@@ -44,7 +44,7 @@ const useUserStore = create<UserStore>((set) => ({
       grade: 1,
     },
   },
-  setUserData: (newData: UserMe) => set({ 
+  setUserData: (newData: UserMe) => set(() => ({
     userStoreData: {
       ...newData,
       record: {
@@ -55,7 +55,7 @@ const useUserStore = create<UserStore>((set) => ({
         }
       }
     }
-  }),
+  })),
 }));
 
 export default useUserStore;

@@ -14,7 +14,9 @@ const ProfilePage = () => {
   const [menuBadgeData, setMenuBadgeData] = useState([
     {
       text: "개요",
-      isAtv: loc.pathname.split("/")[2] === "overview",
+      isAtv:
+        loc.pathname.split("/")[2] === "overview" ||
+        loc.pathname.split("/")[2] === undefined,
       value: "overview",
     },
     {

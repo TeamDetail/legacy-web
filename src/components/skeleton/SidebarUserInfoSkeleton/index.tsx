@@ -38,7 +38,7 @@ const SidebarUserInfoContainer = styled.div`
   gap: 12px;
 
   > div {
-    border-radius: 999px;
+    border-radius: 8px;
     width: 56px;
     height: 56px;
     background-color: ${LegacyPalette.fillNeutral};

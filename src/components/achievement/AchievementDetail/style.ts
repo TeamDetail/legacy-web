@@ -117,4 +117,9 @@ export const AchievementDetailAwardContainer = styled.div`
   color: ${LegacyPalette.labelNeutral};
   ${LegacyTypography.Pretendard.Body2.Regular};
   width: 100%;
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
 `;
