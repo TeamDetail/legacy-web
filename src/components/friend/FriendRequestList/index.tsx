@@ -1,47 +1,26 @@
-import FriendRequestItem from "../FriendItem";
-import * as S from "./style";
-import FriendActionButton from "../Button";
+import { Suspense } from "react";
+import styled from "styled-components";
+import FriendRequestListContainer from "./FriendRequestListContainer";
 
 const FriendRequestList = () => {
   return (
-    <S.FriendRequestListContainer>
-      <S.FriendRequestListWrapper>
-        <p>
-          받은 친구 요청<span>124</span>
-        </p>
-        <S.FriendRequestListDataWrapper>
-          {Array.from({ length: 10 }).map((_, i) => (
-            <>
-              {i !== 0 && <hr />}
-              <div key={i}>
-                <FriendRequestItem />
-                <S.FriendRequestButtonWrapper>
-                  <FriendActionButton type="CHECK" />
-                  <FriendActionButton type="CLOSE" />
-                </S.FriendRequestButtonWrapper>
-              </div>
-            </>
-          ))}
-        </S.FriendRequestListDataWrapper>
-      </S.FriendRequestListWrapper>
-      <S.FriendRequestListWrapper>
-        <p>
-          보낸 친구 요청<span>3</span>
-        </p>
-        <S.FriendRequestListDataWrapper>
-          {Array.from({ length: 10 }).map((_, i) => (
-            <>
-              {i !== 0 && <hr />}
-              <div key={i}>
-                <FriendRequestItem />
-                <FriendActionButton type="CLOSE" />
-              </div>
-            </>
-          ))}
-        </S.FriendRequestListDataWrapper>
-      </S.FriendRequestListWrapper>
-    </S.FriendRequestListContainer>
+    <FriendRequestListWrapper>
+      <Suspense>
+        <FriendRequestListContainer type="requests" />
+      </Suspense>
+      <Suspense>
+        <FriendRequestListContainer type="sents" />
+      </Suspense>
+    </FriendRequestListWrapper>
   );
 };
 
 export default FriendRequestList;
+
+export const FriendRequestListWrapper = styled.div`
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  gap: 52px;
+`;

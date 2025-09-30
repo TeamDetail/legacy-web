@@ -1,14 +1,42 @@
+import FriendActionButton from "@components/friend/Button";
+import FriendItem from "@components/friend/FriendItem";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
+import { useGetMyFriendRequestsQuery } from "@src/queries/friend/friend.query";
 import styled from "styled-components";
 
-export const FriendRequestListContainer = styled.div`
-  width: 100%;
-  flex-grow: 1;
-  overflow: hidden;
-  display: flex;
-  gap: 52px;
-`;
+const FriendRequestListContainer = ({
+  type,
+}: {
+  type: "sents" | "requests";
+}) => {
+  const { data: myFriendRequests } = useGetMyFriendRequestsQuery(type);
+
+  return (
+    <FriendRequestListWrapper>
+      <p>
+        {type === "requests" ? "받은" : "보낸"} 친구 요청
+        <span>{myFriendRequests.length}</span>
+      </p>
+      <FriendRequestListDataWrapper>
+        {myFriendRequests.map((_, i) => (
+          <>
+            {i !== 0 && <hr />}
+            <div key={i}>
+              <FriendItem />
+              <FriendRequestButtonWrapper>
+                <FriendActionButton type="CHECK" />
+                <FriendActionButton type="CLOSE" />
+              </FriendRequestButtonWrapper>
+            </div>
+          </>
+        ))}
+      </FriendRequestListDataWrapper>
+    </FriendRequestListWrapper>
+  );
+};
+
+export default FriendRequestListContainer;
 
 export const FriendRequestListWrapper = styled.div`
   flex-grow: 1;
@@ -58,16 +86,4 @@ export const FriendRequestButtonWrapper = styled.div`
   flex-direction: column;
   gap: 8px;
   justify-content: center;
-
-  button {
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 999px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${LegacyPalette.fillNeutral};
-    padding: 8px;
-  }
 `;
