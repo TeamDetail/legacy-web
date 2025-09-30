@@ -41,4 +41,9 @@ export const QUERY_KEYS = {
   achievement: {
     getAchievement: (type: AchievementValueType) => ["getAchievement", type],
   },
+  friend: {
+    getMyFriends: ["getMyFriends"],
+    getMyFriendRequests: ["getMyFriendRequests"],
+    getMyFriendCode: ["getMyFriendCode"],
+  }
 };

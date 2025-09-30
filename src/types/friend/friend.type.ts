@@ -1,0 +1,17 @@
+export interface Friend {
+  userId: number;
+  nickname: string;
+  profileImage: string;
+  friendCode: string;
+  isKakaoFriend: boolean;
+  isMutualFriend: boolean;
+}
+
+export interface FriendRequest {
+  requestId: number;
+  senderId: number;
+  receiverId: number;
+  senderNickname: string;
+  senderProfileImage: string;
+  createdAt: string;
+}
