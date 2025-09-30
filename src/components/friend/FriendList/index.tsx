@@ -1,8 +1,8 @@
 import SearchBar from "@components/common/SearchBar";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import styled from "styled-components";
-import FriendItem from "../FriendItem";
-import { LegacyPalette } from "@src/constants/color/color";
+import MyFriendItemContainer from "./MyFriendItemContainer";
+import MyFriendsSkeleton from "@components/skeleton/MyFriendsSkeleton";
 
 const MyFriendList = () => {
   const [friendName, setFriendName] = useState("");
@@ -14,11 +14,9 @@ const MyFriendList = () => {
         handleValue={(s) => setFriendName(s)}
         placeholder="친구 이름으로 검색"
       />
-      <MyFriendListDataWrapper>
-        {Array.from({ length: 20 }).map((_, idx) => (
-          <FriendItem key={idx} />
-        ))}
-      </MyFriendListDataWrapper>
+      <Suspense fallback={<MyFriendsSkeleton />}>
+        <MyFriendItemContainer />
+      </Suspense>
     </MyFriendListContainer>
   );
 };
@@ -32,21 +30,4 @@ const MyFriendListContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   overflow: hidden;
-`;
-
-const MyFriendListDataWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  overflow-y: auto;
-
-  > div {
-    padding: 8px;
-
-    border-radius: 8px;
-
-    &:hover {
-      background-color: ${LegacyPalette.fillNormal};
-    }
-  }
 `;
