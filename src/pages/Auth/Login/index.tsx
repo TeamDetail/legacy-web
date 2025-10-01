@@ -3,8 +3,14 @@ import * as S from "./style";
 import { REDIRECT_URI, REST_API_KEY } from "@src/constants/kakao/kakao";
 import useLogin from "@src/hooks/Auth/useLogin";
 import { useNavigate } from "react-router-dom";
+import AppleLoginButton from "@components/auth/AppleLoginButton";
+import KakaoImg from "@src/assets/loginButtonSvg/kakao.svg?react";
 
-const Login = ({isVerifyingPage}: {isVerifyingPage: boolean}) => {
+type LoginVerifyingProps = {
+  verifyingType?: "KAKAO" | "APPLE" | "GOOGLE"
+}
+
+const Login = ({ verifyingType }: LoginVerifyingProps) => {
   const handleLogin = () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   };
@@ -12,11 +18,11 @@ const Login = ({isVerifyingPage}: {isVerifyingPage: boolean}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isVerifyingPage) {
+    if (verifyingType) {
       const code = new URL(document.location.toString()).searchParams.get("code");
       useLogin(code, navigate);
     }
-  }, [isVerifyingPage]);
+  }, [verifyingType]);
 
   return (
     <S.Container>
@@ -34,14 +40,17 @@ const Login = ({isVerifyingPage}: {isVerifyingPage: boolean}) => {
               </S.Column>
               <S.Body2Bold>소셜 로그인하고 곧바로 뛰어드세요!</S.Body2Bold>
             </S.Column12>
-            {!isVerifyingPage ? (
-              <S.LoginButton onClick={handleLogin}>
-                <S.KakaoIcon />
-                <p>카카오 로그인</p>
-              </S.LoginButton>
+            {!verifyingType ? (
+              <S.LoginButtonContainer>
+                <S.LoginButton onClick={handleLogin}>
+                  <KakaoImg />
+                  <p>카카오 로그인</p>
+                </S.LoginButton>
+                <AppleLoginButton />
+              </S.LoginButtonContainer>
             ) : (
               <S.LoginButton>
-                <S.KakaoIcon />
+                <KakaoImg />
                 <p>카카오 로그인 중...!</p>
               </S.LoginButton>
             )}
