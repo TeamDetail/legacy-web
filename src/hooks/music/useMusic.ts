@@ -26,15 +26,18 @@ const useMusic = (player: boolean) => {
         localStorage.setItem("MUSIC", "0");
       }
       if (localStorage.getItem("MUSIC") === "1") {
+        const musicUrl =
+          MUSICS.find((item) => item.value.includes(location))?.url ||
+          MUSICS.find((item) => item.value.includes("default"))!.url;
+        
+        if (audioRef.current?.src.includes(musicUrl)) return 
+
         if (!audioRef.current) {
           audioRef.current = new Audio();
           audioRef.current.loop = true;
         }
-        const musicUrl =
-          MUSICS.find((item) => item.value.includes(location))?.url ||
-          MUSICS.find((item) => item.value.includes("default"))!.url;
     
-        if (musicUrl && audioRef.current.src !== musicUrl) {
+        if (musicUrl) {
           audioRef.current.src = musicUrl;
           audioRef.current.currentTime = 0;
           audioRef.current.volume = volume;
