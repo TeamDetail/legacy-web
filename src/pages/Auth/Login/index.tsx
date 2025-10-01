@@ -18,9 +18,11 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (verifyingType) {
+    if (verifyingType === "KAKAO") {
       const code = new URL(document.location.toString()).searchParams.get("code");
       useLogin(code, navigate);
+    } else if (verifyingType === "APPLE") {
+      console.log(window.location)
     }
   }, [verifyingType]);
 

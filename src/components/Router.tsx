@@ -21,7 +21,14 @@ const Router = () => {
       <Route index element={<Adventure />} />
       <Route path="/adventure" element={<Adventure />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/login/kakao/verify" element={<Login verifyingType="KAKAO" />} />
+      <Route
+        path="/login/kakao/verify"
+        element={<Login verifyingType="KAKAO" />}
+      />
+      <Route
+        path="/login/apple/verify"
+        element={<Login verifyingType="APPLE" />}
+      />
       <Route path="/profile" element={<ProfilePage />}>
         <Route path="" element={<OverView />} />
         <Route path="overview" element={<OverView />} />
