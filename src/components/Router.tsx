@@ -20,8 +20,8 @@ const Router = () => {
     <Routes>
       <Route index element={<Adventure />} />
       <Route path="/adventure" element={<Adventure />} />
-      <Route path="/login" element={<Login isVerifyingPage={false} />} />
-      <Route path="/login/verify" element={<Login isVerifyingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/login/kakao/verify" element={<Login verifyingType="KAKAO" />} />
       <Route path="/profile" element={<ProfilePage />}>
         <Route path="" element={<OverView />} />
         <Route path="overview" element={<OverView />} />
