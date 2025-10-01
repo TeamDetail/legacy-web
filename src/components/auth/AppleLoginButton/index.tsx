@@ -3,10 +3,11 @@ import Apple from "@src/assets/loginButtonSvg/apple.svg?react"
 import { useEffect } from "react";
 
 const AppleLoginButton = () => {
+  const clientId = import.meta.env.VITE_APP_APPLE_CLIENT_ID;
   useEffect(() => {
     if (typeof window !== 'undefined' && window.AppleID?.auth?.init) {
       window.AppleID.auth.init({
-        clientId: `${import.meta.env.VITE_APP_APPLE_CLIENT_ID}`,
+        clientId: `${clientId}`,
         scope: "name",
         redirectURI: "https://legacygame.site/login/apple/verify",
         state: "",
