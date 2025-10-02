@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import { KAKAO_REDIRECT_URL, REST_API_KEY } from "@src/constants/auth/auth.constants";
 import useLogin from "@src/hooks/Auth/useLogin";
@@ -22,7 +22,13 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
       const code = new URL(document.location.toString()).searchParams.get("code");
       useLogin(code, navigate);
     } else if (verifyingType === "APPLE") {
-      console.log(window.location)
+      const hash = window.location.hash.substring(1);
+      const queryParams: URLSearchParams = new URLSearchParams(hash);
+      const data = {
+        id_token: queryParams.get("id_token"),
+        code: queryParams.get("code"),
+      };
+      console.log(data)
     }
   }, [verifyingType]);
 
