@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import * as S from "./style";
-import { REDIRECT_URI, REST_API_KEY } from "@src/constants/kakao/kakao";
+import { KAKAO_REDIRECT_URL, REST_API_KEY } from "@src/constants/auth/auth.constants";
 import useLogin from "@src/hooks/Auth/useLogin";
 import { useNavigate } from "react-router-dom";
 import AppleLoginButton from "@components/auth/AppleLoginButton";
@@ -12,7 +12,7 @@ type LoginVerifyingProps = {
 
 const Login = ({ verifyingType }: LoginVerifyingProps) => {
   const handleLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
   };
 
   const navigate = useNavigate();
