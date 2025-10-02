@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import * as S from "./style";
 import { KAKAO_REDIRECT_URL, REST_API_KEY } from "@src/constants/auth/auth.constants";
 import useLogin from "@src/hooks/Auth/useLogin";
