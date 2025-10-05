@@ -2,11 +2,17 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-const EmptyMessage = ({ text, subText }: { text: string; subText: string }) => {
+const EmptyMessage = ({
+  text,
+  subText,
+}: {
+  text: string;
+  subText?: string;
+}) => {
   return (
     <EmptyMessageContainer>
       {text}
-      <span>{subText}</span>
+      {subText && <span>{subText}</span>}
     </EmptyMessageContainer>
   );
 };
