@@ -1,40 +1,59 @@
-import SearchBar from "@components/common/SearchBar";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import styled from "styled-components";
-import FriendItem from "../FriendItem";
-import FriendActionButton from "../Button";
+import MyFriendCodeContainer from "./MyFriendCodeContainer";
+import MyFriendCodeSkeleton from "@components/skeleton/MyFriendCodeSkeleton";
+import friendApi from "@src/api/friend/friend.api";
+import { toast } from "react-toastify";
+import SearchBar from "@components/common/SearchBar";
+import UserListContainer from "./UserListContainer";
+import { QueryClient } from "@tanstack/react-query";
 
 const FriendAdd = () => {
-  const [friendName, setFriendName] = useState("");
+  const [friendCode, setFriendCode] = useState("");
+  const [username, setUsername] = useState("");
+  const queryClient = new QueryClient();
 
   return (
     <FriendAddContainer>
-      <FriendAddLabelWrapper>
-        내 친구 코드<div>12058628</div>
-      </FriendAddLabelWrapper>
+      <Suspense fallback={<MyFriendCodeSkeleton />}>
+        <MyFriendCodeContainer />
+      </Suspense>
       <FriendAddLabelWrapper>
         친구 코드로 추가하기
-        <input type="text" placeholder="추가하고 싶은 친구의 코드 입력..." />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            friendApi
+              .postFriendByCode(friendCode)
+              .then(() => {
+                toast.success("친구 요청을 보냈습니다.");
+                queryClient.refetchQueries({ queryKey: ["getMyFriendRequests", "sent"] });
+              })
+              .catch(() => toast.error("친구 요청에 실패했습니다."));
+          }}
+        >
+          <input
+            type="text"
+            placeholder="추가하고 싶은 친구의 코드 입력..."
+            onChange={(e) => setFriendCode(e.target.value)}
+          />
+        </form>
       </FriendAddLabelWrapper>
       <hr />
       <FriendAddLabelWrapper>
         이름으로 검색하기
         <SearchBar
           placeholder="친구 이름으로 검색..."
-          value={friendName}
-          handleValue={(s) => setFriendName(s)}
+          value={username}
+          handleValue={(s) => setUsername(s)}
+          handleSubmit={() => {}}
         />
       </FriendAddLabelWrapper>
-      <FriendListContainer>
-        {Array.from({ length: 20 }).map((_, idx) => (
-          <div>
-            <FriendItem key={idx} />
-            <FriendActionButton type="SEND" />
-          </div>
-        ))}
-      </FriendListContainer>
+      <Suspense>
+        <UserListContainer username={username} />
+      </Suspense>
     </FriendAddContainer>
   );
 };
@@ -62,16 +81,7 @@ const FriendAddLabelWrapper = styled.div`
   ${LegacyTypography.Pretendard.Body1.Medium};
   color: ${LegacyPalette.labelNeutral};
 
-  div {
-    width: 100%;
-    padding: 12px 16px;
-    background-color: ${LegacyPalette.fillNormal};
-    border-radius: 16px;
-    ${LegacyTypography.Pretendard.Title2.Medium};
-    color: ${LegacyPalette.labelNormal};
-  }
-
-  > input {
+  input {
     width: 100%;
     padding: 12px 16px;
     background-color: ${LegacyPalette.fillNormal};
@@ -82,26 +92,6 @@ const FriendAddLabelWrapper = styled.div`
 
     &::placeholder {
       color: ${LegacyPalette.labelAlternative};
-    }
-  }
-`;
-
-const FriendListContainer = styled.div`
-  width: 100%;
-  flex-grow: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-
-  > div {
-    padding: 8px;
-    border-radius: 8px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-
-    &:hover {
-      background-color: ${LegacyPalette.fillNormal};
     }
   }
 `;
