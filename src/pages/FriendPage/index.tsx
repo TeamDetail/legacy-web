@@ -5,7 +5,7 @@ import Friend from "@src/assets/sidebarIcon/friend.svg?react";
 import { MenuBadge, MenuDataType } from "@components/common/MenuBadge";
 import { LegacyPalette } from "@src/constants/color/color";
 import { useState } from "react";
-import MyFriendList from "@components/friend/FriendList";
+import MyFriendList from "@components/friend/MyFriendList";
 import PendingFriendList from "@components/friend/FriendRequestList";
 import FriendAdd from "@components/friend/FriendAdd";
 

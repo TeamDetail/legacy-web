@@ -15,7 +15,7 @@ const MyFriendList = () => {
         placeholder="친구 이름으로 검색"
       />
       <Suspense fallback={<MyFriendsSkeleton />}>
-        <MyFriendItemContainer />
+        <MyFriendItemContainer friendName={friendName} />
       </Suspense>
     </MyFriendListContainer>
   );
