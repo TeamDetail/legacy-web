@@ -20,3 +20,12 @@ export interface FriendRequest {
   receiverLevel: number;
   createdAt: string;
 }
+
+export interface NormalUser {
+  userId: number;
+  nickname: string;
+  profileImage: string;
+  level: number;
+  friendCode: string;
+  isAlreadyFriend: boolean;
+}
