@@ -25,18 +25,18 @@ export const useGetMyFriendsQuery = (
   });
 
 export const useGetMyFriendRequestsQuery = (
-  type: "sents" | "requests",
+  type: "sent" | "requests",
   options?: Partial<
     UseSuspenseQueryOptions<
       FriendRequest[],
       Error,
       FriendRequest[],
-      typeof QUERY_KEYS.friend.getMyFriendRequests
+      ReturnType<typeof QUERY_KEYS.friend.getMyFriendRequests>
     >
   >
 ) =>
   useSuspenseQuery({
-    queryKey: QUERY_KEYS.friend.getMyFriendRequests,
+    queryKey: QUERY_KEYS.friend.getMyFriendRequests(type),
     queryFn: () => friendApi.getMyFriendRequests(type),
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 10,

@@ -45,7 +45,7 @@ export const QUERY_KEYS = {
   },
   friend: {
     getMyFriends: ["getMyFriends"],
-    getMyFriendRequests: ["getMyFriendRequests"],
+    getMyFriendRequests: (s: string) => ["getMyFriendRequests", s],
     getMyFriendCode: ["getMyFriendCode"],
-  }
+  },
 };
