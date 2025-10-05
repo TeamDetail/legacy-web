@@ -5,6 +5,7 @@ export interface Friend {
   friendCode: string;
   isKakaoFriend: boolean;
   isMutualFriend: boolean;
+  level: number;
 }
 
 export interface FriendRequest {
@@ -13,5 +14,9 @@ export interface FriendRequest {
   receiverId: number;
   senderNickname: string;
   senderProfileImage: string;
+  senderLevel: number;
+  receiverNickname: string;
+  receiverProfileImage: string;
+  receiverLevel: number;
   createdAt: string;
 }
