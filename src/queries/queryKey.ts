@@ -4,6 +4,8 @@ export const QUERY_KEYS = {
   user: {
     getMe: "userGetMe",
     getUser: "userGetUser",
+    getUserByNickname: (nickname: string) =>
+      `userGetUserByNickname/${nickname}`,
   },
   ruin: {
     getRuinDetail: (id: number) => `mapGetRuinDetail/${id}`,
