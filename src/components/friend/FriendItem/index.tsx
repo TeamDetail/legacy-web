@@ -2,16 +2,22 @@ import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-const FriendItem = () => {
+const FriendItem = ({
+  username,
+  level,
+  profileImg,
+}: {
+  username: string;
+  level: number;
+  profileImg: string;
+}) => {
   return (
     <FriendRequestItemContainer>
-      <img
-        src="https://pbs.twimg.com/media/G1mVTvkbQAAfSNA?format=jpg&name=large"
-        alt=""
-      />
+      <img src={profileImg} alt="profileImg" />
       <FriendRequestItemDataWrapper>
         <p>
-          안현우<span>Lv. 99</span>
+          {username}
+          <span>Lv. {level}</span>
         </p>
         <div>
           <div>BETA TESTER</div>
@@ -33,6 +39,7 @@ const FriendRequestItemContainer = styled.div`
     width: 80px;
     height: 80px;
     border-radius: 8px;
+    object-fit: cover;
   }
 `;
 
@@ -40,7 +47,7 @@ const FriendRequestItemDataWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 100%;
+  flex-grow: 1;
 
   p {
     ${LegacyTypography.Pretendard.Headline.Bold};
