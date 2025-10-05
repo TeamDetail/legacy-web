@@ -19,6 +19,23 @@ class FriendApi {
     return data.data;
   }
 
+  public async postFriendByCode(friendCode: string) {
+    await customAxios.post(`/friends/request?friendCode=${friendCode}`);
+  }
+
+  public async responseFriendRequest(
+    requestId: number,
+    decision: "accept" | "decline"
+  ) {
+    await customAxios.post(`/friends/request/${requestId}/${decision}`);
+  }
+
+  public async cancleMyFriendRequest(requestId: number) {
+    await customAxios.delete(`/friends/sent/${requestId}`);
+  }
+
+  public async deleteMyFriend(friendId: number) {
+    await customAxios.delete(`/friends/${friendId}`);
   }
 }
 
