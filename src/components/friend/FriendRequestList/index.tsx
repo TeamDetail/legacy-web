@@ -1,15 +1,16 @@
 import { Suspense } from "react";
 import styled from "styled-components";
 import FriendRequestListContainer from "./FriendRequestListContainer";
+import MyFriendRequestSkeleton from "@components/skeleton/MyFriendRequestSkeleton";
 
 const FriendRequestList = () => {
   return (
     <FriendRequestListWrapper>
-      <Suspense>
+      <Suspense fallback={<MyFriendRequestSkeleton />}>
         <FriendRequestListContainer type="requests" />
       </Suspense>
-      <Suspense>
-        <FriendRequestListContainer type="sents" />
+      <Suspense fallback={<MyFriendRequestSkeleton />}>
+        <FriendRequestListContainer type="sent" />
       </Suspense>
     </FriendRequestListWrapper>
   );
