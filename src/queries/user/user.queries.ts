@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import userApi from "@src/api/user/user.api";
 import { BaseResponse } from "@src/types/globalType/global.type";
+import { NormalUser } from "@src/types/friend/friend.type";
 
 export const useGetMeQuery = (
   options?: UseQueryOptions<BaseResponse<User>, AxiosError>
@@ -27,6 +28,21 @@ export const useGetUserQuery = (
   useQuery<BaseResponse<User>, AxiosError>(
     QUERY_KEYS.user.getUser,
     () => userApi.getUser(id),
+    {
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10,
+      suspense: true,
+      ...options,
+    }
+  );
+
+export const useSearchUserByNicknameQuery = (
+  nickname: string,
+  options?: UseQueryOptions<NormalUser[], AxiosError>
+): UseQueryResult<NormalUser[], AxiosError> =>
+  useQuery<NormalUser[], AxiosError>(
+    QUERY_KEYS.user.getUserByNickname(nickname),
+    () => userApi.searchUserByNickname(nickname),
     {
       staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 10,

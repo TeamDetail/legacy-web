@@ -14,6 +14,7 @@ import OverView from "@components/profile/OverView";
 import Inventory from "@components/profile/Inventory";
 import Codex from "@components/profile/Codex";
 import ProfileFix from "@components/profile/ProfileFix";
+import FriendPage from "@src/pages/FriendPage";
 
 const Router = () => {
   return (
@@ -43,6 +44,7 @@ const Router = () => {
       <Route path="/course" element={<CoursePage />} />
       <Route path="/course/:id" element={<CourseDetail />} />
       <Route path="/course/create" element={<CreateCoursePage />} />
+      <Route path="/friend" element={<FriendPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

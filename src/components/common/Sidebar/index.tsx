@@ -20,6 +20,7 @@ import { useMemo } from "react";
 import useModalStore from "@src/store/useModalStore";
 import useUserStore from "@src/store/useUserStore";
 import MailBox from "@components/mailBox/mailBox";
+import Friend from "@src/assets/sidebarIcon/friend.svg?react";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -42,6 +43,14 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
         }),
       isSelectedPage: modalData.key === "MAILBOX",
       icon: <Mail width={22.5} />,
+    },
+    {
+      text: "친구",
+      onClick: () => {
+        nav("/friend");
+      },
+      isSelectedPage: window.location.pathname === "/friend",
+      icon: <Friend width={22.5} />,
     },
     {
       text: "설정",
