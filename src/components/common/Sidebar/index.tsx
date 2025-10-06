@@ -32,7 +32,6 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
   const { userStoreData } = useUserStore();
   // const location = useLocation();
   const [isViewMoreMenuOpen, setIsViewMoreMenuOpen] = useState<boolean>(false);
-  const [isFriendPageOpen, setIsFriendPageOpen] = useState<boolean>(false);
   const cookie = cookies;
   const viewMoreMenu = [
     {
@@ -49,9 +48,8 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
       text: "친구",
       onClick: () => {
         nav("/friend");
-        setIsFriendPageOpen(true);
       },
-      isSelectedPage: isFriendPageOpen,
+      isSelectedPage: window.location.pathname === "/friend",
       icon: <Friend width={22.5} />,
     },
     {
