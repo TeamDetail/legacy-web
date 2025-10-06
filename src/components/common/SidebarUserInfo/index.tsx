@@ -121,6 +121,8 @@ const SidebarUserInfoContainer = styled(Link)`
   & section {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
 
     & p {
       ${LegacyTypography.Pretendard.Caption1.Bold}
@@ -138,14 +140,16 @@ const SidebarUserImg = styled.div<{
 }>`
   background: ${({ $img }) => `url("${$img}")`};
   border-radius: 8px;
-  width: 56px;
-  height: 56px;
+  min-width: 56px;
+  aspect-ratio: 1 / 1;
   background-size: cover;
   background-position: center;
 `;
 
 const SidebarUserName = styled.div`
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   ${LegacyTypography.Pretendard.Headline.Bold}
   color: ${LegacyPalette.labelNormal};

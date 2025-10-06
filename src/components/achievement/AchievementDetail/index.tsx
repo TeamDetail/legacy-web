@@ -55,7 +55,10 @@ const AchievementDetail = () => {
         보상
         <div>
           {selectedAchievementData.achievementAward.map(item => (
-            <Item size='normal' itemType={item.itemType} key={item.itemName + item.itemId}/>
+            <div>
+              <p>{item.itemName}</p>
+              <Item size='normal' itemType={item.itemType} key={item.itemName + item.itemId}/>
+            </div>
           ))}
         </div>
       </S.AchievementDetailAwardContainer>

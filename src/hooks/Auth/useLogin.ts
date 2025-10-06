@@ -7,25 +7,56 @@ import token from "@src/libs/token/token";
 import { TokenType } from "@src/types/Auth/TokenResponse.type";
 import { BaseResponse } from "@src/types/globalType/global.type";
 import axios from "axios";
-import { NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const useLogin = async (code: string | null, navigate: NavigateFunction) => {
-  try {
-    const { data } = await axios.post<BaseResponse<TokenType>>(
-      `${SERVER_URL}/kakao/code`,
-      {
-        code: code,
-      },
-    );
-    if (data) {
-      token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
-      token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
-      navigate("/");
+const useLogin = () => {
+  const navigate = useNavigate();
+
+  const kakaoLogin = async (
+    code: string | null
+  ) => {
+    try {
+      const { data } = await axios.post<BaseResponse<TokenType>>(
+        `${SERVER_URL}/kakao/code`,
+        {
+          code: code,
+        }
+      );
+      if (data) {
+        token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
+        token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
+        navigate("/");
+      }
+    } catch {
+      alert("로그인 실패! 다시 시도해주세요.");
+      navigate("/login");
     }
-  } catch (err: any) {
-    console.log(err);
-    alert("로그인 실패! 다시 시도해주세요.");
-    navigate("/login");
+  };
+
+  const appleLogin = async (
+    idToken: string,
+    name: string
+  ) => {
+    try {
+      const { data } = await axios.post(`${SERVER_URL}/apple/accessToken`, {
+        idToken: idToken,
+        name: name
+      })
+      if (data) {
+        token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
+        token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
+        navigate("/");
+      }
+    } catch {
+      console.log()
+      alert("로그인 실패! 다시 시도해주세요.");
+      navigate("/login");
+    }
+  }
+
+  return {
+    kakaoLogin,
+    appleLogin
   }
 };
 

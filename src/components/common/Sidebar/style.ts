@@ -9,6 +9,7 @@ export const SidebarContainer = styled.section<{
   display: flex;
   flex-direction: column;
   min-width: 220px;
+  max-width: 220px;
   height: 100%;
   padding: 24px 20px;
   gap: 24px;

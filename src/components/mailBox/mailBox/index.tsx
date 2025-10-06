@@ -1,7 +1,7 @@
 import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
 import MailIcon from "@src/assets/mail.svg?react";
-import { LegacySementic } from "@src/constants/color/color";
+import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import useMail from "@src/hooks/mail/useMail";
 import MailItem from "./mailItem";
 import { ItemType, Mail } from "@src/types/inventory/inventory.type";
@@ -38,7 +38,7 @@ const MailBox = ({ close }: { close: () => void }) => {
           <MailIcon width={36} height={36} />
           우편함
         </div>
-        <Close onClick={close} style={{ cursor: "pointer" }} />
+        <Close onClick={close} style={{ cursor: "pointer" }} fill={LegacyPalette.labelNormal} />
       </S.MailBoxModalHeader>
       {receiveItems?.length === 0 ? (
         <S.MailBoxModalMain>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Img from "@src/assets/loginImage.svg";
-import KakaoImg from "@src/assets/kakao-svgrepo-com 1.svg";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { LegacyPalette } from "@src/constants/color/color";
 
@@ -69,16 +68,11 @@ export const LoginButton = styled.button`
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 4px;
-  
+  cursor: pointer;
   > p {
     ${LegacyTypography.Pretendard.Caption2.Medium}
     flex: 1;
   }
-`;
-
-export const KakaoIcon = styled.img.attrs({ src: `${KakaoImg}` })`
-  width: 12px;
-  height: 12px;
 `;
 
 export const Column12 = styled.div`
@@ -126,3 +120,10 @@ export const ImgBox = styled.div`
     display: none;
   }
 `;
+
+export const LoginButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`
