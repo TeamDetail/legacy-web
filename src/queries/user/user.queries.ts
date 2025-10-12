@@ -58,3 +58,10 @@ export const usePatchUserDataMutation = () => {
   });
   return mutation;
 }
+export const useUpdateUserNameMutation = () => {
+  const mutation = useMutation({
+    mutationFn: (params: { nickname: string }) =>
+      userApi.updateNickname(params)
+  })
+  return mutation
+}

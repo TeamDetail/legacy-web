@@ -1,17 +1,49 @@
 import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color"
 import { LegacyTypography } from "@src/constants/font/fontToken";
+import { useUpdateUserNameMutation } from "@src/queries/user/user.queries";
+import useModalStore from "@src/store/useModalStore";
+import useUserStore from "@src/store/useUserStore";
 import { ChangeEvent, useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components"
 
 const NameUpdateModal = () => {
+  const updateUserNameMutation = useUpdateUserNameMutation()
+  const { setCloseModal } = useModalStore()
+  const {setUserData, userStoreData} = useUserStore()
   const [name, setName] = useState("");
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
   }
   const decideName = () => {
-    console.log(name)
+    updateUserNameMutation.mutate(
+      { nickname: name },
+      {
+        onSuccess: () => {
+          toast.success(
+            <div>
+              이름 설정 성공!
+              <br />
+              레거시에 온 것을 환영해요!
+            </div>
+          );
+          setUserData({ ...userStoreData, nickname: name });
+          setCloseModal();
+        },
+        onError: () =>
+          toast.error(
+            <div>
+              이름 설정 실패!
+              <br />
+              다시 시도하거나, 문의를 남겨주세요!
+            </div>
+          ),
+      }
+    );
   }
+
+
   return (
     <NameUpdateModalContainer>
       <p>이름을 알려주세요!</p>

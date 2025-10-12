@@ -18,11 +18,13 @@ const SidebarUserInfo = () => {
   useEffect(() => {
     if (userStoreData.imageUrl.length === 0 && myUserData) {
       setUserData(myUserData.data)
+      if (myUserData.data.nickname.length == 0) {
+        setOpenModal({
+          element: <NameUpdateModal/>,
+          key: "NAME_UPDATE"
+        })
+      }
     }
-    setOpenModal({
-      element: <NameUpdateModal/>,
-      key: "NAME_UPDATE"
-    })
   }, [])
 
   const nickname = userStoreData?.nickname || "NONAME";

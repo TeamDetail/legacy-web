@@ -13,8 +13,10 @@ class UserApi {
     const { data } = await customAxios.get("/user/me");
     return data;
   }
-  
-  public async patchDescription(params: { description: string }): Promise<BaseResponse<null>> {
+
+  public async patchDescription(params: {
+    description: string;
+  }): Promise<BaseResponse<null>> {
     const { data } = await customAxios.patch("/user/description", params);
     return data;
   }
@@ -23,6 +25,11 @@ class UserApi {
     const { data } = await customAxios.get(
       `/friends/search?nickname=${nickname}`
     );
+    return data.data;
+  }
+
+  public async updateNickname(nickname: { nickname: string }): Promise<Response> {
+    const { data } = await customAxios.post("/apple/update-nickname", nickname);
     return data.data;
   }
 }
