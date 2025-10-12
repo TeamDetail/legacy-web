@@ -7,18 +7,27 @@ import useUserStore from "@src/store/useUserStore";
 import { useGetMeQuery } from "@src/queries/user/user.queries";
 import { useEffect } from "react";
 import Coin from '@src/assets/sidebarIcon/legacyCoin.png';
+import useModalStore from "@src/store/useModalStore";
+import NameUpdateModal from "@components/auth/NameUpdateModal";
 
 const SidebarUserInfo = () => {
   const { data: myUserData } = useGetMeQuery({ suspense: true });
   const { setUserData, userStoreData } = useUserStore();
+  const { setOpenModal } = useModalStore();
 
   useEffect(() => {
     if (userStoreData.imageUrl.length === 0 && myUserData) {
       setUserData(myUserData.data)
+      if (myUserData.data.nickname.length == 0) {
+        setOpenModal({
+          element: <NameUpdateModal/>,
+          key: "NAME_UPDATE"
+        })
+      }
     }
   }, [])
 
-  const nickname = userStoreData?.nickname || "Unknown User";
+  const nickname = userStoreData?.nickname || "NONAME";
   const level = userStoreData?.level || 0;
   const titleName =
     userStoreData?.title.name.length > 0
