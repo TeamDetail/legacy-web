@@ -28,7 +28,7 @@ const AchievementItem = ({
           <S.AchievementMoreInfoContainer>
             <S.AchievementMoreInfo>
               <p>목표</p>
-              <span>{achieveGoalMapper(achievementType, goalRate)}</span>
+              <span>{valueType === "HIDDEN" ? "???" : achieveGoalMapper(achievementType, goalRate)}</span>
             </S.AchievementMoreInfo>
             <S.AchievementMoreInfo>
               <p>상태</p>
