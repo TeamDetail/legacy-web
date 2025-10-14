@@ -9,15 +9,15 @@ export const achieveGoalMapper = (
 ): string => {
   switch (type) {
     case "CARD":
-      return "카드 " + value + "개 획득" 
+      return "카드 " + value + "개 획득";
     case "SHINING_CARD":
-      return "찬란한 카드 " + value + "개 획득"; 
+      return "찬란한 카드 " + value + "개 획득";
     case "CARD_PACK":
-      return "카드팩 " + value + "회 개봉"; 
+      return "카드팩 " + value + "회 개봉";
     case "STATED_CARD":
       return `[${stateItem}] 카드 획득`;
     case "RUINS":
-      return "유적지 " + value + "개 탐험"
+      return "유적지 " + value + "개 탐험";
     case "BLOCKS":
       return "블록 " + value + "개 탐험";
     case "CLEAR_COURSE":
@@ -34,8 +34,10 @@ export const achieveGoalMapper = (
       return "아이템 " + value + "개 구매";
     case "TITLE":
       return "칭호 " + value + "개 소지";
+    case "LEVEL":
+      return value + "레벨 달성";
     default:
-      return ""
+      return "";
   }
 }
 

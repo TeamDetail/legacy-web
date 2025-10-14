@@ -10,7 +10,7 @@ export type CourseAchievementType = "CLEAR_COURSE" | "MAKE_COURSE" | "STATE_COUR
 export type QuizAchievementType = "SOLVE_QUIZ" | "WRONG_QUIZ";
 export type ShopAchievementType = "BUY_ITEM";
 export type TitleAcievementType = "TITLE";
-export type AchievementType = CardAchievement | AdventureAchievementType | CourseAchievementType | QuizAchievementType | ShopAchievementType | TitleAcievementType
+export type AchievementType = CardAchievement | AdventureAchievementType | CourseAchievementType | QuizAchievementType | ShopAchievementType | TitleAcievementType | "LEVEL"
 
 export type AchievementValueType = "EXPLORE" | "LEVEL" | "HIDDEN";
 
