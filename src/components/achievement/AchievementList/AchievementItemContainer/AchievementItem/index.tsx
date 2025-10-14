@@ -43,7 +43,7 @@ const AchievementItem = ({
             </S.AchievementMoreInfo>
             <S.AchievementMoreInfo>
               <p>달성자 비율</p>
-              <span>{achieveUserPercent}%</span>
+              <span>{Math.floor(achieveUserPercent * 100)/100}%</span>
             </S.AchievementMoreInfo>
           </S.AchievementMoreInfoContainer>
         </S.AchievementContents>
