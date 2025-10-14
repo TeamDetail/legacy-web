@@ -36,6 +36,8 @@ export const achieveGoalMapper = (
       return "칭호 " + value + "개 소지";
     case "LEVEL":
       return value + "레벨 달성";
+    case "FRIEND":
+      return "친구 " + value + "명 달성";
     default:
       return "";
   }
