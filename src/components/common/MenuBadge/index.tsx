@@ -14,6 +14,7 @@ interface BadgeProps {
   menuData: MenuDataType[];
   setMenuData: React.Dispatch<React.SetStateAction<MenuDataType[]>>;
   isLink?: boolean;
+  onClick?: (arg?: string) => void;
 }
 
 export const MenuBadge = ({
@@ -21,15 +22,17 @@ export const MenuBadge = ({
   menuData,
   setMenuData,
   isLink,
+  onClick = () => void(0)
 }: BadgeProps) => {
-  const handleMenu = (text: string) => {
+  const handleMenu = (value: string) => {
     setMenuData((prev) =>
       prev.map((item) =>
-        item.text === text
+        item.value === value
           ? { ...item, isAtv: true }
           : { ...item, isAtv: false }
       )
     );
+    onClick(value);
   };
   const nav = useNavigate();
   return (
@@ -38,10 +41,10 @@ export const MenuBadge = ({
         <BadgeContainer
           $isAtv={item.isAtv}
           $badgeColor={badgeColor}
-          key={item.text}
+          key={item.value}
           onClick={() => {
-            handleMenu(item.text)
-            if (isLink) nav(item.value)
+            handleMenu(item.value);
+            if (isLink) nav(item.value);
           }}
         >
           <p>{item.text}</p>

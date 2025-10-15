@@ -26,6 +26,7 @@ export const RankingPageMain = styled.div`
   background-color: ${LegacyPalette.backgroundNormal};
   padding: 20px;
   border-radius: 20px;
+  flex-grow: 1;
 `;
 
 export const RankingPageFilter = styled.div`

@@ -6,7 +6,7 @@ import NotFoundPage from "@src/pages/NotFoundPage";
 import RankingPage from "@src/pages/RankingPage";
 import YetMakingPage from "@src/pages/YetMakingPage";
 import CoursePage from "@src/pages/CoursePage";
-import CourseDetail from "./course/CourseDetail";
+import CourseDetail from "../components/course/CourseDetail";
 import CreateCoursePage from "@src/pages/CreateCoursePage";
 import ShopPage from "@src/pages/ShopPage/idnex";
 import AchievementPage from "@src/pages/AchievementPage";
@@ -39,7 +39,7 @@ const Router = () => {
       </Route>
       <Route path="/trial" element={<YetMakingPage type="시련" />} />
       <Route path="/shop" element={<ShopPage />} />
-      <Route path="/ranking" element={<RankingPage />} />
+      <Route path="/ranking/:type/:scope" element={<RankingPage />}/>
       <Route path="/achievement" element={<AchievementPage />} />
       <Route path="/course" element={<CoursePage />} />
       <Route path="/course/:id" element={<CourseDetail />} />

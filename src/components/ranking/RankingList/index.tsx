@@ -1,5 +1,8 @@
 import { useGetExploreRanking, useGetLevelRanking } from "@src/queries/ranking/ranking.queries";
 import * as S from "./style";
+import LegacyButton from "@components/common/LegacyButton";
+import { LegacyPalette } from "@src/constants/color/color";
+import { useNavigate } from "react-router-dom";
 
 interface RankingListType {
   type: "trial" | "explore" | "level";
@@ -9,8 +12,9 @@ interface RankingListType {
 const RankingList = ({ type, scope }: RankingListType) => {
   const { data: exploreRankData } = useGetExploreRanking(scope);
   const { data: levelRankData } = useGetLevelRanking(scope);
-
-  return (
+  const navigate = useNavigate();
+  
+  return scope === "all" && exploreRankData.length >= 1 ? (
     <S.RankingListContainer>
       <S.RankingHeader>
         <S.RankIndicator $Rank={0} />
@@ -74,6 +78,19 @@ const RankingList = ({ type, scope }: RankingListType) => {
         )
       )}
     </S.RankingListContainer>
+  ) : (
+    <S.RankingNofriends>
+      <p>친구가 없습니다.</p>
+      <LegacyButton
+        size="default"
+        isBold
+        isFilled={false}
+        color={LegacyPalette.primaryNormal}
+        handleClick={() => navigate("/friend")}
+      >
+        친구 추가하러 가기
+      </LegacyButton>
+    </S.RankingNofriends>
   );
 };
 
