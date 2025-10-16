@@ -2,42 +2,56 @@ import Sidebar from '@components/common/Sidebar';
 import Ranking from "@src/assets/sidebarIcon/ranking.svg?react";
 import * as S from './style';
 import RankingList from '@components/ranking/RankingList';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import RankingListSkeleton from "@components/skeleton/RankingListSkeleton";
 import { MenuBadge } from '@components/common/MenuBadge';
-import { LegacyPalette } from '@src/constants/color/color';
+import { LegacyPalette, LegacySementic } from '@src/constants/color/color';
 import { HeaderContainer } from '@src/styles/globalStyles';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const RankingPage = () => {
+  const { type, scope } = useParams();
+  const navigate = useNavigate();
   const [rankTypeFilter, setRankTypeFilter] = useState([
     {
       text: "탐험",
       value: "explore",
-      isAtv: true
+      isAtv: type === "explore",
     },
-    // {
-    //   text: "시련",
-    //   value: "trial",
-    //   isAtv: false,
-    // },
     {
       text: "숙련",
       value: "level",
-      isAtv: false,
+      isAtv: type === "level",
     },
   ]);
-  const [rankScopeFilter ] = useState([
+  const [rankScopeFilter, setRankingScopeFilter] = useState([
     {
       text: "전체",
       value: "all",
-      isAtv: true,
+      isAtv: scope === "all",
     },
     {
       text: "친구",
       value: "friend",
-      isAtv: false,
+      isAtv: scope === "friend",
     },
   ]);
+
+  useEffect(() => {
+    setRankTypeFilter((prev) =>
+      prev.map((item) => ({
+        ...item,
+        isAtv: item.value === type,
+      }))
+    );
+
+    setRankingScopeFilter((prev) =>
+      prev.map((item) => ({
+        ...item,
+        isAtv: item.value === scope,
+      }))
+    );
+  }, [type, scope]);
 
   return (
     <S.RankingPageContainer>
@@ -54,29 +68,26 @@ const RankingPage = () => {
                 badgeColor={LegacyPalette.primaryNormal}
                 menuData={rankTypeFilter}
                 setMenuData={setRankTypeFilter}
+                onClick={(menu) => {
+                  navigate(`/ranking/${menu}/${rankScopeFilter.find((item) => item.isAtv)?.value}`);
+                }}
               />
             </div>
-            {/* <div>
+            <div>
               <MenuBadge
                 badgeColor={LegacySementic.red.netural}
                 menuData={rankScopeFilter}
-                setMenuData={setRankScopeFilter}
+                setMenuData={setRankingScopeFilter}
+                onClick={(menu) => {
+                  navigate(`/ranking/${rankTypeFilter.find((item) => item.isAtv)?.value}/${menu}`);
+                }}
               />
-            </div> */}
+            </div>
           </S.RankingPageFilter>
           <Suspense fallback={<RankingListSkeleton />}>
             <RankingList
-              type={
-                rankTypeFilter.find((item) => item.isAtv)!.value as
-                  | "explore"
-                  | "trial"
-                  | "level"
-              }
-              scope={
-                rankScopeFilter.find((item) => item.isAtv)!.value as
-                  | "all"
-                  | "friend"
-              }
+              type={type as "explore" | "level" | "trial"}
+              scope={scope as "all" | "friend"}
             />
           </Suspense>
         </S.RankingPageMain>

@@ -33,7 +33,7 @@ export const SIDEBAR_DATA = [
   },
   {
     text: "랭킹",
-    url: "/ranking",
+    url: "/ranking/explore/all",
     color: LegacySementic.red.alternative,
     icon: Ranking,
   },

@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import Routes from "./components/Router";
+import Routes from "@components/Router";
 import {
   QueryClient as QueryClientV3,
   QueryClientProvider as QueryClientProviderV3,

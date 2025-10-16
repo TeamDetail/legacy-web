@@ -107,3 +107,17 @@ export const RankingScore = styled.div<{
     color: ${LegacyPalette.labelAlternative};
   }
 `;
+
+export const RankingNofriends = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 12px;
+  color: ${LegacyPalette.primaryNormal};
+  > p {
+    ${LegacyTypography.Pretendard.Title3.Medium}
+    color: ${LegacyPalette.labelNormal};
+  }
+`
