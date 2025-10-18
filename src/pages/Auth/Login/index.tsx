@@ -4,6 +4,7 @@ import { KAKAO_REDIRECT_URL, REST_API_KEY } from "@src/constants/auth/auth.const
 import useLogin from "@src/hooks/Auth/useLogin";
 import AppleLoginButton from "@components/auth/AppleLoginButton";
 import KakaoImg from "@src/assets/loginButtonSvg/kakao.svg?react";
+import GoogleLoginButton from "@components/auth/GoogleLoginButton";
 
 type LoginVerifyingProps = {
   verifyingType?: "KAKAO" | "APPLE" | "GOOGLE"
@@ -14,14 +15,16 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
   };
 
-  const { kakaoLogin, appleLogin } = useLogin()
+  const createQueryParams = (hash: string) => new URLSearchParams(hash);
+
+  const { kakaoLogin, appleLogin, googleLogin } = useLogin()
   useEffect(() => {
     if (verifyingType === "KAKAO") {
       const code = new URL(document.location.toString()).searchParams.get("code");
       kakaoLogin(code)
     } else if (verifyingType === "APPLE") {
       const hash = window.location.hash.substring(1);
-      const queryParams: URLSearchParams = new URLSearchParams(hash);
+      const queryParams: URLSearchParams = createQueryParams(hash);
       const id_token = queryParams.get("id_token");
       const code = queryParams.get("code");
 
@@ -33,6 +36,12 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
       console.log(data)
       
       appleLogin(id_token!, code!)
+    } else if (verifyingType === "GOOGLE") {
+      const hash = window.location.hash.substring(1);
+      const queryParams: URLSearchParams = createQueryParams(hash);
+      const code = queryParams.get('code');
+
+      googleLogin(code!);
     }
   }, [verifyingType]);
 
@@ -57,6 +66,7 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
                 <KakaoImg />
                 <p>카카오 로그인 {verifyingType === "KAKAO" && "중..."}</p>
               </S.LoginButton>
+              <GoogleLoginButton isVerifying={verifyingType === 'GOOGLE'} />
               <AppleLoginButton isVerifying={verifyingType === 'APPLE'} />
             </S.LoginButtonContainer>
           </S.Column20>
