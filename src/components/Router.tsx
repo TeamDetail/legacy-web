@@ -30,6 +30,10 @@ const Router = () => {
         path="/login/apple/verify"
         element={<Login verifyingType="APPLE" />}
       />
+      <Route
+        path="/login/google/verify"
+        element={<Login verifyingType="GOOGLE" />}
+      />
       <Route path="/profile" element={<ProfilePage />}>
         <Route path="" element={<OverView />} />
         <Route path="overview" element={<OverView />} />

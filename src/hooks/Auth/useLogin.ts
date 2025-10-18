@@ -54,9 +54,25 @@ const useLogin = () => {
     }
   }
 
+  const googleLogin = async (code: string) => {
+    try {
+      const {data} = await axios.post(`${SERVER_URL}/google/web`, code)
+      if (data) {
+        token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
+        token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
+        navigate("/")
+      }
+    } catch {
+      console.log()
+      alert("로그인 실패! 다시 시도해주세요.");
+      navigate("/login");
+    }
+  }
+
   return {
     kakaoLogin,
-    appleLogin
+    appleLogin,
+    googleLogin
   }
 };
 
