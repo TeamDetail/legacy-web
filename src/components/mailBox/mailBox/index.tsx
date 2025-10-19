@@ -11,6 +11,7 @@ import Close from "@src/assets/close.svg?react";
 import mailApi from "@src/api/mail/mail.api";
 import { toast } from "react-toastify";
 import ReceiveItem from "./ReceiveItem";
+import Item from "@components/common/Item";
 
 const MailBox = ({ close }: { close: () => void }) => {
   const { mails, isMailsFetching } = useMail();
@@ -86,12 +87,8 @@ const MailBox = ({ close }: { close: () => void }) => {
                 <S.MailRewardContainer>
                   구성품
                   <div>
-                    {selectMail.itemData.map((_, idx) => (
-                      <img
-                        key={idx}
-                        src="https://i.namu.wiki/i/GvVcesfJVnFMKclMa_8360-2xqRXd9vnS4xSxqNYv0YI-gKjrTycw5ufrTHGBZ00BqbFNIZy-rUaUaepu3WLmw.webp"
-                        alt="itemImg"
-                      />
+                    {selectMail.itemData.map((item, idx) => (
+                      <Item size="normal" itemType={item.itemType} key={idx}/>
                     ))}
                   </div>
                 </S.MailRewardContainer>
