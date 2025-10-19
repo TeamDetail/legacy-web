@@ -1,3 +1,4 @@
+import Item from "@components/common/Item";
 import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
@@ -16,12 +17,8 @@ const ReceiveItem = ({
     <ReceiveItemContainer>
       보상 수령 완료!<span>우편함 보상을 모두 수령했어요!</span>
       <ItemContainer>
-        {receiveItems.map((_, idx) => (
-          <img
-            key={idx}
-            src="https://i.namu.wiki/i/GvVcesfJVnFMKclMa_8360-2xqRXd9vnS4xSxqNYv0YI-gKjrTycw5ufrTHGBZ00BqbFNIZy-rUaUaepu3WLmw.webp"
-            alt="itemImg"
-          />
+        {receiveItems.map((item, idx) => (
+          <Item size="normal" itemType={item.itemType} key={idx}/>
         ))}
       </ItemContainer>
       <LegacyButton
