@@ -6,7 +6,7 @@ export interface ItemType {
   itemCount: number;
 }
 
-export type ItemEnumType = "CARD_PACK"
+export type ItemEnumType = "CARD_PACK" | "MONEY_BUNDLE"
 
 export interface Mail {
   mailTitle: string;
