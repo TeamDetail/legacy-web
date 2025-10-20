@@ -91,6 +91,7 @@ const ButtonWrapper = styled.div<{
           ? LegacySementic.red.netural
           : LegacySementic.blue.netural
         : LegacyPalette.lineNeutral};
+  cursor: ${({ $buttonType }) => $buttonType === "heart" && "pointer"};
   border-radius: 4px;
   background-color: ${LegacyPalette.fillNormal};
 

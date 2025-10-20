@@ -60,7 +60,7 @@ export const RankingUserInfo = styled.div`
   }
 
   img {
-    border-radius: 999px;
+    border-radius: 8px;
     width: 48px;
     height: 48px;
     object-fit: cover;
