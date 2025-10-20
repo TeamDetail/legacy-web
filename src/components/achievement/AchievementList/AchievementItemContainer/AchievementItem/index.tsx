@@ -1,12 +1,14 @@
 import { Achievement, AchievementValueType } from '@src/types/achievement/achievement.type';
 import * as S from './style';
 import { achieveGoalMapper, achievementValueTypeMapper } from '@src/utils/textMapper/textMapper';
+import AchievementImage from '@components/achievement/AchievementImage';
 
 const AchievementItem = ({
   achievementName,
   achievementContent,
   achieveUserPercent,
   achievementType,
+  achievementGrade,
   currentRate,
   goalRate,
   isReceive,
@@ -16,7 +18,7 @@ const AchievementItem = ({
   return (
     <S.AchievementHover onClick={onClick}>
       <S.AchievementItemContainer>
-        <S.AchievementImg />
+        <AchievementImage size="NORMAL" iconType={achievementType} grade={achievementGrade} />
         <S.AchievementContents>
           <S.AchievementHeader $valueType={valueType}>
             <div>

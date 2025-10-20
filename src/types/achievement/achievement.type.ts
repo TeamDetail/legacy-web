@@ -21,10 +21,10 @@ export type Achievement = {
   achievementAward: ItemType[];
   achieveUserPercent: number;
   achievementType: AchievementType;
+  achievementGrade: AchievementGrade;
   isReceive: boolean;
   currentRate: number;
   goalRate: number; // 항상 1 이상의 수가 보장됩니다.
-  grade: AchievementGrade;
 };
 
 export type AchievementGrade =

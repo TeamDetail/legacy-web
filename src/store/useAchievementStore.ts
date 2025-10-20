@@ -19,7 +19,7 @@ type AchievementStore = {
 
 const useAchievementStore = create<AchievementStore>((set) => ({
   selectedAchievementData: null,
-  selectAchievement: (data) => set({selectedAchievementData: data}),
+  selectAchievement: (data) => set({ selectedAchievementData: data }),
   exploreAchieveStoreData: [
     {
       achievementId: 0,
@@ -36,10 +36,11 @@ const useAchievementStore = create<AchievementStore>((set) => ({
       ],
       achieveUserPercent: 0,
       achievementType: "BLOCKS",
+      achievementGrade: "COMMON",
       isReceive: false,
       currentRate: 0,
       goalRate: 1,
-      grade: "COMMON",
+
     },
   ],
   levelAchieveStoreData: [
@@ -58,10 +59,11 @@ const useAchievementStore = create<AchievementStore>((set) => ({
       ],
       achieveUserPercent: 0,
       achievementType: "BLOCKS",
+      achievementGrade: "COMMON",
       isReceive: false,
       currentRate: 0,
       goalRate: 1,
-      grade: "COMMON",
+
     },
   ],
   hiddenAchieveStoreData: [
@@ -80,10 +82,10 @@ const useAchievementStore = create<AchievementStore>((set) => ({
       ],
       achieveUserPercent: 0,
       achievementType: "BLOCKS",
+      achievementGrade: "COMMON",
       isReceive: false,
       currentRate: 0,
       goalRate: 1,
-      grade: "COMMON",
     },
   ],
   setAchievementStoreData: (newData, type) => {
