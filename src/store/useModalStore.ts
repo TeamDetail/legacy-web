@@ -1,18 +1,31 @@
 import { ReactNode } from "react";
 import { create } from "zustand";
 
-interface ModalStore {
+type ModalDataType = {
   element: ReactNode | null;
+  key: string | null;
+}
+interface ModalStore {
+  modalData: ModalDataType
   isOpen: boolean;
-  setOpenModal: (newData: ReactNode) => void;
+  setOpenModal: (newData: ModalDataType) => void;
   setCloseModal: () => void;
 }
 const useModalStore = create<ModalStore>((set) => ({
-  element: null,
+  modalData: {
+    element: null,
+    key: null
+  },
   isOpen: false,
   setCloseModal: () => set({ isOpen: false }),
-  setOpenModal: (newElement) => {
-    set({ element: newElement, isOpen: true });
+  setOpenModal: (data) => {
+    set({
+      modalData: {
+        element: data.element,
+        key: data.key
+      },
+      isOpen: true
+    });
   },
 }));
 

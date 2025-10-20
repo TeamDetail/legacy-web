@@ -1,22 +1,49 @@
 import { useEffect } from "react";
 import * as S from "./style";
-import { REDIRECT_URI, REST_API_KEY } from "@src/constants/kakao/kakao";
+import { KAKAO_REDIRECT_URL, REST_API_KEY } from "@src/constants/auth/auth.constants";
 import useLogin from "@src/hooks/Auth/useLogin";
-import { useNavigate } from "react-router-dom";
+import AppleLoginButton from "@components/auth/AppleLoginButton";
+import KakaoImg from "@src/assets/loginButtonSvg/kakao.svg?react";
+import GoogleLoginButton from "@components/auth/GoogleLoginButton";
 
-const Login = ({isVerifyingPage}: {isVerifyingPage: boolean}) => {
+type LoginVerifyingProps = {
+  verifyingType?: "KAKAO" | "APPLE" | "GOOGLE"
+}
+
+const Login = ({ verifyingType }: LoginVerifyingProps) => {
   const handleLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
   };
 
-  const navigate = useNavigate();
+  const createQueryParams = (hash: string) => new URLSearchParams(hash);
 
+  const { kakaoLogin, appleLogin, googleLogin } = useLogin()
   useEffect(() => {
-    if (isVerifyingPage) {
+    if (verifyingType === "KAKAO") {
       const code = new URL(document.location.toString()).searchParams.get("code");
-      useLogin(code, navigate);
+      kakaoLogin(code)
+    } else if (verifyingType === "APPLE") {
+      const hash = window.location.hash.substring(1);
+      const queryParams: URLSearchParams = createQueryParams(hash);
+      const id_token = queryParams.get("id_token");
+      const code = queryParams.get("code");
+
+      const data = {
+        id_token: queryParams.get("id_token"),
+        code: queryParams.get("code"),
+      };
+
+      console.log(data)
+      
+      appleLogin(id_token!, code!)
+    } else if (verifyingType === "GOOGLE") {
+      const hash = window.location.hash.substring(1);
+      const queryParams: URLSearchParams = createQueryParams(hash);
+      const code = queryParams.get('code');
+
+      googleLogin(code!);
     }
-  }, [isVerifyingPage]);
+  }, [verifyingType]);
 
   return (
     <S.Container>
@@ -34,17 +61,14 @@ const Login = ({isVerifyingPage}: {isVerifyingPage: boolean}) => {
               </S.Column>
               <S.Body2Bold>소셜 로그인하고 곧바로 뛰어드세요!</S.Body2Bold>
             </S.Column12>
-            {!isVerifyingPage ? (
+            <S.LoginButtonContainer>
               <S.LoginButton onClick={handleLogin}>
-                <S.KakaoIcon />
-                <p>카카오 로그인</p>
+                <KakaoImg />
+                <p>카카오 로그인 {verifyingType === "KAKAO" && "중..."}</p>
               </S.LoginButton>
-            ) : (
-              <S.LoginButton>
-                <S.KakaoIcon />
-                <p>카카오 로그인 중...!</p>
-              </S.LoginButton>
-            )}
+              <GoogleLoginButton isVerifying={verifyingType === 'GOOGLE'} />
+              <AppleLoginButton isVerifying={verifyingType === 'APPLE'} />
+            </S.LoginButtonContainer>
           </S.Column20>
         </S.Center>
       </S.LoginBox>

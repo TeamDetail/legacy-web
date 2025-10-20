@@ -52,6 +52,7 @@ export const SearchButton = styled.div`
   background-color: ${LegacyPalette.fillNormal};
   user-select: none;
   cursor: pointer;
+  white-space: nowrap;
 `;
 
 export const EmptyCourseMessage = styled.div`

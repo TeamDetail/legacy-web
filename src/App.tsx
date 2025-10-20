@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import Routes from "./components/Router";
+import Routes from "@components/Router";
 import {
   QueryClient as QueryClientV3,
   QueryClientProvider as QueryClientProviderV3,
@@ -12,22 +12,24 @@ import { ToastContainer } from "react-toastify";
 import { LegacyModal } from "@components/common/LegacyModal";
 import useModalStore from "./store/useModalStore";
 import MusicController from "@components/music/MusicController";
+import GlobalAchievementSvgSprite from "@components/achievement/GlobalAchievementSvgSprite";
 
 const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
 
 function App() {
-  const { isOpen, element } = useModalStore();
+  const { isOpen, modalData } = useModalStore();
   return (
     <QueryClientProviderV5 client={queryClientV5}>
       <QueryClientProviderV3 client={queryClientV3}>
         <BrowserRouter>
           <Routes />
-          <LegacyModal isOpen={!!element && isOpen} $background>
-            {element}
+          <LegacyModal isOpen={!!modalData.element && isOpen} $background>
+            {modalData.element}
           </LegacyModal>
           <MusicController/>
           <ToastContainer theme="dark" />
+          <GlobalAchievementSvgSprite />
         </BrowserRouter>
       </QueryClientProviderV3>
     </QueryClientProviderV5>

@@ -7,18 +7,27 @@ import useUserStore from "@src/store/useUserStore";
 import { useGetMeQuery } from "@src/queries/user/user.queries";
 import { useEffect } from "react";
 import Coin from '@src/assets/sidebarIcon/legacyCoin.png';
+import useModalStore from "@src/store/useModalStore";
+import NameUpdateModal from "@components/auth/NameUpdateModal";
 
 const SidebarUserInfo = () => {
   const { data: myUserData } = useGetMeQuery({ suspense: true });
   const { setUserData, userStoreData } = useUserStore();
+  const { setOpenModal } = useModalStore();
 
   useEffect(() => {
     if (userStoreData.imageUrl.length === 0 && myUserData) {
       setUserData(myUserData.data)
+      if (myUserData.data.nickname.length == 0) {
+        setOpenModal({
+          element: <NameUpdateModal/>,
+          key: "NAME_UPDATE"
+        })
+      }
     }
   }, [])
 
-  const nickname = userStoreData?.nickname || "Unknown User";
+  const nickname = userStoreData?.nickname || "NONAME";
   const level = userStoreData?.level || 0;
   const titleName =
     userStoreData?.title.name.length > 0
@@ -121,6 +130,8 @@ const SidebarUserInfoContainer = styled(Link)`
   & section {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
 
     & p {
       ${LegacyTypography.Pretendard.Caption1.Bold}
@@ -138,14 +149,16 @@ const SidebarUserImg = styled.div<{
 }>`
   background: ${({ $img }) => `url("${$img}")`};
   border-radius: 8px;
-  width: 56px;
-  height: 56px;
+  min-width: 56px;
+  aspect-ratio: 1 / 1;
   background-size: cover;
   background-position: center;
 `;
 
 const SidebarUserName = styled.div`
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   ${LegacyTypography.Pretendard.Headline.Bold}
   color: ${LegacyPalette.labelNormal};

@@ -1,6 +1,7 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
-import CardpackImg from "@src/assets/cardpackImg.png";
+import CardpackImg from "@src/assets/itemImg/cardpackImg.png";
+import MoneyBundleImg from "@src/assets/itemImg/moneyBundle.webp";
 import { ItemEnumType } from "@src/types/inventory/inventory.type";
 
 interface SizeType {
@@ -37,7 +38,7 @@ const Item = ({
 }) => {
   return (
     <ItemContainer $size={size} $isSelected={!!isSelected} onClick={onClick}>
-      {itemType === "CARD_PACK" && <img src={CardpackImg}/>}
+      {itemType === "CARD_PACK" ? <img src={CardpackImg}/> : itemType === "MONEY_BUNDLE" && <img src={MoneyBundleImg} /> }
     </ItemContainer>
   );
 };

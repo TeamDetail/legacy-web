@@ -65,7 +65,7 @@ const CourseElementItem = ({
         </S.ExplorerContainer>
       </S.InfoContainer>
       <Card
-        cardType={card!.cardType}
+        cardType="BASIC_CARD"
         cardId={card!.cardId}
         cardImageUrl={card!.cardImageUrl}
         cardName={card!.cardName}

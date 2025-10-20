@@ -22,14 +22,17 @@ const CardpackItem = ({
     <>
       <CardpackItemContainer
         onClick={() =>
-          setOpenModal(
-            <FinalPurchaseCheckModal
-              itemName={cardpackName}
-              price={cardpackCost}
-              close={setCloseModal}
-              onPurchase={onPurchase}
-            />
-          )
+          setOpenModal({
+            element: (
+              <FinalPurchaseCheckModal
+                itemName={cardpackName}
+                price={cardpackCost}
+                close={setCloseModal}
+                onPurchase={onPurchase}
+              />
+            ),
+            key: "finalPurchaseCheckModal",
+          })
         }
       >
         <CardpackItemWrapper>

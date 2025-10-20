@@ -1,7 +1,7 @@
 import LegacyButton from "@components/common/LegacyButton";
 import * as S from "./style";
 import MailIcon from "@src/assets/sidebarIcon/mail.svg?react";
-import { LegacySementic } from "@src/constants/color/color";
+import { LegacySementic, LegacyPalette } from "@src/constants/color/color";
 import useMail from "@src/hooks/mail/useMail";
 import MailItem from "./mailItem";
 import { ItemType, Mail } from "@src/types/inventory/inventory.type";
@@ -11,6 +11,7 @@ import Close from "@src/assets/close.svg?react";
 import mailApi from "@src/api/mail/mail.api";
 import { toast } from "react-toastify";
 import ReceiveItem from "./ReceiveItem";
+import Item from "@components/common/Item";
 
 const MailBox = ({ close }: { close: () => void }) => {
   const { mails, isMailsFetching } = useMail();
@@ -38,7 +39,7 @@ const MailBox = ({ close }: { close: () => void }) => {
           <MailIcon width={36} height={36} />
           우편함
         </div>
-        <Close onClick={close} style={{ cursor: "pointer" }} />
+        <Close onClick={close} style={{ cursor: "pointer" }} fill={LegacyPalette.labelNormal} />
       </S.MailBoxModalHeader>
       {receiveItems?.length === 0 ? (
         <S.MailBoxModalMain>
@@ -86,12 +87,8 @@ const MailBox = ({ close }: { close: () => void }) => {
                 <S.MailRewardContainer>
                   구성품
                   <div>
-                    {selectMail.itemData.map((_, idx) => (
-                      <img
-                        key={idx}
-                        src="https://i.namu.wiki/i/GvVcesfJVnFMKclMa_8360-2xqRXd9vnS4xSxqNYv0YI-gKjrTycw5ufrTHGBZ00BqbFNIZy-rUaUaepu3WLmw.webp"
-                        alt="itemImg"
-                      />
+                    {selectMail.itemData.map((item, idx) => (
+                      <Item size="normal" itemType={item.itemType} key={idx}/>
                     ))}
                   </div>
                 </S.MailRewardContainer>

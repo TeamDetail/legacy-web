@@ -21,12 +21,15 @@ const Detail = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
       />
       <S.ExplainContainer
         onClick={() =>
-          setOpenModal(
-            <DescriptionModal
-              close={setCloseModal}
-              description={ruinDetail.description}
-            />
-          )
+          setOpenModal({
+            element: (
+              <DescriptionModal
+                close={setCloseModal}
+                description={ruinDetail.description}
+              />
+            ),
+            key: "descriptionModal",
+          })
         }
       >
         <span>설명</span>

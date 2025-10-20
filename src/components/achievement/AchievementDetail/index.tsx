@@ -2,14 +2,14 @@ import useAchievementStore from '@src/store/useAchievementStore';
 import * as S from './style';
 import { achieveGoalMapper, achievementValueTypeMapper } from '@src/utils/textMapper/textMapper';
 import Item from '@components/common/Item';
+import AchievementImage from '../AchievementImage';
 
 const AchievementDetail = () => {
   const {selectedAchievementData} = useAchievementStore();
   return selectedAchievementData ? (
     <S.AchievementDetailContainer>
       <S.AchievementDetailHeader $valueType={selectedAchievementData.valueType}>
-        {/* <img src={selectedAchievementData.achievementType} alt="achieveImg" /> */}
-        <section></section>
+        <AchievementImage size='BIG' grade={selectedAchievementData.achievementGrade} iconType={selectedAchievementData.achievementType} />
         <div>
           <p>{selectedAchievementData.achievementName}</p>
           <span>
@@ -55,7 +55,10 @@ const AchievementDetail = () => {
         보상
         <div>
           {selectedAchievementData.achievementAward.map(item => (
-            <Item size='normal' itemType={item.itemType} key={item.itemName + item.itemId}/>
+            <div>
+              <p>{item.itemName}</p>
+              <Item size='normal' itemType={item.itemType} key={item.itemName + item.itemId}/>
+            </div>
           ))}
         </div>
       </S.AchievementDetailAwardContainer>

@@ -10,7 +10,7 @@ export type CourseAchievementType = "CLEAR_COURSE" | "MAKE_COURSE" | "STATE_COUR
 export type QuizAchievementType = "SOLVE_QUIZ" | "WRONG_QUIZ";
 export type ShopAchievementType = "BUY_ITEM";
 export type TitleAcievementType = "TITLE";
-export type AchievementType = CardAchievement | AdventureAchievementType | CourseAchievementType | QuizAchievementType | ShopAchievementType | TitleAcievementType
+export type AchievementType = CardAchievement | AdventureAchievementType | CourseAchievementType | QuizAchievementType | ShopAchievementType | TitleAcievementType | "LEVEL" | "FRIEND"
 
 export type AchievementValueType = "EXPLORE" | "LEVEL" | "HIDDEN";
 
@@ -21,10 +21,10 @@ export type Achievement = {
   achievementAward: ItemType[];
   achieveUserPercent: number;
   achievementType: AchievementType;
+  achievementGrade: AchievementGrade;
   isReceive: boolean;
   currentRate: number;
   goalRate: number; // 항상 1 이상의 수가 보장됩니다.
-  grade: AchievementGrade;
 };
 
 export type AchievementGrade =

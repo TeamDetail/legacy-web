@@ -1,4 +1,4 @@
-import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+ import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { AchievementValueType } from "@src/types/achievement/achievement.type";
 import styled from "styled-components";
@@ -119,7 +119,17 @@ export const AchievementDetailAwardContainer = styled.div`
   width: 100%;
   > div {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 4px;
+    justify-content: stretch;
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      > p {
+        ${LegacyTypography.Pretendard.Body1.Bold};
+      }
+    }
   }
 `;
