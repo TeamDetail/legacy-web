@@ -10,8 +10,6 @@ interface AchievementImageType {
 }
 
 const AchievementImage = ({ size, grade, iconType }: AchievementImageType) => {
-  console.log(grade);
-
   return (
     <AchievementImageContainer $size={size}>
       <AchievementSvgIcon className="badge">
