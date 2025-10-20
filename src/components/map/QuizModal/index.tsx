@@ -131,7 +131,7 @@ const QuizModal = ({
 
             <S.ButtonContainer>
               <LegacyButton
-                width="69px"
+                width="72px"
                 size="default"
                 isBold={true}
                 isFilled={false}
