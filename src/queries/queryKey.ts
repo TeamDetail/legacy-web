@@ -2,7 +2,7 @@ import { AchievementValueType } from "@src/types/achievement/achievement.type";
 
 export const QUERY_KEYS = {
   user: {
-    getMe: "userGetMe",
+    getMe: ["userGetMe"],
     getUser: "userGetUser",
     getUserByNickname: (nickname: string) =>
       `userGetUserByNickname/${nickname}`,
@@ -17,6 +17,7 @@ export const QUERY_KEYS = {
   },
   quiz: {
     checkRuinQuizAnswer: "quizCheckRuinQuizAnswer",
+    getRuinQuizHint: (id: number) => [`quizHint/${id}`]
   },
   block: {
     getMyBlock: "blockGetMyBlock",

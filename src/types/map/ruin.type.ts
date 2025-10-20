@@ -32,6 +32,7 @@ export interface RuinQuizType {
   quizProblem: string;
   optionValue: string[];
   ruinsName: string;
+  userTotalCredit: number;
 }
 
 export interface QuizAnswerType {

@@ -52,14 +52,10 @@ export const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   gap: 8px;
-
+  justify-content: center;
+  align-items: center;
   ${LegacyTypography.Pretendard.Caption1.Bold};
   color: ${LegacyPalette.labelAlternative};
-
-  span {
-    color: ${LegacySementic.blue.netural};
-    ${LegacyTypography.Pretendard.Caption1.Bold};
-  }
 `;
 
 export const OptionText = styled.div<{ $isSelected: boolean }>`

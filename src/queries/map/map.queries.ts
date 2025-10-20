@@ -108,3 +108,20 @@ export const useGetCommentById = (
     queryFn: () => ruinApi.getCommentById(id),
     ...options,
   });
+
+export const useGetQuizHint = (
+  id: number,
+  options?: Partial<
+    UseQueryOptionsV5<
+      string,
+      Error,
+      string,
+      ReturnType<typeof QUERY_KEYS.quiz.getRuinQuizHint>
+    >
+  >
+) =>
+  useQueryV5({
+    queryKey: QUERY_KEYS.quiz.getRuinQuizHint(id),
+    queryFn: () => quizApi.getRuinQuizHint(id),
+    ...options,
+  });

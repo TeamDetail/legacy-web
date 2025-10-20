@@ -6,7 +6,6 @@ export const DetailLayout = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  overflow: hidden; /* 중요: 설명 텍스트 넘치면 자르기 위함 */
 `;
 
 export const ExplainContainer = styled.div`

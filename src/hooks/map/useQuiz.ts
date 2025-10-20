@@ -1,9 +1,11 @@
 import quizApi from "@src/api/map/quiz.api";
 import { useGetRuinQuiz } from "@src/queries/map/map.queries";
+import useUserStore from "@src/store/useUserStore";
 import { QuizAnswerResultType, QuizAnswerType } from "@src/types/map/ruin.type";
 import { useEffect, useState } from "react";
 
 const useQuiz = () => {
+  const { setUserData, userStoreData } = useUserStore();
   const [ruinId, setRuinId] = useState<number | undefined>();
   const [isCorrect, setIsCorrect] = useState<QuizAnswerResultType>();
 
@@ -41,7 +43,7 @@ const useQuiz = () => {
     checkAnswer();
   }, [quizAnswer]);
   useEffect(() => {
-    getRuinQuiz();
+    getRuinQuiz().then((data) => setUserData({...userStoreData, credit: data.data![0].userTotalCredit}));
   }, [ruinId]);
 
   return {

@@ -33,7 +33,6 @@ class RuinApi {
 
   public async getCommentById(id: number): Promise<CommentType[]> {
     const { data } = await customAxios.get(`/ruins/comment/${id}`);
-    console.log(data.data);
     return data.data;
   }
 
