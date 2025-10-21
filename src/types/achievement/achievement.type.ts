@@ -33,3 +33,9 @@ export type AchievementGrade =
   | "UNIQUE"
   | "CHALLENGE"
   | "COMMON";
+
+export type AchievementAwardResponse = {
+  achievementAward: ItemType[];
+  awardCredit: number;
+  awardExp: number;
+};
