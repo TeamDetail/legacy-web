@@ -30,6 +30,7 @@ class QuizApi {
     const { data } = await customAxios.get(`quiz/hint/${id}`);
     return data.data
   }
+  
   public async getQuizCost(): Promise<QuizCost> {
     const { data } = await customAxios.get(`quiz/credit-cost`);
     return data.data;

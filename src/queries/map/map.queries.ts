@@ -143,5 +143,3 @@ export const useGetQuizCost = (
     queryFn: quizApi.getQuizCost,
     ...options,
   });
-
-  
