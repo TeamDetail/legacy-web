@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import InventoryList from "./InventoryList";
 import * as S from "./style";
 import { ItemType } from "@src/types/inventory/inventory.type";
@@ -16,10 +16,12 @@ const Inventory = () => {
   return (
     <>
       <S.InventoryContainer>
-        <InventoryList
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
-        />
+        <Suspense fallback={<S.InventorySkeleton/>}>
+          <InventoryList
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          />
+        </Suspense>
         {selectedItem && (
           <ItemInfo
             item={selectedItem}

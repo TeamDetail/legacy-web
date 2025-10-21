@@ -25,7 +25,8 @@ const MyFriendItemContainer = ({ friendName }: { friendName: string }) => {
             username={item.nickname}
             profileImg={item.profileImage}
             level={item.level}
-            title={item.title}
+            titleName={item.styleName}
+            styleId={item.styleId}
           />
           <FriendActionButton
             type="CLOSE"

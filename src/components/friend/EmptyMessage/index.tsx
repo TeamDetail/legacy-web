@@ -22,7 +22,7 @@ export default EmptyMessage;
 const EmptyMessageContainer = styled.div`
   width: 100%;
   flex-grow: 1;
-  min-height: 320px;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   gap: 8px;

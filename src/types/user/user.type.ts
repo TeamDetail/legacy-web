@@ -2,7 +2,7 @@ export type TitleType = {
   name: string;
   content: string;
   styleId: number;
-  grade: number;
+  titleId: number;
 }
 
 export type User = {

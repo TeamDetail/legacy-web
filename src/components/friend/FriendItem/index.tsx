@@ -1,19 +1,20 @@
 import Title from "@components/common/Title";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import type { TitleType } from "@src/types/user/user.type";
 import styled from "styled-components";
 
 const FriendItem = ({
   username,
   level,
   profileImg,
-  title,
+  titleName,
+  styleId,
 }: {
   username: string;
   level: number;
   profileImg: string;
-  title: TitleType;
+  titleName: string | null;
+  styleId: number | null;
 }) => {
   return (
     <FriendRequestItemContainer>
@@ -23,7 +24,7 @@ const FriendItem = ({
           {username}
           <span>Lv. {level}</span>
         </p>
-        {!!title && <Title name={title.name} styleId={title.styleId}/>}
+        {(titleName && styleId) && <Title name={titleName} styleId={styleId}/>}
       </FriendRequestItemDataWrapper>
     </FriendRequestItemContainer>
   );

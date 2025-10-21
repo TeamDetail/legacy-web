@@ -5,9 +5,9 @@ import friendApi from "@src/api/friend/friend.api";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import { useGetMyFriendRequestsQuery } from "@src/queries/friend/friend.query";
-import { QueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import styled from "styled-components";
+import { useQueryClient } from "@tanstack/react-query";
 
 const FriendRequestListContainer = ({
   type,
@@ -16,7 +16,7 @@ const FriendRequestListContainer = ({
 }) => {
   const { data: myFriendRequests, refetch: refetchMyFriendRequests } =
     useGetMyFriendRequestsQuery(type);
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return (
     <FriendRequestListWrapper>
@@ -51,7 +51,8 @@ const FriendRequestListContainer = ({
                       ? item.senderProfileImage
                       : item.receiverProfileImage
                   }
-                  title={item.title}
+                  titleName={type === "requests" ? item.senderStyleName : item.receiverStyleName}
+                  styleId={type === "requests" ? item.senderStyleId : item.receiverStyleId}
                 />
                 {type === "requests" ? (
                   <FriendRequestButtonWrapper>

@@ -15,6 +15,7 @@ import Inventory from "@components/profile/Inventory";
 import Codex from "@components/profile/Codex";
 import ProfileFix from "@components/profile/ProfileFix";
 import FriendPage from "@src/pages/FriendPage";
+import Titles from "@components/profile/Titles";
 
 const Router = () => {
   return (
@@ -40,6 +41,7 @@ const Router = () => {
         <Route path="inventory" element={<Inventory />} />
         <Route path="codex" element={<Codex />} />
         <Route path="fix" element={<ProfileFix />} />
+        <Route path="titles" element={<Titles />}/>
       </Route>
       <Route path="/trial" element={<YetMakingPage type="시련" />} />
       <Route path="/shop" element={<ShopPage />} />

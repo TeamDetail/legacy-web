@@ -46,7 +46,7 @@ const RankingList = ({ type, scope }: RankingListType) => {
                 <img src={item.imageUrl} alt="userImg" />
                 <section>
                   <p>{item.nickname}</p>
-                  <Title name={item.title.name} styleId={item.title.styleId}/>
+                  {item.title.name.length !== 0 && <Title name={item.title.name} styleId={item.title.styleId}/>}
                 </section>
               </S.RankingUserInfo>
               {type === "explore" && "allBlocks" in item ? (

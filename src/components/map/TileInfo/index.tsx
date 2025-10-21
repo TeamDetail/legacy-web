@@ -43,9 +43,9 @@ const TileInfo = ({
   const { setOpenModal, setCloseModal } = useModalStore();
   const [page, setPage] = useState<number>(0);
   const [category, setCategory] = useState<MenuDataType[]>([
-    { text: "개요", isAtv: true, value: "" },
-    { text: "상세", isAtv: false, value: "" },
-    { text: "한줄평", isAtv: false, value: "" },
+    { text: "개요", isAtv: true, value: "overview" },
+    { text: "상세", isAtv: false, value: "detail" },
+    { text: "한줄평", isAtv: false, value: "review" },
   ]);
 
   const isMyBlock =
