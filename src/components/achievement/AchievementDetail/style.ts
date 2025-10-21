@@ -128,7 +128,7 @@ export const AchievementDetailAwardContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 12px;
     justify-content: stretch;
     > div {
       display: flex;

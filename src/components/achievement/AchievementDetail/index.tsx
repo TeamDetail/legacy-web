@@ -10,6 +10,7 @@ import useUserStore from '@src/store/useUserStore';
 import achievementApi from '@src/api/achievement/achievement.api';
 import useModalStore from '@src/store/useModalStore';
 import AchievementAwardModal from '@components/achievement/AchievementAwardModal';
+import { ACHIEVE_BASE_AWARD } from '@src/constants/achievement/achievement.constants';
 
 const AchievementDetail = () => {
   const {selectedAchievementData} = useAchievementStore();
@@ -23,18 +24,15 @@ const AchievementDetail = () => {
         size="default"
         color={LegacySementic.yellow.netural}
         width="100%"
-        handleClick={() => 
-          achievementApi.getAchievementAward()
-          .then((data) => {
-            console.log(data)
+        handleClick={() =>
+          achievementApi.getAchievementAward().then((data) => {
+            console.log(data);
             setOpenModal({
-              element:
-              <AchievementAwardModal
-                close={setCloseModal}
-                data={data}
-              />,
-              key: "AWARD_MODAL"
-            })
+              element: (
+                <AchievementAwardModal close={setCloseModal} data={data} />
+              ),
+              key: "AWARD_MODAL",
+            });
           })
         }
       >
@@ -96,8 +94,20 @@ const AchievementDetail = () => {
           <S.AchievementDetailAwardContainer>
             보상
             <div>
-              {selectedAchievementData.achievementAward.map((item) => (
-                <div>
+              <div>
+                <p>크레딧</p>
+                <p>
+                  {ACHIEVE_BASE_AWARD[selectedAchievementData.achievementGrade].credit}
+                </p>
+              </div>
+              <div>
+                <p>경험치</p>
+                <p>
+                  {ACHIEVE_BASE_AWARD[selectedAchievementData.achievementGrade].exp}
+                </p>
+              </div>
+              {selectedAchievementData.achievementAward.map((item, idx) => (
+                <div key={idx}>
                   <p>{item.itemName}</p>
                   <Item
                     size="normal"
