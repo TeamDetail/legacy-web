@@ -48,4 +48,7 @@ export const QUERY_KEYS = {
     getMyFriendRequests: (s: string) => ["getMyFriendRequests", s],
     getMyFriendCode: ["getMyFriendCode"],
   },
+  daily: {
+    getDailyData: ["getDailyData"]
+  }
 };
