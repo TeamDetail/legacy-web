@@ -26,13 +26,24 @@ const ItemQuantitySelectModal = ({
       toast.error("최소 1개 이상을 사용해야합니다.");
     }
     try {
-      const data = await inventoryApi.openCardpack(
-        selectedItem.itemId,
-        quantity
-      );
-      if (data) {
-        close();
-        handleReceiveItem(data);
+      if (selectedItem.itemType === "CARD_PACK") {
+        const data = await inventoryApi.openCardpack(
+          selectedItem.itemId,
+          quantity
+        );
+        if (data) {
+          close();
+          handleReceiveItem(data);
+        }
+      } else if (selectedItem.itemType === "CREDIT_PACK") {
+        const data = await inventoryApi.openCreditpack(
+          selectedItem.itemId,
+          quantity
+        );
+        if (data) {
+          close();
+          toast.success(`${data.addedCredit} 크레딧을 획득하였습니다.`);
+        }
       }
     } catch {
       close();
