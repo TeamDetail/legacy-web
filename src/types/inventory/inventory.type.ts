@@ -6,11 +6,16 @@ export interface ItemType {
   itemCount: number;
 }
 
-export type ItemEnumType = "CARD_PACK" | "MONEY_BUNDLE"
+export type ItemEnumType = "CARD_PACK" | "CREDIT_PACK";
 
 export interface Mail {
   mailTitle: string;
   mailContent: string;
   sendAt: string;
   itemData: ItemType[];
+}
+
+export interface CreditPackResponse {
+  addedCredit: number;
+  userTotalCredit: number;
 }

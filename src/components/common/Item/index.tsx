@@ -38,7 +38,11 @@ const Item = ({
 }) => {
   return (
     <ItemContainer $size={size} $isSelected={!!isSelected} onClick={onClick}>
-      {itemType === "CARD_PACK" ? <img src={CardpackImg}/> : itemType === "MONEY_BUNDLE" && <img src={MoneyBundleImg} /> }
+      {itemType === "CARD_PACK" ? (
+        <img src={CardpackImg} />
+      ) : (
+        itemType === "CREDIT_PACK" && <img src={MoneyBundleImg} />
+      )}
     </ItemContainer>
   );
 };
