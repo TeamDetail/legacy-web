@@ -44,7 +44,7 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
     } else if (verifyingType === "GOOGLE") {
       const hash = window.location.hash.substring(1);
       const queryParams: URLSearchParams = createQueryParams(hash);
-      const code = queryParams.get("access-token");
+      const code = queryParams.get("access_token");
 
       googleLogin(code!);
     }
