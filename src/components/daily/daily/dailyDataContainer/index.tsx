@@ -7,6 +7,7 @@ import { ItemType } from "@src/types/inventory/inventory.type";
 import LegacyButton from "@components/common/LegacyButton";
 import dailyApi from "@src/api/daily/daily.api";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface SelectedDailyRewardType {
   idx: number | null;
@@ -14,6 +15,7 @@ interface SelectedDailyRewardType {
 }
 
 const DailyDataContainer = () => {
+  const queryClient = useQueryClient();
   const { data: dailyData } = useGetDailyDataQuery();
   const [dailyMenuData, setDailyMenuData] = useState<MenuDataType[]>([]);
   const [selectedDailyReward, setSelectedDailyReward] =
@@ -106,11 +108,16 @@ const DailyDataContainer = () => {
                 ) {
                   dailyApi
                     .getDailyReward(selectedDailyData.id)
-                    .then(() =>
+                    .then(() => {
                       toast.success(
-                        "출석 보상을 받았어요! 인벤토리를 확인해 주세요."
-                      )
-                    )
+                        <div>
+                          출석 보상을 받았어요!
+                          <br />
+                          인벤토리를 확인해 주세요.
+                        </div>
+                      );
+                      queryClient.invalidateQueries({ queryKey: ["getDailyData"] });
+                    })
                     .catch(() => toast.error("출석 보상 받기를 실패했어요."));
                 }
               }}
