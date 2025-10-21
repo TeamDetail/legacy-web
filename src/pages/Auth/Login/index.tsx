@@ -20,9 +20,7 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
 
   const createQueryParams = (hash: string) => new URLSearchParams(hash);
 
-  const { kakaoLogin, appleLogin
-    // , googleLogin
-   } = useLogin();
+  const { kakaoLogin, appleLogin, googleLogin } = useLogin();
   useEffect(() => {
     if (verifyingType === "KAKAO") {
       const code = new URL(document.location.toString()).searchParams.get(
@@ -40,15 +38,15 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
         code: queryParams.get("code"),
       };
 
-      console.log(data)
-      
-      appleLogin(id_token!, code!)
-    } else if (verifyingType === "GOOGLE") {
-      // const hash = window.location.hash.substring(1);
-      // const queryParams: URLSearchParams = createQueryParams(hash);
-      // const code = queryParams.get("access_token");
+      console.log(data);
 
-      // googleLogin(code!);
+      appleLogin(id_token!, code!);
+    } else if (verifyingType === "GOOGLE") {
+      const hash = window.location.hash.substring(1);
+      const queryParams: URLSearchParams = createQueryParams(hash);
+      const code = queryParams.get("code");
+
+      googleLogin(code!);
     }
   }, [verifyingType]);
 
