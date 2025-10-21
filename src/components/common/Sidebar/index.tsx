@@ -10,6 +10,7 @@ import { LegacyPalette } from "@src/constants/color/color";
 import Mail from "@src/assets/sidebarIcon/mail.svg?react";
 import Setting from "@src/assets/sidebarIcon/setting.svg?react";
 import Logout from "@src/assets/sidebarIcon/logout.svg?react";
+import Calendar from "@src/assets/sidebarIcon/calendar.svg?react";
 // import Info from "@src/assets/sidebarIcon/info.svg?react";
 import cookies from "@src/libs/cookie/cookie";
 import {
@@ -21,6 +22,7 @@ import useModalStore from "@src/store/useModalStore";
 import useUserStore from "@src/store/useUserStore";
 import MailBox from "@components/mailBox/mailBox";
 import Friend from "@src/assets/sidebarIcon/friend.svg?react";
+import DailyModal from "@components/daily/daily";
 
 interface SidebarProps {
   isLoading?: boolean;
@@ -51,6 +53,16 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
       },
       isSelectedPage: window.location.pathname === "/friend",
       icon: <Friend width={22.5} />,
+    },
+    {
+      text: "출석",
+      onClick: () =>
+        setOpenModal({
+          element: <DailyModal close={setCloseModal} />,
+          key: "DAILY",
+        }),
+      isSelectedPage: modalData.key === "DAILY",
+      icon: <Calendar width={22.5} />,
     },
     {
       text: "설정",
