@@ -1,5 +1,6 @@
 import LegacyButton from "@components/common/LegacyButton";
 import QuizModal from "@components/map/QuizModal";
+import NeedCredit from "@components/map/TileInfo/NeedCredit";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import useQuiz from "@src/hooks/map/useQuiz";
@@ -27,8 +28,8 @@ const QuizWarnModal = ({
   return (
     <QuizWarnModalContainer>
       <QuizWarnModalHeader>
-        탐험하시겠습니까?
-        <span>1000 크레딧이 소모됩니다.</span>
+        탐험 시 크레딧이 소모됩니다.
+        <NeedCredit />
       </QuizWarnModalHeader>
       <ButtonWrapper>
         <LegacyButton
@@ -87,11 +88,6 @@ const QuizWarnModalHeader = styled.div`
   ${LegacyTypography.Pretendard.Heading1.Bold};
   color: ${LegacyPalette.labelNormal};
   align-items: center;
-
-  span {
-    ${LegacyTypography.Pretendard.Body2.Medium};
-    color: ${LegacyPalette.labelNeutral};
-  }
 `;
 
 const ButtonWrapper = styled.div`
