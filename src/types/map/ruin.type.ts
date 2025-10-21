@@ -57,3 +57,8 @@ export interface CommentType {
   comment: string;
   createAt: string;
 }
+
+export type QuizCost = {
+  currentExploreCount: number;
+  nextQuizCost: number;
+};

@@ -1,4 +1,5 @@
-import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+import { skeletonAnimtaion } from "@components/skeleton/animation";
+import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
@@ -42,13 +43,9 @@ export const RuinNameScoreContainer = styled.div`
   gap: 4px;
 `;
 
-export const CostText = styled.div`
-  display: flex;
-  gap: 4px;
-  ${LegacyTypography.Pretendard.Body1.Bold};
-  color: ${LegacySementic.yellow.netural};
-  span {
-    ${LegacyTypography.Pretendard.Body2.Medium}
-    color: ${LegacyPalette.labelAlternative}
-  }
-`;
+export const CostTextSkel = styled.div`
+  width: 100%;
+  height: 20px;
+  border-radius: 8px;
+  ${skeletonAnimtaion}
+`

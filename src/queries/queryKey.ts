@@ -17,7 +17,8 @@ export const QUERY_KEYS = {
   },
   quiz: {
     checkRuinQuizAnswer: "quizCheckRuinQuizAnswer",
-    getRuinQuizHint: (id: number) => [`quizHint/${id}`]
+    getRuinQuizHint: (id: number) => [`quizHint/${id}`],
+    getQuizCost: ["quizCost"]
   },
   block: {
     getMyBlock: "blockGetMyBlock",

@@ -2,6 +2,7 @@ import customAxios from "@src/libs/axios/customAxios";
 import {
   QuizAnswerResultType,
   QuizAnswerType,
+  QuizCost,
   RuinQuizType,
 } from "@src/types/map/ruin.type";
 
@@ -27,6 +28,10 @@ class QuizApi {
     id: number
   ): Promise<string> {
     const { data } = await customAxios.get(`quiz/hint/${id}`);
+    return data.data
+  }
+  public async getQuizCost(): Promise<QuizCost> {
+    const { data } = await customAxios.get(`quiz/credit-cost`);
     return data.data;
   }
 }
