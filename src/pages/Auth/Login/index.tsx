@@ -42,11 +42,11 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
       
       appleLogin(id_token!, code!)
     } else if (verifyingType === "GOOGLE") {
-      const hash = window.location.hash.substring(1);
-      const queryParams: URLSearchParams = createQueryParams(hash);
-      const code = queryParams.get("access_token");
+      // const hash = window.location.hash.substring(1);
+      // const queryParams: URLSearchParams = createQueryParams(hash);
+      // const code = queryParams.get("access_token");
 
-      googleLogin(code!);
+      // googleLogin(code!);
     }
   }, [verifyingType]);
 
