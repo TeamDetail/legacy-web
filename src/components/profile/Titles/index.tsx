@@ -1,8 +1,9 @@
 import TitlePickerItem from "@components/profile/Titles/TitlePickerItem";
-import { useGetMyTitles } from "@src/queries/user/user.queries"
+import { useGetMyTitles } from "@src/queries/user/user.queries";
 import useUserStore from "@src/store/useUserStore";
 import { useState } from "react";
-import styled from "styled-components"
+import styled from "styled-components";
+import EmptyTitleMessage from "./EmptyTitleMessage";
 
 const Titles = () => {
   const { data } = useGetMyTitles();
@@ -11,7 +12,9 @@ const Titles = () => {
   const selectedTitleData = data.find(
     (item) => userStoreData.title.titleId === item.titleId
   );
-  return (
+  return data.length === 0 ? (
+    <EmptyTitleMessage />
+  ) : (
     <TitlesContainer>
       {selectedTitleData && (
         <TitlePickerItem
@@ -28,28 +31,28 @@ const Titles = () => {
         />
       )}
       {data
-      .filter(item => item.titleId !== selectedTitleData?.titleId)
-      .map((item) => (
-        <TitlePickerItem
-          key={item.titleId}
-          titleData={item}
-          isEquiped={userStoreData.title.titleId === item.titleId}
-          isSelected={item.titleId === selectedId}
-          setSelect={() =>
-            setSelectedId(selectedId === item.titleId ? 0 : item.titleId)
-          }
-        />
-      ))}
+        .filter((item) => item.titleId !== selectedTitleData?.titleId)
+        .map((item) => (
+          <TitlePickerItem
+            key={item.titleId}
+            titleData={item}
+            isEquiped={userStoreData.title.titleId === item.titleId}
+            isSelected={item.titleId === selectedId}
+            setSelect={() =>
+              setSelectedId(selectedId === item.titleId ? 0 : item.titleId)
+            }
+          />
+        ))}
     </TitlesContainer>
   );
-}
+};
 
-export default Titles
+export default Titles;
 
 const TitlesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  
+
   @media (max-width: 1040px) {
     display: flex;
     flex-direction: column;
@@ -58,4 +61,4 @@ const TitlesContainer = styled.div`
   width: 100%;
   overflow-y: scroll;
   overflow: visible;
-`
+`;
