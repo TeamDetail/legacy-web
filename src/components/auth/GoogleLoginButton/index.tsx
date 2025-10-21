@@ -11,7 +11,7 @@ const GoogleLoginButton = ({ isVerifying }: { isVerifying: boolean }) => {
       "https://legacygame.site/login/google/verify"
     )}` +
     `&scope=${encodeURIComponent(
-      "https://www.googleapis.com/auth/userinfo.email"
+      "https://www.googleapis.com/auth/userinfo.profile"
     )}` +
     `&response_type=token`;
 
