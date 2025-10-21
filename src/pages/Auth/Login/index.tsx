@@ -33,16 +33,9 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
       const id_token = queryParams.get("id_token");
       const code = queryParams.get("code");
 
-      const data = {
-        id_token: queryParams.get("id_token"),
-        code: queryParams.get("code"),
-      };
-
-      console.log(data);
-
       appleLogin(id_token!, code!);
     } else if (verifyingType === "GOOGLE") {
-      const hash = window.location.hash.substring(1);
+      const hash = window.location.search.substring(1);
       const queryParams: URLSearchParams = createQueryParams(hash);
       const code = queryParams.get("code");
 
