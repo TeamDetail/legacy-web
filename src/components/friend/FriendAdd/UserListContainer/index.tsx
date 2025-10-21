@@ -18,6 +18,7 @@ const UserListContainer = ({ username }: { username: string }) => {
             username={item.nickname}
             level={item.level}
             key={idx}
+            title={item.title}
           />
           <FriendActionButton
             type="SEND"

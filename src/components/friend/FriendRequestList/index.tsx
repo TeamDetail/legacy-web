@@ -24,4 +24,11 @@ export const FriendRequestListWrapper = styled.div`
   overflow: hidden;
   display: flex;
   gap: 52px;
+
+  @media (max-width: 960px) {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 32px;
+  }
 `;

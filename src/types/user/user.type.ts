@@ -1,7 +1,7 @@
-export type Title = {
+export type TitleType = {
   name: string;
   content: string;
-  titleId: number;
+  styleId: number;
   grade: number;
 }
 
@@ -10,7 +10,7 @@ export type User = {
   nickname: string;
   imageUrl: string;
   description: string;
-  title: Title;
+  title: TitleType;
   level: number;
   record: UserRecord;
   credit: number;

@@ -68,6 +68,7 @@ export const RankingUserInfo = styled.div`
 
   section {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     p {
       ${LegacyTypography.Pretendard.Headline.Bold}

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Coin from '@src/assets/sidebarIcon/legacyCoin.png';
 import useModalStore from "@src/store/useModalStore";
 import NameUpdateModal from "@components/auth/NameUpdateModal";
+import Title from "@components/common/Title";
 
 const SidebarUserInfo = () => {
   const { data: myUserData } = useGetMeQuery({ suspense: true });
@@ -29,10 +30,6 @@ const SidebarUserInfo = () => {
 
   const nickname = userStoreData?.nickname || "NONAME";
   const level = userStoreData?.level || 0;
-  const titleName =
-    userStoreData?.title.name.length > 0
-      ? userStoreData?.title.name
-      : "칭호 미착용";
 
   return (
     <SidebarUserInfoWrapper>
@@ -41,7 +38,12 @@ const SidebarUserInfo = () => {
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
-          <p>{titleName}</p>
+          {userStoreData.title.name.length !== 0 && (
+            <Title
+              name={userStoreData.title.name}
+              styleId={userStoreData.title.styleId}
+            />
+          )}
         </section>
       </SidebarUserInfoContainer>
       <LegacyButton
@@ -130,6 +132,7 @@ const SidebarUserInfoContainer = styled(Link)`
   & section {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     flex-grow: 1;
     min-width: 0;
 

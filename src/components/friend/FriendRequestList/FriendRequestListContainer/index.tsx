@@ -51,6 +51,7 @@ const FriendRequestListContainer = ({
                       ? item.senderProfileImage
                       : item.receiverProfileImage
                   }
+                  title={item.title}
                 />
                 {type === "requests" ? (
                   <FriendRequestButtonWrapper>
@@ -127,13 +128,16 @@ export const FriendRequestListWrapper = styled.div`
   flex-direction: column;
   gap: 8px;
 
-  p {
+  @media (max-width: 960px) {
+    flex-grow: 0;
+  }
+  > p {
     display: flex;
     gap: 8px;
     ${LegacyTypography.Pretendard.Body1.Medium};
     color: ${LegacyPalette.labelAlternative};
 
-    span {
+    > span {
       ${LegacyTypography.Pretendard.Body1.Bold};
       color: ${LegacyPalette.labelNeutral};
     }

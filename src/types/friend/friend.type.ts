@@ -1,3 +1,5 @@
+import { TitleType } from "@src/types/user/user.type";
+
 export interface Friend {
   userId: number;
   nickname: string;
@@ -6,6 +8,7 @@ export interface Friend {
   isKakaoFriend: boolean;
   isMutualFriend: boolean;
   level: number;
+  title: TitleType;
 }
 
 export interface FriendRequest {
@@ -19,6 +22,7 @@ export interface FriendRequest {
   receiverProfileImage: string;
   receiverLevel: number;
   createdAt: string;
+  title: TitleType;
 }
 
 export interface NormalUser {
@@ -28,4 +32,5 @@ export interface NormalUser {
   level: number;
   friendCode: string;
   isAlreadyFriend: boolean;
+  title: TitleType
 }

@@ -43,8 +43,8 @@ const TitleContainer = styled.div<{
     justify-content: center;
     align-items: center;
 
-    font-family: "Pretendard-ExtraBold";
-    font-size: 10px;
+    font-family: "Pretendard-Bold";
+    font-size: 12px;
     line-height: 120%;
     letter-spacing: 0.36px;
     color: ${LegacyPalette.labelNormal};
