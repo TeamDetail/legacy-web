@@ -1,8 +1,8 @@
-export type Title = {
+export type TitleType = {
   name: string;
   content: string;
+  styleId: number;
   titleId: number;
-  grade: number;
 }
 
 export type User = {
@@ -10,7 +10,7 @@ export type User = {
   nickname: string;
   imageUrl: string;
   description: string;
-  title: Title;
+  title: TitleType;
   level: number;
   record: UserRecord;
   credit: number;

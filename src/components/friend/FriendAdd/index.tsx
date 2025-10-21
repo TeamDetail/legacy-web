@@ -8,12 +8,12 @@ import friendApi from "@src/api/friend/friend.api";
 import { toast } from "react-toastify";
 import SearchBar from "@components/common/SearchBar";
 import UserListContainer from "./UserListContainer";
-import { QueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "react-query";
 
 const FriendAdd = () => {
   const [friendCode, setFriendCode] = useState("");
   const [username, setUsername] = useState("");
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return (
     <FriendAddContainer>
@@ -29,7 +29,7 @@ const FriendAdd = () => {
               .postFriendByCode(friendCode)
               .then(() => {
                 toast.success("친구 요청을 보냈습니다.");
-                queryClient.refetchQueries({ queryKey: ["getMyFriendRequests", "sent"] });
+                queryClient.invalidateQueries({ queryKey: ["getMyFriendRequests", "sent"] });
               })
               .catch(() => toast.error("친구 요청에 실패했습니다."));
           }}

@@ -25,6 +25,11 @@ const ProfilePage = () => {
       value: "codex",
     },
     {
+      text: "칭호",
+      isAtv: loc.pathname.split("/")[2] === "titles",
+      value: "titles",
+    },
+    {
       text: "인벤토리",
       isAtv: loc.pathname.split("/")[2] === "inventory",
       value: "inventory",

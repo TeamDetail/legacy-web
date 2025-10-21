@@ -1,4 +1,4 @@
-import { User } from "@src/types/user/user.type";
+import { TitleType, User } from "@src/types/user/user.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import { useMutation } from "@tanstack/react-query";
@@ -6,6 +6,10 @@ import { QUERY_KEYS } from "../queryKey";
 import userApi from "@src/api/user/user.api";
 import { BaseResponse } from "@src/types/globalType/global.type";
 import { NormalUser } from "@src/types/friend/friend.type";
+import {
+  useSuspenseQuery as useSuspenseQueryV5,
+  UseSuspenseQueryOptions as UseSuspenseQueryOptionsV5,
+} from "@tanstack/react-query";
 
 export const useGetMeQuery = (
   options?: UseQueryOptions<BaseResponse<User>, AxiosError>
@@ -65,3 +69,27 @@ export const useUpdateUserNameMutation = () => {
   })
   return mutation
 }
+
+export const useGetMyTitles = (
+  options?: Partial<
+    UseSuspenseQueryOptionsV5<
+      TitleType[],
+      Error,
+      TitleType[],
+      typeof QUERY_KEYS.user.getTitles
+    >
+  >
+) =>
+  useSuspenseQueryV5({
+    queryKey: QUERY_KEYS.user.getTitles,
+    queryFn: userApi.getMyTitles,
+    ...options,
+  });
+
+export const usePatchMyTitle = () => {
+  const mutation = useMutation({
+    mutationFn: (titleId: number) =>
+      userApi.patchMyTitle(titleId),
+  });
+  return mutation;
+};

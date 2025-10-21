@@ -20,6 +20,13 @@ const MyFriendListDataWrapper = styled.div`
   gap: 12px;
   overflow-y: auto;
 
+  @media (max-width: 1040px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
+  
   > div {
     ${skeletonAnimtaion};
     height: 96px;

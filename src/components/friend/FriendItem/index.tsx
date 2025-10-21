@@ -1,3 +1,4 @@
+import Title from "@components/common/Title";
 import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
@@ -6,10 +7,14 @@ const FriendItem = ({
   username,
   level,
   profileImg,
+  titleName,
+  styleId,
 }: {
   username: string;
   level: number;
   profileImg: string;
+  titleName: string | null;
+  styleId: number | null;
 }) => {
   return (
     <FriendRequestItemContainer>
@@ -19,9 +24,7 @@ const FriendItem = ({
           {username}
           <span>Lv. {level}</span>
         </p>
-        <div>
-          <div>BETA TESTER</div>
-        </div>
+        {(titleName && styleId) && <Title name={titleName} styleId={styleId}/>}
       </FriendRequestItemDataWrapper>
     </FriendRequestItemContainer>
   );
@@ -49,52 +52,16 @@ const FriendRequestItemDataWrapper = styled.div`
   gap: 4px;
   flex-grow: 1;
 
-  p {
+  > p {
     ${LegacyTypography.Pretendard.Headline.Bold};
     color: ${LegacyPalette.labelNormal};
 
     display: flex;
     flex-direction: column;
 
-    span {
+    > span {
       ${LegacyTypography.Pretendard.Label.Medium};
       color: ${LegacyPalette.labelAlternative};
-    }
-  }
-
-  div {
-    display: flex;
-    flex-wrap: wrap;
-    filter: drop-shadow(0px 2px 4px #0004);
-    width: 100%;
-    div {
-      width: 100%;
-      height: 20px;
-      background-color: ${LegacyPalette.primaryNormal};
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      font-family: "Pretendard-ExtraBold";
-      font-size: 10px;
-      line-height: 120%;
-      letter-spacing: 0.36px;
-      color: ${LegacyPalette.labelNormal};
-
-      &:first-child:last-child {
-        clip-path: polygon(
-          0.75em 0,
-          calc(100% - 0.75em) 0,
-          100% 50%,
-          calc(100% - 0.75em) 100%,
-          0.75em 100%,
-          0 50%
-        );
-      }
-      flex-grow: 1;
-      flex-shrink: 0;
-      text-align: center;
     }
   }
 `;

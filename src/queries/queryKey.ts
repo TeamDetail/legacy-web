@@ -6,6 +6,7 @@ export const QUERY_KEYS = {
     getUser: "userGetUser",
     getUserByNickname: (nickname: string) =>
       `userGetUserByNickname/${nickname}`,
+    getTitles: ["userGetTitles"],
   },
   ruin: {
     getRuinDetail: (id: number) => `mapGetRuinDetail/${id}`,
@@ -45,7 +46,7 @@ export const QUERY_KEYS = {
   },
   friend: {
     getMyFriends: ["getMyFriends"],
-    getMyFriendRequests: (s: string) => ["getMyFriendRequests", s],
+    getMyFriendRequests: (s: "sent" | "requests") => ["getMyFriendRequests", s],
     getMyFriendCode: ["getMyFriendCode"],
   },
   daily: {

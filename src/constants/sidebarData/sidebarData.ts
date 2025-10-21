@@ -1,6 +1,5 @@
 import { LegacySementic } from "../color/color";
 import Adventure from "@src/assets/sidebarIcon/adventure.svg?react";
-import Trial from "@src/assets/sidebarIcon/trial.svg?react";
 import Shop from "@src/assets/sidebarIcon/shop.svg?react";
 import Ranking from "@src/assets/sidebarIcon/ranking.svg?react";
 import Achievement from "@src/assets/sidebarIcon/achievement.svg?react";
@@ -18,12 +17,6 @@ export const SIDEBAR_DATA = [
     url: "/course",
     color: LegacySementic.blue.alternative,
     icon: Course,
-  },
-  {
-    text: "시련",
-    url: "/trial",
-    color: LegacySementic.purple.alternative,
-    icon: Trial,
   },
   {
     text: "상점",
