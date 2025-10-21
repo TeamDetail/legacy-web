@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import * as S from "./style";
-import { KAKAO_REDIRECT_URL, REST_API_KEY } from "@src/constants/auth/auth.constants";
+import {
+  KAKAO_REDIRECT_URL,
+  REST_API_KEY,
+} from "@src/constants/auth/auth.constants";
 import useLogin from "@src/hooks/Auth/useLogin";
 import AppleLoginButton from "@components/auth/AppleLoginButton";
 import KakaoImg from "@src/assets/loginButtonSvg/kakao.svg?react";
 import GoogleLoginButton from "@components/auth/GoogleLoginButton";
 
 type LoginVerifyingProps = {
-  verifyingType?: "KAKAO" | "APPLE" | "GOOGLE"
-}
+  verifyingType?: "KAKAO" | "APPLE" | "GOOGLE";
+};
 
 const Login = ({ verifyingType }: LoginVerifyingProps) => {
   const handleLogin = () => {
@@ -17,11 +20,13 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
 
   const createQueryParams = (hash: string) => new URLSearchParams(hash);
 
-  const { kakaoLogin, appleLogin, googleLogin } = useLogin()
+  const { kakaoLogin, appleLogin, googleLogin } = useLogin();
   useEffect(() => {
     if (verifyingType === "KAKAO") {
-      const code = new URL(document.location.toString()).searchParams.get("code");
-      kakaoLogin(code)
+      const code = new URL(document.location.toString()).searchParams.get(
+        "code"
+      );
+      kakaoLogin(code);
     } else if (verifyingType === "APPLE") {
       const hash = window.location.hash.substring(1);
       const queryParams: URLSearchParams = createQueryParams(hash);
@@ -39,7 +44,7 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
     } else if (verifyingType === "GOOGLE") {
       const hash = window.location.hash.substring(1);
       const queryParams: URLSearchParams = createQueryParams(hash);
-      const code = queryParams.get('code');
+      const code = queryParams.get("access-token");
 
       googleLogin(code!);
     }
@@ -66,8 +71,8 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
                 <KakaoImg />
                 <p>카카오 로그인 {verifyingType === "KAKAO" && "중..."}</p>
               </S.LoginButton>
-              <GoogleLoginButton isVerifying={verifyingType === 'GOOGLE'} />
-              <AppleLoginButton isVerifying={verifyingType === 'APPLE'} />
+              <GoogleLoginButton isVerifying={verifyingType === "GOOGLE"} />
+              <AppleLoginButton isVerifying={verifyingType === "APPLE"} />
             </S.LoginButtonContainer>
           </S.Column20>
         </S.Center>
