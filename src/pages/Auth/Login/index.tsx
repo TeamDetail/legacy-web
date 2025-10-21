@@ -20,7 +20,9 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
 
   const createQueryParams = (hash: string) => new URLSearchParams(hash);
 
-  const { kakaoLogin, appleLogin, googleLogin } = useLogin();
+  const { kakaoLogin, appleLogin
+    // , googleLogin
+   } = useLogin();
   useEffect(() => {
     if (verifyingType === "KAKAO") {
       const code = new URL(document.location.toString()).searchParams.get(
