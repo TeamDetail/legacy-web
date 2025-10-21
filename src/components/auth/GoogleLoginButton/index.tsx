@@ -11,12 +11,11 @@ const GoogleLoginButton = ({ isVerifying }: { isVerifying: boolean }) => {
       "https://legacygame.site/login/google/verify"
     )}` +
     `&scope=${encodeURIComponent(
-      "https://www.googleapis.com/auth/userinfo.profile"
+      "https://www.googleapis.com/auth/userinfo.email"
     )}` +
     `&response_type=token`;
 
-  const loginWithGoogle = async () => window.location.href = AUTH_URL;
-  
+  const loginWithGoogle = async () => (window.location.href = AUTH_URL);
 
   return (
     <GoogleLoginButtonContainer onClick={loginWithGoogle}>
