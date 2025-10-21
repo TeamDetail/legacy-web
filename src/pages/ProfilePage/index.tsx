@@ -47,7 +47,8 @@ const ProfilePage = () => {
       <S.MainContainer
         $isOverViewPage={(
           menuBadgeData.find((item) => item.isAtv)?.value === "overview" ||
-          menuBadgeData.find((item) => item.isAtv)?.value === "fix"
+          menuBadgeData.find((item) => item.isAtv)?.value === "fix" ||
+          menuBadgeData.find((item) => item.isAtv)?.value === "inventory"
         ).toString()}
       >
         <HeaderContainer>
@@ -55,7 +56,8 @@ const ProfilePage = () => {
           프로필
         </HeaderContainer>
         {menuBadgeData.find((item) => item.isAtv)?.value === "overview" ||
-          menuBadgeData.find((item) => item.isAtv)?.value === "fix" || (
+          menuBadgeData.find((item) => item.isAtv)?.value === "fix" ||
+          menuBadgeData.find((item) => item.isAtv)?.value === "inventory" || (
             <Suspense fallback={<UserRecordSkeleton />}>
               <UserRecord />
             </Suspense>
