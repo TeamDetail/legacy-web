@@ -5,21 +5,25 @@ import ArrowUp from "@src/assets/arrow-up.svg?react";
 import ArrowDown from "@src/assets/arrow-down.svg?react";
 import LegacyButton from "@components/common/LegacyButton";
 import { ItemType } from "@src/types/inventory/inventory.type";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import inventoryApi from "@src/api/inventory/inventory.api";
 import { toast } from "react-toastify";
 import { CardResponse } from "@src/types/card/card.type";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ItemQuantitySelectModal = ({
   close,
   selectedItem,
+  setSelectedItem,
   handleReceiveItem,
 }: {
   close: () => void;
   selectedItem: ItemType;
+  setSelectedItem: Dispatch<SetStateAction<ItemType | undefined>>;
   handleReceiveItem: (data: CardResponse[]) => void;
 }) => {
   const [quantity, setQuantity] = useState(1);
+  const queryClient = useQueryClient();
 
   const handleCheckButtonClick = async () => {
     if (quantity === 0) {
@@ -34,6 +38,8 @@ const ItemQuantitySelectModal = ({
         if (data) {
           close();
           handleReceiveItem(data);
+          queryClient.invalidateQueries({ queryKey: ["getMyInventory"] });
+          setSelectedItem(undefined);
         }
       } else if (selectedItem.itemType === "CREDIT_PACK") {
         const data = await inventoryApi.openCreditpack(
@@ -43,6 +49,8 @@ const ItemQuantitySelectModal = ({
         if (data) {
           close();
           toast.success(`${data.addedCredit} 크레딧을 획득하였습니다.`);
+          queryClient.invalidateQueries({ queryKey: ["getMyInventory"] });
+          setSelectedItem(undefined);
         }
       }
     } catch {

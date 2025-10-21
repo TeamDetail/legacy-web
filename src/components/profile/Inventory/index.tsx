@@ -31,6 +31,7 @@ const Inventory = () => {
                   <ItemQuantitySelectModal
                     close={setCloseModal}
                     selectedItem={selectedItem!}
+                    setSelectedItem={setSelectedItem}
                     handleReceiveItem={(data: CardResponse[]) => {
                       setOpenModal({
                         element: (
