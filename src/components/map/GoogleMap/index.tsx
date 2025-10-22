@@ -1,39 +1,24 @@
 import { GOOGLE_MAP_API_KEY } from "@src/constants/googleMaps/googleMaps";
-import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import Pixels from "../Pixels";
 import { Ruin } from "@src/types/map/ruin.type";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { LatLng } from "@src/types/map/latLng.type";
 import { MyBlockType } from "@src/types/map/normalBlock.type";
-
-const MapConroller = ({ center, zoom }: { center: LatLng; zoom: number }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (map) {
-      map.panTo(center);
-    }
-  }, [center, map]);
-
-  useEffect(() => {
-    if (map) {
-      map.setZoom(zoom);
-    }
-  }, [zoom, map]);
-
-  return null;
-};
+import MapController from "./MapController";
 
 const GoogleMap = ({
   setSelectedRuins,
   center,
   zoomLevel,
-  myRuinBlock
+  myRuinBlock,
+  setIsWarning,
 }: {
   setSelectedRuins: Dispatch<SetStateAction<Ruin[] | null>>;
   center: LatLng;
   zoomLevel: number;
   myRuinBlock: MyBlockType[];
+  setIsWarning: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
     <APIProvider apiKey={GOOGLE_MAP_API_KEY}>
@@ -47,10 +32,14 @@ const GoogleMap = ({
         streetViewControl={false}
         fullscreenControl={false}
         maxZoom={16}
-        defaultZoom={zoomLevel}
+        defaultZoom={17}
       >
-        <MapConroller center={center} zoom={zoomLevel} />
-        <Pixels setSelectedRuins={setSelectedRuins} myRuinBlock={myRuinBlock} />
+        <MapController center={center} zoom={zoomLevel} />
+        <Pixels
+          setSelectedRuins={setSelectedRuins}
+          myRuinBlock={myRuinBlock}
+          setIsWarning={setIsWarning}
+        />
       </Map>
     </APIProvider>
   );

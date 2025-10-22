@@ -1,4 +1,5 @@
-import { LegacyPalette } from "@src/constants/color/color";
+import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
 export const BackStage = styled.div`
@@ -67,5 +68,26 @@ export const AdventureMenuContainer = styled.div`
     background-color: ${LegacyPalette.fillNormal};
     border-radius: 8px;
     cursor: pointer;
+  }
+`;
+
+export const WarningMessageWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 20px;
+  position: absolute;
+  top: 28px;
+  left: 256px;
+  background-color: #f06969c8;
+  z-index: 100;
+  align-items: center;
+
+  @media (max-width: 840px) {
+    left: 132px;
+  }
+  p {
+    ${LegacyTypography.Pretendard.Caption2.Bold};
+    color: ${LegacyPalette.labelNormal};
   }
 `;

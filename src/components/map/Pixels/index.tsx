@@ -8,9 +8,11 @@ import { MyBlockType } from "@src/types/map/normalBlock.type";
 const Pixels = ({
   setSelectedRuins,
   myRuinBlock,
+  setIsWarning,
 }: {
   setSelectedRuins: Dispatch<SetStateAction<Ruin[] | null>>;
   myRuinBlock: MyBlockType[];
+  setIsWarning: Dispatch<SetStateAction<boolean>>;
 }) => {
   const map = useMap();
 
@@ -58,6 +60,11 @@ const Pixels = ({
     const zoomListner = map.addListener("idle", () => {
       const zoomLevel = map.getZoom();
       setCurrentZoomLevel(zoomLevel!);
+      if (zoomLevel! < 13) {
+        setIsWarning(true);
+      } else {
+        setIsWarning(false);
+      }
     });
 
     return () => {
