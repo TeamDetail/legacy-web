@@ -1,6 +1,9 @@
 import customAxios from "@src/libs/axios/customAxios";
 import { CardResponse } from "@src/types/card/card.type";
-import { ItemType } from "@src/types/inventory/inventory.type";
+import {
+  CreditPackResponse,
+  ItemType,
+} from "@src/types/inventory/inventory.type";
 
 class InventoryApi {
   public async getMyInventory(): Promise<ItemType[]> {
@@ -15,6 +18,17 @@ class InventoryApi {
     const { data } = await customAxios.post("/inventory/cardpack", {
       cardpackId: id,
       count,
+    });
+    return data.data;
+  }
+
+  public async openCreditpack(
+    id: number,
+    count: number
+  ): Promise<CreditPackResponse> {
+    const { data } = await customAxios.post("/inventory/credit-pack/use", {
+      creditpackId: id,
+      count
     });
     return data.data;
   }

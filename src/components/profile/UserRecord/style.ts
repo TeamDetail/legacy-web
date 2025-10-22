@@ -8,6 +8,10 @@ export const UserRecordArea = styled.div`
   flex-direction: column;
   gap: 12px;
   color: ${LegacyPalette.labelNormal};
+
+  @media (max-width: 960px) {
+    display: none;
+  }
 `;
 
 export const ProgressBars = styled.div`

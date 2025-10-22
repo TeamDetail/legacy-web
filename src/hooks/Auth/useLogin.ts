@@ -12,9 +12,7 @@ import { useNavigate } from "react-router-dom";
 const useLogin = () => {
   const navigate = useNavigate();
 
-  const kakaoLogin = async (
-    code: string | null
-  ) => {
+  const kakaoLogin = async (code: string | null) => {
     try {
       const { data } = await axios.post<BaseResponse<TokenType>>(
         `${SERVER_URL}/kakao/code`,
@@ -33,47 +31,46 @@ const useLogin = () => {
     }
   };
 
-  const appleLogin = async (
-    idToken: string,
-    name: string
-  ) => {
+  const appleLogin = async (idToken: string, name: string) => {
     try {
       const { data } = await axios.post(`${SERVER_URL}/apple/accessToken`, {
         idToken: idToken,
-        name: name
-      })
+        name: name,
+      });
       if (data) {
         token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
         token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
         navigate("/");
       }
     } catch {
-      console.log()
+      console.log();
       alert("로그인 실패! 다시 시도해주세요.");
       navigate("/login");
     }
-  }
+  };
 
   const googleLogin = async (code: string) => {
     try {
-      const {data} = await axios.post(`${SERVER_URL}/google/web`, code)
+      const { data } = await axios.post(
+        `${SERVER_URL}/google/web`,
+        { code: code },
+      );
       if (data) {
         token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
         token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
-        navigate("/")
+        navigate("/");
       }
     } catch {
-      console.log()
       alert("로그인 실패! 다시 시도해주세요.");
       navigate("/login");
     }
-  }
+  };
 
   return {
     kakaoLogin,
     appleLogin,
-    googleLogin
-  }
+    googleLogin,
+  };
 };
 
 export default useLogin;

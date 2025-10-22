@@ -85,6 +85,7 @@ const errorResponseHandler = async (error: AxiosError) => {
         });
       });
     }
+    return Promise.reject(error)
   }
 };
 

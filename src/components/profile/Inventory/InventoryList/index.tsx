@@ -19,9 +19,9 @@ const InventoryList = ({
 
   return (
     <>
-      {myInventory ? (
+      {myInventory?.length !== 0 ? (
         <InventoryListContainer>
-          {myInventory!.map((item, idx) => (
+          {myInventory?.map((item, idx) => (
             <Item
               key={idx}
               size="large"
@@ -33,7 +33,7 @@ const InventoryList = ({
         </InventoryListContainer>
       ) : (
         <EmptyInventoryMessage>
-          아직 얻은 아이템이 없어요!
+          보유한 아이템이 없어요!
         </EmptyInventoryMessage>
       )}
     </>

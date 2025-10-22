@@ -20,6 +20,9 @@ export const MainContainer = styled.div<{
   grid-template-areas:
     "header header"
   ${({$isOverViewPage}) => $isOverViewPage === "true" ? `"datacontainer datacontainer"` : `"datacontainer userrecord"`};
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
   height: 100%;
   flex-grow: 1;
   overflow: hidden;

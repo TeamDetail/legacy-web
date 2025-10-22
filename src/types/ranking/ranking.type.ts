@@ -1,10 +1,10 @@
-import { Title } from "@src/types/user/user.type";
+import { TitleType } from "@src/types/user/user.type";
 
 export interface BaseRankingType {
   nickname: string
   level: number;
   imageUrl: string;
-  title: Title;
+  title: TitleType;
 }
 
 export interface TrialRankingType extends BaseRankingType {

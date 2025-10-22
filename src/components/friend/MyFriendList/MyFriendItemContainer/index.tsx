@@ -19,12 +19,14 @@ const MyFriendItemContainer = ({ friendName }: { friendName: string }) => {
   ) : (
     <MyFriendListDataWrapper>
       {filteredFriends.map((item, idx) => (
-        <div>
+        <div key={item.friendCode}>
           <FriendItem
             key={idx}
             username={item.nickname}
             profileImg={item.profileImage}
             level={item.level}
+            titleName={item.styleName}
+            styleId={item.styleId}
           />
           <FriendActionButton
             type="CLOSE"
@@ -51,7 +53,12 @@ const MyFriendListDataWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
   overflow-y: auto;
-
+  @media (max-width: 1040px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
   > div {
     padding: 8px;
     display: flex;

@@ -49,7 +49,7 @@ export const RankIndicator = styled.p<{ $Rank: number }>`
 
 export const RankingUserInfo = styled.div`
   display: flex;
-  width: 200px;
+  width: 260px;
   height: 100%;
   padding: 0 20px;
   gap: 8px;
@@ -68,6 +68,7 @@ export const RankingUserInfo = styled.div`
 
   section {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     p {
       ${LegacyTypography.Pretendard.Headline.Bold}

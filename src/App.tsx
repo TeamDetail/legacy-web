@@ -11,6 +11,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import { LegacyModal } from "@components/common/LegacyModal";
 import useModalStore from "./store/useModalStore";
+import GlobalAchievementSvgSprite from "@components/achievement/GlobalAchievementSvgSprite";
 
 const queryClientV3 = new QueryClientV3();
 const queryClientV5 = new QueryClientV5();
@@ -26,6 +27,7 @@ function App() {
             {modalData.element}
           </LegacyModal>
           <ToastContainer theme="dark" />
+          <GlobalAchievementSvgSprite />
         </BrowserRouter>
       </QueryClientProviderV3>
     </QueryClientProviderV5>

@@ -10,6 +10,7 @@ import Coin from '@src/assets/sidebarIcon/legacyCoin.png';
 import useModalStore from "@src/store/useModalStore";
 import NameUpdateModal from "@components/auth/NameUpdateModal";
 import { formatNumberWithCommas } from "@src/utils/format/formatNumberWithCommas";
+import Title from "@components/common/Title";
 
 const SidebarUserInfo = () => {
   const { data: myUserData } = useGetMeQuery();
@@ -30,10 +31,6 @@ const SidebarUserInfo = () => {
 
   const nickname = userStoreData?.nickname || "NONAME";
   const level = userStoreData?.level || 0;
-  const titleName =
-    userStoreData?.title.name.length > 0
-      ? userStoreData?.title.name
-      : "칭호 미착용";
 
   return (
     <SidebarUserInfoWrapper>
@@ -42,7 +39,12 @@ const SidebarUserInfo = () => {
         <section>
           <SidebarUserName>{nickname}</SidebarUserName>
           <p>Lv. {level}</p>
-          <p>{titleName}</p>
+          {userStoreData.title.name.length !== 0 && (
+            <Title
+              name={userStoreData.title.name}
+              styleId={userStoreData.title.styleId}
+            />
+          )}
         </section>
       </SidebarUserInfoContainer>
       <LegacyButton
@@ -131,12 +133,14 @@ const SidebarUserInfoContainer = styled(Link)`
   & section {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     flex-grow: 1;
     min-width: 0;
 
     & p {
       ${LegacyTypography.Pretendard.Caption1.Bold}
       color: ${LegacyPalette.labelAlternative};
+      margin-bottom: 2px;
     }
 
     @media (max-width: 840px) {
@@ -150,7 +154,7 @@ const SidebarUserImg = styled.div<{
 }>`
   background: ${({ $img }) => `url("${$img}")`};
   border-radius: 8px;
-  min-width: 56px;
+  min-width: 60px;
   aspect-ratio: 1 / 1;
   background-size: cover;
   background-position: center;
@@ -161,7 +165,7 @@ const SidebarUserName = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  ${LegacyTypography.Pretendard.Headline.Bold}
+  ${LegacyTypography.Pretendard.Body1.Bold}
   color: ${LegacyPalette.labelNormal};
 `;
 

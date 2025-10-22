@@ -3,6 +3,7 @@ import * as S from "./style";
 import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette } from "@src/constants/color/color";
 import { useNavigate } from "react-router-dom";
+import Title from "@components/common/Title";
 
 interface RankingListType {
   type: "trial" | "explore" | "level";
@@ -45,7 +46,7 @@ const RankingList = ({ type, scope }: RankingListType) => {
                 <img src={item.imageUrl} alt="userImg" />
                 <section>
                   <p>{item.nickname}</p>
-                  {item.title.name}
+                  {item.title.name.length !== 0 && <Title name={item.title.name} styleId={item.title.styleId}/>}
                 </section>
               </S.RankingUserInfo>
               {type === "explore" && "allBlocks" in item ? (

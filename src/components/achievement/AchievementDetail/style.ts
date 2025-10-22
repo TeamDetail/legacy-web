@@ -3,6 +3,12 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import { AchievementValueType } from "@src/types/achievement/achievement.type";
 import styled from "styled-components";
 
+export const AchievementSideContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`
+
 export const AchievementDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,6 +16,7 @@ export const AchievementDetailContainer = styled.div`
   gap: 20px;
   align-items: center;
   width: 280px;
+  flex-grow: 1;
   border-radius: 20px;
   background-color: ${LegacyPalette.backgroundNormal};
   color: ${LegacyPalette.labelNormal};
@@ -121,7 +128,7 @@ export const AchievementDetailAwardContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 12px;
     justify-content: stretch;
     > div {
       display: flex;
@@ -133,3 +140,34 @@ export const AchievementDetailAwardContainer = styled.div`
     }
   }
 `;
+
+export const AchieveAwardText = styled.p`
+  color: ${LegacySementic.yellow.netural};
+`
+
+export const AchievementRecord = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  flex-grow: 1;
+  border-radius: 20px;
+  background-color: ${LegacyPalette.backgroundNormal};
+  padding: 20px 24px;
+  ${LegacyTypography.Pretendard.Heading1.Bold};
+  color: ${LegacyPalette.labelNormal};
+  gap: 12px;
+`
+
+export const AchievementRecordLevel = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  > p {
+    ${LegacyTypography.Pretendard.Body1.Bold}
+    color: ${LegacyPalette.labelAlternative};
+  }
+  > span {
+    ${LegacyTypography.Pretendard.Title2.Bold}
+    color: ${LegacySementic.yellow.netural};
+  }
+` 

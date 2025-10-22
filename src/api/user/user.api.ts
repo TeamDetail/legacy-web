@@ -1,4 +1,4 @@
-import { User } from "@src/types/user/user.type";
+import { TitleType, User } from "@src/types/user/user.type";
 import customAxios from "@src/libs/axios/customAxios";
 import { BaseResponse } from "@src/types/globalType/global.type";
 import { NormalUser } from "@src/types/friend/friend.type";
@@ -31,6 +31,16 @@ class UserApi {
   public async updateNickname(nickname: { nickname: string }): Promise<Response> {
     const { data } = await customAxios.post("/apple/update-nickname", nickname);
     return data.data;
+  }
+
+  public async getMyTitles(): Promise<TitleType[]> {
+    const { data } = await customAxios.get("user/titles");
+    return data.data
+  }
+
+  public async patchMyTitle(id: number): Promise<BaseResponse<null>> {
+    const { data } = await customAxios.patch("user/title", { styleId: id });
+    return data
   }
 }
 

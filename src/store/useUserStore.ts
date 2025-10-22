@@ -40,8 +40,8 @@ const useUserStore = create<UserStore>((set) => ({
     title: {
       name: "",
       content: "",
+      styleId: 0,
       titleId: 0,
-      grade: 1,
     },
   },
   setUserData: (newData: UserMe) => set(() => ({

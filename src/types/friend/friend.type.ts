@@ -6,6 +6,8 @@ export interface Friend {
   isKakaoFriend: boolean;
   isMutualFriend: boolean;
   level: number;
+  styleId: number | null;
+  styleName: string | null;
 }
 
 export interface FriendRequest {
@@ -18,7 +20,11 @@ export interface FriendRequest {
   receiverNickname: string;
   receiverProfileImage: string;
   receiverLevel: number;
+  receiverStyleId: number | null;
+  receiverStyleName: string | null;
   createdAt: string;
+  senderStyleId: number | null;
+  senderStyleName: string | null;
 }
 
 export interface NormalUser {
@@ -28,4 +34,6 @@ export interface NormalUser {
   level: number;
   friendCode: string;
   isAlreadyFriend: boolean;
+  styleId: number | null;
+  styleName: string | null;
 }
