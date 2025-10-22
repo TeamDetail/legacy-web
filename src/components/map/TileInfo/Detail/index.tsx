@@ -20,20 +20,24 @@ const Detail = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
         handleCardChange={() => {}}
       />
       <S.ExplainContainer
-        onClick={() =>
-          setOpenModal({
-            element: (
-              <DescriptionModal
-                close={setCloseModal}
-                description={ruinDetail.description}
-              />
-            ),
-            key: "descriptionModal",
-          })
-        }
+        onClick={() => {
+          if (ruinDetail.description !== "") {
+            setOpenModal({
+              element: (
+                <DescriptionModal
+                  close={setCloseModal}
+                  description={ruinDetail.description}
+                />
+              ),
+              key: "descriptionModal",
+            });
+          }
+        }}
       >
         <span>설명</span>
-        {ruinDetail.description}
+        {ruinDetail.description === ""
+          ? "설명이 없습니다."
+          : ruinDetail.description}
       </S.ExplainContainer>
       <S.ExplorerContainer>
         <S.DetailItem>
