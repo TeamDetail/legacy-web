@@ -15,7 +15,7 @@ const RankingList = ({ type, scope }: RankingListType) => {
   const { data: levelRankData } = useGetLevelRanking(scope);
   const navigate = useNavigate();
   
-  return scope === "all" && exploreRankData.length >= 1 ? (
+  return exploreRankData.length !== 0 ? (
     <S.RankingListContainer>
       <S.RankingHeader>
         <S.RankIndicator $Rank={0} />
@@ -79,7 +79,7 @@ const RankingList = ({ type, scope }: RankingListType) => {
         )
       )}
     </S.RankingListContainer>
-  ) : (
+  ) :  (
     <S.RankingNofriends>
       <p>친구가 없습니다.</p>
       <LegacyButton
