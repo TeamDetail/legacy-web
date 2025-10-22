@@ -11,11 +11,10 @@ import useRuin from "@src/hooks/map/useRuin";
 import ArrowLeftImg from "@src/assets/arrowLeft.svg?react";
 import ArrowRightImg from "@src/assets/arrowRight.svg?react";
 import RuinDetailSkeleton from "@components/skeleton/RuinDetailSkeleton";
-import useQuiz from "@src/hooks/map/useQuiz";
 import { MyBlockType } from "@src/types/map/normalBlock.type";
 import useModalStore from "@src/store/useModalStore";
-import QuizModal from "../QuizModal";
 import Comment from "../Comment";
+import QuizWarnModal from "@components/map/TileInfo/QuizWarnModal";
 
 interface MenuDataType {
   text: string;
@@ -32,7 +31,7 @@ const TileInfo = ({
   myRuinBlock: MyBlockType[];
   getMyBlock: () => Promise<void>;
 }) => {
-  const { getRuinQuizById } = useQuiz();
+
   const {
     getRuinDetailById,
     isRuinDetailLoading,
@@ -139,22 +138,21 @@ const TileInfo = ({
         size="default"
         isBold={false}
         isFilled={false}
-        color={
-          isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural
-        }
+        color={isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural}
         width="100%"
         handleClick={() => {
-          getRuinQuizById(selectedRuins![page].ruinsId);
           setOpenModal({
             element: (
-              <QuizModal
+              <QuizWarnModal
                 close={setCloseModal}
-                ruinDetail={ruinDetail!}
                 getMyBlock={getMyBlock}
+                selectedRuins={selectedRuins}
+                page={page}
+                ruinDetail={ruinDetail!}
               />
             ),
-            key: "quizModal",
-          });
+            key: "quizWarnModal"
+          })
         }}
       >
         <S.ButtonText $isExplored={!!isMyBlock}>블록 탐험하기</S.ButtonText>

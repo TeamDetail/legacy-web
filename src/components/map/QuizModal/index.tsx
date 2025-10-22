@@ -9,6 +9,7 @@ import QuizWrongPage from "../QuizWrongPage";
 import { useQueryClient } from "react-query";
 import { QUERY_KEYS } from "@src/queries/queryKey";
 import QuizUndefined from "@components/map/QuizUndefined";
+import QuizHint from "@components/map/QuizModal/QuizHint";
 
 const QuizModal = ({
   close,
@@ -46,8 +47,6 @@ const QuizModal = ({
       setIsSubmit(true);
     }
   }, [isCorrect]);
-
-  useEffect(() => console.log(ruinQuiz), [ruinQuiz]);
 
   const handleClose = () => {
     queryClient.removeQueries([QUERY_KEYS.quiz.checkRuinQuizAnswer]);
@@ -146,15 +145,7 @@ const QuizModal = ({
               >
                 {solvingQuizNum === 0 ? "나가기" : "이전"}
               </LegacyButton>
-              <LegacyButton
-                width="100%"
-                size="default"
-                isBold={true}
-                isFilled={false}
-                color={LegacySementic.blue.netural}
-              >
-                <span>힌트 확인하기</span>
-              </LegacyButton>
+              <QuizHint quizId={ruinQuiz[solvingQuizNum].quizId}/>
               <LegacyButton
                 width="69px"
                 size="default"

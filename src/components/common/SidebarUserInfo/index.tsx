@@ -9,17 +9,18 @@ import { useEffect } from "react";
 import Coin from '@src/assets/sidebarIcon/legacyCoin.png';
 import useModalStore from "@src/store/useModalStore";
 import NameUpdateModal from "@components/auth/NameUpdateModal";
+import { formatNumberWithCommas } from "@src/utils/format/formatNumberWithCommas";
 import Title from "@components/common/Title";
 
 const SidebarUserInfo = () => {
-  const { data: myUserData } = useGetMeQuery({ suspense: true });
+  const { data: myUserData } = useGetMeQuery();
   const { setUserData, userStoreData } = useUserStore();
   const { setOpenModal } = useModalStore();
 
   useEffect(() => {
     if (userStoreData.imageUrl.length === 0 && myUserData) {
-      setUserData(myUserData.data)
-      if (myUserData.data.nickname.length == 0) {
+      setUserData(myUserData)
+      if (myUserData.nickname.length == 0) {
         setOpenModal({
           element: <NameUpdateModal/>,
           key: "NAME_UPDATE"
@@ -54,11 +55,11 @@ const SidebarUserInfo = () => {
         children={
           <CreditText>
             <span>크레딧</span>
-            <p>{userStoreData.credit}</p>
+            <p>{formatNumberWithCommas(userStoreData.credit)}</p>
             <img src={Coin} width="100%" />
             <div>
               <span>크레딧</span>
-              {userStoreData.credit}
+              {formatNumberWithCommas(userStoreData.credit)}
             </div>
           </CreditText>
         }

@@ -21,7 +21,6 @@ export const TileInfoContainer = styled.div`
   gap: 12px;
   flex: 1;
   min-height: 0;
-  overflow: hidden;
 `;
 
 export const HeaderContainer = styled.div`
