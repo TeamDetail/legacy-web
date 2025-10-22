@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ClappingHandsImg from "@src/assets/clapping-hands-svgrepo-com1.svg";
 import Card from "@components/common/Card";
 import { RuinDetail } from "@src/types/map/ruin.type";
+import { useQueryClient } from "react-query";
 
 type PageType = "congratulation" | "showCard";
 
@@ -19,6 +20,7 @@ const QuizCorrectPage = ({
 }) => {
   const [page, setPage] = useState<PageType>("congratulation");
   const [isVisible, setIsVisible] = useState(true);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,6 +31,7 @@ const QuizCorrectPage = ({
         setIsVisible(true);
       }, 300);
     }, 1000);
+    queryClient.invalidateQueries({ queryKey: ["cardGetByRegion"] });
 
     return () => clearTimeout(timer);
   }, []);
