@@ -1,7 +1,7 @@
 import { LegacyPalette } from "@src/constants/color/color";
 import styled from "styled-components";
 import CardpackImg from "@src/assets/itemImg/cardpackImg.png";
-import MoneyBundleImg from "@src/assets/itemImg/moneyBundle.webp";
+import MoneyBundleImg from "@src/assets/itemImg/moneyBundle.png";
 import { ItemEnumType } from "@src/types/inventory/inventory.type";
 
 interface SizeType {
