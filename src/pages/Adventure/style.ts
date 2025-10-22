@@ -80,7 +80,7 @@ export const WarningMessageWrapper = styled.div`
   top: 28px;
   left: 256px;
   background-color: #f06969c8;
-  z-index: 100;
+  z-index: 3;
   align-items: center;
 
   @media (max-width: 840px) {
