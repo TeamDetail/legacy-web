@@ -54,8 +54,8 @@ const SearchRuinsModal = ({ close, onSelectRuin }: SearchRuinsModalProps) => {
                   <p>{item.detailAddress}</p>
                 </S.RuinNameContainer>
                 <S.ScoreContainer $gap="2px">
-                  <StarRating score={7} />
-                  (302)
+                  <StarRating score={item.averageRating} />
+                  ({item.countComments})
                 </S.ScoreContainer>
               </S.RuinNameScoreContainer>
             ))}
