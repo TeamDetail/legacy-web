@@ -63,7 +63,16 @@ const ItemQuantitySelectModal = ({
     <ItemQuantitySelectModalContainer>
       사용할 개수 선택
       <QuantityInputContainer>
-        <div onClick={() => setQuantity((prev) => prev - 1)}>
+        <div
+          onClick={() =>
+            setQuantity((prev) => {
+              if (prev > 1) {
+                return prev - 1;
+              }
+              return prev;
+            })
+          }
+        >
           <ArrowDown width={36} height={36} />
         </div>
         <input
@@ -72,12 +81,26 @@ const ItemQuantitySelectModal = ({
           onChange={(e) => {
             if (e.target.value === "") {
               setQuantity(0);
+            } else if (
+              !/^\d+$/.test(e.target.value) ||
+              Number(e.target.value) > selectedItem.itemCount
+            ) {
+              return;
             } else {
               setQuantity(Number(e.target.value));
             }
           }}
         />
-        <div onClick={() => setQuantity((prev) => prev + 1)}>
+        <div
+          onClick={() =>
+            setQuantity((prev) => {
+              if (prev < selectedItem.itemCount) {
+                return prev + 1;
+              }
+              return prev;
+            })
+          }
+        >
           <ArrowUp />
         </div>
       </QuantityInputContainer>
