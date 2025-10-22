@@ -1,7 +1,7 @@
 import { TitleType, User } from "@src/types/user/user.type";
 import { AxiosError } from "axios";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useSuspenseQuery, UseSuspenseQueryOptions } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import userApi from "@src/api/user/user.api";
 import { BaseResponse } from "@src/types/globalType/global.type";
@@ -12,18 +12,22 @@ import {
 } from "@tanstack/react-query";
 
 export const useGetMeQuery = (
-  options?: UseQueryOptions<BaseResponse<User>, AxiosError>
-): UseQueryResult<BaseResponse<User>, AxiosError> =>
-  useQuery<BaseResponse<User>, AxiosError>(
-    QUERY_KEYS.user.getMe,
-    () => userApi.getMe(),
-    {
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 10,
-      suspense: true,
-      ...options,
-    }
-  );
+  options?: Partial<
+    UseSuspenseQueryOptions<
+      User,
+      Error,
+      User,
+      typeof QUERY_KEYS.user.getMe
+    >
+  >
+) =>
+  useSuspenseQuery({
+    queryKey: QUERY_KEYS.user.getMe,
+    queryFn: userApi.getMe,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
+    ...options,
+  });
 
 export const useGetUserQuery = (
   id: number,

@@ -9,9 +9,9 @@ class UserApi {
     return data;
   }
 
-  public async getMe(): Promise<BaseResponse<User>> {
+  public async getMe(): Promise<User> {
     const { data } = await customAxios.get("/user/me");
-    return data;
+    return data.data;
   }
 
   public async patchDescription(params: {

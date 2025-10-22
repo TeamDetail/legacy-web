@@ -1,5 +1,6 @@
 import {
   CommentType,
+  QuizCost,
   Ruin,
   RuinDetail,
   RuinQuizType,
@@ -9,6 +10,8 @@ import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 import {
   useQuery as useQueryV5,
   UseQueryOptions as UseQueryOptionsV5,
+  useSuspenseQuery as useSuspenseQueryV5,
+  UseSuspenseQueryOptions as UseSuspenseQueryOptionsV5,
 } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKey";
 import ruinApi from "@src/api/map/ruin.api";
@@ -106,5 +109,37 @@ export const useGetCommentById = (
   useQueryV5({
     queryKey: QUERY_KEYS.comment.getCommentById(id),
     queryFn: () => ruinApi.getCommentById(id),
+    ...options,
+  });
+
+export const useGetQuizHint = (
+  id: number,
+  options?: Partial<
+    UseQueryOptionsV5<
+      string,
+      Error,
+      string,
+      ReturnType<typeof QUERY_KEYS.quiz.getRuinQuizHint>
+    >
+  >
+) =>
+  useQueryV5({
+    queryKey: QUERY_KEYS.quiz.getRuinQuizHint(id),
+    queryFn: () => quizApi.getRuinQuizHint(id),
+    ...options,
+  });
+export const useGetQuizCost = (
+  options?: Partial<
+    UseSuspenseQueryOptionsV5<
+      QuizCost,
+      Error,
+      QuizCost,
+      typeof QUERY_KEYS.quiz.getQuizCost
+    >
+  >
+) =>
+  useSuspenseQueryV5({
+    queryKey: QUERY_KEYS.quiz.getQuizCost,
+    queryFn: quizApi.getQuizCost,
     ...options,
   });

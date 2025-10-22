@@ -2,8 +2,11 @@ import Card from "@components/common/Card";
 import StarRating from "@components/common/StarRating";
 import { RuinDetail } from "@src/types/map/ruin.type";
 import * as S from "./style";
+import NeedCredit from "@components/map/TileInfo/NeedCredit";
+import { Suspense } from "react";
 
 const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => (
+
   <>
     <S.RuinNameScoreContainer>
       <S.RuinNameContainer>
@@ -29,9 +32,9 @@ const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => (
     />
     <S.DetailContainer>
       <span>탐험 필요 크레딧</span>
-      <S.CostText>
-        33,000<span>( 오늘 누적 2블록 )</span>
-      </S.CostText>
+      <Suspense fallback={<S.CostTextSkel/>}>
+        <NeedCredit/>
+      </Suspense>
     </S.DetailContainer>
   </>
 );
