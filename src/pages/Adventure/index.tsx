@@ -8,8 +8,12 @@ import SearchRuinsModal from "@components/map/SearchRuinsModal";
 import { LatLng } from "@src/types/map/latLng.type";
 import Search from "@src/assets/search.svg?react";
 import Info from "@src/assets/info.svg?react";
+import Calendar from "@src/assets/sidebarIcon/calendar.svg?react";
+import InventoryIcon from "@src/assets/pageIcon/inventory.svg?react";
 import useBlock from "@src/hooks/map/useBlock";
 import useModalStore from "@src/store/useModalStore";
+import { useNavigate } from "react-router-dom";
+import DailyModal from "@components/daily/daily";
 
 const Adventure = () => {
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
@@ -17,6 +21,7 @@ const Adventure = () => {
   const [zoomLevel, setZoomLevel] = useState<number>(11);
   const [isWarning, setIsWarning] = useState(false);
   const { setOpenModal, setCloseModal } = useModalStore();
+  const navigate = useNavigate();
 
   const { myRuinBlock, getMyBlock } = useBlock();
 
@@ -56,6 +61,20 @@ const Adventure = () => {
             }
           >
             <Search width={22} height={22} />
+          </div>
+          <div onClick={() => navigate("/profile/inventory")}>
+            <InventoryIcon width={22} height={22} />
+          </div>
+
+          <div
+            onClick={() =>
+              setOpenModal({
+                element: <DailyModal close={setCloseModal} />,
+                key: "dailyModal",
+              })
+            }
+          >
+            <Calendar width={22} height={22} />
           </div>
         </S.AdventureMenuContainer>
         {selectedRuins && (
