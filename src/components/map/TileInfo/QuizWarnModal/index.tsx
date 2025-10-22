@@ -25,6 +25,7 @@ const QuizWarnModal = ({
 }: QuizWarnModalProps) => {
   const { setOpenModal, setCloseModal } = useModalStore();
   const { getRuinQuizById } = useQuiz();
+
   return (
     <QuizWarnModalContainer>
       <QuizWarnModalHeader>

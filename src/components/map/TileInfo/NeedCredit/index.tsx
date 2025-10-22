@@ -7,7 +7,7 @@ const NeedCredit = () => {
   const { data } = useGetQuizCost();
   return (
     <CostText>
-      {data.nextQuizCost} 크레딧 <span>( 누적 {data.currentExploreCount}블록 )</span>
+      {data.nextQuizCost} 크레딧 <span>( 누적 {data.currentExploreCount}회 )</span>
     </CostText>
   );
 }
