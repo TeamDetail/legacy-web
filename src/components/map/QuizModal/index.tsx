@@ -130,7 +130,7 @@ const QuizModal = ({
 
             <S.ButtonContainer>
               <LegacyButton
-                width="74px"
+                width="72px"
                 size="default"
                 isBold={true}
                 isFilled={false}
@@ -142,6 +142,7 @@ const QuizModal = ({
                     handleQuizChange((solvingQuizNum - 1) as 0 | 1 | 2);
                   }
                 }}
+                customStyle={{textWrap: "nowrap"}}
               >
                 {solvingQuizNum === 0 ? "나가기" : "이전"}
               </LegacyButton>

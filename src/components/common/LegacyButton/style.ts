@@ -1,4 +1,5 @@
 import { LegacyPalette } from "@src/constants/color/color";
+import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled, { CSSObject } from "styled-components";
 
 
@@ -55,4 +56,5 @@ export const ButtonContainer = styled.div<{
   background-color: ${({ $isBold, $isFilled, $color }) =>
     $isBold ? $isFilled && $color : $isFilled && LegacyPalette.lineAlternative};
   ${({ $customStyle }) => $customStyle}
+  ${LegacyTypography.Pretendard.Caption1.Medium}
 `;
