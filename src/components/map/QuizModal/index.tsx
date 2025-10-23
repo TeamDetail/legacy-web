@@ -8,6 +8,8 @@ import QuizDataContainer from "./QuizDataContainer";
 import QuizResult from "./QuizResult";
 import QuizComponentSkeleton from "@components/skeleton/QuizComponentSkeleton";
 import QuizCheckSkeleton from "@components/skeleton/QuizCheckSkeleton";
+import { ErrorBoundary } from "react-error-boundary";
+import QuizCheckFail from "./QuizResult/QuizCheckFail";
 
 const QuizModal = ({
   close,
@@ -40,15 +42,17 @@ const QuizModal = ({
           />
         </Suspense>
       ) : (
-        <Suspense fallback={<QuizComponentSkeleton />}>
-          <QuizDataContainer
-            ruinDetail={ruinDetail}
-            setIsSubmit={setIsSubmit}
-            answer={answer}
-            setAnswer={setAnswer}
-            close={close}
-          />
-        </Suspense>
+        <ErrorBoundary fallback={<QuizCheckFail close={close} />}>
+          <Suspense fallback={<QuizComponentSkeleton />}>
+            <QuizDataContainer
+              ruinDetail={ruinDetail}
+              setIsSubmit={setIsSubmit}
+              answer={answer}
+              setAnswer={setAnswer}
+              close={close}
+            />
+          </Suspense>
+        </ErrorBoundary>
       )}
     </Quiz>
   );
