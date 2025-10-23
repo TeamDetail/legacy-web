@@ -139,15 +139,12 @@ const TileInfo = ({
         color={isMyBlock ? LegacyPalette.lineNeutral : LegacySementic.blue.netural}
         width="100%"
         handleClick={() => {
-          setOpenModal({
-            element: (
-              <QuizWarnModal
-                close={setCloseModal}
-                ruinDetail={ruinDetail!}
-              />
-            ),
-            key: "quizWarnModal"
-          })
+          if (!isMyBlock) {
+            setOpenModal({
+              element: <QuizWarnModal close={setCloseModal} ruinDetail={ruinDetail!} />,
+              key: "quizWarnModal",
+            });
+          }
         }}
       >
         <S.ButtonText $isExplored={!!isMyBlock}>블록 탐험하기</S.ButtonText>
