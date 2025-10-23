@@ -6,11 +6,13 @@ import { LegacyTypography } from "@src/constants/font/fontToken";
 import { QuizAnswerResultType } from "@src/types/map/ruin.type";
 
 const QuizWrongPage = ({
-  closeFunction,
+  close,
   isCorrect,
+  removeQueries,
 }: {
-  closeFunction: () => void;
+  close: () => void;
   isCorrect: QuizAnswerResultType;
+  removeQueries: () => void;
 }) => {
   const WrongAnswersMessage = ({
     quizResult,
@@ -42,7 +44,8 @@ const QuizWrongPage = ({
 
       <div
         onClick={() => {
-          closeFunction();
+          removeQueries();
+          close();
         }}
       >
         <CloseButton />

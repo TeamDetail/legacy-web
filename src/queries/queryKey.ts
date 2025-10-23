@@ -17,7 +17,7 @@ export const QUERY_KEYS = {
     getCardByRegion: "cardGetByRegion",
   },
   quiz: {
-    checkRuinQuizAnswer: "quizCheckRuinQuizAnswer",
+    checkRuinQuizAnswer: ["quizCheckRuinQuizAnswer"],
     getRuinQuizHint: (id: number) => [`quizHint/${id}`],
     getQuizCost: ["quizCost"]
   },

@@ -2,13 +2,16 @@ import LegacyButton from "@components/common/LegacyButton";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
+import { skeletonAnimtaion } from "../animation";
 
 const QuizComponentSkeleton = () => {
   return (
-    <Quiz>
+    <>
       <QuizTitleWrapper>
-        <QuizTitle>Quiz 1</QuizTitle>
-        <span></span>
+        <QuizTitle>
+          Quiz 1<span />
+        </QuizTitle>
+        <span />
       </QuizTitleWrapper>
       <QuizContent>
         <QuizOption>
@@ -50,35 +53,35 @@ const QuizComponentSkeleton = () => {
           <ButtonText>다음</ButtonText>
         </LegacyButton>
       </ButtonContainer>
-    </Quiz>
+    </>
   );
 };
 
 export default QuizComponentSkeleton;
 
-const Quiz = styled.div`
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  background-color: ${LegacyPalette.backgroundNormal};
-  gap: 20px;
-  padding: 24px 36px;
-  align-items: center;
-  border-radius: 20px;
-`;
-
 const QuizTitle = styled.div`
   ${LegacyTypography.Pretendard.Title3.Bold}
   color: ${LegacyPalette.labelNormal};
+
+  span {
+    width: 93px;
+    height: 18px;
+    ${skeletonAnimtaion};
+    border-radius: 8px;
+  }
 `;
 
 const QuizTitleWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
-  span {
-    ${LegacyTypography.Pretendard.Body2.Medium}
-    color: ${LegacyPalette.labelAlternative};
+  > span {
+    width: 90%;
+    height: 57px;
+    ${skeletonAnimtaion};
+    border-radius: 8px;
   }
 `;
 
@@ -97,7 +100,8 @@ const QuizOption = styled.div`
   div {
     width: 100%;
     height: 51px;
-    background-color: ${LegacyPalette.fillNormal};
+    ${skeletonAnimtaion};
+    border-radius: 8px;
   }
 `;
 

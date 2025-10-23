@@ -2,18 +2,6 @@ import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
-export const Quiz = styled.div`
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  background-color: ${LegacyPalette.backgroundNormal};
-  gap: 20px;
-  padding: 24px 36px;
-  align-items: center;
-  border-radius: 20px;
-  text-align: center;
-`;
-
 export const QuizTitle = styled.div`
   ${LegacyTypography.Pretendard.Title3.Bold}
   color: ${LegacyPalette.labelNormal};

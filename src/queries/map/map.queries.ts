@@ -1,5 +1,7 @@
 import {
   CommentType,
+  QuizAnswerResultType,
+  QuizAnswerType,
   QuizCost,
   Ruin,
   RuinDetail,
@@ -65,9 +67,27 @@ export const useGetRuinQuiz = (
     {
       staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 10,
+      suspense: true,
       ...options,
     }
   );
+
+export const useCheckQuizAnswer = (
+  quizAnswer: QuizAnswerType[],
+  options?: Partial<
+    UseSuspenseQueryOptionsV5<
+      QuizAnswerResultType,
+      Error,
+      QuizAnswerResultType,
+      typeof QUERY_KEYS.quiz.checkRuinQuizAnswer
+    >
+  >
+) =>
+  useSuspenseQueryV5({
+    queryKey: QUERY_KEYS.quiz.checkRuinQuizAnswer,
+    queryFn: () => quizApi.checkRuinQuizAnswer(quizAnswer),
+    ...options,
+  });
 
 export const useGetMyBlock = (
   options?: UseQueryOptions<MyBlockType[], AxiosError>

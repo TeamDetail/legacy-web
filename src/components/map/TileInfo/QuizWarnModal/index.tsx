@@ -3,28 +3,17 @@ import QuizModal from "@components/map/QuizModal";
 import NeedCredit from "@components/map/TileInfo/NeedCredit";
 import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
-import useQuiz from "@src/hooks/map/useQuiz";
 import useModalStore from "@src/store/useModalStore";
-import { Ruin, RuinDetail } from "@src/types/map/ruin.type";
+import { RuinDetail } from "@src/types/map/ruin.type";
 import styled from "styled-components";
 
 type QuizWarnModalProps = {
   close: () => void;
-  getMyBlock: () => Promise<void>;
-  page: number;
-  selectedRuins: Ruin[] | null;
-  ruinDetail: RuinDetail
+  ruinDetail: RuinDetail;
 };
 
-const QuizWarnModal = ({
-  close,
-  getMyBlock,
-  page,
-  selectedRuins,
-  ruinDetail
-}: QuizWarnModalProps) => {
+const QuizWarnModal = ({ close, ruinDetail }: QuizWarnModalProps) => {
   const { setOpenModal, setCloseModal } = useModalStore();
-  const { getRuinQuizById } = useQuiz();
 
   return (
     <QuizWarnModalContainer>
@@ -49,14 +38,9 @@ const QuizWarnModal = ({
           color={LegacySementic.purple.normal}
           children={<ButtonText $buttonType="check">확인</ButtonText>}
           handleClick={() => {
-            getRuinQuizById(selectedRuins![page].ruinsId);
             setOpenModal({
               element: (
-                <QuizModal
-                  close={setCloseModal}
-                  ruinDetail={ruinDetail}
-                  getMyBlock={getMyBlock}
-                />
+                <QuizModal close={setCloseModal} ruinDetail={ruinDetail} />
               ),
               key: "quizModal",
             });
@@ -66,10 +50,9 @@ const QuizWarnModal = ({
       </ButtonWrapper>
     </QuizWarnModalContainer>
   );
-}
+};
 
-export default QuizWarnModal
-
+export default QuizWarnModal;
 
 const QuizWarnModalContainer = styled.div`
   width: 320px;

@@ -23,7 +23,7 @@ const Adventure = () => {
   const { setOpenModal, setCloseModal } = useModalStore();
   const navigate = useNavigate();
 
-  const { myRuinBlock, getMyBlock } = useBlock();
+  const { myRuinBlock } = useBlock();
 
   const handleSelectRuin = (ruin: Ruin) => {
     setSelectedRuins([ruin]);
@@ -81,7 +81,6 @@ const Adventure = () => {
           <TileInfo
             selectedRuins={selectedRuins}
             myRuinBlock={myRuinBlock}
-            getMyBlock={getMyBlock}
           />
         )}
       </S.InfoWrapper>

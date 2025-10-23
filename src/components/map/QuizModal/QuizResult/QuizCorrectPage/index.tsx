@@ -10,13 +10,13 @@ import { useQueryClient } from "react-query";
 type PageType = "congratulation" | "showCard";
 
 const QuizCorrectPage = ({
-  closeFunction,
+  close,
   ruinDetail,
-  getMyBlock,
+  removeQueries,
 }: {
-  closeFunction: () => void;
+  close: () => void;
   ruinDetail: RuinDetail;
-  getMyBlock: () => Promise<void>;
+  removeQueries: () => void;
 }) => {
   const [page, setPage] = useState<PageType>("congratulation");
   const [isVisible, setIsVisible] = useState(true);
@@ -27,11 +27,12 @@ const QuizCorrectPage = ({
       setIsVisible(false);
       setTimeout(() => {
         setPage("showCard");
-        getMyBlock();
+        queryClient.invalidateQueries({ queryKey: ["blockGetMyBlock"] });
         setIsVisible(true);
       }, 300);
     }, 1000);
     queryClient.invalidateQueries({ queryKey: ["cardGetByRegion"] });
+    removeQueries();
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,7 +40,7 @@ const QuizCorrectPage = ({
   useEffect(() => {
     if (page === "showCard") {
       const closeTimer = setTimeout(() => {
-        closeFunction();
+        close();
       }, 3000);
 
       return () => clearTimeout(closeTimer);

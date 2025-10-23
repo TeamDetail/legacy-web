@@ -25,11 +25,9 @@ interface MenuDataType {
 const TileInfo = ({
   selectedRuins,
   myRuinBlock,
-  getMyBlock,
 }: {
   selectedRuins: Ruin[] | null;
   myRuinBlock: MyBlockType[];
-  getMyBlock: () => Promise<void>;
 }) => {
 
   const {
@@ -145,9 +143,6 @@ const TileInfo = ({
             element: (
               <QuizWarnModal
                 close={setCloseModal}
-                getMyBlock={getMyBlock}
-                selectedRuins={selectedRuins}
-                page={page}
                 ruinDetail={ruinDetail!}
               />
             ),
