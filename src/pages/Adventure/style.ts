@@ -1,4 +1,4 @@
-import { LegacyPalette, LegacySementic } from "@src/constants/color/color";
+import { LegacyPalette } from "@src/constants/color/color";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
 
