@@ -12,12 +12,10 @@ const KakaoLoginButton = ({ isVerifying }: { isVerifying: boolean }) => {
   const loginWithKakao = async () => (window.location.href = AUTH_URL);
 
   return (
-    <>
-      <KakaoLoginButtonContainer onClick={loginWithKakao}>
-        <KakaoImg width={14} height={14} />
-        <p>카카오 로그인 {isVerifying && "중..."}</p>
-      </KakaoLoginButtonContainer>
-    </>
+    <KakaoLoginButtonContainer onClick={loginWithKakao}>
+      <KakaoImg width={14} height={14} />
+      <p>카카오 로그인 {isVerifying && "중..."}</p>
+    </KakaoLoginButtonContainer>
   );
 };
 
