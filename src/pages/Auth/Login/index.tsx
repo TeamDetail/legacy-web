@@ -1,22 +1,15 @@
 import { useEffect } from "react";
 import * as S from "./style";
-import {
-  KAKAO_REDIRECT_URL,
-  REST_API_KEY,
-} from "@src/constants/auth/auth.constants";
 import useLogin from "@src/hooks/Auth/useLogin";
 import AppleLoginButton from "@components/auth/AppleLoginButton";
-import KakaoImg from "@src/assets/loginButtonSvg/kakao.svg?react";
 import GoogleLoginButton from "@components/auth/GoogleLoginButton";
+import KakaoLoginButton from "@components/auth/KakaoLoginButton";
 
 type LoginVerifyingProps = {
   verifyingType?: "KAKAO" | "APPLE" | "GOOGLE";
 };
 
 const Login = ({ verifyingType }: LoginVerifyingProps) => {
-  const handleLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
-  };
 
   const createQueryParams = (hash: string) => new URLSearchParams(hash);
 
@@ -60,10 +53,7 @@ const Login = ({ verifyingType }: LoginVerifyingProps) => {
               <S.Body2Bold>소셜 로그인하고 곧바로 뛰어드세요!</S.Body2Bold>
             </S.Column12>
             <S.LoginButtonContainer>
-              <S.LoginButton onClick={handleLogin}>
-                <KakaoImg />
-                <p>카카오 로그인 {verifyingType === "KAKAO" && "중..."}</p>
-              </S.LoginButton>
+              <KakaoLoginButton isVerifying={verifyingType === "KAKAO"}/>
               <GoogleLoginButton isVerifying={verifyingType === "GOOGLE"} />
               <AppleLoginButton isVerifying={verifyingType === "APPLE"} />
             </S.LoginButtonContainer>

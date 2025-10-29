@@ -57,24 +57,6 @@ export const Column20 = styled.div`
   align-items: center;
 `;
 
-export const LoginButton = styled.button`
-  width: 100%;
-  height: 32px;
-  background-color: #fee500;
-  border-width: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  > p {
-    ${LegacyTypography.Pretendard.Caption2.Medium}
-    flex: 1;
-  }
-`;
-
 export const Column12 = styled.div`
   display: flex;
   flex-direction: column;
