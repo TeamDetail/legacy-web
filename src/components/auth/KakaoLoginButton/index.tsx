@@ -1,13 +1,10 @@
 import KakaoImg from "@src/assets/loginButtonSvg/kakao.svg?react";
 import { LegacyTypography } from "@src/constants/font/fontToken";
 import styled from "styled-components";
-import {
-  KAKAO_REDIRECT_URL,
-  REST_API_KEY,
-} from "@src/constants/auth/auth.constants";
+import { KAKAO_REST_API_KEY } from "@src/constants/auth/auth.constants";
 
 const KakaoLoginButton = ({ isVerifying }: { isVerifying: boolean }) => {
-  const AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
+  const AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=https://legacygame.site/login/kakao/verify&response_type=code`;
 
   const loginWithKakao = async () => (window.location.href = AUTH_URL);
 
