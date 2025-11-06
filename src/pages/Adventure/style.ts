@@ -50,27 +50,6 @@ export const InfoWrapper = styled.div`
   width: 240px;
 `;
 
-export const AdventureMenuContainer = styled.div`
-  width: 100%;
-  padding: 8px 16px;
-  display: flex;
-  gap: 12px;
-  background-color: ${LegacyPalette.backgroundNormal};
-  border-radius: 16px;
-
-  div {
-    padding: 4px 8px;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${LegacyPalette.fillNormal};
-    border-radius: 8px;
-    cursor: pointer;
-  }
-`;
-
 export const WarningMessageWrapper = styled.div`
   display: flex;
   gap: 8px;

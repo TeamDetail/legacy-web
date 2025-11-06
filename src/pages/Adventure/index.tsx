@@ -4,32 +4,26 @@ import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
 import { useState } from "react";
 import { Ruin } from "@src/types/map/ruin.type";
-import SearchRuinsModal from "@components/map/SearchRuinsModal";
 import { LatLng } from "@src/types/map/latLng.type";
-import Search from "@src/assets/search.svg?react";
+
 import Info from "@src/assets/info.svg?react";
-import Calendar from "@src/assets/sidebarIcon/calendar.svg?react";
-import InventoryIcon from "@src/assets/pageIcon/inventory.svg?react";
+
 import useBlock from "@src/hooks/map/useBlock";
-import useModalStore from "@src/store/useModalStore";
-import { useNavigate } from "react-router-dom";
-import DailyModal from "@components/daily/daily";
+import AdventureMenu from "./AdventureMenu";
 
 const Adventure = () => {
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
   const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
   const [zoomLevel, setZoomLevel] = useState<number>(11);
   const [isWarning, setIsWarning] = useState(false);
-  const { setOpenModal, setCloseModal } = useModalStore();
-  const navigate = useNavigate();
-
-  const { myRuinBlock } = useBlock();
 
   const handleSelectRuin = (ruin: Ruin) => {
     setSelectedRuins([ruin]);
     setCenter({ lat: ruin.latitude, lng: ruin.longitude });
     setZoomLevel(15);
   };
+
+  const { myRuinBlock } = useBlock();
 
   return (
     <S.BackStage>
@@ -46,42 +40,9 @@ const Adventure = () => {
         <Sidebar />
       </S.Container>
       <S.InfoWrapper>
-        <S.AdventureMenuContainer>
-          <div
-            onClick={() =>
-              setOpenModal({
-                element: (
-                  <SearchRuinsModal
-                    close={setCloseModal}
-                    onSelectRuin={handleSelectRuin}
-                  />
-                ),
-                key: "searchRuinsModal",
-              })
-            }
-          >
-            <Search width={22} height={22} />
-          </div>
-          <div onClick={() => navigate("/profile/inventory")}>
-            <InventoryIcon width={22} height={22} />
-          </div>
-
-          <div
-            onClick={() =>
-              setOpenModal({
-                element: <DailyModal close={setCloseModal} />,
-                key: "dailyModal",
-              })
-            }
-          >
-            <Calendar width={22} height={22} />
-          </div>
-        </S.AdventureMenuContainer>
+        <AdventureMenu handleSelectRuin={handleSelectRuin} />
         {selectedRuins && (
-          <TileInfo
-            selectedRuins={selectedRuins}
-            myRuinBlock={myRuinBlock}
-          />
+          <TileInfo selectedRuins={selectedRuins} myRuinBlock={myRuinBlock} />
         )}
       </S.InfoWrapper>
       {isWarning && (
