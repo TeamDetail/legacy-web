@@ -19,7 +19,7 @@ export const QUERY_KEYS = {
   quiz: {
     checkRuinQuizAnswer: ["quizCheckRuinQuizAnswer"],
     getRuinQuizHint: (id: number) => [`quizHint/${id}`],
-    getQuizCost: ["quizCost"]
+    getQuizCost: ["quizCost"],
   },
   block: {
     getMyBlock: "blockGetMyBlock",
@@ -52,6 +52,10 @@ export const QUERY_KEYS = {
     getMyFriendCode: ["getMyFriendCode"],
   },
   daily: {
-    getDailyData: ["getDailyData"]
-  }
+    getDailyData: ["getDailyData"],
+  },
+  event: {
+    getEvent: ["getEvent"],
+    getEventDetail: (id: number) => ["getEventDetail", `${id}`],
+  },
 };

@@ -8,6 +8,7 @@ import DailyModal from "@components/daily/daily";
 import useModalStore from "@src/store/useModalStore";
 import Instagram from "@src/assets/instagram.svg?react";
 import Info from "@src/assets/info.svg?react";
+import Event from "@src/assets/star.svg?react";
 import { useNavigate } from "react-router-dom";
 import { Ruin } from "@src/types/map/ruin.type";
 
@@ -39,7 +40,6 @@ const AdventureMenu = ({
       <div onClick={() => navigate("/profile/inventory")}>
         <InventoryIcon width={22} height={22} />
       </div>
-
       <div
         onClick={() =>
           setOpenModal({
@@ -59,10 +59,14 @@ const AdventureMenu = ({
       </div>
       <div
         onClick={() =>
-          (location.href = "https://docs.google.com/forms/d/e/1FAIpQLSc4xnU5M9_L9YSQmXc30wcBx3Rp0J_IZSzVI-Jjisi4hVhrbw/viewform?usp=publish-editor")
+          (location.href =
+            "https://docs.google.com/forms/d/e/1FAIpQLSc4xnU5M9_L9YSQmXc30wcBx3Rp0J_IZSzVI-Jjisi4hVhrbw/viewform?usp=publish-editor")
         }
       >
         <Info width={22} height={22} />
+      </div>
+      <div onClick={() => {}}>
+        <Event width={22} height={22} />
       </div>
     </AdventureMenuContainer>
   );
@@ -79,9 +83,8 @@ const AdventureMenuContainer = styled.div`
   border-radius: 16px;
 
   div {
-    padding: 4px 8px;
-    width: 38px;
-    height: 38px;
+    flex-grow: 1;
+    aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
