@@ -18,6 +18,9 @@ const Detail = ({ ruinDetail }: { ruinDetail: RuinDetail }) => {
         isAtv={false}
         canInteract={false}
         handleCardChange={() => {}}
+        nationAttributeName={ruinDetail.card.nationAttributeName}
+        lineAttributeName={ruinDetail.card.lineAttributeName}
+        regionAttributeName={ruinDetail.card.regionAttributeName}
       />
       <S.ExplainContainer
         onClick={() => {

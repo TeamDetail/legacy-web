@@ -6,7 +6,6 @@ import NeedCredit from "@components/map/TileInfo/NeedCredit";
 import { Suspense } from "react";
 
 const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => (
-
   <>
     <S.RuinNameScoreContainer>
       <S.RuinNameContainer>
@@ -29,11 +28,14 @@ const OutLine = ({ ruinDetail }: { ruinDetail: RuinDetail }) => (
       isAtv={false}
       canInteract={false}
       handleCardChange={() => {}}
+      nationAttributeName={ruinDetail.card.nationAttributeName}
+      lineAttributeName={ruinDetail.card.lineAttributeName}
+      regionAttributeName={ruinDetail.card.regionAttributeName}
     />
     <S.DetailContainer>
       <span>탐험 필요 크레딧</span>
-      <Suspense fallback={<S.CostTextSkel/>}>
-        <NeedCredit/>
+      <Suspense fallback={<S.CostTextSkel />}>
+        <NeedCredit />
       </Suspense>
     </S.DetailContainer>
   </>
