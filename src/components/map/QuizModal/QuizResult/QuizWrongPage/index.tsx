@@ -38,7 +38,7 @@ const QuizWrongPage = ({
     <QuizResultWrapper>
       <MessageContainer>
         <SadImg />
-        전부 맞추지 못했어요...
+        퀴즈 해결 실패!
         {WrongAnswersMessage({ quizResult: isCorrect! })}
       </MessageContainer>
 
