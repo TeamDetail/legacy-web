@@ -5,7 +5,7 @@ import Close from "@src/assets/close.svg?react";
 import { useEvent } from "@src/hooks/event/useEvent";
 import EventItem from "./EventItem";
 
-const Event = ({ close }: { close: () => void }) => {
+const EventModal = ({ close }: { close: () => void }) => {
   const {
     events,
     eventDetail,
@@ -65,4 +65,4 @@ const Event = ({ close }: { close: () => void }) => {
   );
 };
 
-export default Event;
+export default EventModal;

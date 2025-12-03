@@ -11,6 +11,7 @@ import Info from "@src/assets/info.svg?react";
 import Event from "@src/assets/star.svg?react";
 import { useNavigate } from "react-router-dom";
 import { Ruin } from "@src/types/map/ruin.type";
+import EventModal from "@components/event/EventModal";
 
 const AdventureMenu = ({
   handleSelectRuin,
@@ -65,7 +66,14 @@ const AdventureMenu = ({
       >
         <Info width={22} height={22} />
       </div>
-      <div onClick={() => {}}>
+      <div
+        onClick={() =>
+          setOpenModal({
+            element: <EventModal close={setCloseModal} />,
+            key: "eventModal",
+          })
+        }
+      >
         <Event width={22} height={22} />
       </div>
     </AdventureMenuContainer>
