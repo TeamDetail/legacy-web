@@ -2,7 +2,7 @@ import * as S from "./style";
 import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Ruin } from "@src/types/map/ruin.type";
 import { LatLng } from "@src/types/map/latLng.type";
 import Info from "@src/assets/info.svg?react";
@@ -14,16 +14,6 @@ const Adventure = () => {
   const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
   const [zoomLevel, setZoomLevel] = useState<number>(11);
   const [isWarning, setIsWarning] = useState(false);
-
-  useEffect(() => {
-    const watcher = navigator.geolocation.watchPosition((position) => {
-      setCenter({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
-    });
-    return () => navigator.geolocation.clearWatch(watcher);
-  }, []);
 
   const handleSelectRuin = (ruin: Ruin) => {
     setSelectedRuins([ruin]);
