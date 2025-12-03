@@ -52,16 +52,15 @@ const AdventureMenu = ({
         <Calendar width={22} height={22} />
       </div>
       <div
-        onClick={() =>
-          (location.href = "https://www.instagram.com/legacyofdetail")
-        }
+        onClick={() => window.open("https://www.instagram.com/legacyofdetail")}
       >
         <Instagram width={22} height={22} />
       </div>
       <div
         onClick={() =>
-          (location.href =
-            "https://docs.google.com/forms/d/e/1FAIpQLSc4xnU5M9_L9YSQmXc30wcBx3Rp0J_IZSzVI-Jjisi4hVhrbw/viewform?usp=publish-editor")
+          window.open(
+            "https://docs.google.com/forms/d/e/1FAIpQLSc4xnU5M9_L9YSQmXc30wcBx3Rp0J_IZSzVI-Jjisi4hVhrbw/viewform?usp=publish-editor"
+          )
         }
       >
         <Info width={22} height={22} />
