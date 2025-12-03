@@ -43,7 +43,7 @@ const CodexItem = ({title, selectedRegion, onClick, resetSelectedState}: CodexIt
                 ).length /
                   data!.data.maxCount) *
                   100
-              ) / 100
+              )
             }% 수집`}
           </span>
         </div>
