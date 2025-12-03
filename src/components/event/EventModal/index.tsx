@@ -18,7 +18,7 @@ const EventModal = ({ close }: { close: () => void }) => {
       <S.EventModalHeader>
         <div>
           <EventIcon width={36} height={36} />
-          우편함
+          이벤트
         </div>
         <Close
           onClick={close}
