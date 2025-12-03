@@ -44,7 +44,7 @@ const EventModal = ({ close }: { close: () => void }) => {
               ))
             ) : (
               <S.EmptyEventMessage>
-                아직 진행중인 이벤트기 없어요!
+                아직 진행중인 이벤트가 없어요!
               </S.EmptyEventMessage>
             )}
           </S.EventListContainer>
