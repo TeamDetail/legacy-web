@@ -64,16 +64,16 @@ const Sidebar = ({ isLoading = false }: SidebarProps) => {
       isSelectedPage: modalData.key === "DAILY",
       icon: <Calendar width={22.5} />,
     },
-    {
-      text: "설정",
-      onClick: () =>
-        setOpenModal({
-          element: <MailBox close={setCloseModal} />,
-          key: "SETTING",
-        }),
-      isSelectedPage: modalData.key === "SETTING",
-      icon: <Setting width={22.5} />,
-    },
+    // {
+    //   text: "설정",
+    //   onClick: () =>
+    //     setOpenModal({
+    //       element: <MailBox close={setCloseModal} />,
+    //       key: "SETTING",
+    //     }),
+    //   isSelectedPage: modalData.key === "SETTING",
+    //   icon: <Setting width={22.5} />,
+    // },
     {
       text: "로그아웃",
       onClick: () => {
