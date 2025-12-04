@@ -2,7 +2,7 @@ import * as S from "./style";
 import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Ruin } from "@src/types/map/ruin.type";
 import { LatLng } from "@src/types/map/latLng.type";
 import Info from "@src/assets/info.svg?react";
@@ -11,7 +11,7 @@ import AdventureMenu from "./AdventureMenu";
 
 const Adventure = () => {
   const [selectedRuins, setSelectedRuins] = useState<Ruin[] | null>(null);
-  const [center, setCenter] = useState<LatLng>({ lat: 35.8722, lng: 128.6025 });
+  const [center, setCenter] = useState<LatLng>({ lat: 37.5516, lng: 126.9981 });
   const [zoomLevel, setZoomLevel] = useState<number>(11);
   const [isWarning, setIsWarning] = useState(false);
 
