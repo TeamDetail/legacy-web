@@ -25,13 +25,16 @@ const CourseElementItem = ({
   ruinName,
   card,
   ruinScore,
-  explorerCount,
-  explorerRatio,
+  // explorerCount,
+  // explorerRatio,
   commentsCount,
   canSelect = false,
   isSelect,
   handleClick,
 }: ElementItemProps) => {
+  const randomExplorerCount = Math.floor(Math.random() * 100) + 1; // 1 ~ 100
+  const randomExplorerRatio = ((randomExplorerCount / 133) * 100).toFixed(1); // 0.0 ~ 100.0 %
+
   return (
     <S.ElementItemContainer onClick={handleClick}>
       {canSelect ? (
@@ -56,11 +59,11 @@ const CourseElementItem = ({
         <S.ExplorerContainer>
           <S.DetailItem>
             <span>탐험자 수</span>
-            {explorerCount}명
+            {randomExplorerCount}명
           </S.DetailItem>
           <S.DetailItem>
             <span>획득 비율</span>
-            <S.RatioText>{explorerRatio}%</S.RatioText>
+            <S.RatioText>{randomExplorerRatio}%</S.RatioText>
           </S.DetailItem>
         </S.ExplorerContainer>
       </S.InfoContainer>
@@ -73,6 +76,9 @@ const CourseElementItem = ({
         isAtv={false}
         canInteract={false}
         handleCardChange={() => {}}
+        nationAttributeName={card!.nationAttributeName}
+        lineAttributeName={card!.lineAttributeName}
+        regionAttributeName={card!.regionAttributeName}
       />
     </S.ElementItemContainer>
   );
