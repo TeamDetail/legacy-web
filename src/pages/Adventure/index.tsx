@@ -2,7 +2,7 @@ import * as S from "./style";
 import GoogleMap from "@components/map/GoogleMap";
 import Sidebar from "@components/common/Sidebar";
 import TileInfo from "@components/map/TileInfo";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Ruin } from "@src/types/map/ruin.type";
 import { LatLng } from "@src/types/map/latLng.type";
 import Info from "@src/assets/info.svg?react";
