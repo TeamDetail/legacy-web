@@ -8,7 +8,7 @@ import SidebarUserInfoSkeleton from "@components/skeleton/SidebarUserInfoSkeleto
 import Menu from "@src/assets/sidebarIcon/menu.svg?react";
 import { LegacyPalette } from "@src/constants/color/color";
 import Mail from "@src/assets/sidebarIcon/mail.svg?react";
-import Setting from "@src/assets/sidebarIcon/setting.svg?react";
+// import Setting from "@src/assets/sidebarIcon/setting.svg?react";
 import Logout from "@src/assets/sidebarIcon/logout.svg?react";
 import Calendar from "@src/assets/sidebarIcon/calendar.svg?react";
 // import Info from "@src/assets/sidebarIcon/info.svg?react";
