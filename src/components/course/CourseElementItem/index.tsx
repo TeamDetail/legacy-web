@@ -17,6 +17,10 @@ interface ElementItemProps {
   isSelect?: boolean;
   handleClick?: () => void;
 }
+const hashNumber = (id: number, max: number) => {
+  const seed = Math.sin(id) * 10000;
+  return Math.floor((seed - Math.floor(seed)) * max) + 1;
+};
 
 const CourseElementItem = ({
   index,
@@ -25,15 +29,13 @@ const CourseElementItem = ({
   ruinName,
   card,
   ruinScore,
-  // explorerCount,
-  // explorerRatio,
   commentsCount,
   canSelect = false,
   isSelect,
   handleClick,
 }: ElementItemProps) => {
-  const randomExplorerCount = Math.floor(Math.random() * 100) + 1; // 1 ~ 100
-  const randomExplorerRatio = ((randomExplorerCount / 133) * 100).toFixed(1); // 0.0 ~ 100.0 %
+  const explorerCount = hashNumber(ruinId, 100); // 1 ~ 100
+  const explorerRatio = ((explorerCount / 133) * 100).toFixed(1); // 0.0 ~ 100.0 %
 
   return (
     <S.ElementItemContainer onClick={handleClick}>
@@ -59,27 +61,30 @@ const CourseElementItem = ({
         <S.ExplorerContainer>
           <S.DetailItem>
             <span>탐험자 수</span>
-            {randomExplorerCount}명
+            {explorerCount}명
           </S.DetailItem>
           <S.DetailItem>
             <span>획득 비율</span>
-            <S.RatioText>{randomExplorerRatio}%</S.RatioText>
+            <S.RatioText>{explorerRatio}%</S.RatioText>
           </S.DetailItem>
         </S.ExplorerContainer>
       </S.InfoContainer>
-      <Card
-        cardType="BASIC_CARD"
-        cardId={card!.cardId}
-        cardImageUrl={card!.cardImageUrl}
-        cardName={card!.cardName}
-        size="S"
-        isAtv={false}
-        canInteract={false}
-        handleCardChange={() => {}}
-        nationAttributeName={card!.nationAttributeName}
-        lineAttributeName={card!.lineAttributeName}
-        regionAttributeName={card!.regionAttributeName}
-      />
+
+      {card && (
+        <Card
+          cardType="BASIC_CARD"
+          cardId={card.cardId}
+          cardImageUrl={card.cardImageUrl}
+          cardName={card.cardName}
+          size="S"
+          isAtv={false}
+          canInteract={false}
+          handleCardChange={() => {}}
+          nationAttributeName={card.nationAttributeName}
+          lineAttributeName={card.lineAttributeName}
+          regionAttributeName={card.regionAttributeName}
+        />
+      )}
     </S.ElementItemContainer>
   );
 };
